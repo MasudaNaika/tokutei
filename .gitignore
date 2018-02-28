@@ -24,6 +24,7 @@ CVS
 
 # not for resources
 !/resources/NITTOKU/*.jar
+!/resources/NITTOKU/Lib/*.jar
 /resources/NITTOKU/CVS
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
