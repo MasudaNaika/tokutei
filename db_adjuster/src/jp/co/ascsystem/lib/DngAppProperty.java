@@ -1,6 +1,5 @@
 package jp.co.ascsystem.lib;
 
-import java.io.*;
 import java.util.Hashtable;
 import jp.co.ascsystem.util.DngXMLParse;
 
