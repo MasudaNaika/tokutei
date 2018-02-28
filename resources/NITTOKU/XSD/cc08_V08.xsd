@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tokuteikenshin.jp/checkup/2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tokuteikenshin.jp/checkup/2007" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="co08_V08.xsd"/>
+  <!-- Element Definition -->
+  <xs:element name="checkupClaim" type="CheckupClaim"/>
+  <xs:element name="encounter" type="Common.Encounter"/>
+  <xs:element name="checkupCard" type="CheckupClaim.CheckupCard"/>
+  <xs:element name="id" type="Common.CheckupCardId"/>
+  <xs:element name="effectiveTime" type="Common.IntervalPointInTime"/>
+  <xs:element name="high" type="Common.Date"/>
+  <xs:element name="performerOrganization" type="Common.CheckupProvider"/>
+  <xs:element name="name" type="Common.PersonName"/>
+  <xs:element name="addr" type="Common.Address"/>
+  <xs:element name="administrativeGender" type="Common.AdministrativeGender"/>
+  <xs:element name="chargeTypeBasic" type="Common.ChargeType"/>
+  <xs:element name="chargeTypeDetail" type="Common.ChargeType"/>
+  <xs:element name="chargeTypeOther" type="Common.ChargeType"/>
+  <xs:element name="copayment" type="Common.Copayment"/>
+  <xs:element name="maxInsuranceLimit" type="Common.MaximumInsuranceLimit"/>
+  <xs:element name="chargeTypeHumanDryDock" type="CheckupClaim.ChargeTypeHumanDryDock"/>
+  <xs:element name="settlement" type="CheckupClaim.Settlement"/>
+  <xs:element name="claimType" type="CheckupClaim.ClaimType"/>
+  <xs:element name="commissionType" type="CheckupClaim.CommissionType"/>
+  <xs:element name="unitPriceBasic" type="Common.UnitPrice"/>
+  <xs:element name="unitPriceDetail" type="Common.UnitPriceWithDetailObservation"/>
+  <xs:element name="unitPriceOther" type="Common.UnitPriceWithOtherObservation"/>
+  <xs:element name="paymentForBasic" type="Common.Payment"/>
+  <xs:element name="paymentForDetail" type="Common.Payment"/>
+  <xs:element name="paymentForOther" type="Common.Payment"/>
+  <xs:element name="unitAmount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="paymentAmount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="paymentByOtherProgram" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="claimAmount" type="Common.TotalMonetaryAmount"/>
+  <!-- ComplexType Definition -->
+  <xs:complexType name="CheckupClaim">
+    <xs:sequence>
+      <xs:element ref="encounter"/>
+      <xs:element name="subjectPerson" type="CheckupClaim.SubjectPerson"/>
+      <xs:element ref="checkupCard"/>
+      <xs:element ref="settlement"/>
+      <xs:element ref="agencyAdjudicationResult" minOccurs="0"/>
+      <xs:element ref="insurerAdjudicationResult" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.CheckupCard">
+    <xs:sequence>
+      <xs:element ref="id" minOccurs="0"/>
+      <xs:element ref="effectiveTime" minOccurs="0"/>
+      <xs:element ref="chargeTypeBasic" minOccurs="0"/>
+      <xs:element ref="chargeTypeDetail" minOccurs="0"/>
+      <xs:element ref="chargeTypeOther" minOccurs="0"/>
+      <xs:element ref="chargeTypeHumanDryDock" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.ChargeTypeHumanDryDock">
+    <xs:sequence>
+      <xs:element ref="copayment" minOccurs="0"/>
+      <xs:element ref="maxInsuranceLimit" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.SubjectPerson">
+    <xs:sequence>
+      <xs:element ref="performerOrganization"/>
+      <xs:element ref="insuranceCard"/>
+      <xs:element ref="name"/>
+      <xs:element ref="addr"/>
+      <xs:element ref="birthTime"/>
+      <xs:element ref="administrativeGender"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.Settlement">
+    <xs:sequence>
+      <xs:element ref="claimType"/>
+      <xs:element ref="commissionType"/>
+      <xs:element ref="unitPriceBasic" minOccurs="0"/>
+      <xs:element ref="unitPriceDetail" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="unitPriceOther" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element ref="paymentForBasic" minOccurs="0"/>
+      <xs:element ref="paymentForDetail" minOccurs="0"/>
+      <xs:element ref="paymentForOther" minOccurs="0"/>
+      <xs:element ref="unitAmount"/>
+      <xs:element ref="paymentAmount"/>
+      <xs:element ref="paymentByOtherProgram" minOccurs="0"/>
+      <xs:element ref="claimAmount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.ClaimType">
+    <xs:attribute name="code" type="Code.ClaimType" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="CheckupClaim.CommissionType">
+    <xs:attribute name="code" type="Code.CommissionType" use="required"/>
+  </xs:complexType>
+</xs:schema>

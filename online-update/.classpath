@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry path="src" kind="src"/>
+	<classpathentry path="org.eclipse.jdt.launching.JRE_CONTAINER" kind="con"/>
+	<classpathentry path="/work-directory/Lib/iText-2.0.8.jar" kind="lib"/>
+	<classpathentry path="/work-directory/Lib/iTextAsian.jar" kind="lib"/>
+	<classpathentry path="/work-directory/Lib/jaybird.jar" kind="lib"/>
+	<classpathentry path="/work-directory/Lib/jaybird-full.jar" kind="lib"/>
+	<classpathentry path="/work-directory/Lib/log4j-1.2.15.jar" kind="lib"/>
+	<classpathentry path="/work-directory/Lib/postgresql.jar" kind="lib"/>
+	<classpathentry path="/common-component" combineaccessrules="false" kind="src"/>
+	<classpathentry path="bin" kind="output"/>
+</classpath>

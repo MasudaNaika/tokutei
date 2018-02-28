@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<project name="システム管理者用ソフトウェア" default="jar" basedir=".">
+	<!-- フォルダ類の定数 -->
+	<property name="class_directory" value="class"/>
+	<property name="javadoc_directory" value="javadoc"/>
+	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
+<!--	<property name="lib_directory2" value="./../online-update/output"/>-->
+	<property name="lib_directory3" value="./../resources/NITTOKU"/>
+	<property name="source_directory" value="src"/>
+	<property name="common_directory" value="./../common-component/src/"/>
+	<property name="output_directory" value="output"/>
+
+	<!-- クラスパス -->
+	<path id="lib.classpath">
+		<fileset dir="${lib_directory}">
+			<include name="**/*.jar" />
+		</fileset>
+		<!--
+		<fileset dir="${lib_directory2}">
+			<include name="**/*.jar" />
+		</fileset>
+		-->
+		<fileset dir="${lib_directory3}">
+			<include name="**/DBAdjuster.jar" />
+		</fileset>
+	</path>
+
+	<!-- ファイル類の定数 -->
+	<property name="jar_file" value="${output_directory}/JAdminSoftware.jar"/>
+	<property name="manifest_file" value="manifest"/>
+
+	<!-- jarファイルの作成 -->
+	<target name="jar" depends="compile">
+		<mkdir dir="${output_directory}"/>
+		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
+		<!-- resources/NITTOKUにコピーのため次の3行を追加 -->
+		<copy todir="${lib_directory3}">
+		<fileset dir="${output_directory}" />
+		</copy>
+	</target>
+
+	<!-- コンパイル -->
+	<target name="compile">
+		<mkdir dir="${class_directory}"/>
+		<javac srcdir="${common_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
+		<javac srcdir="${source_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
+	</target>
+
+	<!-- JavaDoc -->
+	<target name="javadoc">
+		<mkdir dir="${javadoc_directory}"/>
+		<javadoc
+			packagenames="*"
+			sourcepath="${source_directory};${common_directory}"
+			destdir="${javadoc_directory}"
+			/>
+	</target>
+</project>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tokuteikenshin.jp/checkup/2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tokuteikenshin.jp/checkup/2007" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="co08_V08.xsd"/>
+  <!-- Element Definition -->
+  <xs:element name="summary" type="Summary"/>
+  <xs:element name="totalSubjectCount" type="Summary.TotalSubjectCount"/>
+  <xs:element name="totalCostAmount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="totalPaymentAmount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="totalPaymentByOtherProgram" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="totalClaimAmount" type="Common.TotalMonetaryAmount"/>
+  <!-- ComplexType Definition -->
+  <xs:complexType name="Summary">
+    <xs:sequence>
+      <xs:element ref="serviceEventType"/>
+      <xs:element ref="totalSubjectCount"/>
+      <xs:element ref="totalCostAmount"/>
+      <xs:element ref="totalPaymentAmount"/>
+      <xs:element ref="totalPaymentByOtherProgram" minOccurs="0"/>
+      <xs:element ref="totalClaimAmount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Summary.TotalSubjectCount">
+    <xs:attribute name="value" type="totalCount" use="required"/>
+  </xs:complexType>
+</xs:schema>

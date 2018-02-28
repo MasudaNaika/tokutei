@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/common-component"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/iTextAsian.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jaybird-full.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/postgresql.jar"/>
+	<classpathentry kind="lib" path="/work-directory/DBYearAdjuster.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/clientos.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jnlp-servlet.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jnlp.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/liquidlnf.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/looks-2.3.1.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/serveros.jar"/>
+	<classpathentry kind="var" path="TOCAT_HOME"/>
+	<classpathentry kind="lib" path="/work-directory/DBAdjuster.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/poi-2.0-RC2-20040102.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/commonos.jar"/>
+	<classpathentry kind="var" path="SWT_LIB"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

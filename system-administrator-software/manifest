@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: jp.or.med.orca.jma_tokutei.kenshin.admin.JAdminSoftware
+Class-Path: ./Lib/jnlp.jar ./Lib/jaybird.jar ./Lib/jaybird-full.jar ./Lib/postgresql.jar ./Lib/iTextAsian.jar ./JUpdate.jar ./Lib/log4j-1.2.15.jar ./DBAdjuster.jar ./Lib/clientos.jar ./Lib/serveros.jar ./Lib/jcalendar-1.4.jar ./Lib/servlet-api.jar ./Lib/srcserveros.jar ./Lib/commonos.jar ./Lib/pooler.jar ./Lib/javax.servlet.jar ./Lib/BeanInfo.jar ./Lib/hessian-3.1.1.ja

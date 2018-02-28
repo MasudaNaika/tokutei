@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<project name="db-yearadjuster" default="jar" basedir=".">
+	<!-- フォルダ類の定数 -->
+	<property name="class_directory" value="class"/>
+	<property name="source_directory" value="src"/>
+	<property name="output_directory" value="output"/>
+	<property name="common_directory" value="./../common-component/src/"/>
+	<property name="lib_directory3" value="./../resources/NITTOKU/"/>
+	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
+
+	<!-- クラスパス -->
+	<path id="lib.classpath">
+		<fileset dir="${lib_directory}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<!-- ファイル類の定数 -->
+	<property name="jar_file" value="${output_directory}/DBYearAdjuster.jar"/>
+	<property name="manifest_file" value="manifest"/>
+
+	<!-- jarファイルの作成 -->
+	<target name="jar" depends="compile">
+		<mkdir dir="${output_directory}"/>
+		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
+		<copy todir="${lib_directory3}">
+		  <fileset dir="${output_directory}" />
+		</copy>
+	</target>
+
+	<!-- コンパイル -->
+	<target name="compile">
+		<mkdir dir="${class_directory}"/>
+		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
+		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
+	</target>
+
+	<!-- 署名 -->
+	<target name="sign-jar" depends="jar" if="do.sign">
+		<input message="Input the store password" addproperty="storepass"/>
+		<signjar alias="${alias}" storepass="${storepass}" keystore="${keystore}">
+		<fileset dir="${output_directory}">
+			<include name="*.jar"/>
+		</fileset>
+		</signjar>
+		<apply executable="jarsigner">
+			<arg value="-verify"/>
+			<arg value="-keystore"/>
+			<arg value="${keystore}"/>
+			<fileset dir="${output_directory}">
+				<include name="*.jar"/>
+			</fileset>
+		</apply>
+		<copy todir="${lib_directory3}">
+		  <fileset dir="${output_directory}" />
+		</copy>
+	</target>
+</project>

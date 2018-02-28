@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<data>
+<!-- Beta version from here -->
+		<schema_kikan_version no="0.9.7">
+			<task>
+				<query>ALTER TABLE T_KENSHINMASTER ADD XMLITEM_SEQNO Integer NOT NULL</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="0.9.7">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET XMLITEM_SEQNO = ? WHERE KOUMOKU_CD = ?</param_query> 
+				<data_url>work/version/1.0.0/data096.csv</data_url> 
+			</task>
+		</data_kikan_version>
+		<data_kikan_version no="0.9.7.1">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>DELETE FROM T_SHIHARAI WHERE SHIHARAI_DAIKO_NO = ?</param_query> 
+				<data_url>work/version/1.0.0/data096-3.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_SHIHARAI (SHIHARAI_DAIKO_NO,SHIHARAI_DAIKO_NAME,SHIHARAI_DAIKO_ZIPCD,SHIHARAI_DAIKO_TEL,SHIHARAI_DAIKO_ADR) VALUES (?,?,?,?,?)</param_query> 
+				<data_url>work/version/1.0.0/data096-2.csv</data_url> 
+			</task>
+		</data_kikan_version>
+		<schema_kikan_version no="0.9.8">
+			<task>
+				<query>ALTER TABLE T_KOJIN ADD MADO_FUTAN_SONOTA Numeric(8,0)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KOJIN ADD HOKENJYA_FUTAN_KIHON Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KOJIN ADD HOKENJYA_FUTAN_SYOUSAI Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KOJIN ADD HOKENJYA_FUTAN_TSUIKA Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KOJIN ADD HOKENJYA_FUTAN_DOC Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD MADO_FUTAN_SONOTA Numeric(8,0)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD HOKENJYA_FUTAN_KIHON Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD HOKENJYA_FUTAN_SYOUSAI Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD HOKENJYA_FUTAN_TSUIKA Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD HOKENJYA_FUTAN_DOC Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_SYUKEI ADD KENSA_SONOTA_SOUKEI Integer</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="0.9.9">
+			<task>
+				<query>update T_DATA_TYPE_CODE set code_name = (  select a.code_num ||  ':' || a.code_name from T_DATA_TYPE_CODE as a where a.koumoku_cd = T_DATA_TYPE_CODE.koumoku_cd and a.code_num = T_DATA_TYPE_CODE.code_num  ) where code_name not like '%:%'</query>
+			</task>
+		</data_kikan_version>
+<!-- Beta version to here -->
+<!-- Release version from here -->
+<!-- Ver 1.0.0 -->
+		<schema_system_version no="1.0.0">
+			<task>
+				<query>ALTER TABLE T_VERSION DROP MODULE_VERSION</query>
+			</task>
+			<task>
+				<query>INSERT INTO T_VERSION (ROW_ID,SCHEMA_VERSION,DB_VERSION,UPDATE_TIMESTAMP) VALUES ( 0 ,'1.0.0','1.0.0',CURRENT_TIME)</query>
+			</task>
+		</schema_system_version>
+		<schema_kikan_version no="1.0.0">
+			<task>
+				<query>INSERT INTO T_VERSION (ROW_ID,SCHEMA_VERSION,DB_VERSION,UPDATE_TIMESTAMP) VALUES ( 0 ,'1.0.0','1.0.0',CURRENT_TIME)</query>
+			</task>
+		</schema_kikan_version>
+<!-- Ver 1.0.1 -->
+<!-- Ver 1.0.2 -->
+		<data_kikan_version no="1.0.2">
+                <!-- Redo because this task has not availabled at ver1.0.0 -->
+			<task>
+				<query>UPDATE T_KENSHINMASTER SET MAX_BYTE_LENGTH = '##.00', XMLITEM_SEQNO = '510' WHERE KOUMOKU_CD = '3C015000002327101'</query>
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.0.3 -->
+		<data_kikan_version no="1.0.3">
+			<task>
+				<query>UPDATE T_KENSHINMASTER SET TANI = 'g/dL' ,XMLITEM_SEQNO = '560' WHERE KOUMOKU_CD = '3A010000002399901'</query>
+			</task>
+			<task>
+				<pre_query>DELETE FROM T_DATA_TYPE_CODE WHERE KOUMOKU_CD='9N756000000000011' and CODE_NUM='3' </pre_query> 
+				<param_query>UPDATE T_DATA_TYPE_CODE SET CODE_NAME = ?  WHERE KOUMOKU_CD = ? and CODE_NUM = ? </param_query> 
+				<data_url>work/version/1.0.3/data1031.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.0.4 -->
+<!-- Ver 1.0.5 -->
+		<data_kikan_version no="1.0.5">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET KAGEN = ?  , JYOUGEN = ? WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.0.5/data105-1.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET KAGEN = NULL  , JYOUGEN = NULL WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.0.5/data105-2.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.0.6 -->
+		<data_kikan_version no="1.0.6">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET DS_JYOUGEN = ? ,DS_KAGEN = NULL ,JS_JYOUGEN = ? ,JS_KAGEN = NULL WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.0.6/data106-1.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET DS_JYOUGEN = NULL ,DS_KAGEN = ? ,JS_JYOUGEN = NULL ,JS_KAGEN = ? WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.0.6/data106-2.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET DS_JYOUGEN = NULL ,DS_KAGEN = NULL ,JS_JYOUGEN = NULL ,JS_KAGEN = NULL WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.0.6/data106-3.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.0.7 -->
+<!-- Ver 1.0.8 -->
+<!-- Ver 1.0.9 -->
+		<data_kikan_version no="1.0.9">
+			<task>
+				<pre_query>DELETE FROM T_KENSHIN_P_S WHERE K_P_NO = '-1'</pre_query> 
+				<param_query>INSERT INTO T_KENSHIN_P_S (K_P_NO, LOW_ID, KOUMOKU_CD) VALUES (?, ?, ?) </param_query> 
+				<data_url>work/version/1.0.9/data1091.csv</data_url> 
+			</task>
+			<task>
+				<pre_query>DELETE FROM T_KENSHIN_P_M WHERE K_P_NO = '-1'</pre_query> 
+				<param_query>INSERT INTO T_KENSHIN_P_M (K_P_NO, K_P_NAME , BIKOU) VALUES (?, ?, ?) </param_query> 
+				<data_url>work/version/1.0.9/data1092.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.1.0 -->
+		<schema_kikan_version no="1.1.0">
+			<task>
+				<query>ALTER TABLE T_KENSAKEKA_TOKUTEI ADD NYUBI_YOUKETU Varchar(10)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KENSAKEKA_TOKUTEI ADD SYOKUZEN_SYOKUGO Varchar(10)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KENSAKEKA_SONOTA ADD JISI_KBN Smallint NOT NULL</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KENSAKEKA_SONOTA ADD KEKA_TI_KEITAI Smallint</query>
+			</task>
+		</schema_kikan_version>
+<!-- Ver 1.1.1 -->
+<!-- Ver 1.1.2 -->
+<!-- Ver 1.1.3 -->
+		<data_kikan_version no="1.1.3">
+			<task>
+				<query>UPDATE T_KENSAKEKA_SONOTA SET JISI_KBN = '1' WHERE JISI_KBN is NULL</query>
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_DATA_TYPE_CODE SET CODE_NAME = ? WHERE KOUMOKU_CD = ? AND CODE_NUM = ?</param_query>
+				<data_url>work/version/1.1.3/data113.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.1.4 -->
+<!-- Ver 1.1.5 -->
+		<data_kikan_version no="1.1.5">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET KOUMOKU_CD = ? WHERE KOUMOKU_CD = ? </param_query> 
+				<data_url>work/version/1.1.5/data1151.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSAKEKA_SONOTA SET KOUMOKU_CD = ? WHERE KOUMOKU_CD = ? </param_query> 
+				<data_url>work/version/1.1.5/data1151.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHIN_P_S SET KOUMOKU_CD = ? WHERE KOUMOKU_CD = ? </param_query> 
+				<data_url>work/version/1.1.5/data1151.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSAKEKA_SONOTA SET JISI_KBN = ? WHERE JISI_KBN = ? AND (KEKA_TI != ? AND KEKA_TI is not null) </param_query> 
+				<data_url>work/version/1.1.5/data1152.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSAKEKA_SONOTA SET HANTEI = ? WHERE (JISI_KBN = ? AND (KEKA_TI = ? OR KEKA_TI is null)) OR (JISI_KBN = ? AND (KEKA_TI = ? OR KEKA_TI is null)) </param_query> 
+				<data_url>work/version/1.1.5/data1153.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.1.6 -->
+<!-- Ver 1.1.7 -->
+<!-- Ver 1.1.8 -->
+		<schema_kikan_version no="1.1.8">
+			<task>
+				<query>ALTER TABLE T_KENSAKEKA_TOKUTEI ADD HENKAN_NITIJI Integer</query>
+			</task>
+			<task>
+				<query>UPDATE T_KENSAKEKA_TOKUTEI SET T_KENSAKEKA_TOKUTEI.HENKAN_NITIJI = (select TOKUTEI.HENKAN_NITIJI SUB_HENKAN FROM T_KESAI KESAI,T_KENSAKEKA_TOKUTEI TOKUTEI WHERE KESAI.UKETUKE_ID = TOKUTEI.UKETUKE_ID AND KESAI.KENSA_NENGAPI = TOKUTEI.KENSA_NENGAPI)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI DROP HENKAN_NITIJI</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="1.1.8">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET KAGEN = ?  , JYOUGEN = ? WHERE KOUMOKU_CD = ? and HKNJANUM='99999999'</param_query> 
+				<data_url>work/version/1.1.8/data1181.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.1.9 -->
+		<schema_kikan_version no="1.1.9">
+			<task>
+				<query>CREATE TABLE T_NAYOSE(NAYOSE_NO Numeric(12,0) NOT NULL,UKETUKE_ID Numeric(12,0) NOT NULL,UPDATE_TIMESTAMP Timestamp NOT NULL,PRIMARY KEY (NAYOSE_NO,UKETUKE_ID))</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="1.1.9">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSAKEKA_SONOTA SET JISI_KBN = ? WHERE JISI_KBN = ? </param_query> 
+				<data_url>work/version/1.1.9/data1191.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.2.0 -->
+<!-- Ver 1.2.1 -->
+<!-- Ver 1.2.2 -->
+<!-- Ver 1.2.3 -->
+		<schema_kikan_version no="1.2.3">
+			<task>
+				<query>CREATE TABLE T_KESAI_WK (TKIKAN_NO Char(10) NOT NULL, JISI_KBN Smallint NOT NULL, KENSA_NENGAPI Integer NOT NULL, SEIKYU_KBN Smallint NOT NULL, SYUBETU_CD Smallint NOT NULL, HKNJANUM Varchar(8) NOT NULL, HIHOKENJYASYO_KIGOU Varchar(40), HIHOKENJYASYO_NO Varchar(40), ITAKU_KBN Smallint, TANKA_KIHON Integer, HINKETU_CD Smallint, TANKA_HINKETU Integer, SINDENZU_CD Smallint, TANKA_SINDENZU Integer, GANTEI_CD Smallint, TANKA_GANTEI Integer, MADO_FUTAN_K_SYUBETU Smallint, MADO_FUTAN_KIHON Char(6), MADO_FUTAN_KIHON_OUT Char(6), MADO_FUTAN_S_SYUBETU Smallint, MADO_FUTAN_SYOUSAI Char(6), MADO_FUTAN_SYOUSAI_OUT Char(6), MADO_FUTAN_T_SYUBETU Smallint, MADO_FUTAN_TSUIKA Char(6), MADO_FUTAN_TSUIKA_OUT Char(6), TANKA_GOUKEI Integer NOT NULL, MADO_FUTAN_GOUKEI Integer, SEIKYU_KINGAKU Integer, SIHARAI_DAIKOU_BANGO Char(8), NENDO Smallint, UKETUKE_ID Numeric(12,0) NOT NULL, MADO_FUTAN_SONOTA Integer, HOKENJYA_FUTAN_KIHON Char(6), HOKENJYA_FUTAN_SYOUSAI Char(6), HOKENJYA_FUTAN_TSUIKA Char(6), HOKENJYA_FUTAN_DOC Char(6), TANKA_NINGENDOC Integer, MADO_FUTAN_D_SYUBETU Smallint, MADO_FUTAN_DOC Char(6), MADO_FUTAN_DOC_OUT Char(6), UPDATE_TIMESTAMP Timestamp, PRIMARY KEY (UKETUKE_ID,TKIKAN_NO,KENSA_NENGAPI,HKNJANUM))</query>
+			</task>
+			<task>
+				<query>CREATE INDEX IDX_T_KESAI ON T_KESAI (HIHOKENJYASYO_KIGOU,HIHOKENJYASYO_NO,TKIKAN_NO,KENSA_NENGAPI,HKNJANUM)</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_KESAI_SYOUSAI_WK (TKIKAN_NO Char(10) NOT NULL, KENSA_NENGAPI Integer NOT NULL, HKNJANUM Varchar(8) NOT NULL, HIHOKENJYASYO_KIGOU Varchar(40), HIHOKENJYASYO_NO Varchar(40), TUIKA_KENSIN_CD Varchar(17) NOT NULL, TANKA_TUIKA_KENSIN Integer, NENDO Smallint, UKETUKE_ID Numeric(12,0) NOT NULL, UPDATE_TIMESTAMP Timestamp, PRIMARY KEY (UKETUKE_ID,KENSA_NENGAPI,HKNJANUM,TUIKA_KENSIN_CD))</query>
+			</task>
+			<task>
+				<query>CREATE INDEX IDX_T_KESAI_SYOUSAI ON T_KESAI_SYOUSAI (HIHOKENJYASYO_KIGOU,HIHOKENJYASYO_NO,TKIKAN_NO,KENSA_NENGAPI,HKNJANUM)</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_SYUKEI_WK(ROW_ID Smallint NOT NULL, HKNJANUM Char(8) NOT NULL, KENSA_NENGAPI Integer NOT NULL, KENSA_JISI_KUBUN Smallint, KENSA_JISI_SOUSU Integer, KENSA_TANKA_SOUKEI Integer, KENSA_MADO_SOUKEI Integer, KENSA_SEIKYU_SOUKEI Integer, KENSA_SONOTA_SOUKEI Integer, UPDATE_TIMESTAMP Timestamp, PRIMARY KEY (HKNJANUM,KENSA_NENGAPI,ROW_ID))</query>
+			</task>
+			<task>
+				<query>drop table T_SYUKEI</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_SYUKEI(ROW_ID Smallint NOT NULL, HKNJANUM Char(8) NOT NULL, KENSA_NENGAPI Integer NOT NULL, KENSA_JISI_KUBUN Smallint, KENSA_JISI_SOUSU Integer, KENSA_TANKA_SOUKEI Integer, KENSA_MADO_SOUKEI Integer, KENSA_SEIKYU_SOUKEI Integer, KENSA_SONOTA_SOUKEI Integer, PRIMARY KEY (HKNJANUM,KENSA_NENGAPI,ROW_ID))</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_HOKENJYA ADD TANKA_NINGENDOC Integer</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_HOKENJYA ADD TANKA_HANTEI Smallint</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD TANKA_NINGENDOC Integer</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ALTER MADO_FUTAN_TSUIKA_DOC TO MADO_FUTAN_TSUIKA</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ALTER MADO_FUTAN_TSUIKA_DOC_OUT TO MADO_FUTAN_TSUIKA_OUT</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD MADO_FUTAN_D_SYUBETU Smallint</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD MADO_FUTAN_DOC Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD MADO_FUTAN_DOC_OUT Char(6)</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI ADD UPDATE_TIMESTAMP Timestamp</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_KESAI_SYOUSAI ADD UPDATE_TIMESTAMP Timestamp</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_SYUKEI ADD ROW_ID Smallint NOT NULL</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_SYUKEI ADD UPDATE_TIMESTAMP Timestamp</query>
+			</task>
+			<task>
+				<query>ALTER TABLE T_SYUKEI ADD PRIMARY KEY (ROW_ID)</query>
+			</task>
+		</schema_kikan_version>
+<!-- Ver 1.2.4 -->
+		<data_kikan_version no="1.2.4">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_KENSHINMASTER SET TANKA_KENSIN = NULL WHERE TANKA_KENSIN = ? </param_query> 
+				<data_url>work/version/1.2.4/data1241.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.2.5 -->
+<!-- Ver 1.2.6 -->
+		<schema_kikan_version no="1.2.6">
+			<task>
+				<query>alter table T_HOKENJYA drop constraint INTEG_73</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add HKNJYA_HISTORY_NO INTEGER NOT NULL</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add HKNJYA_LIMITDATE_START Integer</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add HKNJYA_LIMITDATE_END Integer</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add YUKOU_FLG Smallint</query>
+			</task>			
+			<task>
+				<query>update RDB$RELATION_FIELDS set RDB$NULL_FLAG = 1 where (RDB$FIELD_NAME = 'ITAKU_KBN') and (RDB$RELATION_NAME = 'T_HOKENJYA')</query>
+			</task>
+			<task>
+				<query>update T_HOKENJYA set HKNJYA_HISTORY_NO =1</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add constraint PK_HOKENJYA primary key(HKNJANUM,ITAKU_KBN,HKNJYA_HISTORY_NO)</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="1.2.6">
+			<task>
+				<pre_query></pre_query>
+				<param_query>update T_HOKENJYA set YUKOU_FLG = ?</param_query>
+				<data_url>work/version/1.2.6/data1261.csv</data_url>
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>update T_HOKENJYA set HKNJYA_LIMITDATE_START = ? ,HKNJYA_LIMITDATE_END = ? </param_query>
+				<data_url>work/version/1.2.6/data1262.csv</data_url>
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.2.7 -->
+		<schema_kikan_version no="1.2.7">
+			<task>
+				<query>alter table T_HOKENJYA drop constraint INTEG_73</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA drop constraint INTEG_181</query>
+			</task>
+			<task>
+				<query>update RDB$RELATION_FIELDS set RDB$NULL_FLAG = 1 where (RDB$FIELD_NAME = 'ITAKU_KBN') and (RDB$RELATION_NAME = 'T_HOKENJYA')</query>
+			</task>
+			<task>
+				<query>alter table T_HOKENJYA add constraint PK_HOKENJYA primary key(HKNJANUM,ITAKU_KBN,HKNJYA_HISTORY_NO)</query>
+			</task>
+		</schema_kikan_version>
+		<data_kikan_version no="1.2.7">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>UPDATE T_HOKENJYA SET TANKA_HANTEI = ? WHERE TANKA_HANTEI is NULL</param_query>
+				<data_url>work/version/1.2.7/data1271.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.2.8 -->
+		<schema_system_version no="1.2.8">
+			<task>
+				<query>ALTER TABLE T_VERSION DROP MODULE_VERSION</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_POST(POST_CD Varchar(10) NOT NULL,ADDRESS Varchar(255),LAST_TIME Timestamp,PRIMARY KEY (POST_CD))</query>
+			</task>
+		</schema_system_version>
+		<schema_kikan_version no="1.2.8">
+			<task>
+				<query>CREATE TABLE T_SYOKENMASTER(SYOKEN_TYPE Smallint NOT NULL, SYOKEN_TYPE_NAME Varchar(256), SYOKEN_NO Varchar(4) NOT NULL, SYOKEN_NAME Varchar(256), UPDATE_TIMESTAMP Timestamp NOT NULL, PRIMARY KEY (SYOKEN_TYPE,SYOKEN_NO))</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_SCREENMASTER(SCREEN_CD Varchar(3) NOT NULL,SCREEN_NAME Varchar(200),PRIMARY KEY (SCREEN_CD))</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_SCREENFUNCTION(SCREEN_CD Varchar(3) NOT NULL,FUNCTION_CD Varchar(3) NOT NULL,FUNCTION_FLG Char(1),PRIMARY KEY (SCREEN_CD,FUNCTION_CD))</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_HANTEIMASTER(HANTEI_TYPE Smallint NOT NULL,HANTEI_NO Smallint NOT NULL,HANTEI Varchar(256),UPDATE_TIMESTAMP Timestamp NOT NULL,PRIMARY KEY (HANTEI_TYPE,HANTEI_NO))</query>
+			</task>
+			<task>
+				<query>CREATE TABLE T_FUNCTIONMASTER(FUNCTION_CD Varchar(3) NOT NULL,FUNCTION_DETAIL Varchar(200),PRIMARY KEY (FUNCTION_CD))</query>
+			</task>
+		</schema_kikan_version>
+		<data_system_version no="1.2.8">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_POST (POST_CD, ADDRESS, LAST_TIME) VALUES (?,?,?)</param_query>
+				<data_url>work/version/1.2.8/data1282.csv</data_url> 
+			</task>
+		</data_system_version>
+		<data_kikan_version no="1.2.8">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_KENSHINMASTER(HKNJANUM, KOUMOKU_CD, KOUMOKU_NAME, DATA_TYPE, MAX_BYTE_LENGTH, XML_PATTERN, XML_DATA_TYPE, XML_KENSA_CD, OBSERVATION, AUTHOR, AUTHOR_KOUMOKU_CD, KENSA_GROUP, KENSA_GROUP_CD, KEKKA_OID, KOUMOKU_OID, HISU_FLG, KAGEN, JYOUGEN, DS_JYOUGEN, DS_KAGEN, JS_JYOUGEN, JS_KAGEN, KIJYUNTI_HANI, TANI, KENSA_HOUHOU, TANKA_KENSIN, BIKOU, XMLITEM_SEQNO) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</param_query>
+				<data_url>work/version/1.2.8/data1281.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_SYOKENMASTER (SYOKEN_TYPE, SYOKEN_TYPE_NAME, SYOKEN_NO, SYOKEN_NAME, UPDATE_TIMESTAMP) VALUES (?,?,?,?,?)</param_query>
+				<data_url>work/version/1.2.8/data1283.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_SCREENMASTER (SCREEN_CD, SCREEN_NAME) VALUES (?,?)</param_query>
+				<data_url>work/version/1.2.8/data1284.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_SCREENFUNCTION (SCREEN_CD, FUNCTION_CD, FUNCTION_FLG) VALUES (?,?,?)</param_query>
+				<data_url>work/version/1.2.8/data1285.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_HANTEIMASTER (HANTEI_TYPE, HANTEI_NO, HANTEI, UPDATE_TIMESTAMP) VALUES (?,?,?,?)</param_query>
+				<data_url>work/version/1.2.8/data1286.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_FUNCTIONMASTER (FUNCTION_CD, FUNCTION_DETAIL) VALUES (?,?)</param_query>
+				<data_url>work/version/1.2.8/data1287.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_DATA_TYPE_CODE (KOUMOKU_CD, CODE_NUM, CODE_NAME) VALUES (?,?,?);</param_query>
+				<data_url>work/version/1.2.8/data1288.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.2.9 -->
+<!-- Ver 1.3.0 -->
+		<data_kikan_version no="1.3.0">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>DELETE FROM T_SHIHARAI WHERE SHIHARAI_DAIKO_NO = ?</param_query> 
+				<data_url>work/version/1.3.0/data1301.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_SHIHARAI (SHIHARAI_DAIKO_NO,SHIHARAI_DAIKO_NAME,SHIHARAI_DAIKO_ZIPCD,SHIHARAI_DAIKO_TEL,SHIHARAI_DAIKO_ADR) VALUES (?,?,?,?,?)</param_query> 
+				<data_url>work/version/1.3.0/data1302.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.3.1 -->
+		<data_kikan_version no="1.3.1">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>DELETE FROM T_KENSHINMASTER WHERE HKNJANUM = ?, KOUMOKU_CD = ?</param_query>
+				<data_url>work/version/1.3.1/data1310.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_KENSHINMASTER(HKNJANUM, KOUMOKU_CD, KOUMOKU_NAME, DATA_TYPE, MAX_BYTE_LENGTH, XML_PATTERN, XML_DATA_TYPE, XML_KENSA_CD, OBSERVATION, AUTHOR, AUTHOR_KOUMOKU_CD, KENSA_GROUP, KENSA_GROUP_CD, KEKKA_OID, KOUMOKU_OID, HISU_FLG, KAGEN, JYOUGEN, DS_JYOUGEN, DS_KAGEN, JS_JYOUGEN, JS_KAGEN, KIJYUNTI_HANI, TANI, KENSA_HOUHOU, TANKA_KENSIN, BIKOU, XMLITEM_SEQNO) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</param_query>
+				<data_url>work/version/1.3.1/data1311.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.3.2 -->
+		<data_kikan_version no="1.3.2">
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_KENSHINMASTER SET KEKKA_OID = ? WHERE KOUMOKU_CD = ?</param_query>
+				<data_url>work/version/1.3.2/data1321.csv</data_url>
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.3.6 -->
+		<data_kikan_version no="1.3.6">
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_KENSHINMASTER SET DATA_TYPE = '1', MAX_BYTE_LENGTH = '########' WHERE KOUMOKU_CD IN(?,?,?,?,?,?,?,?,?);</param_query>
+				<data_url>work/version/1.3.6/data1361.csv</data_url>
+			</task>
+		</data_kikan_version>
+<!-- Ver 1.4.0 -->
+		<data_kikan_version no="1.4.0">
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_KENSAKEKA_SONOTA SET KEKA_TI = KENSA_NENGAPI WHERE KOUMOKU_CD IN(?,?,?,?,?,?,?,?,?);</param_query>
+				<data_url>work/version/1.4.0/data1401.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 2.0.0 -->
+		<data_kikan_version no="2.0.0">
+			<task>
+				<pre_query></pre_query>
+				<param_query>INSERT INTO T_SCREENFUNCTION (SCREEN_CD, FUNCTION_CD, FUNCTION_FLG) VALUES (?,?,?);</param_query>
+				<data_url>work/version/2.0.0/data2001.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>INSERT INTO T_FUNCTIONMASTER (FUNCTION_CD, FUNCTION_DETAIL) VALUES (?,?);</param_query>
+				<data_url>work/version/2.0.0/data2002.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>INSERT INTO T_KENSHIN_P_M (K_P_NO, K_P_NAME, BIKOU) VALUES (?,?,?);</param_query>
+				<data_url>work/version/2.0.0/data2003.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>INSERT INTO T_KENSHIN_P_S (K_P_NO, LOW_ID, KOUMOKU_CD) VALUES (?,?,?);</param_query>
+				<data_url>work/version/2.0.0/data2004.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_SYOKENMASTER SET SYOKEN_NAME = ? WHERE SYOKEN_TYPE = ? AND SYOKEN_NO = ?</param_query>
+				<data_url>work/version/2.0.0/data2006.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_KENSHINMASTER SET MAX_BYTE_LENGTH = ? WHERE KOUMOKU_CD = ?</param_query>
+				<data_url>work/version/2.0.0/data2007.csv</data_url> 
+			</task>
+			<task>
+				<pre_query></pre_query>
+				<param_query>UPDATE T_KENSHINMASTER SET KENSA_HOUHOU = ? WHERE KOUMOKU_CD = ?</param_query>
+				<data_url>work/version/2.0.0/data2008.csv</data_url> 
+			</task>
+		</data_kikan_version>
+<!-- Ver 2.0.1 -->
+		<data_kikan_version no="2.0.1">
+			<task>
+				<pre_query></pre_query> 
+				<param_query>INSERT INTO T_KENSHINMASTER (HKNJANUM, KOUMOKU_CD, KOUMOKU_NAME, DATA_TYPE, MAX_BYTE_LENGTH, XML_PATTERN, XML_DATA_TYPE, XML_KENSA_CD, OBSERVATION, AUTHOR, AUTHOR_KOUMOKU_CD, KENSA_GROUP, KENSA_GROUP_CD, KEKKA_OID, KOUMOKU_OID, HISU_FLG, KAGEN, JYOUGEN, DS_JYOUGEN, DS_KAGEN, JS_JYOUGEN, JS_KAGEN, KIJYUNTI_HANI, TANI, KENSA_HOUHOU, TANKA_KENSIN, BIKOU, XMLITEM_SEQNO) select distinct hknjanum ,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? FROM T_KENSHINMASTER TSS</param_query>
+				<data_url>work/version/2.0.1/data2005.csv</data_url> 
+			</task>
+		</data_kikan_version>
+	</data>
+</root>
