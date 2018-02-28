@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
- * ƒ_ƒCƒAƒƒO¶¬ƒNƒ‰ƒX
+ * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”Ÿæˆã‚¯ãƒ©ã‚¹
  * @author nishiyama
  */
 public class DialogFactory {
@@ -44,7 +44,7 @@ public class DialogFactory {
 	private Map<Object, IDialog> dialogEventSrcMap;
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	private DialogFactory() {
 		dialogEventSrcMap = new HashMap<Object, IDialog>();
@@ -52,9 +52,9 @@ public class DialogFactory {
 	}
 
 	/**
-	 * ƒ_ƒCƒAƒƒO¶¬
-	 * @param parent ƒ_ƒCƒAƒƒO•\¦Œ³eƒEƒCƒ“ƒhƒE
-	 * @param eventSrc ƒCƒxƒ“ƒgƒ\[ƒX
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”Ÿæˆ
+	 * @param parent ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤ºå…ƒè¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @param eventSrc ã‚¤ãƒ™ãƒ³ãƒˆã‚½ãƒ¼ã‚¹
 	 * @return
 	 */
 	public IDialog createDialog(JFrame parent, Object eventSrc, ArrayList<Hashtable<String, String>> selectedRow)
@@ -73,9 +73,9 @@ public class DialogFactory {
 // del s.inoue 2013/03/09
 //		}else if (parentFlame.equals(JLOGINFLAME)){
 //			ActionEvent e = (ActionEvent)eventSrc;
-//			if (e.getActionCommand().equals("ŠÂ‹«İ’è(F8)")){
+//			if (e.getActionCommand().equals("ç’°å¢ƒè¨­å®š(F8)")){
 //				return new SettingDialog(parent);
-//			}else if (e.getActionCommand().equals("XVî•ñ(F7)")){
+//			}else if (e.getActionCommand().equals("æ›´æ–°æƒ…å ±(F7)")){
 //				return new DngPreviewHtml(parent);
 //			}else{
 //				return null;
@@ -85,9 +85,9 @@ public class DialogFactory {
 		}
 	}
 	/**
-	 * ƒ_ƒCƒAƒƒO¶¬
-	 * @param parent ƒ_ƒCƒAƒƒO•\¦Œ³eƒEƒCƒ“ƒhƒE
-	 * @param eventSrc ƒCƒxƒ“ƒgƒ\[ƒX
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”Ÿæˆ
+	 * @param parent ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤ºå…ƒè¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦
+	 * @param eventSrc ã‚¤ãƒ™ãƒ³ãƒˆã‚½ãƒ¼ã‚¹
 	 * @return
 	 */
 	public IDialog createDialog(JFrame parent, String defaultPath)
@@ -104,7 +104,7 @@ public class DialogFactory {
 			parentFlame.equals(JKENSHINOUTPUTGETUJI)
 			){
 			return new FileSelectDialog(parent,defaultPath);
-		// add s.inoue 2010/10/20 ŒÄ‚Ño‚µŒ³‘Î‰“®ì‰Â”\
+		// add s.inoue 2010/10/20 å‘¼ã³å‡ºã—å…ƒå¯¾å¿œæ™‚å‹•ä½œå¯èƒ½
 		}else if (parentFlame.equals(JKENSHINPATTERNLISTFRAME)){
 			return new SelectKenshinPatternDialog(parent,defaultPath);
 		}else{
@@ -119,7 +119,7 @@ public class DialogFactory {
 	    return new SelectKenshinHouhouDialog(jframe, arraylist);
 	}
 	/*
-	 * default\¬
+	 * defaultæ§‹æˆ
 	 */
 	public IDialog createDialog(JFrame parent){
 		String parentFlame = parent.getClass().getName();
@@ -133,8 +133,8 @@ public class DialogFactory {
 	}
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX¶¬
-	 * @return DialogFactoryƒCƒ“ƒXƒ^ƒ“ƒX
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ç”Ÿæˆ
+	 * @return DialogFactoryã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹
 	 */
 	public static DialogFactory getInstance() {
 		if (instance == null) {
@@ -144,9 +144,9 @@ public class DialogFactory {
 	}
 
 	/**
-	 * ƒ_ƒCƒAƒƒOƒNƒ‰ƒX‚ğƒ}ƒbƒv‚É“o˜^‚·‚é
-	 * «—ˆ“I‚É‚Íƒ_ƒCƒAƒƒOeƒEƒCƒ“ƒhƒEAƒ_ƒCƒAƒƒO•\¦ƒgƒŠƒK[ƒCƒxƒ“ƒgA
-	 * ƒCƒxƒ“ƒgƒ\[ƒX‚Ì’è‹`ƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İA“o˜^‚·‚éB
+	 * ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã‚¯ãƒ©ã‚¹ã‚’ãƒãƒƒãƒ—ã«ç™»éŒ²ã™ã‚‹
+	 * å°†æ¥çš„ã«ã¯ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¦ªã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã€ãƒ€ã‚¤ã‚¢ãƒ­ã‚°è¡¨ç¤ºãƒˆãƒªã‚¬ãƒ¼ã‚¤ãƒ™ãƒ³ãƒˆã€
+	 * ã‚¤ãƒ™ãƒ³ãƒˆã‚½ãƒ¼ã‚¹ã®å®šç¾©ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã¿ã€ç™»éŒ²ã™ã‚‹ã€‚
 	 */
 	private void registDialogToMap() {
 	}

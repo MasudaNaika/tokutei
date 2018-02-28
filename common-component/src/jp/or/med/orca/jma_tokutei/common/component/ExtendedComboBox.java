@@ -20,7 +20,7 @@ import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 
 /**
- * JComboBox ‚Ì“Æ©Šg’£
+ * JComboBox ã®ç‹¬è‡ªæ‹¡å¼µ
  */
 public class ExtendedComboBox extends JComboBox {
 
@@ -37,7 +37,7 @@ public class ExtendedComboBox extends JComboBox {
 
 	// add s.inoue 2009/10/01
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	public ExtendedComboBox(String text, int n, ImeMode mode, boolean handleEnterKey) {
 		super();
@@ -89,7 +89,7 @@ public class ExtendedComboBox extends JComboBox {
 		InputMap inputs = this.getInputMap(JComponent.WHEN_FOCUSED);
 		inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "focusOutNext");
 		// add s.inoue 2012/11/06
-		// Shift+Enter‚ğ’Ç‰Á
+		// Shift+Enterã‚’è¿½åŠ 
 		inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK), "focusOutPrevious");
 	}
 
@@ -107,42 +107,42 @@ public class ExtendedComboBox extends JComboBox {
 		if (handleEnterKey) {
 			inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "focusOutNext");
 			// add s.inoue 2012/11/06
-			// Shift+Enter‚ğ’Ç‰Á
+			// Shift+Enterã‚’è¿½åŠ 
 			inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK), "focusOutPrevious");
 		}
 	}
 
 // del s.inoue 2012/11/05
-//	// enterƒL[§Œä
+//	// enterã‚­ãƒ¼åˆ¶å¾¡
 //	private void addEnterPolicy(JComponent comp) {
-//		  //Ÿ‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		  //æ¬¡ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		  Set<AWTKeyStroke> keystrokes = new HashSet<AWTKeyStroke>();
 //		  Set<AWTKeyStroke> oldKeyStrokes = comp
 //		          .getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
 //		  if (oldKeyStrokes != null) {
-//		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//		  //•W€‚Å‚ ‚ê‚ÎTabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//		  //æ¨™æº–ã§ã‚ã‚Œã°TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //		      for (AWTKeyStroke akw : oldKeyStrokes) {
 //		          keystrokes.add(akw);
 //		      }
 //		  }
 //
-//		  //ENTER‚ğ’Ç‰Á
+//		  //ENTERã‚’è¿½åŠ 
 //		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
 //		  comp.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, keystrokes);
 //
-//		  //‘O‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		  //å‰ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		  keystrokes = new HashSet<AWTKeyStroke>();
 //		  oldKeyStrokes = comp.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
 //		  if (oldKeyStrokes != null) {
-//		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//		  //•W€‚Å‚ ‚ê‚ÎShft+TabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//		  //æ¨™æº–ã§ã‚ã‚Œã°Shft+TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //		      for (AWTKeyStroke akw : oldKeyStrokes) {
 //		          keystrokes.add(akw);
 //		      }
 //		  }
 //
-//		  // Shift+Enter‚ğ’Ç‰Á
+//		  // Shift+Enterã‚’è¿½åŠ 
 //		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK));
 //		  comp.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, keystrokes);
 //	}

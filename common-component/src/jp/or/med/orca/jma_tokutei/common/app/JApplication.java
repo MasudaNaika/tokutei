@@ -24,17 +24,17 @@ import org.openswing.swing.domains.java.Domain;
 import org.openswing.swing.util.client.ClientSettings;
 
 /**
- * ƒOƒ[ƒoƒ‹î•ñ‚Ì•Û‚ğs‚¤
+ * ã‚°ãƒ­ãƒ¼ãƒãƒ«æƒ…å ±ã®ä¿æŒã‚’è¡Œã†
  */
 public class JApplication {
 
 	/**
-	 * ƒCƒ“ƒXƒ^ƒ“ƒX‚ğ¶¬‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚é
+	 * ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ç”Ÿæˆã§ããªã„ã‚ˆã†ã«ã™ã‚‹
 	 */
 	protected JApplication() {
 	}
 
-	// ƒ\ƒtƒgƒEƒFƒA‘S‘Ì‚ÉŒW‚í‚éî•ñ
+	// ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢å…¨ä½“ã«ä¿‚ã‚ã‚‹æƒ…å ±
 	public static int authority;
 	public final static int authorityAdmin = 1;
 	public final static int authorityUser = 2;
@@ -52,12 +52,12 @@ public class JApplication {
 	public static int debugCode = 0;
 	public static String kikanName;
 
-	// ƒf[ƒ^ƒx[ƒX
+	// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 	public static JConnection systemDatabase = null;
 	public static JConnection kikanDatabase = null;
 	public static JConnection hokenjyaDatabase = null;
 
-	// ƒf[ƒ^ƒx[ƒXü‚è‚Ìİ’è
+	// ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹å‘¨ã‚Šã®è¨­å®š
 	public static boolean useORCA = false;
 	public static JORCASetting orcaSetting = null;
 	public static String versionNumber;
@@ -72,7 +72,7 @@ public class JApplication {
 	public static String systemSchemaVersionRowId= null;
 	public static String systemDataVersionRowId= null;
 	public static String moduleDataVersionRowId= null;
-	// ‰Šúflg
+	// åˆæœŸflg
 	public static boolean kikanVersionFlg= false;
 	public static boolean MultiKikanVersionFlg= false;
 	public static boolean systemVersionFlg= false;
@@ -82,18 +82,18 @@ public class JApplication {
 	public static String DB_VERSION = "DB_VERSION";
 	public static String MODULE_VERSION = "MODULE_VERSION";
 
-	// ‰Šúƒtƒ‰ƒO
+	// åˆæœŸãƒ•ãƒ©ã‚°
 	public static boolean initTVersionInsFlg =true;
 
-	// ’è”€–Ú
+	// å®šæ•°é …ç›®
 	public static String FILE_SEPARATOR = System.getProperties().getProperty("file.separator");
 	public static String KAISOUHANTEI_CSV_PATH = "." + FILE_SEPARATOR + "CSV" + FILE_SEPARATOR + "KAISOU_HANTEI.csv";
 	public static String CHECK_CSV_PATH = "." + FILE_SEPARATOR + "CSV" + FILE_SEPARATOR + "CHECK.csv";
 
-	/* ‰üs•¶š */
+	/* æ”¹è¡Œæ–‡å­— */
 	public static String LINE_SEPARATOR = System.getProperties().getProperty("line.separator");
 	public static int PROGRESS_CNT= 0;
-	// DBƒJƒ‰ƒ€(ŒŸ¸€–Úî•ñ)
+	// DBã‚«ãƒ©ãƒ (æ¤œæŸ»é …ç›®æƒ…å ±)
 	public static final String COLUMN_NAME_UKETUKE_ID = "UKETUKE_ID";
 	public static final String COLUMN_NAME_KOUMOKUCD = "KOUMOKU_CD";
 	public static final String COLUMN_NAME_KOUMOKUNAME = "KOUMOKU_NAME";
@@ -108,14 +108,14 @@ public class JApplication {
 	public static final String COLUMN_NAME_BIRTHDAY = "BIRTHDAY";
 	public static final String COLUMN_NAME_SEX = "SEX";
 	// add s.inoue 2010/01/26
-	// “úˆãƒtƒH[ƒ}ƒbƒg
+	// æ—¥åŒ»ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 	public static final Integer CSV_NITII_ZOKUSEI_JISIKIKAN_NO = 0;
 	public static final Integer CSV_NITII_ZOKUSEI_JISI_DATE = 2;
 	public static final Integer CSV_NITII_ZOKUSEI_JUSIN_SEIRI_NO = 125;
 	public static final Integer CSV_NITII_ZOKUSEI_SHIMEI = 5;
 	public static final Integer CSV_NITII_ZOKUSEI_SEINENGAPI = 3;
 	public static final Integer CSV_NITII_ZOKUSEI_SEIBETU = 4;
-	// CSVƒtƒH[ƒ}ƒbƒg
+	// CSVãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆ
 	public static final Integer CSV_ZOKUSEI_KENSA_KIKAN = 0;
 	public static final Integer CSV_ZOKUSEI_JISIKIKAN_NO = 1;
 	public static final Integer CSV_ZOKUSEI_JISIKIKAN = 2;
@@ -137,7 +137,7 @@ public class JApplication {
 	public static final Integer CSV_KENSA_KEKATI = 18;
 	public static final Integer CSV_KENSA_TANI = 19;
 	public static final Integer CSV_KENSA_KIJUN = 20;
-	// ŒŸ¸€–Úî•ñ:1`22,ŒŸ¸€–ÚŒÂ”:8
+	// æ¤œæŸ»é …ç›®æƒ…å ±:1ã€œ22,æ¤œæŸ»é …ç›®å€‹æ•°:8
 	// eidt s.inoue 2013/02/26
 	// public static final Integer CSV_KENSA_LOOP = 22;
 	public static final Integer CSV_KENSA_LOOP = 280;
@@ -145,22 +145,22 @@ public class JApplication {
 
 	public static final Integer CSV_ZOKUSEI_COUNT = 12;
 
-	// ƒGƒ‰[field
-	public static final String ZOKUSEI_FIELD_JISI_DATE = "Œ’fÀ{”NŒ“ú";
-	public static final String ZOKUSEI_FIELD_JISI_KIKAN_NO = "Œ’fÀ{‹@ŠÖ”Ô†";
-	public static final String ZOKUSEI_FIELD_JUSIN_SEIRI_NO = "ófŒ”®—”Ô†";
-	public static final String ZOKUSEI_FIELD_SHIMEI = "–¼";
-	public static final String ZOKUSEI_FIELD_SEINENGAPI = "¶”NŒ“ú";
-	public static final String ZOKUSEI_FIELD_SEIBETU = "«•Ê";
-	public static final String ZOKUSEI_FIELD_YOUKETU = "“û‚ÑE—nŒŒ";
-	public static final String ZOKUSEI_FIELD_SHOKUZENGO = "H‘O/HŒã";
+	// ã‚¨ãƒ©ãƒ¼field
+	public static final String ZOKUSEI_FIELD_JISI_DATE = "å¥è¨ºå®Ÿæ–½å¹´æœˆæ—¥";
+	public static final String ZOKUSEI_FIELD_JISI_KIKAN_NO = "å¥è¨ºå®Ÿæ–½æ©Ÿé–¢ç•ªå·";
+	public static final String ZOKUSEI_FIELD_JUSIN_SEIRI_NO = "å—è¨ºåˆ¸æ•´ç†ç•ªå·";
+	public static final String ZOKUSEI_FIELD_SHIMEI = "æ°å";
+	public static final String ZOKUSEI_FIELD_SEINENGAPI = "ç”Ÿå¹´æœˆæ—¥";
+	public static final String ZOKUSEI_FIELD_SEIBETU = "æ€§åˆ¥";
+	public static final String ZOKUSEI_FIELD_YOUKETU = "ä¹³ã³ãƒ»æº¶è¡€";
+	public static final String ZOKUSEI_FIELD_SHOKUZENGO = "é£Ÿå‰/é£Ÿå¾Œ";
 
-	public static final String KENSA_FIELD_KOUMOKU_CD = "ŒŸ¸€–ÚƒR[ƒh";
-	public static final String KENSA_FIELD_JISI_KBN = "À{‹æ•ª";
-	//public static final String KENSA_FIELD_IJYO_KBN = "ˆÙí’l‹æ•ª";
-	//public static final String KENSA_FIELD_KEKATI_KEITAI = "Œ‹‰Ê’lŒ`‘Ô";
-	public static final String KENSA_FIELD_KEKATI = "ŒŸ¸Œ‹‰Ê";
-	// ƒGƒ‰[í•Ê
+	public static final String KENSA_FIELD_KOUMOKU_CD = "æ¤œæŸ»é …ç›®ã‚³ãƒ¼ãƒ‰";
+	public static final String KENSA_FIELD_JISI_KBN = "å®Ÿæ–½åŒºåˆ†";
+	//public static final String KENSA_FIELD_IJYO_KBN = "ç•°å¸¸å€¤åŒºåˆ†";
+	//public static final String KENSA_FIELD_KEKATI_KEITAI = "çµæœå€¤å½¢æ…‹";
+	public static final String KENSA_FIELD_KEKATI = "æ¤œæŸ»çµæœ";
+	// ã‚¨ãƒ©ãƒ¼ç¨®åˆ¥
 	public static final Integer ERR_KIND_NUMBER = 0;
 	public static final Integer ERR_KIND_DATE = 1;
 	public static final Integer ERR_KIND_DIGIT = 2;
@@ -179,9 +179,9 @@ public class JApplication {
 	public static final String DB_SCHEMA_VERSION = "SCHEMA_VERSION";
 	public static final String DB_DATA_VERSION = "DB_VERSION";
 
-	public static final String[] jishiKBNTable = { "0:–¢À{", "1:À{","2:‘ª’è•s‰Â”\" };
+	public static final String[] jishiKBNTable = { "0:æœªå®Ÿæ–½", "1:å®Ÿæ–½","2:æ¸¬å®šä¸å¯èƒ½" };
 
-	// Šî–{“I‚ÈŒ’f,Ú×‚ÈŒ’f,’Ç‰ÁŒ’f€–Ú,lŠÔƒhƒbƒN
+	// åŸºæœ¬çš„ãªå¥è¨º,è©³ç´°ãªå¥è¨º,è¿½åŠ å¥è¨ºé …ç›®,äººé–“ãƒ‰ãƒƒã‚¯
 	public static final String SEIKYU_KBN_BASE = "1";
 	public static final String SEIKYU_KBN_SYOSAI = "2";
 	public static final String SEIKYU_KBN_TUIKA = "3";
@@ -195,34 +195,34 @@ public class JApplication {
 	private static final String DB_FILENAME_SYSTEM_FDB = "System.fdb";
 
 	// add s.inoue 2010/03/18
-	// ‰æ–ÊƒŠƒXƒg‘Î‰ƒR[ƒhˆê——
-	public static final String SCREEN_JYUSINKEN_CODE = "001";     // ófŒ”“ü—Í‰æ–Ê
-	public static final String SCREEN_KEKKATOUROKU_CODE = "002";  // Œ’fŒ‹‰Êƒf[ƒ^“ü—Í
-	public static final String SCREEN_KEKKATORIKOMI_CODE = "003"; // ŒŸ¸ƒf[ƒ^æ‚è‚İ
-	public static final String SCREEN_HANTEI_CODE = "004"; // ƒƒ^ƒ{”»’èEŠK‘w‰»
-	public static final String SCREEN_SHOSAI_CODE = "005"; // Ú×•\¦
-	public static final String SCREEN_NITIJI_CODE = "006"; // “úˆ—(¿‹)
-	public static final String SCREEN_GETUJI_CODE = "007"; // Œˆ—(¿‹Šm’è/HL7o—Í)
+	// ç”»é¢ãƒªã‚¹ãƒˆå¯¾å¿œã‚³ãƒ¼ãƒ‰ä¸€è¦§
+	public static final String SCREEN_JYUSINKEN_CODE = "001";     // å—è¨ºåˆ¸å…¥åŠ›ç”»é¢
+	public static final String SCREEN_KEKKATOUROKU_CODE = "002";  // å¥è¨ºçµæœãƒ‡ãƒ¼ã‚¿å…¥åŠ›
+	public static final String SCREEN_KEKKATORIKOMI_CODE = "003"; // æ¤œæŸ»ãƒ‡ãƒ¼ã‚¿å–ã‚Šè¾¼ã¿
+	public static final String SCREEN_HANTEI_CODE = "004"; // ãƒ¡ã‚¿ãƒœåˆ¤å®šãƒ»éšå±¤åŒ–
+	public static final String SCREEN_SHOSAI_CODE = "005"; // è©³ç´°è¡¨ç¤º
+	public static final String SCREEN_NITIJI_CODE = "006"; // æ—¥æ™‚å‡¦ç†(è«‹æ±‚)
+	public static final String SCREEN_GETUJI_CODE = "007"; // æœˆæ™‚å‡¦ç†(è«‹æ±‚ç¢ºå®š/HL7å‡ºåŠ›)
 
-	public static final String SCREEN_SEIKYU_EDIT_CODE = "008";    // ¿‹ƒf[ƒ^•ÒW
-	public static final String SCREEN_KIKAN_DBBACKUP_CODE = "009"; // ‹@ŠÖ‚c‚aƒoƒbƒNƒAƒbƒv
-	public static final String SCREEN_LOGIN_CODE = "010"; 		  // ƒƒOƒCƒ“
-	public static final String SCREEN_NYURYOKUHYO_CODE = "011";   // “ü—Í•[
-	public static final String SCREEN_KEKKATUTIHYO_CODE = "012";  // Œ‹‰Ê’Ê’m•\
-	public static final String SCREEN_ONLINE_UPDATE_CODE = "013"; // ƒIƒ“ƒ‰ƒCƒ“ƒAƒbƒvƒf[ƒg
+	public static final String SCREEN_SEIKYU_EDIT_CODE = "008";    // è«‹æ±‚ãƒ‡ãƒ¼ã‚¿ç·¨é›†
+	public static final String SCREEN_KIKAN_DBBACKUP_CODE = "009"; // æ©Ÿé–¢ï¼¤ï¼¢ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—
+	public static final String SCREEN_LOGIN_CODE = "010"; 		  // ãƒ­ã‚°ã‚¤ãƒ³
+	public static final String SCREEN_NYURYOKUHYO_CODE = "011";   // å…¥åŠ›ç¥¨
+	public static final String SCREEN_KEKKATUTIHYO_CODE = "012";  // çµæœé€šçŸ¥è¡¨
+	public static final String SCREEN_ONLINE_UPDATE_CODE = "013"; // ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆ
 
-	public static final String SCREEN_MASTER_KIKAN_CODE = "101"; // ‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_KENSHIN_CODE = "102"; // Œ’f€–Úƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_PATTERN_CODE = "103"; // Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_SHIHARAI_CODE = "104"; // x•¥‘ãs‹@ŠÖƒ}ƒXƒ^ƒƒ“ƒe
-	public static final String SCREEN_MASTER_HOKENJYA_CODE = "105"; // •ÛŒ¯Òî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_USER_CODE = "106"; // ƒVƒXƒeƒ€ŠÇ—ƒ†[ƒUî•ñƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_SYSTEM_CODE = "107"; // ƒVƒXƒeƒ€—˜—pÒƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_KEINEN_CODE = "108"; // Œo”Nƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX
-	public static final String SCREEN_MASTER_USEBILITY_CODE = "109"; // ƒ†[ƒUƒrƒŠƒeƒBƒƒ“ƒeƒiƒ“ƒX
+	public static final String SCREEN_MASTER_KIKAN_CODE = "101"; // æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_KENSHIN_CODE = "102"; // å¥è¨ºé …ç›®ãƒã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_PATTERN_CODE = "103"; // å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_SHIHARAI_CODE = "104"; // æ”¯æ‰•ä»£è¡Œæ©Ÿé–¢ãƒã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†
+	public static final String SCREEN_MASTER_HOKENJYA_CODE = "105"; // ä¿é™ºè€…æƒ…å ±ãƒã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_USER_CODE = "106"; // ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†ãƒ¦ãƒ¼ã‚¶æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_SYSTEM_CODE = "107"; // ã‚·ã‚¹ãƒ†ãƒ åˆ©ç”¨è€…ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_KEINEN_CODE = "108"; // çµŒå¹´ãƒã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
+	public static final String SCREEN_MASTER_USEBILITY_CODE = "109"; // ãƒ¦ãƒ¼ã‚¶ãƒ“ãƒªãƒ†ã‚£ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
 
 	// add s.inoue 2011/05/10
-	// ŒŸõŒnˆê——ƒJƒEƒ“ƒg
+	// æ¤œç´¢ç³»ä¸€è¦§ã‚«ã‚¦ãƒ³ãƒˆ
 	public static int gridViewSearchCount = 0;
 	public static int gridViewMasterCount = 0;
 
@@ -261,16 +261,16 @@ public class JApplication {
     public static boolean callValidateCancelFlg = false;
     public static boolean firstCheckedFlg =false;
 	/**
-	 * İ’èƒtƒ@ƒCƒ‹‚È‚Ç‚ğ“Ç‚İ‚ŞaB
+	 * è¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ãªã©ã‚’èª­ã¿è¾¼ã‚€aã€‚
 	 */
 	public static void load() {
 
-		/* property.xml ‚©‚ç DB İ’è‚ğæ“¾‚·‚éB */
+		/* property.xml ã‹ã‚‰ DB è¨­å®šã‚’å–å¾—ã™ã‚‹ã€‚ */
 		try {
 
 			// eidt s.inoue 2013/03/12
-//			FONT_COMMON_BUTTON = new Font("‚l‚r ƒSƒVƒbƒN", 0, blnLookFeelMetal?10:12);
-//			FONT_COMMON_MENU_BUTTON = new Font("‚l‚r ƒSƒVƒbƒN", 0, blnLookFeelMetal?11:13);
+//			FONT_COMMON_BUTTON = new Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 0, blnLookFeelMetal?10:12);
+//			FONT_COMMON_MENU_BUTTON = new Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", 0, blnLookFeelMetal?11:13);
 
 			// add ver2 s.inoue 2009/05/19
 			PropertyConfigurator.configure("log4j.properties");
@@ -282,8 +282,8 @@ public class JApplication {
 			systemDBCharSet = doc.getNodeValue("DBConfig", "CharSet");
 
 			/*
-			 * AbsolutePath ‚©‚çâ‘ÎƒpƒX‚ğæ“¾‚·‚éB
-			 * æ“¾‚Å‚«‚È‚¯‚ê‚ÎAPath ‚©‚ç‘Š‘ÎƒpƒX‚ğæ“¾‚·‚éB
+			 * AbsolutePath ã‹ã‚‰çµ¶å¯¾ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
+			 * å–å¾—ã§ããªã‘ã‚Œã°ã€Path ã‹ã‚‰ç›¸å¯¾ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹ã€‚
 			 */
 			String path = doc.getNodeValue("DBConfig", "AbsolutePath");
 
@@ -291,7 +291,7 @@ public class JApplication {
 
 				path = doc.getNodeValue("DBConfig", "Path");
 
-				/* İ’è‚ª‚È‚¢ê‡‚ÍAƒfƒtƒHƒ‹ƒg‚ÌêŠiƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ/DBj‚ğg—p‚·‚éB */
+				/* è¨­å®šãŒãªã„å ´åˆã¯ã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å ´æ‰€ï¼ˆã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª/DBï¼‰ã‚’ä½¿ç”¨ã™ã‚‹ã€‚ */
 				if (path == null || path.isEmpty()) {
 
 					StringBuffer buffer = new StringBuffer();
@@ -305,7 +305,7 @@ public class JApplication {
 
 					path = buffer.toString();
 				}
-				/* İ’è‚ª‚ ‚éê‡‚ÍAƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚©‚ç‚Ì‘Š‘ÎƒpƒX‚Æ‚·‚éB */
+				/* è¨­å®šãŒã‚ã‚‹å ´åˆã¯ã€ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‹ã‚‰ã®ç›¸å¯¾ãƒ‘ã‚¹ã¨ã™ã‚‹ã€‚ */
 				else {
 					File relativePath = new File(path);
 
@@ -333,7 +333,7 @@ public class JApplication {
 			System.exit(1);
 		}
 
-		// ƒVƒXƒeƒ€ƒf[ƒ^ƒx[ƒX‚ÖÚ‘±
+		// ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã¸æ¥ç¶š
 		try {
 			JApplication.systemDatabase = JConnection.ConnectSystemDatabase();
 
@@ -345,10 +345,10 @@ public class JApplication {
 	}
 
 	/**
-	 * ƒfƒoƒbƒO—pƒ‰ƒ“ƒ^ƒCƒ€ƒXƒCƒbƒ` (“®ì“à—e‚Ì•ÏX) ŠJ”­—p
+	 * ãƒ‡ãƒãƒƒã‚°ç”¨ãƒ©ãƒ³ã‚¿ã‚¤ãƒ ã‚¹ã‚¤ãƒƒãƒ (å‹•ä½œå†…å®¹ã®å¤‰æ›´) é–‹ç™ºæ™‚ç”¨
 	 */
 	public static void runtimeTest(String debugString) {
-		final String debugData = "NagcmWT_`Z```R_]Ppbf_oh`\\bUZ`XVg`V^T[jd\\qd`uZ["; // §Œäƒtƒ‰ƒO
+		final String debugData = "NagcmWT_`Z```R_]Ppbf_oh`\\bUZ`XVg`V^T[jd\\qd`uZ["; // åˆ¶å¾¡ãƒ•ãƒ©ã‚°
 		int i, code = 0;
 		String dst = "";
 		for (i = 0; i < debugData.length(); i++)
@@ -365,7 +365,7 @@ public class JApplication {
 	}
 
 	/**
-	 * ORCA‚Ìƒf[ƒ^‚ğƒ[ƒh‚·‚éB ƒƒOƒCƒ“Œã‚Éƒ[ƒh‚·‚é‚±‚ÆB
+	 * ORCAã®ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã€‚ ãƒ­ã‚°ã‚¤ãƒ³å¾Œã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã“ã¨ã€‚
 	 */
 	public static void loadORCAData() {
 		String sUseORCA = null;
@@ -398,23 +398,23 @@ public class JApplication {
 			useORCA = false;
 		}
 
-		// ORCA‚Ìƒf[ƒ^‚ğ“Ç‚İ‚Ş
+		// ORCAã®ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿è¾¼ã‚€
 		if (useORCA == true) {
 			JORCASetting orca = new JORCASetting(kikanNumber);
 			if (orca.Load() == true) {
 				orcaSetting = orca;
 			} else {
-				// ORCA‚Ì“Ç‚İ‚É¸”s‚µ‚½‚çAORCA‚ğg—p‚Å‚«‚È‚¢‚æ‚¤‚É‚·‚éB
+				// ORCAã®èª­è¾¼ã¿ã«å¤±æ•—ã—ãŸã‚‰ã€ORCAã‚’ä½¿ç”¨ã§ããªã„ã‚ˆã†ã«ã™ã‚‹ã€‚
 				useORCA = false;
 			}
 		}
 	}
 
 	/**
-	 * ƒo[ƒWƒ‡ƒ“î•ñ‚ğ“Ç‚İ‚ŞB ƒƒOƒCƒ“‘O‚Éƒ[ƒh‚·‚é‚±‚ÆB
+	 * ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ã€‚ ãƒ­ã‚°ã‚¤ãƒ³å‰ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã“ã¨ã€‚
 	 */
 	public static void loadVersionFile(String versionFile) {
-		// ƒo[ƒWƒ‡ƒ“ƒtƒ@ƒCƒ‹
+		// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«
 		Properties PropVersion = new Properties();
 		try {
 			PropVersion.load(new FileInputStream(versionFile));
@@ -431,10 +431,10 @@ public class JApplication {
 	}
 
 	/**
-	 * ƒo[ƒWƒ‡ƒ“î•ñ‚ğ“Ç‚İ‚ŞB ƒƒOƒCƒ“‘O‚Éƒ[ƒh‚·‚é‚±‚ÆB
+	 * ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’èª­ã¿è¾¼ã‚€ã€‚ ãƒ­ã‚°ã‚¤ãƒ³å‰ã«ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã“ã¨ã€‚
 	 */
 	public static void checkVersionFile(String versionFile) {
-		// ƒo[ƒWƒ‡ƒ“ƒtƒ@ƒCƒ‹
+		// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«
 		Properties PropVersion = new Properties();
 		try {
 			PropVersion.load(new FileInputStream(versionFile));
@@ -448,10 +448,10 @@ public class JApplication {
 	}
 
 	/**
-	 * Œ’fƒ\ƒtƒgAŠÇ——pƒ\ƒtƒg‹N“®Aƒo[ƒWƒ‡ƒ“î•ñ‚ğ‘‚«‚İB
+	 * å¥è¨ºã‚½ãƒ•ãƒˆã€ç®¡ç†ç”¨ã‚½ãƒ•ãƒˆèµ·å‹•æ™‚ã€ãƒãƒ¼ã‚¸ãƒ§ãƒ³æƒ…å ±ã‚’æ›¸ãè¾¼ã¿ã€‚
 	 */
 	public static void setVersionFile(String versionFile,String updTskSchemaVersion,String updTskDBDataVersion) {
-		// ƒo[ƒWƒ‡ƒ“ƒtƒ@ƒCƒ‹
+		// ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒ•ã‚¡ã‚¤ãƒ«
 		Properties PropVersion = new Properties();
 		try {
 
@@ -478,9 +478,9 @@ public class JApplication {
 		return versionNumber;
 	}
 
-	/* edit 2009/01/13 ˆäã  */
+	/* edit 2009/01/13 äº•ä¸Š  */
 	/**
-	 * SCHEMA_VERSION,DB_VERSION‚ğT_VERSION‚æ‚èæ“¾‚·‚é
+	 * SCHEMA_VERSION,DB_VERSIONã‚’T_VERSIONã‚ˆã‚Šå–å¾—ã™ã‚‹
 	 * @throws SQLException
 	 * @return ROW_ID
 	 * @throws Exception
@@ -494,7 +494,7 @@ public class JApplication {
 
 		try {
 
-			// t_version‘¶İ
+			// t_versionå­˜åœ¨
 			String exQuery = "SELECT RDB$RELATION_NAME AS TableName FROM RDB$RELATIONS WHERE RDB$RELATION_NAME ='T_VERSION' " +
 			   				 " ORDER BY RDB$RELATION_NAME ";
 			try{
@@ -510,7 +510,7 @@ public class JApplication {
 			}
 
 			if (flgRead){
-				// t_version“Ç
+				// t_versionèª­è¾¼
 				StringBuffer buffer = new StringBuffer();
 
 				buffer.append("select ROW_ID,SCHEMA_VERSION,DB_VERSION ");
@@ -549,10 +549,10 @@ public class JApplication {
 
 
 	/**
-	 * ‹@ŠÖDB(T_F_KIKAN)‚ğƒŠƒXƒg‰»‚·‚é
-	 * @param Database Ú‘±æ‚Ìƒf[ƒ^ƒx[ƒX
-	 * @param Query ƒNƒGƒŠ
-	 * @return ‘¶İ‚·‚ê‚Îtrue
+	 * æ©Ÿé–¢DB(T_F_KIKAN)ã‚’ãƒªã‚¹ãƒˆåŒ–ã™ã‚‹
+	 * @param Database æ¥ç¶šå…ˆã®ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
+	 * @param Query ã‚¯ã‚¨ãƒª
+	 * @return å­˜åœ¨ã™ã‚Œã°true
 	 * @throws Exception
 	 */
 	public static ArrayList<Hashtable<String, String>> KikanDatabaseItem(JConnection con)
@@ -561,7 +561,7 @@ public class JApplication {
 		ArrayList<Hashtable<String, String>> arrTK =
 			 new  ArrayList<Hashtable<String, String>>();
 
-		// ƒfƒBƒŒƒNƒgƒŠŒŸõ
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªæ¤œç´¢
 		File directory = new File(JApplication.systemDBPath);
 		File[] DBlist = directory.listFiles();
 
@@ -585,9 +585,9 @@ public class JApplication {
 	}
 
 	/**
-	 * ‹@ŠÖDB(T_F_KIKAN)‚ÖT_Version‚Éƒf[ƒ^“o˜^
-	 * @param Database Ú‘±æ‚Ìƒf[ƒ^ƒx[ƒX
-	 * @return ‘¶İ‚·‚ê‚Îtrue
+	 * æ©Ÿé–¢DB(T_F_KIKAN)ã¸T_Versionã«ãƒ‡ãƒ¼ã‚¿ç™»éŒ²
+	 * @param Database æ¥ç¶šå…ˆã®ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
+	 * @return å­˜åœ¨ã™ã‚Œã°true
 	 * @throws Exception
 	 */
 	public static boolean tVersionRegister(JConnection con,
@@ -599,14 +599,14 @@ public class JApplication {
 
 		StringBuffer buffer = new StringBuffer();
 
-		// versionæ“¾
+		// versionå–å¾—
 		String verScv = JApplication.SchemaVersion;
 		String verDbv = JApplication.DBDataVersion;
 
 		try
 		{
 			con.Transaction();
-			// timestampæ“¾
+			// timestampå–å¾—
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String stringTimeStamp = dateFormat.format(Calendar.getInstance().getTime());
 
@@ -672,8 +672,8 @@ public class JApplication {
 	}
 
 	public static void exit(int returnValue){
-		System.out.println("ƒAƒvƒŠƒP[ƒVƒ‡ƒ“I—¹");
-		System.out.printf("I—¹ƒR[ƒh[%d]", returnValue);
+		System.out.println("ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ‚äº†");
+		System.out.printf("çµ‚äº†ã‚³ãƒ¼ãƒ‰[%d]", returnValue);
 		System.exit(returnValue);
 	}
 }

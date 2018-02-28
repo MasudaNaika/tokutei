@@ -24,7 +24,7 @@ import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 
 /**
- * JButton ‚Ì“Æ©Šg’£
+ * JButton ã®ç‹¬è‡ªæ‹¡å¼µ
  */
 public class ExtendedButton extends JButton implements KeyListener {
 
@@ -41,7 +41,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 	}
 
 	// openswing s.inoue 2011/02/16
-	// backupŒü‚¯‰Šú‰»
+	// backupå‘ã‘åˆæœŸåŒ–
 	public ExtendedButton(String text, String tooltip, int Mnic, ImageIcon icon) {
 		// del s.inoue 2012/12/03
 		// super();
@@ -67,7 +67,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 //	}
 
 	// add s.inoue 2012/11/26
-	// ƒƒjƒ…[Œn‚Ìƒ{ƒ^ƒ“
+	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç³»ã®ãƒœã‚¿ãƒ³
 	public ExtendedButton(String text, ImageIcon defaultIcon) {
 		// del s.inoue 2012/12/03
 		// this();
@@ -87,7 +87,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 	private void createButton(String text, String tooltip, int Mnic,
 			ImageIcon icon) {
 		// eidt s.inoue 2012/07/06
-		// setFont(new Font("‚l‚r ƒSƒVƒbƒN", Font.PLAIN, 10));
+		// setFont(new Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", Font.PLAIN, 10));
 		setFont(JApplication.FONT_COMMON_BUTTON);
 		setText(text);
 		setToolTipText(tooltip);
@@ -108,7 +108,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 		initActions();
 	}
 
-	// eidt s.inoue 2012/11/26	2012/07/09C³•ª‚ğÄ“x–ß‚·
+	// eidt s.inoue 2012/11/26	2012/07/09ä¿®æ­£åˆ†ã‚’å†åº¦æˆ»ã™
 	private void initActions() {
 		ActionMap actions = getActionMap();
 
@@ -123,38 +123,38 @@ public class ExtendedButton extends JButton implements KeyListener {
 		inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0, true), "released"); //$NON-NLS-1$
 	}
 
-//	// enterƒL[§Œä
+//	// enterã‚­ãƒ¼åˆ¶å¾¡
 //	private void addEnterPolicy(JComponent comp) {
-//		// Ÿ‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		// æ¬¡ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		Set<AWTKeyStroke> keystrokes = new HashSet<AWTKeyStroke>();
 //		Set<AWTKeyStroke> oldKeyStrokes = comp
 //				.getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
 //		if (oldKeyStrokes != null) {
-//			// Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//			// •W€‚Å‚ ‚ê‚ÎTabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//			// æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//			// æ¨™æº–ã§ã‚ã‚Œã°TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //			for (AWTKeyStroke akw : oldKeyStrokes) {
 //				keystrokes.add(akw);
 //			}
 //		}
 //
-//		// ENTER‚ğ’Ç‰Á
+//		// ENTERã‚’è¿½åŠ 
 //		keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
 //		comp.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS,
 //				keystrokes);
 //
-//		// ‘O‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		// å‰ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		keystrokes = new HashSet<AWTKeyStroke>();
 //		oldKeyStrokes = comp
 //				.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
 //		if (oldKeyStrokes != null) {
-//			// Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//			// •W€‚Å‚ ‚ê‚ÎShft+TabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//			// æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//			// æ¨™æº–ã§ã‚ã‚Œã°Shft+TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //			for (AWTKeyStroke akw : oldKeyStrokes) {
 //				keystrokes.add(akw);
 //			}
 //		}
 //
-//		// Shift+Enter‚ğ’Ç‰Á
+//		// Shift+Enterã‚’è¿½åŠ 
 //		keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER,
 //				InputEvent.SHIFT_MASK));
 //		comp.setFocusTraversalKeys(
@@ -162,19 +162,19 @@ public class ExtendedButton extends JButton implements KeyListener {
 //	}
 
 	// add s.inoue
-	// ã‘wƒ{ƒ^ƒ“—p
+	// ä¸Šå±¤ãƒœã‚¿ãƒ³ç”¨
 	public ExtendedButton(String attName, String text, String tooltip,
 			int Mnic, ImageIcon icon) {
 		createButton(attName, text, tooltip, Mnic, icon);
 		setPreferredSize(new Dimension(100, 50));
 		// eidt s.inoue 2012/12/13
-		// ‚QdƒƒbƒZ[ƒW–â‘è
+		// ï¼’é‡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸å•é¡Œ
 		// addEnterPolicy(this);
 		addKeyListener(this);
 	}
 
 // del s.inoue 2012/11/26
-//	// ƒƒjƒ…[ƒ{ƒ^ƒ“—p
+//	// ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒœã‚¿ãƒ³ç”¨
 //	public ExtendedButton(String attName, String text, String tooltip,
 //			int Mnic, ImageIcon icon, Dimension dm) {
 //		createButton(attName, text, tooltip, Mnic, icon);
@@ -187,7 +187,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 	private void createButton(String attName, String text, String tooltip,
 			int Mnic, ImageIcon icon) {
 		// eidt s.inoue 2012/07/06
-		// setFont(new Font("‚l‚r ƒSƒVƒbƒN", Font.PLAIN, 10));
+		// setFont(new Font("ï¼­ï¼³ ã‚´ã‚·ãƒƒã‚¯", Font.PLAIN, 10));
 		setFont(JApplication.FONT_COMMON_BUTTON);
 
 		setText(text);
@@ -201,14 +201,14 @@ public class ExtendedButton extends JButton implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 // del s.inoue 2012/12/13
-// “ñdƒƒbƒZ[ƒW‚ÌŒ´ˆö
+// äºŒé‡ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã®åŸå› 
 		// add s.inoue 2012/07/10
 		if (KeyEvent.VK_ENTER != e.getKeyCode()) return;
 		int mod = e.getModifiersEx();
@@ -220,7 +220,7 @@ public class ExtendedButton extends JButton implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 

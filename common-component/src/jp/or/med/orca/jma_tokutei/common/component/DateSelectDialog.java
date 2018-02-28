@@ -33,7 +33,7 @@ import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
 
 // add s.inoue 2009/09/29
 /**
- * “ú•t‘I‘ğƒ_ƒCƒAƒƒO‰æ–Ê
+ * æ—¥ä»˜é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”»é¢
  */
 public class DateSelectDialog extends JDialog
 	implements ActionListener, KeyListener, IDialog {
@@ -88,7 +88,7 @@ public class DateSelectDialog extends JDialog
 		this.jButtonOK.grabFocus();
 
 		// edit s.inoue 2010/05/19
-		//ˆÈ‰º‚Í³¨İÄŞ³‰Eã‚ÌI—¹[X]ÎŞÀİ‚ğ‰Ÿ‚µ‚½ê‡‚Ìˆ—
+		//ä»¥ä¸‹ã¯ï½³ï½¨ï¾ï¾„ï¾ï½³å³ä¸Šã®çµ‚äº†[X]ï¾ï¾ï¾€ï¾ã‚’æŠ¼ã—ãŸå ´åˆã®å‡¦ç†
 		this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 			this.addWindowListener(new java.awt.event.WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -173,7 +173,7 @@ public class DateSelectDialog extends JDialog
 		if (jButtonOK == null) {
 			jButtonOK = new ExtendedButton();
 			jButtonOK.setText("OK(Y)");
-			jButtonOK.setActionCommand("I—¹");
+			jButtonOK.setActionCommand("çµ‚äº†");
 			jButtonOK.addActionListener(this);
 			jButtonOK.setMnemonic(KeyEvent.VK_Y);
 		}
@@ -188,7 +188,7 @@ public class DateSelectDialog extends JDialog
 	private ExtendedButton getJButtonCancel() {
 		if (jButtonCancel == null) {
 			jButtonCancel = new ExtendedButton();
-			jButtonCancel.setText("ƒLƒƒƒ“ƒZƒ‹[C]");
+			jButtonCancel.setText("ã‚­ãƒ£ãƒ³ã‚»ãƒ«[C]");
 			jButtonCancel.addActionListener(this);
 			jButtonCancel.setMnemonic(KeyEvent.VK_C);
 		}
@@ -200,7 +200,7 @@ public class DateSelectDialog extends JDialog
 		switch(keyEvent.getKeyCode()){
 //		case KeyEvent.VK_C:
 //			ReturnValue = RETURN_VALUE.CANCEL;
-//			// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚Ì§Œä‰ğœB
+//			// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆ¶å¾¡è§£é™¤ã€‚
 //			setVisible(false);
 //			break;
 		case KeyEvent.VK_Y:
@@ -221,35 +221,35 @@ public class DateSelectDialog extends JDialog
 	}
 
 	/**
-	 * –ß‚è’l‚ğæ“¾‚·‚é
-	 * @return –ß‚è’l
+	 * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹
+	 * @return æˆ»ã‚Šå€¤
 	 */
 	public RETURN_VALUE getStatus() {
 		return ReturnValue;
 	}
 
 	/**
-	 * –ß‚è’l‚ğæ“¾‚·‚é
-	 * @return –ß‚è’l
+	 * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹
+	 * @return æˆ»ã‚Šå€¤
 	 */
 	public String getKenshinDate() {
 		return ReturnKenshinDate;
 	}
 
 	/**
-	 * –ß‚è’l‚ğŠi”[
+	 * æˆ»ã‚Šå€¤ã‚’æ ¼ç´
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jButtonOK) {
 			// add s.inoue 2009/10/04
-			// 1.À{“ú‚ª³í‚Èê‡A‚»‚Ì‚Ü‚Ü“ü—Í•[‚Öˆóš
-			// 2.À{“ú‚ª•s³‚Èê‡AƒGƒ‰[ƒƒbƒZ[ƒW‚ğ•\¦
-			// 3.À{“ú‚ªw’è‚È‚µ‚Ìê‡AT_TOKUTEI(Œ’fÀ{“ú)‚ğ•\¦
+			// 1.å®Ÿæ–½æ—¥ãŒæ­£å¸¸ãªå ´åˆã€ãã®ã¾ã¾å…¥åŠ›ç¥¨ã¸å°å­—
+			// 2.å®Ÿæ–½æ—¥ãŒä¸æ­£ãªå ´åˆã€ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¡¨ç¤º
+			// 3.å®Ÿæ–½æ—¥ãŒæŒ‡å®šãªã—ã®å ´åˆã€T_TOKUTEI(å¥è¨ºå®Ÿæ–½æ—¥)ã‚’è¡¨ç¤º
 			if (setKensaJissiDate(jTextField_KenshinDate.getText())) {
 				// del s.inoue 2009/10/16
-				// TOKUTEI-Œ’fÀ{“úXV
+				// TOKUTEI-å¥è¨ºå®Ÿæ–½æ—¥æ›´æ–°
 				// updateTokutesiKenshinDate();
-				// SONOTA-Œ’fÀ{“úXV
+				// SONOTA-å¥è¨ºå®Ÿæ–½æ—¥æ›´æ–°
 				// updateSonotaKenshinDate();
 				ReturnKenshinDate = jTextField_KenshinDate.getText();
 			}else{
@@ -263,12 +263,12 @@ public class DateSelectDialog extends JDialog
 		else if(e.getSource() == jButtonCancel) {
 			ReturnValue = RETURN_VALUE.CANCEL;
 		}
-		// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚Ì§Œä‰ğœB
+		// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆ¶å¾¡è§£é™¤ã€‚
 		setVisible(false);
 	}
 
 	// del s.inoue 2009/10/19
-//	// Œ’fÀ{“úXV
+//	// å¥è¨ºå®Ÿæ–½æ—¥æ›´æ–°
 //	private void updateTokutesiKenshinDate(){
 //		try{
 //			int inKenshinDate = 0;
@@ -278,7 +278,7 @@ public class DateSelectDialog extends JDialog
 //			if (!jTextField_KenshinDate.getText().equals("")) {
 //				inKenshinDate = Integer.parseInt(jTextField_KenshinDate.getText());
 //
-//				/* T_KENSAKEKA_TOKUTEI Dao ‚ğì¬‚·‚éB */
+//				/* T_KENSAKEKA_TOKUTEI Dao ã‚’ä½œæˆã™ã‚‹ã€‚ */
 //				JApplication.kikanDatabase.Transaction();
 //
 //				tTokuteiDao = (TKensakekaTokuteiDao) DaoFactory.createDao(JApplication.kikanDatabase.getMConnection(),new TKensakekaTokutei());
@@ -292,7 +292,7 @@ public class DateSelectDialog extends JDialog
 //
 //					tTokuteiDao.updateKenshinDate(inKenshinDate,curuketukeID,kenshinDate);
 //
-//					/* T_KENSAKEKA_SONOTA Dao ‚ğì¬‚·‚éB */
+//					/* T_KENSAKEKA_SONOTA Dao ã‚’ä½œæˆã™ã‚‹ã€‚ */
 //					tSonotaDao.updatekey(inKenshinDate, curuketukeID, kenshinDate);
 //				}
 //
@@ -304,7 +304,7 @@ public class DateSelectDialog extends JDialog
 //		}
 //	}
 	// add s.inoue 2009/10/04
-	// Œ’fÀ{“úXV
+	// å¥è¨ºå®Ÿæ–½æ—¥æ›´æ–°
 	private void updateSonotaKenshinDate(){
 		int inputkenshinDate = 0;
 		Long curuketukeID = 0L;
@@ -340,8 +340,8 @@ public class DateSelectDialog extends JDialog
 	}
 
 	/**
-	 * ‘I‘ğ’†ƒZƒ‹‚ÌƒeƒLƒXƒg‚ğƒeƒLƒXƒgƒGƒŠƒA/ƒŠƒXƒgƒ{ƒbƒNƒX‚ÉƒZƒbƒg‚·‚é
-	 * @param text ‘I‘ğ’†ƒZƒ‹ƒeƒLƒXƒg
+	 * é¸æŠä¸­ã‚»ãƒ«ã®ãƒ†ã‚­ã‚¹ãƒˆã‚’ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒªã‚¢/ãƒªã‚¹ãƒˆãƒœãƒƒã‚¯ã‚¹ã«ã‚»ãƒƒãƒˆã™ã‚‹
+	 * @param text é¸æŠä¸­ã‚»ãƒ«ãƒ†ã‚­ã‚¹ãƒˆ
 	 */
 	public void setText(String text) {
 		// edit s.inoue 2009/10/04
@@ -355,7 +355,7 @@ public class DateSelectDialog extends JDialog
 	}
 
 	/**
-	 * ƒLƒƒƒ“ƒZƒ‹ƒ{ƒ^ƒ“•\¦/”ñ•\¦‚Ìİ’è
+	 * ã‚­ãƒ£ãƒ³ã‚»ãƒ«ãƒœã‚¿ãƒ³è¡¨ç¤º/éè¡¨ç¤ºã®è¨­å®š
 	 * @param isShowCancel
 	 */
 	public void setShowCancelButton(boolean isShowCancel) {
@@ -388,7 +388,7 @@ public class DateSelectDialog extends JDialog
 		if (jPanel1 == null) {
 // edit s.inoue 2009/10/04
 //			jLabelMessage = new ExtendedLabel();
-//			jLabelMessage.setText("ƒeƒXƒgƒƒbƒZ[ƒW");
+//			jLabelMessage.setText("ãƒ†ã‚¹ãƒˆãƒ¡ãƒƒã‚»ãƒ¼ã‚¸");
 //			jLabelMessage.setHorizontalAlignment(SwingConstants.CENTER);
 //			jLabelMessage.setName("jLabelMessage");
 //			jLabelMessage.setFont(defaultFont);
@@ -422,7 +422,7 @@ public class DateSelectDialog extends JDialog
 			jPanel1.add(getJLabel_KenshinSelectDate(), gridBagConstraints2);
 
 
-// card‚Ìê‡
+// cardã®å ´åˆ
 //			CardLayout cardLayout2 = new CardLayout();
 //			cardLayout2.setHgap(5);
 //			jPanel1 = new JPanel();
@@ -451,7 +451,7 @@ public class DateSelectDialog extends JDialog
 		if (jLabel_KenshinDate == null) {
 			jLabel_KenshinDate = new ExtendedLabel();
 			// edit s.inoue 2010/02/08
-			jLabel_KenshinDate.setText("Œ’fÀ{“ú‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B<br>¦“ü—Í‚µ‚½Œ’fÀ{“ú‚Í“ü—Í•[‚É”½‰f‚³‚ê‚Ü‚·B <br>@“ü—Í‚µ‚È‚¢ê‡AŠù‘¶‚ÌŒ’fÀ{“ú‚ğ•\¦‚µ‚Ü‚·B");
+			jLabel_KenshinDate.setText("å¥è¨ºå®Ÿæ–½æ—¥ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚<br>â€»å…¥åŠ›ã—ãŸå¥è¨ºå®Ÿæ–½æ—¥ã¯å…¥åŠ›ç¥¨ã«åæ˜ ã•ã‚Œã¾ã™ã€‚ <br>ã€€å…¥åŠ›ã—ãªã„å ´åˆã€æ—¢å­˜ã®å¥è¨ºå®Ÿæ–½æ—¥ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚");
 			jLabel_KenshinDate.setPreferredSize(new Dimension(300, 60));
 		}
 		return jLabel_KenshinDate;
@@ -459,37 +459,37 @@ public class DateSelectDialog extends JDialog
 
 	@Override
 	public Integer getPrintSelect() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 
 //	@Override
 //	public String getFilePath() {
-//		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+//		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //		return null;
 //	}
 
 	@Override
 	public void setDialogTitle(String title) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void setDialogSelect(boolean enabled) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void setSaveFileName(String title) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public String getTextValue() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 

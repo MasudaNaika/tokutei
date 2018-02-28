@@ -36,7 +36,7 @@ import javax.swing.JDialog;
 import org.apache.log4j.Logger;
 
 /**
- * HTTP’ÊM(ƒƒOƒCƒ“‚Ìƒo[ƒWƒ‡ƒ“æ“¾)
+ * HTTPé€šä¿¡(ãƒ­ã‚°ã‚¤ãƒ³æ™‚ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³å–å¾—)
  */
 public class DngPreviewHtml extends JDialog implements ActionListener,KeyListener,IDialog{
 
@@ -75,7 +75,7 @@ public class DngPreviewHtml extends JDialog implements ActionListener,KeyListene
 
 	contentPane.setLayout(new BoxLayout(contentPane, BoxLayout.LINE_AXIS));
 
-	final ExtendedButton jButtonOK = new ExtendedButton("•Â‚¶‚é(F1)");
+	final ExtendedButton jButtonOK = new ExtendedButton("é–‰ã˜ã‚‹(F1)");
 	jButtonOK.setFont(new Font("Dialog",Font.PLAIN,12));
 	jButtonOK.addActionListener(this);
 	jButtonOK.addKeyListener(this);
@@ -119,7 +119,7 @@ public class DngPreviewHtml extends JDialog implements ActionListener,KeyListene
 	}
 
 
-  // ‰Šú‰»
+  // åˆæœŸåŒ–
   protected void initComponents() {
     JEditorPane editorPane = new JEditorPane();
     AbstractDocument doc = (AbstractDocument)editorPane.getDocument();
@@ -138,7 +138,7 @@ public class DngPreviewHtml extends JDialog implements ActionListener,KeyListene
     add(scroll, BorderLayout.CENTER);
   }
 
-  // URLİ’è
+  // URLè¨­å®š
   public void setURI(URL uri) {
     Runnable loader = createLoader(uri);
     SwingUtilities.invokeLater(loader);
@@ -159,19 +159,19 @@ public class DngPreviewHtml extends JDialog implements ActionListener,KeyListene
 
 //@Override
 //public String getFilePath() {
-//	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+//	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //	return null;
 //}
 
 @Override
 public String getKenshinDate() {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 	return null;
 }
 
 @Override
 public Integer getPrintSelect() {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 	return null;
 }
 
@@ -182,55 +182,55 @@ public RETURN_VALUE getStatus() {
 
 @Override
 public void setDialogSelect(boolean enabled) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void setDialogTitle(String title) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void setMessageTitle(String title) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void setSaveFileName(String title) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void setShowCancelButton(boolean isShowCancel) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void setText(String text) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void keyReleased(KeyEvent e) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public void keyTyped(KeyEvent e) {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 }
 
 @Override
 public String getTextValue() {
-	// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+	// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 	return null;
 }
 }

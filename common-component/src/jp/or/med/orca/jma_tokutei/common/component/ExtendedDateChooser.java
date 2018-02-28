@@ -27,7 +27,7 @@ import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
 import org.apache.log4j.Logger;
 
 /**
- * ƒJƒŒƒ“ƒ_[ƒRƒ“ƒgƒ[ƒ‹ƒNƒ‰ƒX
+ * ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«ã‚¯ãƒ©ã‚¹
  */
 public class ExtendedDateChooser extends JDateChooser
     implements FocusListener,KeyListener
@@ -39,7 +39,7 @@ public class ExtendedDateChooser extends JDateChooser
     {
         // imeController = null;
         setDateFormatString("yyyyMMdd");
-        setToolTipText("yyyyMMddŒ`®‚Å“ü—Í");
+        setToolTipText("yyyyMMddå½¢å¼ã§å…¥åŠ›");
         setFont(ViewSettings.getCommonUserInputFont());
         imeController = new ImeController();
         imeController.addFocusListenerForCharcterSubsets(this, ImeMode.IME_OFF);
@@ -146,36 +146,36 @@ public class ExtendedDateChooser extends JDateChooser
         return s;
     }
 
-	// enterƒL[§Œä
+	// enterã‚­ãƒ¼åˆ¶å¾¡
 	private void addEnterPolicy(JComponent comp) {
-		  //Ÿ‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+		  //æ¬¡ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 		  Set<AWTKeyStroke> keystrokes = new HashSet<AWTKeyStroke>();
 		  Set<AWTKeyStroke> oldKeyStrokes = comp
 		          .getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
 		  if (oldKeyStrokes != null) {
-		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-		  //•W€‚Å‚ ‚ê‚ÎTabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+		  //æ¨™æº–ã§ã‚ã‚Œã°TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 		      for (AWTKeyStroke akw : oldKeyStrokes) {
 		          keystrokes.add(akw);
 		      }
 		  }
 
-		  //ENTER‚ğ’Ç‰Á
+		  //ENTERã‚’è¿½åŠ 
 		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
 		  comp.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, keystrokes);
 
-		  //‘O‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+		  //å‰ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 		  keystrokes = new HashSet<AWTKeyStroke>();
 		  oldKeyStrokes = comp.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
 		  if (oldKeyStrokes != null) {
-		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-		  //•W€‚Å‚ ‚ê‚ÎShft+TabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+		  //æ¨™æº–ã§ã‚ã‚Œã°Shft+TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 		      for (AWTKeyStroke akw : oldKeyStrokes) {
 		          keystrokes.add(akw);
 		      }
 		  }
 
-		  // Shift+Enter‚ğ’Ç‰Á
+		  // Shift+Enterã‚’è¿½åŠ 
 		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK));
 		  comp.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, keystrokes);
 	}
@@ -188,7 +188,7 @@ public class ExtendedDateChooser extends JDateChooser
     public void focusLost(FocusEvent focusevent)
     {
         ((JTextField)focusevent.getSource()).setBackground(JApplication.backColor_UnFocus);
-// del s.inoue 2013/03/09 Linux‚ÅƒJ[ƒ\ƒ‹‚ªc‚é
+// del s.inoue 2013/03/09 Linuxã§ã‚«ãƒ¼ã‚½ãƒ«ãŒæ®‹ã‚‹
         // add s.inoue 2012/11/26
      // add s.inoue 2013/03/09
 		String osname = System.getProperty("os.name");
@@ -200,19 +200,19 @@ public class ExtendedDateChooser extends JDateChooser
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //		System.out.println(e.getKeyCode());
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //		System.out.println(e.getKeyCode());
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //		System.out.println(e.getKeyCode());
 	}
 }

@@ -11,7 +11,7 @@ import javax.swing.KeyStroke;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 
 /**
- * JComboBox ‚Ì“Æ©Šg’£
+ * JComboBox ã®ç‹¬è‡ªæ‹¡å¼µ
  */
 public class ExtendedCheckBox extends JCheckBox {
 

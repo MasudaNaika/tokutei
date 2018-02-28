@@ -13,9 +13,9 @@ import org.apache.log4j.Logger;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 
 /**
- * ƒtƒ@ƒCƒ‹ƒpƒX‚ÌŠÇ—ƒNƒ‰ƒX
- * Šeƒ\ƒtƒgƒEƒFƒA‚Å—˜—p‚·‚é‹¤’ÊƒpƒX‚Í‚±‚±‚ÅŠÇ—‚·‚éB
- * ‹¤’Ê‚Å—˜—p‚µ‚È‚¢ƒpƒX‚ÉŠÖ‚µ‚Ä‚ÍJApplication‚Å•Û‚·‚éB
+ * ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®ç®¡ç†ã‚¯ãƒ©ã‚¹
+ * å„ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢ã§åˆ©ç”¨ã™ã‚‹å…±é€šãƒ‘ã‚¹ã¯ã“ã“ã§ç®¡ç†ã™ã‚‹ã€‚
+ * å…±é€šã§åˆ©ç”¨ã—ãªã„ãƒ‘ã‚¹ã«é–¢ã—ã¦ã¯JApplicationã§ä¿æŒã™ã‚‹ã€‚
  */
 /**
  * @author asc
@@ -27,13 +27,13 @@ import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
  */
 public class JPath {
 	/**
-	 *  ƒtƒHƒ‹ƒ_‚Ì‹æØ‚è•¶š
+	 *  ãƒ•ã‚©ãƒ«ãƒ€ã®åŒºåˆ‡ã‚Šæ–‡å­—
 	 */
 //	final public static String Separator =
 //		System.getProperties().getProperty("file.separator");
 
 	/**
-	 *  ƒf[ƒ^ƒx[ƒXŠg’£q
+	 *  ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æ‹¡å¼µå­
 	 */
 	final public static String DATA_BASE_EXTENSION =".fdb";
 // del s.inoue 2011/04/12
@@ -62,13 +62,13 @@ public class JPath {
 	}
 
 	/**
-	 *  ImagesƒtƒHƒ‹ƒ_
+	 *  Imagesãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	final public static String IcoPath = "Images" + JApplication.FILE_SEPARATOR;
 	final public static String IcoNayose = IcoPath + "keinenExcute.png";
 
 	final public static String Ico_Common_METABO =IcoPath + "icon.png";
-	/* ‹¤’ÊÃ“I */
+	/* å…±é€šé™çš„ */
 	final public static String Ico_Common_Print1 =IcoPath + "common_Print1.png";
 	final public static String Ico_Common_Print2 =IcoPath + "common_Print2.png";
 	final public static String Ico_Common_Detail =IcoPath + "common_Detail.png";
@@ -84,7 +84,7 @@ public class JPath {
 	final public static String Ico_Common_Add =IcoPath + "common_add.png";
 //	final public static String Ico_Common_DialogClose = IcoPath + "closewindow.png";
 //	final public static String Ico_Common_HelpBook = IcoPath + "common_Help.png";
-	// eidt s.inoue 2013/03/12 ‘å•¶š
+	// eidt s.inoue 2013/03/12 å¤§æ–‡å­—
 	final public static String Ico_Common_Redo = IcoPath + "common_redo.png";
 	final public static String Ico_Common_Deplicate = IcoPath + "common_Deplicate.png";
 	final public static String Ico_Common_Clear = IcoPath + "common_Clear.png";
@@ -98,26 +98,26 @@ public class JPath {
 	final public static String Ico_Common_Proxy= IcoPath + "proxy.png";
 	final public static String Ico_Common_Update= IcoPath + "onlineupdate.png";
 
-	/* ƒƒOƒCƒ“ */
+	/* ãƒ­ã‚°ã‚¤ãƒ³ */
 	final public static String Ico_Login_Setting=IcoPath + "login_Setting.png";
 	final public static String Ico_Login_Login=IcoPath + "common_Login.png";
 
-	/* ƒoƒbƒNƒAƒbƒv••œŒ³ */
+	/* ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ï¼†å¾©å…ƒ */
 	final public static String Ico_Common_Import =IcoPath + "common_Imort.png";
 	final public static String Ico_Common_Export =IcoPath + "common_Export.png";
-	/* ófŒ” */
+	/* å—è¨ºåˆ¸ */
 	final public static String Ico_Jusin_Call =IcoPath + "jusinken_call.png";
 	final public static String Ico_Jusin_Orca =IcoPath + "jusinken_orca.png";
 
 	final public static String Ico_Seikyu_Calc =IcoPath + "seikyu_calc.png";
 
-	/* ƒƒjƒ…[ */
+	/* ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
 	final public static String Ico_System_Kikan =IcoPath + "7-1.png";
 	final public static String Ico_System_User =IcoPath + "7-2.png";
 	final public static String Ico_System_Backup =IcoPath + "7-3.png";
 	final public static String Ico_System_Usability =IcoPath + "7-4.png";
 
-	/* Œ‹‰Ê“ü—Í */
+	/* çµæœå…¥åŠ› */
 	final public static String Ico_Kekka_Delete =IcoPath + "kekkaInput_DelKekka.png";
 	final public static String Ico_Kekka_DeleteJusinken = IcoPath + "kekkaInput_DelJusinken.png";
 	final public static String Ico_Kekka_AddJusinken = IcoPath + "kekkaInput_AddJusinken.png";
@@ -125,95 +125,95 @@ public class JPath {
 	final public static String Ico_Kekka_InputJusinken =IcoPath + "kekkaInput_CallJusinken.png";
 	final public static String Ico_Hantei_Graph =IcoPath + "hantei_Graph.png";
 
-	/* ƒƒ^ƒ{”»’è */
+	/* ãƒ¡ã‚¿ãƒœåˆ¤å®š */
 	final public static String Ico_Hantei_Detail =IcoPath + "hantei_Metabohantei.png";
 
 	/**
-	 *  ƒXƒvƒ‰ƒbƒVƒ…ƒCƒ[ƒW
+	 *  ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ã‚¤ãƒ¡ãƒ¼ã‚¸
 	 */
 	// edit s.inoue 2010/11/10
 	final public static String SplashPath =
 		IcoPath + "SplashImage.png";
 
 	/**
-	 *  ƒf[ƒ^ƒx[ƒXƒtƒHƒ‹ƒ_
+	 *  ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	final public static String DatabaseFolder =
 		"DB" + JApplication.FILE_SEPARATOR;
 
 	/**
-	 *  ‹@ŠÖî•ñƒf[ƒ^ƒx[ƒX
+	 *  æ©Ÿé–¢æƒ…å ±ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 	 */
 	final public static String BaseKikanDatabaseFilePath =
 		DatabaseFolder + "Kikan" + DATA_BASE_EXTENSION;
 
 	/**
-	 *  ƒVƒXƒeƒ€ƒf[ƒ^ƒx[ƒX
+	 *  ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 	 */
 	final public static String SystemDatabaseFilePath =
 		DatabaseFolder + "System" + DATA_BASE_EXTENSION;
 
 	/**
-	 *  ƒf[ƒ^ƒx[ƒXƒoƒbƒNƒAƒbƒvƒtƒHƒ‹ƒ_
+	 *  ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	final public static String BackupDatabaseFolder =
 		"Backup" + JApplication.FILE_SEPARATOR;
 
 	/**
-	 *  ƒVƒXƒeƒ€ƒf[ƒ^ƒx[ƒXƒoƒbƒNƒAƒbƒvƒtƒHƒ‹ƒ_
+	 *  ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	final public static String BackupSystemDatabaseFolder =
 		BackupDatabaseFolder + "System" + JApplication.FILE_SEPARATOR;
 
 	/**
-	 *  ‹@ŠÖƒf[ƒ^ƒx[ƒXƒtƒ@ƒCƒ‹ƒpƒX
+	 *  æ©Ÿé–¢ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
 	 */
 	final public static String BackupKikanDataBaseFolder =
 		BackupDatabaseFolder + "Kikan" + JApplication.FILE_SEPARATOR;
 
-	/* Modified 2008/08/07 áŒ  */
+	/* Modified 2008/08/07 è‹¥æœˆ  */
 	/* --------------------------------------------------- */
 //	/**
-//	 *  ˆêƒfƒBƒŒƒNƒgƒŠ
+//	 *  ä¸€æ™‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 //	 */
 //	final public static String TEMP_SYSTEM_DATABASEFILE_PATH =
 //		"Work" + JApplication.FILE_SEPARATOR + "Temp" + JApplication.FILE_SEPARATOR;
 //
 //	/**
-//	 * ˆê“I‚ÉHL7‚ğo—Í‚·‚éƒtƒHƒ‹ƒ_
+//	 * ä¸€æ™‚çš„ã«HL7ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€
 //	 */
 //	public final static String TEMP_OUTPUT_HL7_DIRECOTRY_PATH =
 //		"Work" + JApplication.FILE_SEPARATOR + "HL7" + JApplication.FILE_SEPARATOR;
 	/* --------------------------------------------------- */
 	/**
-	 *  ˆêƒfƒBƒŒƒNƒgƒŠ
+	 *  ä¸€æ™‚ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª
 	 */
 	final public static String TEMP_SYSTEM_DATABASEFILE_PATH =
 		"work" + JApplication.FILE_SEPARATOR + "Temp" + JApplication.FILE_SEPARATOR;
 
 	/**
-	 * ˆê“I‚ÉHL7‚ğo—Í‚·‚éƒtƒHƒ‹ƒ_
+	 * ä¸€æ™‚çš„ã«HL7ã‚’å‡ºåŠ›ã™ã‚‹ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	public final static String TEMP_OUTPUT_HL7_DIRECOTRY_PATH =
 		"work" + JApplication.FILE_SEPARATOR + "HL7" + JApplication.FILE_SEPARATOR;
 	/* --------------------------------------------------- */
 
 	/**
-	 * HL7‚ÌZipƒtƒ@ƒCƒ‹‚Ìo—ÍƒtƒHƒ‹ƒ_
+	 * HL7ã®Zipãƒ•ã‚¡ã‚¤ãƒ«ã®å‡ºåŠ›ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	public final static String ZIP_OUTPUT_DIRECTORY_PATH =
 		"Data" + JApplication.FILE_SEPARATOR + "HL7" + JApplication.FILE_SEPARATOR;
 	/* --------------------------------------------------- */
 
 	/**
-	 * ƒIƒ“ƒ‰ƒCƒ“ƒAƒbƒvƒf[ƒg—po—ÍƒtƒHƒ‹ƒ_
+	 * ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‚¢ãƒƒãƒ—ãƒ‡ãƒ¼ãƒˆç”¨å‡ºåŠ›ãƒ•ã‚©ãƒ«ãƒ€
 	 */
 	public static final String MODULE_TEMP = "Module";
 
 	/**
-	 *  ‹@ŠÖƒf[ƒ^ƒx[ƒX
+	 *  æ©Ÿé–¢ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹
 	 *
-	 *    @param ‹@ŠÖ”Ô†
+	 *    @param æ©Ÿé–¢ç•ªå·
 	 */
 	public static String GetKikanDatabaseFilePath( String number )
 	{
@@ -221,7 +221,7 @@ public class JPath {
 	}
 
 	/**
-	 *  JSql ƒVƒXƒeƒ€ƒf[ƒ^ƒx[ƒX‚Ìƒtƒ‹ƒpƒX‚ğæ“¾‚·‚é
+	 *  JSql ã‚·ã‚¹ãƒ†ãƒ ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 	 */
 	public static String GetSystemDatabaseFilePathToInitJSql()
 	{
@@ -251,13 +251,13 @@ public class JPath {
     }
 
 	/**
-	 *  JSql ‹@ŠÖî•ñƒf[ƒ^ƒx[ƒX‚Ìƒtƒ‹ƒpƒX‚ğæ“¾‚·‚é
+	 *  JSql æ©Ÿé–¢æƒ…å ±ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å–å¾—ã™ã‚‹
 	 *
-	 *    @param ‹@ŠÖ”Ô†
+	 *    @param æ©Ÿé–¢ç•ªå·
 	 */
 	public static String GetKikanDatabaseFilePathToInitJSql( String number )
 	{
-		/* Modified 2008/07/29 áŒ  */
+		/* Modified 2008/07/29 è‹¥æœˆ  */
 		/* --------------------------------------------------- */
 //		return JFile.GetCurrentDirectory() + "DB" + JApplication.FILE_SEPARATOR + number + DATA_BASE_EXTENSION;
 		/* --------------------------------------------------- */
@@ -276,9 +276,9 @@ public class JPath {
 		return path;
 	}
 	/**
-	 *  JSql ƒŒƒWƒXƒgƒŠ‚æ‚èAƒfƒXƒNƒgƒbƒv‚ğæ“¾‚·‚é
+	 *  JSql ãƒ¬ã‚¸ã‚¹ãƒˆãƒªã‚ˆã‚Šã€ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ã‚’å–å¾—ã™ã‚‹
 	 *
-	 *    @param ƒfƒXƒNƒgƒbƒvƒpƒX
+	 *    @param ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ãƒ‘ã‚¹
 	 */
 	public static String getDesktopPath() {
 	    String ret = "";
@@ -287,17 +287,17 @@ public class JPath {
 			// add s.inoue 2013/03/09
 			String osname = System.getProperty("os.name");
 			if(osname.indexOf("Windows")>=0){
-				// ƒfƒXƒNƒgƒbƒv
+				// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—
 			    File fs= new File(System.getProperty("user.home"), "Desktop");
 				ret = fs.getAbsolutePath();
 
 				if(!fs.exists()){
-			  		// ƒfƒXƒNƒgƒbƒv
-				    File ffs= new File(System.getProperty("user.home"), "ƒfƒXƒNƒgƒbƒv");
+			  		// ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—
+				    File ffs= new File(System.getProperty("user.home"), "ãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—");
 					ret = ffs.getAbsolutePath();
-			  		logger.info("use vistaƒfƒXƒNƒgƒbƒv");
+			  		logger.info("use vistaãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—");
 
-			  		// ƒ†[ƒUƒz[ƒ€
+			  		// ãƒ¦ãƒ¼ã‚¶ãƒ›ãƒ¼ãƒ 
 			  		if(!ffs.exists()){
 				  		File fffs= new File(System.getProperty("user.home"));
 				  		ret = fffs.getAbsolutePath();
@@ -305,13 +305,13 @@ public class JPath {
 			  		}
 				}
 			}else{
-				// Linux“™‘Î‰
+				// Linuxç­‰å¯¾å¿œ
 				File fffs= new File(System.getProperty("user.home"));
 		  		ret = fffs.getAbsolutePath();
 		  		logger.info("use user.home");
 			}
 	  	} catch (Exception e) {
-	  		// ƒ†[ƒUƒz[ƒ€
+	  		// ãƒ¦ãƒ¼ã‚¶ãƒ›ãƒ¼ãƒ 
 	  		File fs= new File(System.getProperty("user.home"));
 	  		ret = fs.getAbsolutePath();
 	  		logger.info("use user.home");
@@ -321,17 +321,17 @@ public class JPath {
 //	      String osname = System.getProperty("os.name");
 //	      // "Linux","Mac"
 //	      if(osname.indexOf("Windows")>=0){
-//	    	  // Windows‚Å‚ ‚Á‚½‚Æ‚«‚Ìˆ—
+//	    	  // Windowsã§ã‚ã£ãŸã¨ãã®å‡¦ç†
 //	    	  File fs= new File(System.getProperty("user.home"), "Desktop");
 //	    	  ret = fs.getAbsolutePath();
 //
 ////	    	} else if(osname.indexOf("Linux")>=0){
-////	    	  // Linux‚Å‚ ‚Á‚½‚Æ‚«‚Ìˆ—
-////	    	  System.getProperty(guser.homeh)
+////	    	  // Linuxã§ã‚ã£ãŸã¨ãã®å‡¦ç†
+////	    	  System.getProperty(â€œuser.homeâ€)
 ////	    	} else if(osname.indexOf("Mac")>=0){
-////	    	  // MacOS‚Å‚ ‚Á‚½‚Æ‚«‚Ìˆ—
+////	    	  // MacOSã§ã‚ã£ãŸã¨ãã®å‡¦ç†
 //	    	} else {
-//	    		// ‚»‚Ì‘¼‚ÌŠÂ‹«‚¾‚Á‚½‚Æ‚«‚Ìˆ—
+//	    		// ãã®ä»–ã®ç’°å¢ƒã ã£ãŸã¨ãã®å‡¦ç†
 //	    		ret = System.getProperty("user.home");
 //	    	}
 //	    } catch (Exception e) {
@@ -343,18 +343,18 @@ public class JPath {
 
 	// add s.inoue 2010/03/09
 	/**
-	 * o—Í—p‚ÌƒtƒHƒ‹ƒ_–¼‚ğ¶¬‚·‚é(_1-10)
-	 * @return ƒGƒ‰[ƒR[ƒh
-	 * ret = 0 -> ³íI—¹
-	 * ret = 1 -> ƒtƒHƒ‹ƒ_‚Ìì¬‚É¸”s
-	 * ret = 2 -> ƒtƒHƒ‹ƒ_ì¬‚ÌãŒÀ‚É’B‚µ‚½
-	 * ret = 4 -> ƒXƒL[ƒ}‚Ìƒtƒ@ƒCƒ‹ƒRƒs[‚É¸”s
+	 * å‡ºåŠ›ç”¨ã®ãƒ•ã‚©ãƒ«ãƒ€åã‚’ç”Ÿæˆã™ã‚‹(_1-10)
+	 * @return ã‚¨ãƒ©ãƒ¼ã‚³ãƒ¼ãƒ‰
+	 * ret = 0 -> æ­£å¸¸çµ‚äº†
+	 * ret = 1 -> ãƒ•ã‚©ãƒ«ãƒ€ã®ä½œæˆã«å¤±æ•—
+	 * ret = 2 -> ãƒ•ã‚©ãƒ«ãƒ€ä½œæˆã®ä¸Šé™ã«é”ã—ãŸ
+	 * ret = 4 -> ã‚¹ã‚­ãƒ¼ãƒã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ”ãƒ¼ã«å¤±æ•—
 	 */
 	public static String createDirectoryUniqueName(String uniqueName)
 	{
 		String retFileName = "";
 
-		// •ÏŠ·“ú
+		// å¤‰æ›æ—¥æ™‚
 		DateFormat format = new SimpleDateFormat("yyyyMMdd");
 		String CreateDate = format.format(new Date());
 
