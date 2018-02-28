@@ -22,22 +22,22 @@ import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 
 /**
- * JTextField ‚Ì“Æ©Šg’£
+ * JTextField ã®ç‹¬è‡ªæ‹¡å¼µ
  *
- *  Modified 2008/03/12 áŒ
- *  IME §Œä‹@”\‚ğExtendedEditorPane ƒNƒ‰ƒX‚Æ‹¤—L‚·‚é‚½‚ßAImeController ƒNƒ‰ƒX‚ÉˆÚ“®B
+ *  Modified 2008/03/12 è‹¥æœˆ
+ *  IME åˆ¶å¾¡æ©Ÿèƒ½ã‚’ExtendedEditorPane ã‚¯ãƒ©ã‚¹ã¨å…±æœ‰ã™ã‚‹ãŸã‚ã€ImeController ã‚¯ãƒ©ã‚¹ã«ç§»å‹•ã€‚
  */
 public class ExtendedTextArea extends JTextArea {
 
 	private ImeController imeController = null;
 
 	/**
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	 * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	 */
 	public ExtendedTextArea(String text, int n, ImeMode mode, boolean handleEnterKey) {
 
 		// edit s.inoue 2013/02/19
-		// 6—ñ10s
+		// 6åˆ—10è¡Œ
 		super(6,10);
 		setFont(ViewSettings.getCommonUserInputFont());
 
@@ -107,7 +107,7 @@ public class ExtendedTextArea extends JTextArea {
 		InputMap inputs = this.getInputMap(JComponent.WHEN_FOCUSED);
 		inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "focusOutNext");
 		// add s.inoue 2012/11/06
-		// Shift+Enter‚ğ’Ç‰Á
+		// Shift+Enterã‚’è¿½åŠ 
 		inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK), "focusOutPrevious");
 	}
 	private void initActions(boolean handleEnterKey) {
@@ -123,47 +123,47 @@ public class ExtendedTextArea extends JTextArea {
 		if (handleEnterKey) {
 			inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "focusOutNext");
 			// add s.inoue 2012/11/06
-			// Shift+Enter‚ğ’Ç‰Á
+			// Shift+Enterã‚’è¿½åŠ 
 			inputs.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK), "focusOutPrevious");
 		}
 	}
 
-//	// enterƒL[§Œä
+//	// enterã‚­ãƒ¼åˆ¶å¾¡
 //	private void addEnterPolicy(JComponent comp) {
-//		  //Ÿ‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		  //æ¬¡ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		  Set<AWTKeyStroke> keystrokes = new HashSet<AWTKeyStroke>();
 //		  Set<AWTKeyStroke> oldKeyStrokes = comp
 //		          .getFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS);
 //		  if (oldKeyStrokes != null) {
-//		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//		  //•W€‚Å‚ ‚ê‚ÎTabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//		  //æ¨™æº–ã§ã‚ã‚Œã°TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //		      for (AWTKeyStroke akw : oldKeyStrokes) {
 //		          keystrokes.add(akw);
 //		      }
 //		  }
 //
-//		  //ENTER‚ğ’Ç‰Á
+//		  //ENTERã‚’è¿½åŠ 
 //		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, 0));
 //		  comp.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, keystrokes);
 //
-//		  //‘O‚Ö‚ÌƒtƒH[ƒJƒXİ’è
+//		  //å‰ã¸ã®ãƒ•ã‚©ãƒ¼ã‚«ã‚¹è¨­å®š
 //		  keystrokes = new HashSet<AWTKeyStroke>();
 //		  oldKeyStrokes = comp.getFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS);
 //		  if (oldKeyStrokes != null) {
-//		      //Šù‚É“o˜^‚³‚ê‚Ä‚¢‚éKeySet‚ğ‚ª‚ ‚ê‚ÎƒRƒs[‚·‚éB
-//		  //•W€‚Å‚ ‚ê‚ÎShft+TabKey‚È‚Ç‚ª“ü‚Á‚Ä‚¢‚é‚Í‚¸
+//		      //æ—¢ã«ç™»éŒ²ã•ã‚Œã¦ã„ã‚‹KeySetã‚’ãŒã‚ã‚Œã°ã‚³ãƒ”ãƒ¼ã™ã‚‹ã€‚
+//		  //æ¨™æº–ã§ã‚ã‚Œã°Shft+TabKeyãªã©ãŒå…¥ã£ã¦ã„ã‚‹ã¯ãš
 //		      for (AWTKeyStroke akw : oldKeyStrokes) {
 //		          keystrokes.add(akw);
 //		      }
 //		  }
 //
-//		  // Shift+Enter‚ğ’Ç‰Á
+//		  // Shift+Enterã‚’è¿½åŠ 
 //		  keystrokes.add(KeyStroke.getAWTKeyStroke(KeyEvent.VK_ENTER, InputEvent.SHIFT_MASK));
 //		  comp.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, keystrokes);
 //	}
 
 	/**
-	 * ƒGƒfƒBƒ^‚Ìƒvƒ‹ƒ_ƒEƒ“ƒƒjƒ…[İ’è
+	 * ã‚¨ãƒ‡ã‚£ã‚¿ã®ãƒ—ãƒ«ãƒ€ã‚¦ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 	 */
 	public void showPopup(JComponent c, int x, int y) {
 		JPopupMenu menu = new JPopupMenu();
@@ -171,22 +171,22 @@ public class ExtendedTextArea extends JTextArea {
 		ActionMap am = c.getActionMap();
 
 		Action cut = am.get(DefaultEditorKit.cutAction);
-		addPopupMenu(menu, "Ø‚èæ‚è(X)", cut, 'X', KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_DOWN_MASK));
+		addPopupMenu(menu, "åˆ‡ã‚Šå–ã‚Š(X)", cut, 'X', KeyStroke.getKeyStroke(KeyEvent.VK_X, KeyEvent.CTRL_DOWN_MASK));
 
 		Action copy = am.get(DefaultEditorKit.copyAction);
-		addPopupMenu(menu, "ƒRƒs[(C)", copy, 'C', KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK));
+		addPopupMenu(menu, "ã‚³ãƒ”ãƒ¼(C)", copy, 'C', KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_DOWN_MASK));
 
 		Action paste = am.get(DefaultEditorKit.pasteAction);
-		addPopupMenu(menu, "“\‚è•t‚¯(V)", paste, 'V', KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK));
+		addPopupMenu(menu, "è²¼ã‚Šä»˜ã‘(V)", paste, 'V', KeyStroke.getKeyStroke(KeyEvent.VK_V, KeyEvent.CTRL_DOWN_MASK));
 
 		Action all = am.get(DefaultEditorKit.selectAllAction);
-		addPopupMenu(menu, "‚·‚×‚Ä‘I‘ğ(A)", all, 'A', KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_DOWN_MASK));
+		addPopupMenu(menu, "ã™ã¹ã¦é¸æŠ(A)", all, 'A', KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_DOWN_MASK));
 
 		menu.show(c, x, y);
 	}
 
 	// add s.inoue 2009/12/07
-	// ƒvƒ‹ƒ_ƒEƒ“ƒƒjƒ…[€–Ú‚ğ’Ç‰Á
+	// ãƒ—ãƒ«ãƒ€ã‚¦ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼é …ç›®ã‚’è¿½åŠ 
 	protected void addPopupMenu(JPopupMenu pmenu, String text, Action action, int mnemonic, KeyStroke ks) {
 		if (action != null) {
 			JMenuItem mi = pmenu.add(action);

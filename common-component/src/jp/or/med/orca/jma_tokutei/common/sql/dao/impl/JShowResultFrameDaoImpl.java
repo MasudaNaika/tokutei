@@ -21,11 +21,11 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		JShowResultFrameDao {
 
 	// edit ver2 s.inoue 2009/08/27
-	// ŒŸ¸ƒZƒ“ƒ^[–¼Ì‚ğ“Á’è‚·‚é‚É‚ÍŒŸ¸ƒZƒ“ƒ^[ƒR[ƒh‚ÆŒŸ¸ƒZƒ“ƒ^[€–ÚƒR[ƒh‚ğ
-	// w’è‚·‚é•K—v‚ª‚ ‚éB
-	// ŒŸ¸Œ‹‰Ê“Á’èƒe[ƒuƒ‹‚É‚ÍŒŸ¸ƒZƒ“ƒ^[€–ÚƒR[ƒh—ñ‚ª‘¶İ‚µ‚È‚¢‚½‚ßA
-	// ŒŸ¸ƒZƒ“ƒ^[–¼Ì‚ğ1‚Â‚É“Á’è‚Å‚«‚È‚¢B
-	// ‚»‚Ì‚½‚ßAŒŸ¸ƒZƒ“ƒ^[–¼Ì‚Í’Šo‚µ‚È‚¢B
+	// æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼åç§°ã‚’ç‰¹å®šã™ã‚‹ã«ã¯æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼ã‚³ãƒ¼ãƒ‰ã¨æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼é …ç›®ã‚³ãƒ¼ãƒ‰ã‚’
+	// æŒ‡å®šã™ã‚‹å¿…è¦ãŒã‚ã‚‹ã€‚
+	// æ¤œæŸ»çµæœç‰¹å®šãƒ†ãƒ¼ãƒ–ãƒ«ã«ã¯æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼é …ç›®ã‚³ãƒ¼ãƒ‰åˆ—ãŒå­˜åœ¨ã—ãªã„ãŸã‚ã€
+	// æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼åç§°ã‚’1ã¤ã«ç‰¹å®šã§ããªã„ã€‚
+	// ãã®ãŸã‚ã€æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼åç§°ã¯æŠ½å‡ºã—ãªã„ã€‚
 	private static final String SELECT_KPNAME_CENTERNAME_BY_UKETUKEID_SQL
 	= "select b.k_p_name, b.k_p_no  " +
 		" from " +
@@ -60,31 +60,31 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 
 		// edit ver2 s.inoue 2009/07/23
 		//buffer.append(" master.KOUMOKU_NAME,");
-		buffer.append("  case when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf1' then '¿–â1-1' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf2' then '¿–â1-2' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf3' then '¿–â1-3' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf4' then '¿–â4' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf5' then '¿–â5' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf6' then '¿–â6' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf7' then '¿–â7' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf8' then '¿–â8' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf9' then '¿–â9' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf10' then '¿–â10' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf11' then '¿–â11' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf12' then '¿–â12' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf13' then '¿–â13' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf14' then '¿–â14' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf15' then '¿–â15' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf16' then '¿–â16' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf17' then '¿–â17' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf18' then '¿–â18' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf19' then '¿–â19' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf20' then '¿–â20' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf21' then '¿–â21' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf22' then '¿–â22' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf23' then '¿–â23' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf24' then '¿–â24' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf25' then '¿–â25' ");
+		buffer.append("  case when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º1' then 'è³ªå•1-1' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º2' then 'è³ªå•1-2' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º3' then 'è³ªå•1-3' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º4' then 'è³ªå•4' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º5' then 'è³ªå•5' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º6' then 'è³ªå•6' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º7' then 'è³ªå•7' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º8' then 'è³ªå•8' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º9' then 'è³ªå•9' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º10' then 'è³ªå•10' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º11' then 'è³ªå•11' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º12' then 'è³ªå•12' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º13' then 'è³ªå•13' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º14' then 'è³ªå•14' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º15' then 'è³ªå•15' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º16' then 'è³ªå•16' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º17' then 'è³ªå•17' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º18' then 'è³ªå•18' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º19' then 'è³ªå•19' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º20' then 'è³ªå•20' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º21' then 'è³ªå•21' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º22' then 'è³ªå•22' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º23' then 'è³ªå•23' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º24' then 'è³ªå•24' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º25' then 'è³ªå•25' ");
 		buffer.append("  else master.KOUMOKU_NAME end KOUMOKU_NAME, ");
 
 		buffer.append(" master.KENSA_HOUHOU,");
@@ -93,10 +93,10 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		buffer.append(" sonota.KEKA_TI AS KEKA_TI_STRING,");
 		// add s.inoue 20080911
 		buffer.append(" case sonota.JISI_KBN ");
-		buffer.append(" when 0 then TRIM('0:–¢À{') ");
-		buffer.append(" when 1 then TRIM('1:À{') ");
-		buffer.append(" when 2 then TRIM('2:‘ª’è•s‰Â”\') ");
-		buffer.append(" else TRIM('1:À{') end as JISI_KBN, ");
+		buffer.append(" when 0 then TRIM('0:æœªå®Ÿæ–½') ");
+		buffer.append(" when 1 then TRIM('1:å®Ÿæ–½') ");
+		buffer.append(" when 2 then TRIM('2:æ¸¬å®šä¸å¯èƒ½') ");
+		buffer.append(" else TRIM('1:å®Ÿæ–½') end as JISI_KBN, ");
 
 		buffer.append(" master.DS_KAGEN,");
 		buffer.append(" master.DS_JYOUGEN,");
@@ -111,12 +111,12 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		buffer.append(" when 2 then 'H' ");
 		buffer.append(" else '' end as H_L,");
 		buffer.append(" case sonota.HANTEI ");
-		buffer.append(" when 1 then 'ˆÙí‚È‚µ' ");
-		buffer.append(" when 2 then 'Œy“xˆÙí' ");
-		buffer.append(" when 3 then '—vŒo‰ßŠÏ@' ");
-		buffer.append(" when 4 then 'ˆÙí' ");
-		buffer.append(" when 5 then '—v¸ŒŸ' ");
-		buffer.append(" else '–¢”»’è' end ");
+		buffer.append(" when 1 then 'ç•°å¸¸ãªã—' ");
+		buffer.append(" when 2 then 'è»½åº¦ç•°å¸¸' ");
+		buffer.append(" when 3 then 'è¦çµŒéè¦³å¯Ÿ' ");
+		buffer.append(" when 4 then 'ç•°å¸¸' ");
+		buffer.append(" when 5 then 'è¦ç²¾æ¤œ' ");
+		buffer.append(" else 'æœªåˆ¤å®š' end ");
 		buffer.append(" as HANTEI ");
 
 		buffer.append(" FROM ");
@@ -148,31 +148,31 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 
 		// edit ver2 s.inoue 2009/07/23
 		//buffer.append(" master.KOUMOKU_NAME,");
-		buffer.append("  case when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf1' then '¿–â1-1' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf2' then '¿–â1-2' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf3' then '¿–â1-3' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf4' then '¿–â4' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf5' then '¿–â5' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf6' then '¿–â6' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf7' then '¿–â7' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf8' then '¿–â8' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf9' then '¿–â9' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf10' then '¿–â10' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf11' then '¿–â11' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf12' then '¿–â12' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf13' then '¿–â13' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf14' then '¿–â14' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf15' then '¿–â15' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf16' then '¿–â16' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf17' then '¿–â17' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf18' then '¿–â18' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf19' then '¿–â19' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf20' then '¿–â20' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf21' then '¿–â21' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf22' then '¿–â22' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf23' then '¿–â23' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf24' then '¿–â24' ");
-		buffer.append("  when master.KOUMOKU_NAME ='¶Šˆ‹@”\–âf25' then '¿–â25' ");
+		buffer.append("  case when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º1' then 'è³ªå•1-1' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º2' then 'è³ªå•1-2' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º3' then 'è³ªå•1-3' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º4' then 'è³ªå•4' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º5' then 'è³ªå•5' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º6' then 'è³ªå•6' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º7' then 'è³ªå•7' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º8' then 'è³ªå•8' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º9' then 'è³ªå•9' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º10' then 'è³ªå•10' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º11' then 'è³ªå•11' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º12' then 'è³ªå•12' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º13' then 'è³ªå•13' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º14' then 'è³ªå•14' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º15' then 'è³ªå•15' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º16' then 'è³ªå•16' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º17' then 'è³ªå•17' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º18' then 'è³ªå•18' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º19' then 'è³ªå•19' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º20' then 'è³ªå•20' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º21' then 'è³ªå•21' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º22' then 'è³ªå•22' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º23' then 'è³ªå•23' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º24' then 'è³ªå•24' ");
+		buffer.append("  when master.KOUMOKU_NAME ='ç”Ÿæ´»æ©Ÿèƒ½å•è¨º25' then 'è³ªå•25' ");
 		buffer.append("  else master.KOUMOKU_NAME end KOUMOKU_NAME, ");
 
 		buffer.append(" master.KENSA_HOUHOU,");
@@ -180,10 +180,10 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		buffer.append(" sonota.KEKA_TI AS KEKA_TI_CODE,");
 		buffer.append(" sonota.KEKA_TI AS KEKA_TI_STRING,");
 		buffer.append(" case sonota.JISI_KBN ");
-		buffer.append(" when 0 then TRIM('0:–¢À{') ");
-		buffer.append(" when 1 then TRIM('1:À{') ");
-		buffer.append(" when 2 then TRIM('2:‘ª’è•s‰Â”\') ");
-		buffer.append(" else TRIM('1:À{') end as JISI_KBN, ");
+		buffer.append(" when 0 then TRIM('0:æœªå®Ÿæ–½') ");
+		buffer.append(" when 1 then TRIM('1:å®Ÿæ–½') ");
+		buffer.append(" when 2 then TRIM('2:æ¸¬å®šä¸å¯èƒ½') ");
+		buffer.append(" else TRIM('1:å®Ÿæ–½') end as JISI_KBN, ");
 		buffer.append(" master.DS_KAGEN,");
 		buffer.append(" master.DS_JYOUGEN,");
 		buffer.append(" master.JS_KAGEN,");
@@ -198,12 +198,12 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		buffer.append(" when 2 then 'H' ");
 		buffer.append(" else '' end as HL,");
 		buffer.append(" case sonota.HANTEI ");
-		buffer.append(" when 1 then 'ˆÙí‚È‚µ' ");
-		buffer.append(" when 2 then 'Œy“xˆÙí' ");
-		buffer.append(" when 3 then '—vŒo‰ßŠÏ@' ");
-		buffer.append(" when 4 then 'ˆÙí' ");
-		buffer.append(" when 5 then '—v¸ŒŸ' ");
-		buffer.append(" else '–¢”»’è' end ");
+		buffer.append(" when 1 then 'ç•°å¸¸ãªã—' ");
+		buffer.append(" when 2 then 'è»½åº¦ç•°å¸¸' ");
+		buffer.append(" when 3 then 'è¦çµŒéè¦³å¯Ÿ' ");
+		buffer.append(" when 4 then 'ç•°å¸¸' ");
+		buffer.append(" when 5 then 'è¦ç²¾æ¤œ' ");
+		buffer.append(" else 'æœªåˆ¤å®š' end ");
 		buffer.append(" as HANTEI ");
 		buffer.append(" FROM ");
 		buffer.append(" T_KENSAKEKA_SONOTA as sonota ");
@@ -218,7 +218,7 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 		buffer.append(" AND ");
 		buffer.append(" master.HKNJANUM = ? ");
 		// edit s.inoue 2009/10/28
-		// ƒRƒƒ“ƒg–ß‚· ƒ\[ƒg‡‚ª•Ï
+		// ã‚³ãƒ¡ãƒ³ãƒˆæˆ»ã™ ã‚½ãƒ¼ãƒˆé †ãŒå¤‰
 		// del ver2 s.inoue 2009/08/26
 		buffer.append(" ORDER BY ps.LOW_ID ");
 
@@ -231,10 +231,10 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 
 	// edit s.inoue 2009/11/18
 	/**
-	 * ŒŸ¸€–Ú–¼‚ÆŒ’fƒpƒ^[ƒ“–¼‚ğæ“¾‚·‚é
-	 * @param uketukeId ó•tID
-	 * @param kensaNengapi ŒŸ¸À{”NŒ“ú
-	 * @param centerKoumokuCd ŒŸ¸ƒZƒ“ƒ^[€–ÚƒR[ƒh
+	 * æ¤œæŸ»é …ç›®åã¨å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³åã‚’å–å¾—ã™ã‚‹
+	 * @param uketukeId å—ä»˜ID
+	 * @param kensaNengapi æ¤œæŸ»å®Ÿæ–½å¹´æœˆæ—¥
+	 * @param centerKoumokuCd æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼é …ç›®ã‚³ãƒ¼ãƒ‰
 	 * @return JShowResultFrameModel
 	 */
 	public JShowResultFrameModel selectKpNameCenterName(Long uketukeId) throws SQLException {
@@ -353,7 +353,7 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 	@Override
 	public JShowResultFrameModel selectKpNameCenterName(Long uketukeId,
 			Integer kensaNengapi, Integer centerKoumokuCd) throws SQLException {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 
@@ -361,7 +361,7 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 	public List<TreeMap<String, String>> selectTableRecord(Long uketukeId,
 			Integer kensaNengapi, String hknjanum, Integer kenshinPatternNumber)
 			throws SQLException {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 }

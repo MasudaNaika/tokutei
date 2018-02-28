@@ -14,14 +14,14 @@ import org.xml.sax.SAXParseException;
 
 public class Utility {
 	/**
-	 * —X•Ö”Ô†‚ğu###-####v‚Æ‚¢‚¤Œ`®‚Éo—Í‚·‚é
-	 * @param Value “K“–‚ÈŒ`®‚Ì”š
+	 * éƒµä¾¿ç•ªå·ã‚’ã€Œ###-####ã€ã¨ã„ã†å½¢å¼ã«å‡ºåŠ›ã™ã‚‹
+	 * @param Value é©å½“ãªå½¢å¼ã®æ•°å­—
 	 */
 	public static String ConvertPostalCode(String Value)
 	{
 		String Ret = "";
 
-		// 4•¶š–Ú‚ÉƒnƒCƒtƒ“‚ª“ü‚Á‚Ä‚¢‚é‚©‚Åˆ—‚ğU‚è•ª‚¯
+		// 4æ–‡å­—ç›®ã«ãƒã‚¤ãƒ•ãƒ³ãŒå…¥ã£ã¦ã„ã‚‹ã‹ã§å‡¦ç†ã‚’æŒ¯ã‚Šåˆ†ã‘
 		if(Value.charAt(3) == '-')
 		{
 			Ret = Value;
@@ -36,13 +36,13 @@ public class Utility {
 	}
 
 	/**
-	 * ƒJƒŒƒ“ƒ_[ƒNƒ‰ƒX‚©‚çAuyyyyMMddvŒ`®‚Ì“ú•t‚ğo—Í‚·‚é
-	 * @param Value ƒJƒŒƒ“ƒ_[ƒNƒ‰ƒX
-	 * @return “ú•t‚Ì•¶š—ñ
+	 * ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹ã‹ã‚‰ã€ã€ŒyyyyMMddã€å½¢å¼ã®æ—¥ä»˜ã‚’å‡ºåŠ›ã™ã‚‹
+	 * @param Value ã‚«ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¯ãƒ©ã‚¹
+	 * @return æ—¥ä»˜ã®æ–‡å­—åˆ—
 	 */
 	public static String GetTimeString(Calendar Value)
 	{
-		// 1Œ•ª‘½‚­‚È‚é–â‘è‚ğŠÛ‚ß‚é
+		// 1æœˆåˆ†å¤šããªã‚‹å•é¡Œã‚’ä¸¸ã‚ã‚‹
 		Value.set(Calendar.MONTH, Value.get(Calendar.MONTH) - 1);
 		DateFormat format = new SimpleDateFormat("yyyyMMdd");
 		String Temp = format.format(Value.getTime());
@@ -51,17 +51,17 @@ public class Utility {
 	}
 
 	/**
-	 * “ü—Í‚µ‚½’l‚É‘Î‚µ‚ÄA•K—vŒ…”•ª¶‚©‚ç0‚Å–„‚ß‚é
-	 * @param Value ’l
-	 * @param Figure Œ…”
-	 * @return 0‚Å–„‚ß‚½•¶š—ñ
+	 * å…¥åŠ›ã—ãŸå€¤ã«å¯¾ã—ã¦ã€å¿…è¦æ¡æ•°åˆ†å·¦ã‹ã‚‰0ã§åŸ‹ã‚ã‚‹
+	 * @param Value å€¤
+	 * @param Figure æ¡æ•°
+	 * @return 0ã§åŸ‹ã‚ãŸæ–‡å­—åˆ—
 	 */
 	public static String FillZero(long Value,int Figure)
 	{
 		DecimalFormat df = new DecimalFormat();
 		String FigurePattern = "";
 
-		// •K—vŒ…•ª‚Ìƒpƒ^[ƒ“‚ğ¶¬
+		// å¿…è¦æ¡åˆ†ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã‚’ç”Ÿæˆ
 		for(int i = 0 ; i < Figure ; i++)
 		{
 			FigurePattern += "0";
@@ -71,7 +71,7 @@ public class Utility {
 		return df.format(Value);
 	}
 
-	/* Added 2008/04/04 áŒ  */
+	/* Added 2008/04/04 è‹¥æœˆ  */
 	/* --------------------------------------------------- */
 	public static String FillZero(String Value, int digit) {
 
@@ -99,19 +99,19 @@ public class Utility {
 	/* --------------------------------------------------- */
 
 	/**
-	 * @return Œ»İ‚ÌŠÔ‚ğHL7‚Åg—p‚·‚éƒtƒH[ƒ}ƒbƒg‚Åæ“¾‚·‚é
+	 * @return ç¾åœ¨ã®æ™‚é–“ã‚’HL7ã§ä½¿ç”¨ã™ã‚‹ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§å–å¾—ã™ã‚‹
 	 */
 	public static String NowDate()
 	{
-		// “ú•t‚Ìæ“¾
+		// æ—¥ä»˜ã®å–å¾—
         DateFormat format = new SimpleDateFormat("yyyyMMdd");
         return format.format(new Date());
 	}
 
 	/**
-	 * ”š‚ğ‘SŠp‚É•ÏŠ·‚·‚é
-	 * @param str ”š‚ğŠÜ‚ñ‚¾•¶š—ñ
-	 * @return •¶š—ñ
+	 * æ•°å­—ã‚’å…¨è§’ã«å¤‰æ›ã™ã‚‹
+	 * @param str æ•°å­—ã‚’å«ã‚“ã æ–‡å­—åˆ—
+	 * @return æ–‡å­—åˆ—
 	 */
 	public static String NumberUpper(String str)
 	{
@@ -122,16 +122,16 @@ public class Utility {
 			if ('0' <= c && c <= '9')
 			{
 
-				Ret.setCharAt(i, (char)(c - '0' + '‚O'));
+				Ret.setCharAt(i, (char)(c - '0' + 'ï¼'));
 			}
 		}
 		return Ret.toString();
 	}
 
 	/**
-	 * ”š‚ğ”¼Šp‚É•ÏŠ·‚·‚é
-	 * @param str ”š‚ğŠÜ‚ñ‚¾•¶š—ñ
-	 * @return •¶š—ñ
+	 * æ•°å­—ã‚’åŠè§’ã«å¤‰æ›ã™ã‚‹
+	 * @param str æ•°å­—ã‚’å«ã‚“ã æ–‡å­—åˆ—
+	 * @return æ–‡å­—åˆ—
 	 */
 	public static String NumberLower(String str)
 	{
@@ -139,19 +139,19 @@ public class Utility {
 		for (int i = 0; i < str.length(); i++)
 		{
 			char c = str.charAt(i);
-			if ('‚O' <= c && c <= '‚X')
+			if ('ï¼' <= c && c <= 'ï¼™')
 			{
 
-				Ret.setCharAt(i, (char)(c - '‚O' + '0'));
+				Ret.setCharAt(i, (char)(c - 'ï¼' + '0'));
 			}
 		}
 		return Ret.toString();
 	}
 
 	/**
-	 * @param Value ###.### Œ`®‚Ì”š
-	 * @return ###### Œ`®‚Ì”š
-	 * ƒp[ƒZƒ“ƒg‚Ì•\‹L‚ğ•ÏX‚·‚é
+	 * @param Value ###.### å½¢å¼ã®æ•°å­—
+	 * @return ###### å½¢å¼ã®æ•°å­—
+	 * ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆã®è¡¨è¨˜ã‚’å¤‰æ›´ã™ã‚‹
 	 */
 	public static String getPercentFormat(double Value)
 	{
@@ -160,13 +160,13 @@ public class Utility {
 	}
 
 	/**
-	 * ƒXƒL[ƒ}‚ğŒ³‚ÉXMLƒtƒ@ƒCƒ‹‚ğŒŸØ‚·‚é
-	 * @param XmlFileName XMLƒtƒ@ƒCƒ‹
-	 * @param SchemaFileName ƒXƒL[ƒ}‚Ìƒtƒ@ƒCƒ‹
+	 * ã‚¹ã‚­ãƒ¼ãƒã‚’å…ƒã«XMLãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ¤œè¨¼ã™ã‚‹
+	 * @param XmlFileName XMLãƒ•ã‚¡ã‚¤ãƒ«
+	 * @param SchemaFileName ã‚¹ã‚­ãƒ¼ãƒã®ãƒ•ã‚¡ã‚¤ãƒ«
 	 */
 	public static void checkXmlSchema(String XmlFileName,String SchemaFileName)
 	{
-		// XMLƒXƒL[ƒ}‚ÌŒŸØ
+		// XMLã‚¹ã‚­ãƒ¼ãƒã®æ¤œè¨¼
 		try
 		{
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

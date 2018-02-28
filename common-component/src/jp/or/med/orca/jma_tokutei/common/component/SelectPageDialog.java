@@ -1,36 +1,16 @@
 package jp.or.med.orca.jma_tokutei.common.component;
 
-import java.awt.BorderLayout;
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Frame;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-
-import org.apache.log4j.Logger;
-
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
+import org.apache.log4j.Logger;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 // add s.inoue 2009/12/24
 /**
- * ˆóü‘I‘ğƒ_ƒCƒAƒƒO‰æ–Ê
+ * å°åˆ·é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ç”»é¢
  */
 public class SelectPageDialog extends JDialog
 	implements ActionListener, KeyListener,ItemListener, IDialog {
@@ -146,7 +126,7 @@ public class SelectPageDialog extends JDialog
 	private ExtendedRadioButton getJRadioButton_A4_2() {
 		if (jRadioButton_A4_double == null) {
 			jRadioButton_A4_double = new ExtendedRadioButton();
-			jRadioButton_A4_double.setText("A4-2–‡");
+			jRadioButton_A4_double.setText("A4-2æš");
 			jRadioButton_A4_double.setPreferredSize(new Dimension(100, 20));
 			jRadioButton_A4_double.addKeyListener(this);
 			jRadioButton_A4_double.addItemListener(this);
@@ -164,12 +144,12 @@ public class SelectPageDialog extends JDialog
 	private ExtendedRadioButton getJRadioButton_A4_1() {
 		if (jRadioButton_A4_single == null) {
 			jRadioButton_A4_single = new ExtendedRadioButton();
-			jRadioButton_A4_single.setText("A4-1–‡");
+			jRadioButton_A4_single.setText("A4-1æš");
 			jRadioButton_A4_single.setPreferredSize(new Dimension(100, 20));
 			jRadioButton_A4_single.addItemListener(this);
 			groupPrint.add(jRadioButton_A4_single);
 			jRadioButton_A4_single.addKeyListener(this);
-			// ‰Šú’l
+			// åˆæœŸå€¤
 			jRadioButton_A4_single.setSelected(true);
 		}
 		return jRadioButton_A4_single;
@@ -184,7 +164,7 @@ public class SelectPageDialog extends JDialog
 		if (jButtonOK == null) {
 			jButtonOK = new ExtendedButton();
 			jButtonOK.setText("OK(Y)");
-			jButtonOK.setActionCommand("I—¹");
+			jButtonOK.setActionCommand("çµ‚äº†");
 			jButtonOK.addActionListener(this);
 			jButtonOK.setMnemonic(KeyEvent.VK_Y);
 		}
@@ -199,7 +179,7 @@ public class SelectPageDialog extends JDialog
 	private ExtendedButton getJButtonCancel() {
 		if (jButtonCancel == null) {
 			jButtonCancel = new ExtendedButton();
-			jButtonCancel.setText("ƒLƒƒƒ“ƒZƒ‹[C]");
+			jButtonCancel.setText("ã‚­ãƒ£ãƒ³ã‚»ãƒ«[C]");
 			jButtonCancel.addActionListener(this);
 			jButtonCancel.setMnemonic(KeyEvent.VK_C);
 		}
@@ -213,11 +193,11 @@ public class SelectPageDialog extends JDialog
 			// edit s.inoue 2010/04/14
 			returnPageSelect = jRadioButton_A4_single.isSelected() ? 1 :2;
 			ReturnValue = RETURN_VALUE.YES;
-			// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚Ì§Œä‰ğœB
+			// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆ¶å¾¡è§£é™¤ã€‚
 			setVisible(false);break;
 		case KeyEvent.VK_C:
 			ReturnValue = RETURN_VALUE.CANCEL;
-			// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚Ì§Œä‰ğœB
+			// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆ¶å¾¡è§£é™¤ã€‚
 			setVisible(false);break;
 		}
 
@@ -229,23 +209,23 @@ public class SelectPageDialog extends JDialog
 	}
 
 	/**
-	 * –ß‚è’l‚ğæ“¾‚·‚é
-	 * @return –ß‚è’l
+	 * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹
+	 * @return æˆ»ã‚Šå€¤
 	 */
 	public RETURN_VALUE getStatus() {
 		return ReturnValue;
 	}
 
 	/**
-	 * –ß‚è’l‚ğæ“¾‚·‚é
-	 * @return –ß‚è’l
+	 * æˆ»ã‚Šå€¤ã‚’å–å¾—ã™ã‚‹
+	 * @return æˆ»ã‚Šå€¤
 	 */
 	public Integer getPrintSelect() {
 		return returnPageSelect;
 	}
 
 	/**
-	 * –ß‚è’l‚ğŠi”[
+	 * æˆ»ã‚Šå€¤ã‚’æ ¼ç´
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jButtonOK) {
@@ -255,7 +235,7 @@ public class SelectPageDialog extends JDialog
 		else if(e.getSource() == jButtonCancel) {
 			ReturnValue = RETURN_VALUE.CANCEL;
 		}
-		// ƒ‚[ƒ_ƒ‹ƒ_ƒCƒAƒƒO‚Ì§Œä‰ğœB
+		// ãƒ¢ãƒ¼ãƒ€ãƒ«ãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®åˆ¶å¾¡è§£é™¤ã€‚
 		setVisible(false);
 	}
 
@@ -312,7 +292,7 @@ public class SelectPageDialog extends JDialog
 	private ExtendedLabel getJLabel_PageSelect() {
 		if (jLabel_pageSelect == null) {
 			jLabel_pageSelect = new ExtendedLabel();
-			jLabel_pageSelect.setText("Œ‹‰Ê’Ê’m•\o—ÍA4(1–‡A2–‡)•û–@‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢");
+			jLabel_pageSelect.setText("çµæœé€šçŸ¥è¡¨å‡ºåŠ›A4(1æšã€2æš)æ–¹æ³•ã‚’é¸æŠã—ã¦ä¸‹ã•ã„");
 			jLabel_pageSelect.setPreferredSize(new Dimension(300, 60));
 		}
 		return jLabel_pageSelect;
@@ -320,55 +300,55 @@ public class SelectPageDialog extends JDialog
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public String getKenshinDate() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 
 	@Override
 	public void setText(String text) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void setShowCancelButton(boolean isShowCancel) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 //	@Override
 //	public String getFilePath() {
-//		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+//		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 //		return null;
 //	}
 
 	@Override
 	public void setDialogTitle(String title) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void setDialogSelect(boolean enabled) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public void setSaveFileName(String title) {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 
 	}
 
 	@Override
 	public String getTextValue() {
-		// TODO ©“®¶¬‚³‚ê‚½ƒƒ\ƒbƒhEƒXƒ^ƒu
+		// TODO è‡ªå‹•ç”Ÿæˆã•ã‚ŒãŸãƒ¡ã‚½ãƒƒãƒ‰ãƒ»ã‚¹ã‚¿ãƒ–
 		return null;
 	}
 

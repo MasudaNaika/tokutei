@@ -3,10 +3,10 @@ package jp.or.med.orca.jma_tokutei.common.frame;
 import java.util.HashMap;
 
 /**
- * ‰æ–Ê—pÝ’è‚ÌƒfƒtƒHƒ‹ƒg’lB
+ * ç”»é¢ç”¨è¨­å®šã®ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã€‚
  *
- * ‰æ–ÊÝ’è—p‚ÌŠO•”ƒtƒ@ƒCƒ‹‚ð“Ç‚Ýž‚ß‚È‚©‚Á‚½ê‡A‚±‚ÌƒNƒ‰ƒX‚ª’ñ‹Ÿ‚·‚é’l‚ðŽg—p‚·‚éB
- * map ‚ÌƒL[–¼‚ÍA‰æ–ÊÝ’è—p‚ÌŠO•”ƒtƒ@ƒCƒ‹‚Æ“¯ˆê‚É‚·‚éB
+ * ç”»é¢è¨­å®šç”¨ã®å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’èª­ã¿è¾¼ã‚ãªã‹ã£ãŸå ´åˆã€ã“ã®ã‚¯ãƒ©ã‚¹ãŒæä¾›ã™ã‚‹å€¤ã‚’ä½¿ç”¨ã™ã‚‹ã€‚
+ * map ã®ã‚­ãƒ¼åã¯ã€ç”»é¢è¨­å®šç”¨ã®å¤–éƒ¨ãƒ•ã‚¡ã‚¤ãƒ«ã¨åŒä¸€ã«ã™ã‚‹ã€‚
  */
 public class ViewSettingsDefault implements ViewSettingsKey{
 
@@ -17,7 +17,7 @@ public class ViewSettingsDefault implements ViewSettingsKey{
 	private static void initialize(){
 
 		/* --------------------------------------------------
-		 *  ‰æ–Ê‹¤’Ê
+		 *  ç”»é¢å…±é€š
 		 * -------------------------------------------------- */
 		getMap().put(KEY_COMMON_FRAME_GUIDANCE_LABEL_FONT, VALUE_DIALOG_FONT_PLAIN_14);
 		getMap().put(KEY_COMMON_FRAME_TITLE_LABEL_FONT, "Dialog,Font.PLAIN,18");
@@ -29,142 +29,142 @@ public class ViewSettingsDefault implements ViewSettingsKey{
 		getMap().put(KEY_COMMON_FRAME_REQUIREDITEM_BGCOLOR, "255,255,128");
 		getMap().put(KEY_COMMON_FRAME_IMPORTANTITEM_BGCOLOR, "128,255,128");
 		getMap().put(KEY_COMMON_FRAME_DISABLEITEM_BGCOLOR, "205,205,205");
-		getMap().put(KEY_COMMON_FRAME_PROGRESS_TITLE, "i’»ó‹µ");
-		getMap().put(KEY_COMMON_FRAME_PROGRESS_GUIDANCE_MAIN, "ˆ—‚ðŽÀs’†‚Å‚·B‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢B");
+		getMap().put(KEY_COMMON_FRAME_PROGRESS_TITLE, "é€²æ—çŠ¶æ³");
+		getMap().put(KEY_COMMON_FRAME_PROGRESS_GUIDANCE_MAIN, "å‡¦ç†ã‚’å®Ÿè¡Œä¸­ã§ã™ã€‚ã—ã°ã‚‰ããŠå¾…ã¡ãã ã•ã„ã€‚");
 
 		/* --------------------------------------------------
-		 *  ƒVƒXƒeƒ€ŠÇ—ŽÒ—pƒ\ƒtƒgƒEƒGƒA
+		 *  ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†è€…ç”¨ã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢
 		 * -------------------------------------------------- */
-		getMap().put(KEY_ADMIN_APPLICATION_NAME, "“úˆã“Á’èŒ’Nf¸ƒVƒXƒeƒ€ŠÇ—ŽÒ—pƒ\ƒtƒgƒEƒFƒA");
-		getMap().put(KEY_ADMIN_FRAME_TITLE_TEXT, "“úˆã“Á’èŒ’Nf¸ƒVƒXƒeƒ€ŠÇ—");
+		getMap().put(KEY_ADMIN_APPLICATION_NAME, "æ—¥åŒ»ç‰¹å®šå¥åº·è¨ºæŸ»ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†è€…ç”¨ã‚½ãƒ•ãƒˆã‚¦ã‚§ã‚¢");
+		getMap().put(KEY_ADMIN_FRAME_TITLE_TEXT, "æ—¥åŒ»ç‰¹å®šå¥åº·è¨ºæŸ»ã‚·ã‚¹ãƒ†ãƒ ç®¡ç†");
 		getMap().put(KEY_ADMIN_SPLASH_DISPLAY_TIME,"3500");
 
-		getMap().put(KEY_ADMIN_LOGIN_FRAME_TITLE, "ƒVƒXƒeƒ€ƒƒ“ƒeƒiƒ“ƒXƒƒOƒCƒ“");
+		getMap().put(KEY_ADMIN_LOGIN_FRAME_TITLE, "ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ãƒ­ã‚°ã‚¤ãƒ³");
 		getMap().put(KEY_ADMIN_LOGIN_FRAME_GUIDANCE_MAIN,
-				"ƒ†[ƒU–¼AƒpƒXƒ[ƒh‚ð“ü—ÍŒãAƒƒOƒCƒ“ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B");
+				"ãƒ¦ãƒ¼ã‚¶åã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›å¾Œã€ãƒ­ã‚°ã‚¤ãƒ³ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚");
 		getMap().put(KEY_ADMIN_LOGIN_FRAME_WIDTH, "650");
 		getMap().put(KEY_ADMIN_LOGIN_FRAME_HEIGHT, "280");
 
 		/* --------------------------------------------------
-		 *  “Á’èŒ’fƒ\ƒtƒgƒEƒGƒA
+		 *  ç‰¹å®šå¥è¨ºã‚½ãƒ•ãƒˆã‚¦ã‚¨ã‚¢
 		 * -------------------------------------------------- */
-		/* ‹¤’Ê */
-		getMap().put(KEY_TOKUTEI_APPLICATION_NAME, "“úˆã“Á’èŒ’Nf¸ƒVƒXƒeƒ€");
-		getMap().put(KEY_TOKUTEI_FRAME_TITLE_TEXT, "“úˆã“Á’èŒ’Nf¸ƒVƒXƒeƒ€");
+		/* å…±é€š */
+		getMap().put(KEY_TOKUTEI_APPLICATION_NAME, "æ—¥åŒ»ç‰¹å®šå¥åº·è¨ºæŸ»ã‚·ã‚¹ãƒ†ãƒ ");
+		getMap().put(KEY_TOKUTEI_FRAME_TITLE_TEXT, "æ—¥åŒ»ç‰¹å®šå¥åº·è¨ºæŸ»ã‚·ã‚¹ãƒ†ãƒ ");
 
 		// add s.inoue 2009/12/21
-		getMap().put(KEY_TOKUTEI_SYOKEN_DIALOG_TITLE, "ŠŒ©‘I‘ð");
-		/* ƒXƒvƒ‰ƒbƒVƒ…‰æ–Ê */
+		getMap().put(KEY_TOKUTEI_SYOKEN_DIALOG_TITLE, "æ‰€è¦‹é¸æŠž");
+		/* ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥ç”»é¢ */
 		getMap().put(KEY_TOKUTEI_SPLASH_DISPLAY_TIME,"3500");
 
-		/* ƒƒOƒCƒ“‰æ–Ê */
+		/* ãƒ­ã‚°ã‚¤ãƒ³ç”»é¢ */
 		getMap().put(KEY_TOKUTEI_LOGIN_FRAME_GUIDANCE_MAIN,
-				"Œ’f‹@ŠÖ”Ô†Aƒ†[ƒU–¼AƒpƒXƒ[ƒh‚ð“ü—ÍŒãAƒƒOƒCƒ“ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢B");
+				"å¥è¨ºæ©Ÿé–¢ç•ªå·ã€ãƒ¦ãƒ¼ã‚¶åã€ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’å…¥åŠ›å¾Œã€ãƒ­ã‚°ã‚¤ãƒ³ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ãã ã•ã„ã€‚");
 		getMap().put(KEY_TOKUTEI_LOGIN_FRAME_WIDTH, "650");
 		getMap().put(KEY_TOKUTEI_LOGIN_FRAME_HEIGHT, "280");
-		getMap().put(KEY_TOKUTEI_LOGIN_FRAME_TITLE, "“úˆã“Á’èŒ’Nf¸ƒVƒXƒeƒ€ƒƒOƒCƒ“");
+		getMap().put(KEY_TOKUTEI_LOGIN_FRAME_TITLE, "æ—¥åŒ»ç‰¹å®šå¥åº·è¨ºæŸ»ã‚·ã‚¹ãƒ†ãƒ ãƒ­ã‚°ã‚¤ãƒ³");
 
-		/* ƒƒCƒ“ƒƒjƒ…[ */
-		getMap().put(KEY_TOKUTEI_MAINMENU_FRAME_TITLE, "ƒƒCƒ“ƒƒjƒ…[");
+		/* ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼ */
+		getMap().put(KEY_TOKUTEI_MAINMENU_FRAME_TITLE, "ãƒ¡ã‚¤ãƒ³ãƒ¡ãƒ‹ãƒ¥ãƒ¼");
 
-		/* ŽófŒ”“ü—Í‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_JUSHINKEN_FRAME_TITLE, "ŽófŒ”“ü—ÍiŒÂlî•ñ“o˜^j");
-		getMap().put(KEY_TOKUTEI_JUSHINKEN_FRAME_PROGRESS_GUIDANCE_PRINT1,"“ü—Í•[ƒf[ƒ^‚ðì¬‚µ‚Ä‚¢‚Ü‚·B");
+		/* å—è¨ºåˆ¸å…¥åŠ›ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_JUSHINKEN_FRAME_TITLE, "å—è¨ºåˆ¸å…¥åŠ›ï¼ˆå€‹äººæƒ…å ±ç™»éŒ²ï¼‰");
+		getMap().put(KEY_TOKUTEI_JUSHINKEN_FRAME_PROGRESS_GUIDANCE_PRINT1,"å…¥åŠ›ç¥¨ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ã„ã¾ã™ã€‚");
 
-		/* Œ’fŒ‹‰Êƒf[ƒ^ˆê——‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_KEKKALIST_FRAME_TITLE, "Œ’fE–âfŒ‹‰Êƒf[ƒ^ˆê——");
+		/* å¥è¨ºçµæžœãƒ‡ãƒ¼ã‚¿ä¸€è¦§ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_KEKKALIST_FRAME_TITLE, "å¥è¨ºãƒ»å•è¨ºçµæžœãƒ‡ãƒ¼ã‚¿ä¸€è¦§");
 
-		/* Œ’fŒ‹‰Êƒf[ƒ^“ü—Í‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_KEKKAINPUT_FRAME_TITLE, "Œ’fE–âfŒ‹‰Êƒf[ƒ^“ü—Í");
+		/* å¥è¨ºçµæžœãƒ‡ãƒ¼ã‚¿å…¥åŠ›ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_KEKKAINPUT_FRAME_TITLE, "å¥è¨ºãƒ»å•è¨ºçµæžœãƒ‡ãƒ¼ã‚¿å…¥åŠ›");
 
-		/* ŠO•”ŒŸ¸Œ‹‰Êƒf[ƒ^Žæž‚Ý‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_IMPORTDATA_FRAME_TITLE, "ŠO•”ŒŸ¸Œ‹‰Êƒf[ƒ^Žæ‚èž‚Ý");
+		/* å¤–éƒ¨æ¤œæŸ»çµæžœãƒ‡ãƒ¼ã‚¿å–è¾¼ã¿ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_IMPORTDATA_FRAME_TITLE, "å¤–éƒ¨æ¤œæŸ»çµæžœãƒ‡ãƒ¼ã‚¿å–ã‚Šè¾¼ã¿");
 
-		/* Œ’fŒ‹‰Ê•\Ž¦EŽ©“®”»’è@ŒŸõ‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_SEARCHRESULT_FRAME_TITLE, "ƒƒ^ƒ{ƒŠƒbƒNƒVƒ“ƒhƒ[ƒ€”»’èEŠK‘w‰»");
+		/* å¥è¨ºçµæžœè¡¨ç¤ºãƒ»è‡ªå‹•åˆ¤å®šã€€æ¤œç´¢ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_SEARCHRESULT_FRAME_TITLE, "ãƒ¡ã‚¿ãƒœãƒªãƒƒã‚¯ã‚·ãƒ³ãƒ‰ãƒ­ãƒ¼ãƒ åˆ¤å®šãƒ»éšŽå±¤åŒ–");
 		getMap().put(KEY_TOKUTEI_SEARCHRESULT_FRAME_GUIDANCE_MAIN,
-			"ŒŸõðŒ‚ð“ü—Í‚µAŒŸõƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŒ’fƒf[ƒ^‚ð•\Ž¦‚µ‚Ü‚·B<br>Œ’fƒf[ƒ^‚ð‘I‘ð‚µA‰æ–Ê‰º•”‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŠeˆ—‚ðŠJŽn‚µ‚Ü‚·B");
+			"æ¤œç´¢æ¡ä»¶ã‚’å…¥åŠ›ã—ã€æ¤œç´¢ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚<br>å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠžã—ã€ç”»é¢ä¸‹éƒ¨ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å„å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ã€‚");
 
-		/* Œ’fŒ‹‰Ê•\Ž¦EŽ©“®”»’è‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_SHOWRESULT_FRAME_TITLE,"Œ’fE–âfŒ‹‰Êƒf[ƒ^•\Ž¦");
-		getMap().put(KEY_TOKUTEI_SHOWRESULT_FRAME_PROGRESS_GUIDANCE_PRINT1,"Œ’fE–âfŒ‹‰Êƒf[ƒ^‚ðì¬‚µ‚Ä‚¢‚Ü‚·B");
+		/* å¥è¨ºçµæžœè¡¨ç¤ºãƒ»è‡ªå‹•åˆ¤å®šç”»é¢ */
+		getMap().put(KEY_TOKUTEI_SHOWRESULT_FRAME_TITLE,"å¥è¨ºãƒ»å•è¨ºçµæžœãƒ‡ãƒ¼ã‚¿è¡¨ç¤º");
+		getMap().put(KEY_TOKUTEI_SHOWRESULT_FRAME_PROGRESS_GUIDANCE_PRINT1,"å¥è¨ºãƒ»å•è¨ºçµæžœãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ã„ã¾ã™ã€‚");
 
-		/* “Á’èŒ’fŒŸ¸ˆË—Š‘‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_IRAISHO_FRAME_TITLE,"ŒŸ¸ˆË—Š‘ƒf[ƒ^•\Ž¦");
-		getMap().put(KEY_TOKUTEI_IRAISHO_FRAME_GUIDANCE_MAIN,"ŒŸ¸ˆË—Š‘ƒf[ƒ^‚ðì¬‚µ‚Ä‚¢‚Ü‚·B");
+		/* ç‰¹å®šå¥è¨ºæ¤œæŸ»ä¾é ¼æ›¸ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_IRAISHO_FRAME_TITLE,"æ¤œæŸ»ä¾é ¼æ›¸ãƒ‡ãƒ¼ã‚¿è¡¨ç¤º");
+		getMap().put(KEY_TOKUTEI_IRAISHO_FRAME_GUIDANCE_MAIN,"æ¤œæŸ»ä¾é ¼æ›¸ãƒ‡ãƒ¼ã‚¿ã‚’ä½œæˆã—ã¦ã„ã¾ã™ã€‚");
 
-		/* ƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒXƒƒjƒ…[‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_MASTERMAINTENANCE_MENU_FRAME_TITLE, "ƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX");
+		/* ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_MASTERMAINTENANCE_MENU_FRAME_TITLE, "ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* ƒVƒXƒeƒ€ƒƒ“ƒeƒiƒ“ƒXƒƒjƒ…[‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_SYSTEMMAINTENANCE_MENU_FRAME_TITLE, "ƒVƒXƒeƒ€ƒƒ“ƒeƒiƒ“ƒX");
+		/* ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_SYSTEMMAINTENANCE_MENU_FRAME_TITLE, "ã‚·ã‚¹ãƒ†ãƒ ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* ¿‹ƒf[ƒ^•ÒW‰æ–Ê */
+		/* è«‹æ±‚ãƒ‡ãƒ¼ã‚¿ç·¨é›†ç”»é¢ */
 		// edit ver2 s.inoue 2009/08/06
-		getMap().put(KEY_TOKUTEI_INPUTKESSAI_FRAME_TITLE, "“úŽŸˆ—(¿‹•ÒW)");
+		getMap().put(KEY_TOKUTEI_INPUTKESSAI_FRAME_TITLE, "æ—¥æ¬¡å‡¦ç†(è«‹æ±‚ç·¨é›†)");
 
-		/* ¿‹EHL7o—Í‰æ–Ê */
-//		getMap().put(KEY_TOKUTEI_HL7_FRAME_TITLE, "¿‹EHL7o—Í");
+		/* è«‹æ±‚ãƒ»HL7å‡ºåŠ›ç”»é¢ */
+//		getMap().put(KEY_TOKUTEI_HL7_FRAME_TITLE, "è«‹æ±‚ãƒ»HL7å‡ºåŠ›");
 //		getMap().put(KEY_TOKUTEI_HL7_FRAME_GUIDANCE_MAIN,
-//			"ŒŸõðŒ‚ð“ü—Í‚µAŒŸõƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŒ’fƒf[ƒ^‚ð•\Ž¦‚µ‚Ü‚·B<br>Œ’fƒf[ƒ^‚ð‘I‘ð‚µA‰æ–Ê‰º•”‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŠeˆ—‚ðŠJŽn‚µ‚Ü‚·B");
+//			"æ¤œç´¢æ¡ä»¶ã‚’å…¥åŠ›ã—ã€æ¤œç´¢ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚<br>å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠžã—ã€ç”»é¢ä¸‹éƒ¨ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å„å‡¦ç†ã‚’é–‹å§‹ã—ã¾ã™ã€‚");
 		// edit ver2 s.inoue 2009/08/03
-		/* “úŽŸˆ—(¿‹) */
-		getMap().put(KEY_TOKUTEI_NITIJI_FRAME_TITLE, "“úŽŸˆ—(¿‹)");
+		/* æ—¥æ¬¡å‡¦ç†(è«‹æ±‚) */
+		getMap().put(KEY_TOKUTEI_NITIJI_FRAME_TITLE, "æ—¥æ¬¡å‡¦ç†(è«‹æ±‚)");
 		getMap().put(KEY_TOKUTEI_NITIJI_FRAME_GUIDANCE_MAIN,
-		"ŒŸõðŒ‚ð“ü—Í‚µAŒŸõƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŒ’fƒf[ƒ^‚ð•\Ž¦‚µ‚Ü‚·B<br>Œ’fƒf[ƒ^‚ð‘I‘ð‚µA‰æ–Ê‰º•”‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä“úŽŸˆ—(¿‹)‚ðŠJŽn‚µ‚Ü‚·B");
+		"æ¤œç´¢æ¡ä»¶ã‚’å…¥åŠ›ã—ã€æ¤œç´¢ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚<br>å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠžã—ã€ç”»é¢ä¸‹éƒ¨ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦æ—¥æ¬¡å‡¦ç†(è«‹æ±‚)ã‚’é–‹å§‹ã—ã¾ã™ã€‚");
 
-		/* ŒŽŽŸˆ—(¿‹) */
-		getMap().put(KEY_TOKUTEI_GETUJI_FRAME_TITLE, "ŒŽŽŸˆ—(¿‹Šm’è/HL7o—Í)");
+		/* æœˆæ¬¡å‡¦ç†(è«‹æ±‚) */
+		getMap().put(KEY_TOKUTEI_GETUJI_FRAME_TITLE, "æœˆæ¬¡å‡¦ç†(è«‹æ±‚ç¢ºå®š/HL7å‡ºåŠ›)");
 		getMap().put(KEY_TOKUTEI_GETUJI_FRAME_GUIDANCE_MAIN,
-		"ŒŸõðŒ‚ð“ü—Í‚µAŒŸõƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŒ’fƒf[ƒ^‚ð•\Ž¦‚µ‚Ü‚·B<br>Œ’fƒf[ƒ^‚ð‘I‘ð‚µA‰æ–Ê‰º•”‚Ìƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚ÄŒŽŽŸˆ—(HL7o—Í)‚ðŠJŽn‚µ‚Ü‚·B");
+		"æ¤œç´¢æ¡ä»¶ã‚’å…¥åŠ›ã—ã€æ¤œç´¢ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ç¤ºã—ã¾ã™ã€‚<br>å¥è¨ºãƒ‡ãƒ¼ã‚¿ã‚’é¸æŠžã—ã€ç”»é¢ä¸‹éƒ¨ã®ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦æœˆæ¬¡å‡¦ç†(HL7å‡ºåŠ›)ã‚’é–‹å§‹ã—ã¾ã™ã€‚");
 
-		/* ‹@ŠÖî•ñ•ÒW‰æ–Ê */
+		/* æ©Ÿé–¢æƒ…å ±ç·¨é›†ç”»é¢ */
 		getMap().put(KEY_TOKUTEI_KIKANINFORMATION_FRAME_WIDTH, "900");
 		getMap().put(KEY_TOKUTEI_KIKANINFORMATION_FRAME_HEIGHT, "620");
-		getMap().put("tokutei.kikaninformation.frame.title", "‹@ŠÖî•ñ|’Ç‰Á");
-		getMap().put("tokutei.kikaninformation.frame.guidance.main", "‹@ŠÖî•ñ‚Ì’Ç‰Á‚ðs‚¢‚Ü‚·B’l‚ð•ÒWŒãA“o˜^ƒ{ƒ^ƒ“‚ð‰Ÿ‚µ‚Ä‰º‚³‚¢B");
-		getMap().put("tokutei.kikaninformation.frame.guidance.sub", "ˆãŽt‰ï“™‚Å‚Æ‚è‚Ü‚Æ‚ß‚Ä‘—•t‚³‚ê‚éê‡ˆÈŠO‚ÍA‘—•tŒ³‹@ŠÖ”Ô†‚É‚ÍAŒ’f‹@ŠÖ”Ô†‚Æ“¯‚¶”Ô†‚ð“ü‚ê‚Ä‚­‚¾‚³‚¢B");
+		getMap().put("tokutei.kikaninformation.frame.title", "æ©Ÿé–¢æƒ…å ±|è¿½åŠ ");
+		getMap().put("tokutei.kikaninformation.frame.guidance.main", "æ©Ÿé–¢æƒ…å ±ã®è¿½åŠ ã‚’è¡Œã„ã¾ã™ã€‚å€¤ã‚’ç·¨é›†å¾Œã€ç™»éŒ²ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã¦ä¸‹ã•ã„ã€‚");
+		getMap().put("tokutei.kikaninformation.frame.guidance.sub", "åŒ»å¸«ä¼šç­‰ã§ã¨ã‚Šã¾ã¨ã‚ã¦é€ä»˜ã•ã‚Œã‚‹å ´åˆä»¥å¤–ã¯ã€é€ä»˜å…ƒæ©Ÿé–¢ç•ªå·ã«ã¯ã€å¥è¨ºæ©Ÿé–¢ç•ªå·ã¨åŒã˜ç•ªå·ã‚’å…¥ã‚Œã¦ãã ã•ã„ã€‚");
 
 		/* --------------------------------------------------
-		 *  ƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX
+		 *  ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹
 		 * -------------------------------------------------- */
 
-		/* ŒŸ¸ƒZƒ“ƒ^[ŒŸ¸€–ÚƒR[ƒhƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		getMap().put(KEY_TOKUTEI_KENSACENTER_KENSAITEM_CODE_MASTERMAINTENANCE_FRAME_TITLE, "ŒŸ¸ƒZƒ“ƒ^[ŒŸ¸€–ÚƒR[ƒhƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX");
+		/* æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼æ¤œæŸ»é …ç›®ã‚³ãƒ¼ãƒ‰ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		getMap().put(KEY_TOKUTEI_KENSACENTER_KENSAITEM_CODE_MASTERMAINTENANCE_FRAME_TITLE, "æ¤œæŸ»ã‚»ãƒ³ã‚¿ãƒ¼æ¤œæŸ»é …ç›®ã‚³ãƒ¼ãƒ‰ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* Œ’f€–Úƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX‰æ–Ê */
-		getMap().put(KEY_TOKUTEI_KENSHIN_ITEM_MASTERMAINTENANCE_FRAME_TITLE, "Œ’f€–Úƒƒ“ƒeƒiƒ“ƒX");
+		/* å¥è¨ºé …ç›®ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ç”»é¢ */
+		getMap().put(KEY_TOKUTEI_KENSHIN_ITEM_MASTERMAINTENANCE_FRAME_TITLE, "å¥è¨ºé …ç›®ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* ŒŸ¸€–ÚƒR[ƒhƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		getMap().put(KEY_TOKUTEI_KENSAITEM_CODE_MASTERMAINTENANCE_FRAME_TITLE, "ŒŸ¸€–ÚƒR[ƒhƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX");
+		/* æ¤œæŸ»é …ç›®ã‚³ãƒ¼ãƒ‰ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		getMap().put(KEY_TOKUTEI_KENSAITEM_CODE_MASTERMAINTENANCE_FRAME_TITLE, "æ¤œæŸ»é …ç›®ã‚³ãƒ¼ãƒ‰ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* •ÛŒ¯ŽÒî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_FRAME_TITLE, "•ÛŒ¯ŽÒî•ñƒƒ“ƒeƒiƒ“ƒX");
+		/* ä¿é™ºè€…æƒ…å ±ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_FRAME_TITLE, "ä¿é™ºè€…æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX */
-		getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_FRAME_TITLE, "Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX");
+		/* å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_FRAME_TITLE, "å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* Žx•¥‘ãsî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		getMap().put(KEY_TOKUTEI_SHIHARAI_MASTERMAINTENANCE_FRAME_TITLE, "Žx•¥‘ãsƒƒ“ƒeƒiƒ“ƒX");
+		/* æ”¯æ‰•ä»£è¡Œæƒ…å ±ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		getMap().put(KEY_TOKUTEI_SHIHARAI_MASTERMAINTENANCE_FRAME_TITLE, "æ”¯æ‰•ä»£è¡Œãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
 
-		/* •ÛŒ¯ŽÒî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		//getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_ADD_FRAME_TITLE, "•ÛŒ¯ŽÒî•ñƒƒ“ƒeƒiƒ“ƒX|’Ç‰Á");
-		/* •ÛŒ¯ŽÒî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		//getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "•ÛŒ¯ŽÒî•ñƒƒ“ƒeƒiƒ“ƒX|“o˜^/XV/íœ");
-		/* Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX•ÒW */
-		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX|•ÒW");
-		/* Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX’Ç‰Á */
-		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_ADD_FRAME_TITLE, "Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX|’Ç‰Á");
-		/* Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX•¡» */
-		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_COPY_FRAME_TITLE, "Œ’fƒpƒ^[ƒ“ƒƒ“ƒeƒiƒ“ƒX|•¡»");
-		/* ‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX’Ç‰Á */
-		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_ADD_FRAME_TITLE, "‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX|’Ç‰Á");
-		/* ‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX */
-		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_FRAME_TITLE, "‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX");
-		/* ‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX•ÒW */
-		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "‹@ŠÖî•ñƒƒ“ƒeƒiƒ“ƒX|•ÒW");
-		/* Žx•¥‘ãsî•ñƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX */
-		//getMap().put(KEY_TOKUTEI_SHIHARAI_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "Žx•¥‘ãsƒƒ“ƒeƒiƒ“ƒX|•ÒW");
+		/* ä¿é™ºè€…æƒ…å ±ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		//getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_ADD_FRAME_TITLE, "ä¿é™ºè€…æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|è¿½åŠ ");
+		/* ä¿é™ºè€…æƒ…å ±ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		//getMap().put(KEY_TOKUTEI_HOKENJA_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "ä¿é™ºè€…æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|ç™»éŒ²/æ›´æ–°/å‰Šé™¤");
+		/* å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ç·¨é›† */
+		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|ç·¨é›†");
+		/* å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹è¿½åŠ  */
+		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_ADD_FRAME_TITLE, "å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|è¿½åŠ ");
+		/* å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹è¤‡è£½ */
+		//getMap().put(KEY_TOKUTEI_KENSHINPATTERN_MASTERMAINTENANCE_COPY_FRAME_TITLE, "å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|è¤‡è£½");
+		/* æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹è¿½åŠ  */
+		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_ADD_FRAME_TITLE, "æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|è¿½åŠ ");
+		/* æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_FRAME_TITLE, "æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹");
+		/* æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ç·¨é›† */
+		//getMap().put(KEY_TOKUTEI_KIKAN_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "æ©Ÿé–¢æƒ…å ±ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|ç·¨é›†");
+		/* æ”¯æ‰•ä»£è¡Œæƒ…å ±ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹ */
+		//getMap().put(KEY_TOKUTEI_SHIHARAI_MASTERMAINTENANCE_EDIT_FRAME_TITLE, "æ”¯æ‰•ä»£è¡Œãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹|ç·¨é›†");
 	}
 
 	public static String getPorperty(String key){

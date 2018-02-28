@@ -8,8 +8,9 @@
 もし、商用サービスで利用される場合は、断ることなくご自由にお使いください。なお、このプログラム自体のライセンスはGPL 2.0であり、使用しているOpenSwingのライセンスはLGPL2.0です。
 
 ## 開発環境
-Language: OpenJDK 8(1.8.0)
-OS: FreeBSD 12.0-current
+* Language: OpenJDK 8(1.8.0)
+* OS: Ubuntu Linux 17.10
+* Database: Firebird 3.0(maybe)
 
 ## 現在の問題点
 
