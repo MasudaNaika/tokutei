@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
 <project name="online-update" default="jar" basedir=".">
-	<!-- �t�H���_�ނ̒萔 -->
+	<!-- フォルダ類の定数 -->
 	<property name="class_directory" value="class"/>
 	<property name="source_directory" value="src"/>
 	<property name="output_directory" value="output"/>
@@ -8,7 +8,7 @@
 	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
 	<property name="lib_directory3" value="./../resources/NITTOKU"/>
 
-	<!-- �N���X�p�X -->
+	<!-- クラスパス -->
 	<path id="lib.classpath">
 		<fileset dir="${lib_directory}">
 			<include name="**/*.jar" />
@@ -18,21 +18,21 @@
 		</fileset>
 	</path>
 
-	<!-- �t�@�C���ނ̒萔 -->
+	<!-- ファイル類の定数 -->
 	<property name="jar_file" value="${output_directory}/JUpdate.jar"/>
 	<property name="manifest_file" value="manifest"/>
 
-	<!-- jar�t�@�C���̍쐬 -->
+	<!-- jarファイルの作成 -->
 	<target name="jar" depends="compile">
 		<mkdir dir="${output_directory}"/>
 		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
-		<!-- resources/NITTOKU�ɃR�s�[�̂��ߎ���3�s��ǉ� -->
+		<!-- resources/NITTOKUにコピーのため次の3行を追加 -->
 		<copy todir="${lib_directory3}">
 		<fileset dir="${output_directory}" />
 		</copy>
 	</target>
 
-	<!-- �R���p�C�� -->
+	<!-- コンパイル -->
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
 		<javac srcdir="${common_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />

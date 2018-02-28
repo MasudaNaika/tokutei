@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
 <project name="db-yearadjuster" default="jar" basedir=".">
-	<!-- ƒtƒHƒ‹ƒ_—Þ‚Ì’è” -->
+	<!-- ãƒ•ã‚©ãƒ«ãƒ€é¡žã®å®šæ•° -->
 	<property name="class_directory" value="class"/>
 	<property name="source_directory" value="src"/>
 	<property name="output_directory" value="output"/>
@@ -8,18 +8,18 @@
 	<property name="lib_directory3" value="./../resources/NITTOKU/"/>
 	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
 
-	<!-- ƒNƒ‰ƒXƒpƒX -->
+	<!-- ã‚¯ãƒ©ã‚¹ãƒ‘ã‚¹ -->
 	<path id="lib.classpath">
 		<fileset dir="${lib_directory}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
 
-	<!-- ƒtƒ@ƒCƒ‹—Þ‚Ì’è” -->
+	<!-- ãƒ•ã‚¡ã‚¤ãƒ«é¡žã®å®šæ•° -->
 	<property name="jar_file" value="${output_directory}/DBYearAdjuster.jar"/>
 	<property name="manifest_file" value="manifest"/>
 
-	<!-- jarƒtƒ@ƒCƒ‹‚Ìì¬ -->
+	<!-- jarãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆ -->
 	<target name="jar" depends="compile">
 		<mkdir dir="${output_directory}"/>
 		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
@@ -28,14 +28,14 @@
 		</copy>
 	</target>
 
-	<!-- ƒRƒ“ƒpƒCƒ‹ -->
+	<!-- ã‚³ãƒ³ãƒ‘ã‚¤ãƒ« -->
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
 		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
 		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
 	</target>
 
-	<!-- –¼ -->
+	<!-- ç½²å -->
 	<target name="sign-jar" depends="jar" if="do.sign">
 		<input message="Input the store password" addproperty="storepass"/>
 		<signjar alias="${alias}" storepass="${storepass}" keystore="${keystore}">
