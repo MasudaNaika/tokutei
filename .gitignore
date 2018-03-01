@@ -36,3 +36,11 @@ hs_err_pid*
 \#*
 .\#*
 
+/common-component/target/
+/db-adjuster/target/
+/db-yearadjuster/target/
+/kenshin-software/target/
+/online-update/target/
+/system-administrator-software/target/
+/unlocker/target/
+

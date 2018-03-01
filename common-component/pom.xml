@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>jp.or.med.orca</groupId>
+    <artifactId>common-component</artifactId>
+    <version>2.1.6</version>
+    <packaging>jar</packaging>
+
+    <name>common-component</name>
+    <url>http://maven.apache.org</url>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <finalName>JCommon</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <!--
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                    -->
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+    
+    <dependencies>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.jgoodies</groupId>
+            <artifactId>jgoodies-looks</artifactId>
+            <version>2.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.toedter</groupId>
+            <artifactId>jcalendar</artifactId>
+            <version>1.4</version>
+        </dependency>
+        
+<!-- 以下は自分でローカルリポジトリに追加する -->
+        <dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>iTextAsian</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.openswing</groupId>
+            <artifactId>clientos</artifactId>
+            <version>2.4.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.openswing</groupId>
+            <artifactId>commonos</artifactId>
+            <version>2.4.7</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.birosoft</groupId>
+            <artifactId>liquidlnf</artifactId>
+            <version>0.2.9</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
+</project>

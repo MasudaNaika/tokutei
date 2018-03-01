@@ -1,20 +1,20 @@
-・Firebird (MPL/LGPL)
+繝ｻFirebird (MPL/LGPL)
   http://www.firebirdsql.org
 
-・iText (MPL/LGPL)
+繝ｻiText (MPL/LGPL)
   http://www.lowagie.com/iText/
 
-・LiquidLnF (LGPL)
+繝ｻLiquidLnF (LGPL)
   https://liquidlnf.dev.java.net/
 
-・JGoodies (BSD)
+繝ｻJGoodies (BSD)
   http://www.jgoodies.com/
 
-・OpenSwing (LGPL)
+繝ｻOpenSwing (LGPL)
   http://oswing.sourceforge.net/
 
-・JCalendar (LGPL)
+繝ｻJCalendar (LGPL)
   https://max-server.myftp.org/trac/jcalendar
   
-・JFreeChart (LGPL)
+繝ｻJFreeChart (LGPL)
   http://www.jfree.org/jfreechart/
