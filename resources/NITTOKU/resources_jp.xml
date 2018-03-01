@@ -1,207 +1,207 @@
 <?xml version="1.0" encoding="Shift_JIS"?>
 <objects>
-  <object key="=" value="“™‚µ‚¢" />
-  <object key="&lt;>" value="“™‚µ‚­‚È‚¢" />
-  <object key=">" value="’´‰ß" />
-  <object key="&lt;" value="–¢–ž" />
-  <object key=">=" value="ˆÈã" />
-  <object key="&lt;=" value="ˆÈ‰º" />
-  <object key="like" value="‚ðŠÜ‚Þ" />
-  <object key="is not null" value="‹ó‚Å‚È‚¢" />
-  <object key="is null" value="‹ó‚Ì" />
-<!-- ‹¤’Ê‰æ–Êƒ{ƒ^ƒ“Ý’è -->
-  <object key="filtering and sorting settings" value="ŒŸõ/•À‚Ñ‡" />
-  <object key="Filtering/Sorting data (CTRL+F)" value="ŒŸõ/•À‚Ñ‡(CTRL+F)" />
-  <object key="Remove Filter" value="ðŒ‰ðœ" />
+  <object key="=" value="ç­‰ã—ã„" />
+  <object key="&lt;>" value="ç­‰ã—ããªã„" />
+  <object key=">" value="è¶…éŽ" />
+  <object key="&lt;" value="æœªæº€" />
+  <object key=">=" value="ä»¥ä¸Š" />
+  <object key="&lt;=" value="ä»¥ä¸‹" />
+  <object key="like" value="ã‚’å«ã‚€" />
+  <object key="is not null" value="ç©ºã§ãªã„" />
+  <object key="is null" value="ç©ºã®" />
+<!-- å…±é€šç”»é¢ãƒœã‚¿ãƒ³è¨­å®š -->
+  <object key="filtering and sorting settings" value="æ¤œç´¢/ä¸¦ã³é †" />
+  <object key="Filtering/Sorting data (CTRL+F)" value="æ¤œç´¢/ä¸¦ã³é †(CTRL+F)" />
+  <object key="Remove Filter" value="æ¡ä»¶è§£é™¤" />
 
-<!-- •ÒW‰æ–Êƒ{ƒ^ƒ“Ý’è -->
-  <object key="ASC" value="¸‡" />
-  <object key="DESC" value="~‡" />
-<!-- •ÒW‰æ–Êƒ{ƒ^ƒ“Ý’è -->
-  <object key="Clear" value="ƒNƒŠƒA(C)" />
-<!-- ƒRƒ“ƒ{ƒ{ƒbƒNƒXÝ’è -->
+<!-- ç·¨é›†ç”»é¢ãƒœã‚¿ãƒ³è¨­å®š -->
+  <object key="ASC" value="æ˜‡é †" />
+  <object key="DESC" value="é™é †" />
+<!-- ç·¨é›†ç”»é¢ãƒœã‚¿ãƒ³è¨­å®š -->
+  <object key="Clear" value="ã‚¯ãƒªã‚¢(C)" />
+<!-- ã‚³ãƒ³ãƒœãƒœãƒƒã‚¯ã‚¹è¨­å®š -->
   <object key="kengen" value="KENGEN" />
-  <object key="Administrator" value="1:ŠÇ—ŽÒ" />
-  <object key="User" value="2:ˆê”Ê" />
-<!-- •K{ƒtƒ‰ƒO -->
+  <object key="Administrator" value="1:ç®¡ç†è€…" />
+  <object key="User" value="2:ä¸€èˆ¬" />
+<!-- å¿…é ˆãƒ•ãƒ©ã‚° -->
   <object key="Hisuflg" value="HISUFLG" />
-  <object key="Basic" value="1:Šî–{" />
-  <object key="Detail" value="2:Ú×" />
-  <object key="Additional" value="3:’Ç‰Á" />
-<!-- •ÛŒ’Žw“±ƒŒƒxƒ‹ -->
+  <object key="Basic" value="1:åŸºæœ¬" />
+  <object key="Detail" value="2:è©³ç´°" />
+  <object key="Additional" value="3:è¿½åŠ " />
+<!-- ä¿å¥æŒ‡å°Žãƒ¬ãƒ™ãƒ« -->
   <object key="HokenSido_Level" value="HOKENSIDO_LEVEL" />
-  <object key="HokenSido_Mihantei" value="–¢”»’è" />
-  <object key="HokenSido_SekyokuSien" value="Ï‹É“IŽx‰‡" />
-  <object key="HokenSido_DoukiSien" value="“®‹@‚Ã‚¯Žx‰‡" />
-  <object key="HokenSido_JyohoTeikyo" value="‚È‚µiî•ñ’ñ‹Ÿj" />
-  <object key="HokenSido_HanteiFunou" value="”»’è•s”\" />
-<!-- ƒƒ^ƒ{”»’èƒŒƒxƒ‹ -->
+  <object key="HokenSido_Mihantei" value="æœªåˆ¤å®š" />
+  <object key="HokenSido_SekyokuSien" value="ç©æ¥µçš„æ”¯æ´" />
+  <object key="HokenSido_DoukiSien" value="å‹•æ©Ÿã¥ã‘æ”¯æ´" />
+  <object key="HokenSido_JyohoTeikyo" value="ãªã—ï¼ˆæƒ…å ±æä¾›ï¼‰" />
+  <object key="HokenSido_HanteiFunou" value="åˆ¤å®šä¸èƒ½" />
+<!-- ãƒ¡ã‚¿ãƒœåˆ¤å®šãƒ¬ãƒ™ãƒ« -->
   <object key="MetaboHantei_Level" value="METABOHANTEI_LEVEL" />
-  <object key="Metabo_Mihantei" value="–¢”»’è" />
-  <object key="Metabo_KijyunGaito" value="Šî€ŠY“–" />
-  <object key="Metabo_YobigunGaito" value="—\”õŒQŠY“–" />
-  <object key="Metabo_Higaito" value="”ñŠY“–" />
-  <object key="Metabo_HanteiFunou" value="”»’è•s”\" />
-<!-- ¿‹‹æ•ª -->
+  <object key="Metabo_Mihantei" value="æœªåˆ¤å®š" />
+  <object key="Metabo_KijyunGaito" value="åŸºæº–è©²å½“" />
+  <object key="Metabo_YobigunGaito" value="äºˆå‚™ç¾¤è©²å½“" />
+  <object key="Metabo_Higaito" value="éžè©²å½“" />
+  <object key="Metabo_HanteiFunou" value="åˆ¤å®šä¸èƒ½" />
+<!-- è«‹æ±‚åŒºåˆ† -->
   <object key="SeikyuKBM_Level" value="SEIKYUKBN_LEVEL" />
-  <object key="Seikyu_Kihon" value="Šî–{“I‚ÈŒ’f" />
-  <object key="Seikyu_KihonSyosai" value="Šî–{“I‚ÈŒ’f{Ú×‚ÈŒ’f" />
-  <object key="Seikyu_KihonTuika" value="Šî–{“I‚ÈŒ’f{’Ç‰ÁŒ’f€–Ú" />
-  <object key="Seikyu_KihonSyosaiTuika" value="Šî–{“I‚ÈŒ’f{Ú×‚ÈŒ’f{’Ç‰ÁŒ’f€–Ú" />
-  <object key="Seikyu_NingenDoc" value="lŠÔƒhƒbƒN" />
-<!-- Œ‹‰Êˆê—— -->
-  <object key="KekkaDelete" value="Œ‹‰Êíœ(D)" />
-  <object key="JusinkenAdd" value="ŽófŒ”’Ç‰Á(A)" />
-  <object key="JusinkenDelete" value="ŽófŒ”íœ(J)" />
-  <object key="NyuryokuhyoPrint" value="“ü—Í•[ˆóü(P)" />
-  <object key="IraiPrint" value="ˆË—Š‘ˆóü(Q)" />
-  <object key="KekkaEdit" value="Œ‹‰Ê“ü—Í(E)" />
-  <object key="KekkaCopy" value="Œ‹‰Ê•¡»(C)" />
-  <object key="JusinkenCall" value="ŽófŒ”ŒÄo(C)" />
-<!-- ƒƒ^ƒ{”»’èˆê—— -->
-  <object key="graph" value="ƒOƒ‰ƒt(G)" />
-  <object key="hanteiMetabo" value="”»’èEŠK‘w‰»(E)" />
-  <object key="hanteiPrint" value="’Ê’m•\ˆóü(T)" />
-  <object key="hanteiSetumei" value="à–¾—pˆóü(S)" />
-  <object key="hanteiShosai" value="Ú×(D)" />
-<!-- “úŽŸˆê—— -->
-  <object key="nitijiSeikyu" value="¿‹ˆ—" />
-  <object key="nitijiSeikyuPrint" value="“úŽŸˆóü" />
-  <object key="nitijiEdit" value="•ÒW" />
-  <object key="NITIJI_FLG" value="“úŽŸ" />
-<!-- ŒŽŽŸˆê—— -->
-  <object key="nitijiSeikyu" value="¿‹Šm’è" />
-  <object key="nitijiSeikyuPrint" value="HL7o—Í" />
-  <object key="nitijiEdit" value="ŒŽŽŸˆóü" />
-  <object key="JISI_KBN_WK" value="“úŽŸ" />
-<!-- “ü—ÍƒtƒB[ƒ‹ƒhÝ’è -->
-  <object key="SHIHARAI_DAIKO_TEL" value="“d˜b”Ô†" />
-  <object key="SHIHARAI_DAIKO_ADR" value="ŠÝ’n" />
-  <object key="SHIHARAI_DAIKO_ZIPCD" value="—X•Ö”Ô†" />
-  <object key="SHIHARAI_DAIKO_NAME" value="‘ãs‹@ŠÖ–¼Ì" />
-  <object key="SHIHARAI_DAIKO_NO" value="‘ãs‹@ŠÖ”Ô†" />
-<!-- “ä‚ÌÝ’è -->
-  <object key="INPUT_KEKKA" value="Œ‹‰Ê“ü—Í(ALT+C)" />
-<!-- “ä‚ÌÝ’è -->
+  <object key="Seikyu_Kihon" value="åŸºæœ¬çš„ãªå¥è¨º" />
+  <object key="Seikyu_KihonSyosai" value="åŸºæœ¬çš„ãªå¥è¨ºï¼‹è©³ç´°ãªå¥è¨º" />
+  <object key="Seikyu_KihonTuika" value="åŸºæœ¬çš„ãªå¥è¨ºï¼‹è¿½åŠ å¥è¨ºé …ç›®" />
+  <object key="Seikyu_KihonSyosaiTuika" value="åŸºæœ¬çš„ãªå¥è¨ºï¼‹è©³ç´°ãªå¥è¨ºï¼‹è¿½åŠ å¥è¨ºé …ç›®" />
+  <object key="Seikyu_NingenDoc" value="äººé–“ãƒ‰ãƒƒã‚¯" />
+<!-- çµæžœä¸€è¦§ -->
+  <object key="KekkaDelete" value="çµæžœå‰Šé™¤(D)" />
+  <object key="JusinkenAdd" value="å—è¨ºåˆ¸è¿½åŠ (A)" />
+  <object key="JusinkenDelete" value="å—è¨ºåˆ¸å‰Šé™¤(J)" />
+  <object key="NyuryokuhyoPrint" value="å…¥åŠ›ç¥¨å°åˆ·(P)" />
+  <object key="IraiPrint" value="ä¾é ¼æ›¸å°åˆ·(Q)" />
+  <object key="KekkaEdit" value="çµæžœå…¥åŠ›(E)" />
+  <object key="KekkaCopy" value="çµæžœè¤‡è£½(C)" />
+  <object key="JusinkenCall" value="å—è¨ºåˆ¸å‘¼å‡º(C)" />
+<!-- ãƒ¡ã‚¿ãƒœåˆ¤å®šä¸€è¦§ -->
+  <object key="graph" value="ã‚°ãƒ©ãƒ•(G)" />
+  <object key="hanteiMetabo" value="åˆ¤å®šãƒ»éšŽå±¤åŒ–(E)" />
+  <object key="hanteiPrint" value="é€šçŸ¥è¡¨å°åˆ·(T)" />
+  <object key="hanteiSetumei" value="èª¬æ˜Žç”¨å°åˆ·(S)" />
+  <object key="hanteiShosai" value="è©³ç´°(D)" />
+<!-- æ—¥æ¬¡ä¸€è¦§ -->
+  <object key="nitijiSeikyu" value="è«‹æ±‚å‡¦ç†" />
+  <object key="nitijiSeikyuPrint" value="æ—¥æ¬¡å°åˆ·" />
+  <object key="nitijiEdit" value="ç·¨é›†" />
+  <object key="NITIJI_FLG" value="æ—¥æ¬¡" />
+<!-- æœˆæ¬¡ä¸€è¦§ -->
+  <object key="nitijiSeikyu" value="è«‹æ±‚ç¢ºå®š" />
+  <object key="nitijiSeikyuPrint" value="HL7å‡ºåŠ›" />
+  <object key="nitijiEdit" value="æœˆæ¬¡å°åˆ·" />
+  <object key="JISI_KBN_WK" value="æ—¥æ¬¡" />
+<!-- å…¥åŠ›ãƒ•ã‚£ãƒ¼ãƒ«ãƒ‰è¨­å®š -->
+  <object key="SHIHARAI_DAIKO_TEL" value="é›»è©±ç•ªå·" />
+  <object key="SHIHARAI_DAIKO_ADR" value="æ‰€åœ¨åœ°" />
+  <object key="SHIHARAI_DAIKO_ZIPCD" value="éƒµä¾¿ç•ªå·" />
+  <object key="SHIHARAI_DAIKO_NAME" value="ä»£è¡Œæ©Ÿé–¢åç§°" />
+  <object key="SHIHARAI_DAIKO_NO" value="ä»£è¡Œæ©Ÿé–¢ç•ªå·" />
+<!-- è¬Žã®è¨­å®š -->
+  <object key="INPUT_KEKKA" value="çµæžœå…¥åŠ›(ALT+C)" />
+<!-- è¬Žã®è¨­å®š -->
   <object key="of" value="" />
   <object key="drag" value="" />
-<!-- “úŽŸAŒŽŽŸkey -->
-  <object key="JISI_KBN" value="“úŽŸ" />
-  <object key="Ï" value="Ï" />
-  <object key="–¢" value="–¢" />
-  <object key="OUTPUT_HL7" value="HL7o—Í“ú" />
-  <object key="SIHARAI_DAIKOU_BANGO" value="‘ãs‹@ŠÖ" />
-  <object key="TANKA_GOUKEI" value="’P‰¿‡Œv" />
-  <object key="MADO_FUTAN_GOUKEI" value="‘‹Œû•‰’S‡Œv" />
-  <object key="SEIKYU_KINGAKU" value="¿‹‹àŠz‡Œv" />
-<!-- ‹¤’Êkey -->
-  <object key="KEKA_INPUT_FLG" value="“ü—Í" />
+<!-- æ—¥æ¬¡ã€æœˆæ¬¡key -->
+  <object key="JISI_KBN" value="æ—¥æ¬¡" />
+  <object key="æ¸ˆ" value="æ¸ˆ" />
+  <object key="æœª" value="æœª" />
+  <object key="OUTPUT_HL7" value="HL7å‡ºåŠ›æ—¥" />
+  <object key="SIHARAI_DAIKOU_BANGO" value="ä»£è¡Œæ©Ÿé–¢" />
+  <object key="TANKA_GOUKEI" value="å˜ä¾¡åˆè¨ˆ" />
+  <object key="MADO_FUTAN_GOUKEI" value="çª“å£è² æ‹…åˆè¨ˆ" />
+  <object key="SEIKYU_KINGAKU" value="è«‹æ±‚é‡‘é¡åˆè¨ˆ" />
+<!-- å…±é€škey -->
+  <object key="KEKA_INPUT_FLG" value="å…¥åŠ›" />
   <object key="CHECKBOX_COLUMN" value="" />
-  <object key="NENDO" value="”N“x" />
-  <object key="KENSA_NENGAPI" value="Œ’fŽÀŽ{“ú" />
-  <object key="HANTEI_NENGAPI" value="”»’è“ú" />
-  <object key="TUTI_NENGAPI" value="Œ‹‰Ê’Ê’m“ú" />
-<!-- ƒƒ^ƒ{”»’èkey -->
-  <object key="METABO" value="”»’èŒ‹‰Ê" />
-  <object key="HOKENSIDO" value="•ÛŒ’Žw“±ƒŒƒxƒ‹" />
-  <object key="KOMENTO" value="‘‡ƒRƒƒ“ƒg" />
-<!-- ƒoƒbƒNƒAƒbƒv••œŒ³ƒ}ƒXƒ^key -->
-  <object key="BACKUP_DATE" value="ƒoƒbƒNƒAƒbƒv“ú•t" />
-  <object key="BACKUP_SIZE" value="ƒoƒbƒNƒAƒbƒvƒTƒCƒY" />
-<!-- Œ’f€–Úƒ}ƒXƒ^key -->
-  <object key="USER_NAME" value="ƒ†[ƒU–¼" />
-  <object key="PASS" value="ƒpƒXƒ[ƒh" />
-  <object key="KENGEN" value="Œ ŒÀ" />
-<!-- Œ’f€–Úƒ}ƒXƒ^key -->
-  <object key="HKNJANUM" value="•ÛŒ¯ŽÒ" />
-  <object key="KOUMOKU_CD" value="€–ÚƒR[ƒh" />
-  <object key="KOUMOKU_NAME" value="€–Ú–¼" />
-  <object key="KENSA_HOUHOU" value="ŒŸ¸•û–@" />
-  <object key="HISU_FLG" value="•K{ƒtƒ‰ƒO" />
-  <object key="DS_KAGEN" value="Šî€’l‰ºŒÀ(’j«)" />
-  <object key="DS_JYOUGEN" value="Šî€’lãŒÀ(’j«)" />
-  <object key="JS_KAGEN" value="Šî€’l‰ºŒÀ(—«)" />
-  <object key="JS_JYOUGEN" value="Šî€’lãŒÀ(—«)" />
-  <object key="TANI" value="’PˆÊ" />
-  <object key="KAGEN" value="“ü—Í‰ºŒÀ’l" />
-  <object key="JYOUGEN" value="“ü—ÍãŒÀ’l" />
-  <object key="KIJYUNTI_HANI" value="Šî€’l”ÍˆÍ" />
-  <object key="TANKA_KENSIN" value="’P‰¿" />
-  <object key="BIKOU" value="”õl" />
-<!-- •ÛŒ¯ŽÒƒ}ƒXƒ^key -->
+  <object key="NENDO" value="å¹´åº¦" />
+  <object key="KENSA_NENGAPI" value="å¥è¨ºå®Ÿæ–½æ—¥" />
+  <object key="HANTEI_NENGAPI" value="åˆ¤å®šæ—¥" />
+  <object key="TUTI_NENGAPI" value="çµæžœé€šçŸ¥æ—¥" />
+<!-- ãƒ¡ã‚¿ãƒœåˆ¤å®škey -->
+  <object key="METABO" value="åˆ¤å®šçµæžœ" />
+  <object key="HOKENSIDO" value="ä¿å¥æŒ‡å°Žãƒ¬ãƒ™ãƒ«" />
+  <object key="KOMENTO" value="ç·åˆã‚³ãƒ¡ãƒ³ãƒˆ" />
+<!-- ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ï¼†å¾©å…ƒãƒžã‚¹ã‚¿key -->
+  <object key="BACKUP_DATE" value="ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—æ—¥ä»˜" />
+  <object key="BACKUP_SIZE" value="ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã‚µã‚¤ã‚º" />
+<!-- å¥è¨ºé …ç›®ãƒžã‚¹ã‚¿key -->
+  <object key="USER_NAME" value="ãƒ¦ãƒ¼ã‚¶å" />
+  <object key="PASS" value="ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰" />
+  <object key="KENGEN" value="æ¨©é™" />
+<!-- å¥è¨ºé …ç›®ãƒžã‚¹ã‚¿key -->
+  <object key="HKNJANUM" value="ä¿é™ºè€…" />
+  <object key="KOUMOKU_CD" value="é …ç›®ã‚³ãƒ¼ãƒ‰" />
+  <object key="KOUMOKU_NAME" value="é …ç›®å" />
+  <object key="KENSA_HOUHOU" value="æ¤œæŸ»æ–¹æ³•" />
+  <object key="HISU_FLG" value="å¿…é ˆãƒ•ãƒ©ã‚°" />
+  <object key="DS_KAGEN" value="åŸºæº–å€¤ä¸‹é™(ç”·æ€§)" />
+  <object key="DS_JYOUGEN" value="åŸºæº–å€¤ä¸Šé™(ç”·æ€§)" />
+  <object key="JS_KAGEN" value="åŸºæº–å€¤ä¸‹é™(å¥³æ€§)" />
+  <object key="JS_JYOUGEN" value="åŸºæº–å€¤ä¸Šé™(å¥³æ€§)" />
+  <object key="TANI" value="å˜ä½" />
+  <object key="KAGEN" value="å…¥åŠ›ä¸‹é™å€¤" />
+  <object key="JYOUGEN" value="å…¥åŠ›ä¸Šé™å€¤" />
+  <object key="KIJYUNTI_HANI" value="åŸºæº–å€¤ç¯„å›²" />
+  <object key="TANKA_KENSIN" value="å˜ä¾¡" />
+  <object key="BIKOU" value="å‚™è€ƒ" />
+<!-- ä¿é™ºè€…ãƒžã‚¹ã‚¿key -->
   <object key="Itaku_Kbn" value="ITAKU_KBN" />
-  <object key="Itaku_Kobetu" value="1:ŒÂ•Ê" />
-  <object key="Itaku_Syudan" value="2:W’c" />
-  <object key="HKNJANUM_M" value="•ÛŒ¯ŽÒ”Ô†" />
-  <object key="HKNJANAME" value="•ÛŒ¯ŽÒ–¼" />
-  <object key="POST" value="—X•Ö”Ô†" />
-  <object key="ADRS" value="ZŠ" />
-  <object key="TEL" value="“d˜b”Ô†" />
-  <object key="sorting conditions" value="•À‚Ñ‡" />
-<!-- ŠŒ©ƒ}ƒXƒ^key -->
-  <object key="SYOKEN_TYPE" value="ŠŒ©Ží•ÊNo" />
-  <object key="SYOKEN_TYPE_NAME" value="ŠŒ©Ží•Ê" />
-  <object key="SYOKEN_NO" value="ŠŒ©No" />
-  <object key="SYOKEN_NAME" value="ŠŒ©" />
-  <object key="UPDATE_TIMESTAMP" value="XV“úŽž" />
-<!-- ‘ãs‹@ŠÖƒ}ƒXƒ^key -->
-  <object key="SHIHARAI_DAIKO" value="Žx•¥‘ãs‹@ŠÖƒ}ƒXƒ^ƒƒ“ƒeƒiƒ“ƒX" />
-  <object key="SHIHARAI_DAIKO_NO" value="Žx•¥‘ãs‹@ŠÖ”Ô†" />
-  <object key="SHIHARAI_DAIKO_NAME" value="Žx•¥‘ãs‹@ŠÖ–¼Ì" />
-  <object key="SHIHARAI_DAIKO_ZIPCD" value="—X•Ö”Ô†" />
-  <object key="SHIHARAI_DAIKO_ADR" value="ZŠ" />
-  <object key="SHIHARAI_DAIKO_TEL" value="“d˜b”Ô†" />
-<!-- Œo”Nƒ}ƒXƒ^key -->
-  <object key="NAYOSE_NO" value="ŽófŽÒ•R•t‚¯ID" />
-  <object key="UPDATE_TIMESTAMP" value="XV“ú•t" />
-  <object key="UKETUKE_ID" value="Žó•tID" />
-  <object key="JYUSHIN_SEIRI_NO" value="ŽófŒ”®—”Ô†" />
-  <object key="KANANAME" value="ƒJƒiŽ–¼" />
-  <object key="NAME" value="Ž–¼(Š¿Žš)" />
-  <object key="BIRTHDAY" value="¶”NŒŽ“ú" />
-  <object key="SEX" value="«•Ê" />
-  <object key="HOME_ADRS" value="ZŠ" />
-  <object key="HIHOKENJYASYO_KIGOU" value="”í•ÛŒ¯ŽÒØ“™‹L†" />
-  <object key="HIHOKENJYASYO_NO" value="”í•ÛŒ¯ŽÒØ“™”Ô†" />
-  <object key="UPDATE_TIMESTAMP" value="XV“úŽž" />
-  <object key="UKETUKE_ID" value="Žó•tID" />
-<!-- Œ’fƒpƒ^[ƒ“ƒ}ƒXƒ^Key -->
-  <object key="K_P_NO" value="Œ’fƒpƒ^[ƒ“”Ô†" />
-  <object key="K_P_NAME" value="Œ’fƒpƒ^[ƒ“–¼" />
-  <object key="BIKOU" value="”õl" />
+  <object key="Itaku_Kobetu" value="1:å€‹åˆ¥" />
+  <object key="Itaku_Syudan" value="2:é›†å›£" />
+  <object key="HKNJANUM_M" value="ä¿é™ºè€…ç•ªå·" />
+  <object key="HKNJANAME" value="ä¿é™ºè€…å" />
+  <object key="POST" value="éƒµä¾¿ç•ªå·" />
+  <object key="ADRS" value="ä½æ‰€" />
+  <object key="TEL" value="é›»è©±ç•ªå·" />
+  <object key="sorting conditions" value="ä¸¦ã³é †" />
+<!-- æ‰€è¦‹ãƒžã‚¹ã‚¿key -->
+  <object key="SYOKEN_TYPE" value="æ‰€è¦‹ç¨®åˆ¥No" />
+  <object key="SYOKEN_TYPE_NAME" value="æ‰€è¦‹ç¨®åˆ¥" />
+  <object key="SYOKEN_NO" value="æ‰€è¦‹No" />
+  <object key="SYOKEN_NAME" value="æ‰€è¦‹" />
+  <object key="UPDATE_TIMESTAMP" value="æ›´æ–°æ—¥æ™‚" />
+<!-- ä»£è¡Œæ©Ÿé–¢ãƒžã‚¹ã‚¿key -->
+  <object key="SHIHARAI_DAIKO" value="æ”¯æ‰•ä»£è¡Œæ©Ÿé–¢ãƒžã‚¹ã‚¿ãƒ¡ãƒ³ãƒ†ãƒŠãƒ³ã‚¹" />
+  <object key="SHIHARAI_DAIKO_NO" value="æ”¯æ‰•ä»£è¡Œæ©Ÿé–¢ç•ªå·" />
+  <object key="SHIHARAI_DAIKO_NAME" value="æ”¯æ‰•ä»£è¡Œæ©Ÿé–¢åç§°" />
+  <object key="SHIHARAI_DAIKO_ZIPCD" value="éƒµä¾¿ç•ªå·" />
+  <object key="SHIHARAI_DAIKO_ADR" value="ä½æ‰€" />
+  <object key="SHIHARAI_DAIKO_TEL" value="é›»è©±ç•ªå·" />
+<!-- çµŒå¹´ãƒžã‚¹ã‚¿key -->
+  <object key="NAYOSE_NO" value="å—è¨ºè€…ç´ä»˜ã‘ID" />
+  <object key="UPDATE_TIMESTAMP" value="æ›´æ–°æ—¥ä»˜" />
+  <object key="UKETUKE_ID" value="å—ä»˜ID" />
+  <object key="JYUSHIN_SEIRI_NO" value="å—è¨ºåˆ¸æ•´ç†ç•ªå·" />
+  <object key="KANANAME" value="ã‚«ãƒŠæ°å" />
+  <object key="NAME" value="æ°å(æ¼¢å­—)" />
+  <object key="BIRTHDAY" value="ç”Ÿå¹´æœˆæ—¥" />
+  <object key="SEX" value="æ€§åˆ¥" />
+  <object key="HOME_ADRS" value="ä½æ‰€" />
+  <object key="HIHOKENJYASYO_KIGOU" value="è¢«ä¿é™ºè€…è¨¼ç­‰è¨˜å·" />
+  <object key="HIHOKENJYASYO_NO" value="è¢«ä¿é™ºè€…è¨¼ç­‰ç•ªå·" />
+  <object key="UPDATE_TIMESTAMP" value="æ›´æ–°æ—¥æ™‚" />
+  <object key="UKETUKE_ID" value="å—ä»˜ID" />
+<!-- å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ãƒžã‚¹ã‚¿Key -->
+  <object key="K_P_NO" value="å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³ç•ªå·" />
+  <object key="K_P_NAME" value="å¥è¨ºãƒ‘ã‚¿ãƒ¼ãƒ³å" />
+  <object key="BIKOU" value="å‚™è€ƒ" />
 <!-- grid -->
   <object key="Remove Filter" value="Remove Filter" />
-  <object key="This column is not sorteable" value="‚±‚Ì€–Ú‚Íƒ\[ƒg‚Å‚«‚Ü‚¹‚ñ" />
+  <object key="This column is not sorteable" value="ã“ã®é …ç›®ã¯ã‚½ãƒ¼ãƒˆã§ãã¾ã›ã‚“" />
   <object key="Sorting not allowed" value="Sorting not allowed" />
-  <object key="Maximum number of sorted columns" value="ƒ\[ƒg‚³‚ê‚½—ñ”‚ªÅ‘å’l‚Å‚·" />
-  <object key="Sorting not applicable" value="ƒ\[ƒg‚Å‚«‚Ü‚¹‚ñ" />
-  <object key="page" value="•Å" />
-  <object key="Selected Row" value="‘I‘ðs" />
+  <object key="Maximum number of sorted columns" value="ã‚½ãƒ¼ãƒˆã•ã‚ŒãŸåˆ—æ•°ãŒæœ€å¤§å€¤ã§ã™" />
+  <object key="Sorting not applicable" value="ã‚½ãƒ¼ãƒˆã§ãã¾ã›ã‚“" />
+  <object key="page" value="é " />
+  <object key="Selected Row" value="é¸æŠžè¡Œ" />
   <object key="Selected Rows" value="Selected Rows" />
-  <object key="Cancel changes and reload data?" value="•ÏX‚ðƒLƒƒƒ“ƒZƒ‹‚µ‚ÄÄ•\Ž¦‚µ‚Ü‚·‚©H" />
+  <object key="Cancel changes and reload data?" value="å¤‰æ›´ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¦å†è¡¨ç¤ºã—ã¾ã™ã‹ï¼Ÿ" />
   <object key="Attention" value="Attention" />
-  <object key="Loading data..." value="ƒf[ƒ^‚ðƒ[ƒh’†‚Å‚·..." />
-  <object key="Error while loading data" value="ŒŸõðŒ‚É³‚µ‚­’l‚ð“ü‚ê‚Ä‚­‚¾‚³‚¢B" />
-  <object key="Loading Data Error" value="ŒŸõðŒƒGƒ‰[" />
-  <object key="Delete Rows?" value="‘I‘ðs‚ðíœ‚µ‚Ü‚·‚©H" />
-  <object key="Delete Confirmation" value="íœŠm”F" />
-  <object key="Error while deleting rows." value="‘I‘ðs‚ðíœ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B" />
-  <object key="Deleting Error" value="íœƒGƒ‰[" />
-  <object key="Error while saving" value="•Û‘¶’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚½‚©AƒLƒƒƒ“ƒZƒ‹‚³‚ê‚Ü‚µ‚½B" />
-  <object key="Saving Error" value="•Û‘¶ƒGƒ‰[" />
-  <object key="A mandatory column is empty." value="•K{€–Ú‚ª‹ó‚Å‚·B" />
-  <object key="Value not valid" value="•s®’l" />
-  <object key="Select the previous row in grid" value="‘Os‚ð‘I‘ð" />
-  <object key="Select the next row in grid" value="ŽŸs‚ð‘I‘ð" />
+  <object key="Loading data..." value="ãƒ‡ãƒ¼ã‚¿ã‚’ãƒ­ãƒ¼ãƒ‰ä¸­ã§ã™..." />
+  <object key="Error while loading data" value="æ¤œç´¢æ¡ä»¶ã«æ­£ã—ãå€¤ã‚’å…¥ã‚Œã¦ãã ã•ã„ã€‚" />
+  <object key="Loading Data Error" value="æ¤œç´¢æ¡ä»¶ã‚¨ãƒ©ãƒ¼" />
+  <object key="Delete Rows?" value="é¸æŠžè¡Œã‚’å‰Šé™¤ã—ã¾ã™ã‹ï¼Ÿ" />
+  <object key="Delete Confirmation" value="å‰Šé™¤ç¢ºèª" />
+  <object key="Error while deleting rows." value="é¸æŠžè¡Œã‚’å‰Šé™¤ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚" />
+  <object key="Deleting Error" value="å‰Šé™¤ã‚¨ãƒ©ãƒ¼" />
+  <object key="Error while saving" value="ä¿å­˜ä¸­ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ãŸã‹ã€ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã•ã‚Œã¾ã—ãŸã€‚" />
+  <object key="Saving Error" value="ä¿å­˜ã‚¨ãƒ©ãƒ¼" />
+  <object key="A mandatory column is empty." value="å¿…é ˆé …ç›®ãŒç©ºã§ã™ã€‚" />
+  <object key="Value not valid" value="ä¸æ•´å€¤" />
+  <object key="Select the previous row in grid" value="å‰è¡Œã‚’é¸æŠž" />
+  <object key="Select the next row in grid" value="æ¬¡è¡Œã‚’é¸æŠž" />
 <!-- export -->
-  <object key="grid export" value="ˆê——ƒGƒNƒXƒ|[ƒg" />
+  <object key="grid export" value="ä¸€è¦§ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆ" />
   <object key="export" value="Export" />
   <object key="exportmnemonic" value="X" />
-  <object key="column" value="—ñ" />
-  <object key="sel." value="‘I‘ð" />
+  <object key="column" value="åˆ—" />
+  <object key="sel." value="é¸æŠž" />
   <object key="you must select at least one column" value="You must select at least one column" />
-  <object key="columns to export" value="ƒGƒNƒXƒ|[ƒg—ñ‘I‘ð" />
-  <object key="export type" value="ƒtƒH[ƒ}ƒbƒgŒ`Ž®" />
+  <object key="columns to export" value="ã‚¨ã‚¯ã‚¹ãƒãƒ¼ãƒˆåˆ—é¸æŠž" />
+  <object key="export type" value="ãƒ•ã‚©ãƒ¼ãƒžãƒƒãƒˆå½¢å¼" />
 
 <!-- import -->
   <object key="Import records (CTRL+M)" value="Import records (CTRL+M)" /> 
@@ -215,13 +215,13 @@
   <object key="import completed" value="Import completed" />
 
 <!-- quick filter -->
-  <object key="To value" value="I—¹•¶Žš" />
-  <object key="Filter by" value="ƒtƒBƒ‹ƒ^" />
-  <object key="From value" value="ŠJŽn•¶Žš" />
-  <object key="equals" value="“™‚µ‚¢" />
-  <object key="contains" value="ŠÜ‚Þ" />
-  <object key="starts with" value="‚©‚çŽn‚Ü‚é" />
-  <object key="ends with" value="‚ÅI‚í‚é" />
+  <object key="To value" value="çµ‚äº†æ–‡å­—" />
+  <object key="Filter by" value="ãƒ•ã‚£ãƒ«ã‚¿" />
+  <object key="From value" value="é–‹å§‹æ–‡å­—" />
+  <object key="equals" value="ç­‰ã—ã„" />
+  <object key="contains" value="å«ã‚€" />
+  <object key="starts with" value="ã‹ã‚‰å§‹ã¾ã‚‹" />
+  <object key="ends with" value="ã§çµ‚ã‚ã‚‹" />
 
 <!-- lookup -->
   <object key="Code is not correct." value="Code is not correct." />
@@ -234,32 +234,32 @@
   <object key="Error on deleting:" value="Error on deleting:" />
   <object key="Error on Loading" value="Error on Loading" />
   <object key="Error while loading data:" value="Error while loading data:" />
-  <object key="Error converting to short." value="ŒŸõðŒ‚É’l‚ð“ü‚ê‚Ä‚­‚¾‚³‚¢B" />
+  <object key="Error converting to short." value="æ¤œç´¢æ¡ä»¶ã«å€¤ã‚’å…¥ã‚Œã¦ãã ã•ã„ã€‚" />
 
 <!-- toolbar buttons -->
-  <object key="Delete record (CTRL+D)" value="íœ (CTRL+D)" />
-  <object key="Edit record (CTRL+E)" value="C³ (CTRL+E)" />
-  <object key="New record (CTRL+I)" value="’Ç‰Á (CTRL+I)" />
-  <object key="Reload record/Cancel current operation (CTRL+Z)" value="Ä“Çž/ì‹Æ‚ð’†’f (CTRL+Z)" />
-  <object key="Save record (CTRL+S)" value="“o˜^ (CTRL+S)" />
-  <object key="Copy record (CTRL+C)" value="•¡» (CTRL+C)" />
-  <object key="Export record (CTRL+X)" value="‘o (CTRL+X)" />
-  <object key="Imports records (CTRL+M)" value="Žæž (CTRL+M)" />
-  <object key="Load the first block of records" value="æ“ªs‚ð‘I‘ð" />
-  <object key="Load the previous block of records" value="‘O•Å‚ð‘I‘ð" />
-  <object key="Load the next block of records" value="ŽŸ•Å‚ð‘I‘ð" />
-  <object key="Load the last block of records" value="ÅIs‚ð‘I‘ð" />
+  <object key="Delete record (CTRL+D)" value="å‰Šé™¤ (CTRL+D)" />
+  <object key="Edit record (CTRL+E)" value="ä¿®æ­£ (CTRL+E)" />
+  <object key="New record (CTRL+I)" value="è¿½åŠ  (CTRL+I)" />
+  <object key="Reload record/Cancel current operation (CTRL+Z)" value="å†èª­è¾¼/ä½œæ¥­ã‚’ä¸­æ–­ (CTRL+Z)" />
+  <object key="Save record (CTRL+S)" value="ç™»éŒ² (CTRL+S)" />
+  <object key="Copy record (CTRL+C)" value="è¤‡è£½ (CTRL+C)" />
+  <object key="Export record (CTRL+X)" value="æ›¸å‡º (CTRL+X)" />
+  <object key="Imports records (CTRL+M)" value="å–è¾¼ (CTRL+M)" />
+  <object key="Load the first block of records" value="å…ˆé ­è¡Œã‚’é¸æŠž" />
+  <object key="Load the previous block of records" value="å‰é ã‚’é¸æŠž" />
+  <object key="Load the next block of records" value="æ¬¡é ã‚’é¸æŠž" />
+  <object key="Load the last block of records" value="æœ€çµ‚è¡Œã‚’é¸æŠž" />
 
-  <object key="Insert" value="’Ç‰Á(I)" />
-  <object key="Edit" value="C³(E)" />
-  <object key="Copy" value="•¡»(C)" />
-  <object key="Delete" value="íœ(D)" />
-  <object key="Save" value="“o˜^(S)" />
-  <object key="Reload" value="Ä“Çž(Z)" />
-  <object key="Export" value="‘o(X)" />
-  <object key="Import" value="Žæž(M)" />
-  <object key="Filter" value="ŒŸõ(F)" />
-  <object key="Close" value="–ß‚é(R)" />
+  <object key="Insert" value="è¿½åŠ (I)" />
+  <object key="Edit" value="ä¿®æ­£(E)" />
+  <object key="Copy" value="è¤‡è£½(C)" />
+  <object key="Delete" value="å‰Šé™¤(D)" />
+  <object key="Save" value="ç™»éŒ²(S)" />
+  <object key="Reload" value="å†èª­è¾¼(Z)" />
+  <object key="Export" value="æ›¸å‡º(X)" />
+  <object key="Import" value="å–è¾¼(M)" />
+  <object key="Filter" value="æ¤œç´¢(F)" />
+  <object key="Close" value="æˆ»ã‚‹(R)" />
 
 <!-- MDI Frame -->
   <object key="file" value="File" />
@@ -292,7 +292,7 @@
   <object key="imageButton" value="About" />
   <object key="Window" value="Window" />
   <object key="windowmnemonic" value="W" />
-  <object key="Close All" value="‘S‚Ä•Â‚¶‚é" />
+  <object key="Close All" value="å…¨ã¦é–‰ã˜ã‚‹" />
   <object key="closeallmnemonic" value="A" />
   <object key="Press ENTER to find function" value= "Press ENTER to find function" />
   <object key="Find Function" value= "Find Function" />
@@ -302,19 +302,19 @@
   <object key="save changes?" value="Save changes?" />
   <object key="confirm window closing" value="Window closing confirmation" />
 
-  <object key="switch" value="Ø‚è‘Ö‚¦" />
+  <object key="switch" value="åˆ‡ã‚Šæ›¿ãˆ" />
   <object key="switchmnemonic" value="S" />
   <object key="window name" value="Window name" />
   <object key="opened windows" value="Opened windows" />
-  <object key="tile horizontally" value="ƒ^ƒu‚ð‰¡‚É•À‚×‚é" />
+  <object key="tile horizontally" value="ã‚¿ãƒ–ã‚’æ¨ªã«ä¸¦ã¹ã‚‹" />
   <object key="tilehorizontallymnemonic" value="H" />
-  <object key="tile vertically" value="ƒ^ƒu‚ðc‚É•À‚×‚é" />
+  <object key="tile vertically" value="ã‚¿ãƒ–ã‚’ç¸¦ã«ä¸¦ã¹ã‚‹" />
   <object key="tileverticallymnemonic" value="V" />
-  <object key="cascade" value="d‚Ë‚Ä•\Ž¦" />
+  <object key="cascade" value="é‡ã­ã¦è¡¨ç¤º" />
   <object key="cascademnemonic" value="C" />
-  <object key="minimize" value="Å¬‰»" />
+  <object key="minimize" value="æœ€å°åŒ–" />
   <object key="minimizemnemonic" value="M" />
-  <object key="minimize all" value="‘S‚ÄÅ¬‰»" />
+  <object key="minimize all" value="å…¨ã¦æœ€å°åŒ–" />
   <object key="minimizeallmnemonic" value="A" />
   <object key="change background" value="Change background" />
   <object key="change background" value="Restore default background" />
@@ -339,8 +339,8 @@
   <object key="" value="" />
 
 <!-- wizard -->
-  <object key="yes" value="‚Í‚¢" />
-  <object key="no" value="‚¢‚¢‚¦" />
+  <object key="yes" value="ã¯ã„" />
+  <object key="no" value="ã„ã„ãˆ" />
   <object key="back" value="Back" />
   <object key="next" value="Next" />
   <object key="finish" value="Finish" />
@@ -375,7 +375,7 @@
   <object key="row fields" value="Row fields"/> 
   <object key="column fields" value="Column fields"/> 
   <object key="data fields" value="Data fields"/> 
-  <object key="filtering conditions" value="ŒŸõðŒ"/> 
+  <object key="filtering conditions" value="æ¤œç´¢æ¡ä»¶"/> 
   <object key="field" value="Field"/> 
   <object key="checked" value="Checked"/> 
   <object key="at least one data field must be selected" value="At least one data field must be selected."/> 
