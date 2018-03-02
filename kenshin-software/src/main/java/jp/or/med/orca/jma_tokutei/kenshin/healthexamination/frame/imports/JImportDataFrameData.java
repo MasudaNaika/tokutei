@@ -92,6 +92,10 @@ public class JImportDataFrameData {
 	// protected static final String CODE_HIGHT ="3F077000002327201";		// LDLコレステロール
 	// protected static final String CODE_HIGHT ="3F077000002399901";		// LDLコレステロール
 
+//masuda^ 2018/03/02 non-HDL 
+        protected static final String CODE_NON_HDL = "3F069000002391901";
+//masuda$
+        
 	/* 肝機能 */
 	protected static final String CODE_GOT ="3B035000002327201";		// GOT(AST)
 	// protected static final String CODE_HIGHT ="3B035000002399901";	// GOT(AST)

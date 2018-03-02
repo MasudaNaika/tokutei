@@ -6,6 +6,7 @@ package jp.or.med.orca.jma_tokutei.common.orca;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -276,7 +277,7 @@ public class JOrcaInfoSearchCtl
             });
             URLConnection urlconnection = url.openConnection();
             BufferedInputStream bufferedinputstream = new BufferedInputStream(urlconnection.getInputStream());
-            BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(bufferedinputstream, "UTF-8"));
+            BufferedReader bufferedreader = new BufferedReader(new InputStreamReader(bufferedinputstream, StandardCharsets.UTF_8));
             do
             {
                 String s;

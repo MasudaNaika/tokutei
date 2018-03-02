@@ -176,6 +176,11 @@ public class JHanteiSearchResultListFrame extends JFrame implements KeyListener,
 	private static final String CODE_HDL_3 = "3F070000002399901";
 	private static final String CODE_HDL_2 = "3F070000002327201";
 	private static final String CODE_HDL_1 = "3F070000002327101";
+        
+//masuda^ 2018/03/02 non-HDL 
+        protected static final String CODE_NON_HDL = "3F069000002391901";
+//masuda$
+        
 	private static final String CODE_NAIZO_SHIBOU_MENSEKI = "9N021000000000001";
 	private static final String CODE_KUHUKUJI_KETTO_4 = "3D010000001999901";
 	private static final String CODE_KUHUKUJI_KETTO_3 = "3D010000001927201";

@@ -3,7 +3,7 @@ package jp.or.med.orca.jma_tokutei.kenshin.admin.frame;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 public class JUserMaintenanceListFrameData extends ValueObjectImpl {
-
+    
 	private String USER_NAME;
 	private String PASS;
 	private String KENGEN;

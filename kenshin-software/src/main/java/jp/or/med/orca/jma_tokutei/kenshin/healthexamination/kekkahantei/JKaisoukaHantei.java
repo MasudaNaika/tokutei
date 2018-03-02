@@ -13,6 +13,10 @@ public class JKaisoukaHantei {
 	private static final String CODE_CYUSEI_SHIBOU_1 = "3F015000002327101";
 	private static final String CODE_KAKUCHOKI_KETSUATSU_1 = "9A761000000000001";
 	private static final String CODE_SYUSYUKUKI_KETSUATSU_1 = "9A751000000000001";
+        
+//masuda^ 2018/03/02 non-HDL 
+        protected static final String CODE_NON_HDL = "3F069000002391901";
+//masuda$
 
 	// eidt s.inoue 2012/09/03
 	private static final String CODE_HBA1C_JDS = "3D045000001906202";
