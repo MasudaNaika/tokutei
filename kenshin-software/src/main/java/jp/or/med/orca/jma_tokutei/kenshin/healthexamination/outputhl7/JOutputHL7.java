@@ -1489,6 +1489,9 @@ public class JOutputHL7 {
 		keys.add("3F070000002327101");
 		keys.add("3F070000002327201");
 		keys.add("3F070000002399901");
+//masuda^ 2018/03/02 non-HDL 
+                keys.add("3F069000002391901");
+//masuda$
 		removeRepeatObservation(observationList, keys);
 
 		// LDLコレステロール

@@ -2,6 +2,7 @@ package jp.or.med.orca.jma_tokutei.common.frame;
 
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Enumeration;
 import java.util.Properties;
 
@@ -28,7 +29,7 @@ public class ViewSettingsFile {
 
 		try	{
 			FileInputStream fs = new FileInputStream(PROPERTY_FILE_NAME);
-			InputStreamReader in = new InputStreamReader(fs, "Shift_JIS");
+			InputStreamReader in = new InputStreamReader(fs, StandardCharsets.UTF_8);
 			properties.load(in);
 
 			/* メッセージファイルのバージョンを検証する。 */

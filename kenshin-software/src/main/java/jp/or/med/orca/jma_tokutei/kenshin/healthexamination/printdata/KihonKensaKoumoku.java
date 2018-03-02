@@ -471,6 +471,10 @@ public class KihonKensaKoumoku {
 		this.PrintedCD.add("9N921000000000011");//２３．（ここ2週間）以前は楽にできていたことが今ではおっくうに感じられる
 		this.PrintedCD.add("9N926000000000011");//２４．（ここ2週間）自分が役に立つ人間だと思えない
 		this.PrintedCD.add("9N931000000000011");//２５．（ここ2週間）わけもなく疲れたような感じがする
+                
+//masuda^ 2018/03/02 non-HDL 
+                this.PrintedCD.add("3F069000002391901");
+//masuda$
 
 		/*詳細な健診用に追加（上記と重複あるかも）ここまで*/
 	
@@ -549,6 +553,10 @@ public class KihonKensaKoumoku {
 		tokuteiCodes.add("3B045000002399901");//GPT（ＡＬＴ）
 		tokuteiCodes.add("3B090000002327101");//γ-GT(γ-GTP)
 		tokuteiCodes.add("3B090000002399901");//γ-GT(γ-GTP)
+                
+//masuda^ 2018/03/02 non-HDL 
+                tokuteiCodes.add("3F069000002391901");
+//masuda$
 
 		return tokuteiCodes;
 	}

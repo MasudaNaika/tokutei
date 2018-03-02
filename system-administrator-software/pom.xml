@@ -42,7 +42,7 @@
         <dependency>
             <groupId>jp.or.med.orca</groupId>
             <artifactId>common-component</artifactId>
-            <version>1.0</version>
+            <version>2.1.6</version>
             <type>jar</type>
         </dependency>
         <dependency>
@@ -57,7 +57,12 @@
             <version>2.4</version>
             <scope>provided</scope>
         </dependency>
-        
+        <dependency>
+            <groupId>javax.jnlp</groupId>
+            <artifactId>jnlp</artifactId>
+            <version>1.2</version>
+            <type>jar</type>
+        </dependency>
         <dependency>
             <groupId>org.openswing</groupId>
             <artifactId>serveros</artifactId>
