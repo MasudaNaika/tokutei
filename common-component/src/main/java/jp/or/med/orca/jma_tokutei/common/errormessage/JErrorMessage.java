@@ -2,6 +2,7 @@ package jp.or.med.orca.jma_tokutei.common.errormessage;
 
 import java.util.*;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import javax.swing.JFrame;
 
 public class JErrorMessage {
@@ -22,7 +23,7 @@ public class JErrorMessage {
 		Properties prop = new Properties();
 		try {
 			FileInputStream fs = new FileInputStream(LoadFile);
-			InputStreamReader in = new InputStreamReader(fs, "SJIS");
+			InputStreamReader in = new InputStreamReader(fs, StandardCharsets.UTF_8);
 			prop.load(in);
 			mProperties = prop;
 

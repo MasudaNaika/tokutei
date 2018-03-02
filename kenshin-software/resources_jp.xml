@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<objects>
+  <object key="=" value="等しい" />
+  <object key="&lt;>" value="等しくない" />
+  <object key=">" value="超過" />
+  <object key="&lt;" value="未満" />
+  <object key=">=" value="以上" />
+  <object key="&lt;=" value="以下" />
+  <object key="like" value="を含む" />
+  <object key="is not null" value="空でない" />
+  <object key="is null" value="空の" />
+<!-- 共通画面ボタン設定 -->
+  <object key="filtering and sorting settings" value="検索/並び順" />
+  <object key="Filtering/Sorting data (CTRL+F)" value="検索/並び順(CTRL+F)" />
+  <object key="Remove Filter" value="条件解除" />
+
+<!-- 編集画面ボタン設定 -->
+  <object key="ASC" value="昇順" />
+  <object key="DESC" value="降順" />
+<!-- 編集画面ボタン設定 -->
+  <object key="Clear" value="クリア(C)" />
+<!-- コンボボックス設定 -->
+  <object key="kengen" value="KENGEN" />
+  <object key="Administrator" value="1:管理者" />
+  <object key="User" value="2:一般" />
+<!-- 必須フラグ -->
+  <object key="Hisuflg" value="HISUFLG" />
+  <object key="Basic" value="1:基本" />
+  <object key="Detail" value="2:詳細" />
+  <object key="Additional" value="3:追加" />
+<!-- 保健指導レベル -->
+  <object key="HokenSido_Level" value="HOKENSIDO_LEVEL" />
+  <object key="HokenSido_Mihantei" value="未判定" />
+  <object key="HokenSido_SekyokuSien" value="積極的支援" />
+  <object key="HokenSido_DoukiSien" value="動機づけ支援" />
+  <object key="HokenSido_JyohoTeikyo" value="なし（情報提供）" />
+  <object key="HokenSido_HanteiFunou" value="判定不能" />
+<!-- メタボ判定レベル -->
+  <object key="MetaboHantei_Level" value="METABOHANTEI_LEVEL" />
+  <object key="Metabo_Mihantei" value="未判定" />
+  <object key="Metabo_KijyunGaito" value="基準該当" />
+  <object key="Metabo_YobigunGaito" value="予備群該当" />
+  <object key="Metabo_Higaito" value="非該当" />
+  <object key="Metabo_HanteiFunou" value="判定不能" />
+<!-- 請求区分 -->
+  <object key="SeikyuKBM_Level" value="SEIKYUKBN_LEVEL" />
+  <object key="Seikyu_Kihon" value="基本的な健診" />
+  <object key="Seikyu_KihonSyosai" value="基本的な健診＋詳細な健診" />
+  <object key="Seikyu_KihonTuika" value="基本的な健診＋追加健診項目" />
+  <object key="Seikyu_KihonSyosaiTuika" value="基本的な健診＋詳細な健診＋追加健診項目" />
+  <object key="Seikyu_NingenDoc" value="人間ドック" />
+<!-- 結果一覧 -->
+  <object key="KekkaDelete" value="結果削除(D)" />
+  <object key="JusinkenAdd" value="受診券追加(A)" />
+  <object key="JusinkenDelete" value="受診券削除(J)" />
+  <object key="NyuryokuhyoPrint" value="入力票印刷(P)" />
+  <object key="IraiPrint" value="依頼書印刷(Q)" />
+  <object key="KekkaEdit" value="結果入力(E)" />
+  <object key="KekkaCopy" value="結果複製(C)" />
+  <object key="JusinkenCall" value="受診券呼出(C)" />
+<!-- メタボ判定一覧 -->
+  <object key="graph" value="グラフ(G)" />
+  <object key="hanteiMetabo" value="判定・階層化(E)" />
+  <object key="hanteiPrint" value="通知表印刷(T)" />
+  <object key="hanteiSetumei" value="説明用印刷(S)" />
+  <object key="hanteiShosai" value="詳細(D)" />
+<!-- 日次一覧 -->
+  <object key="nitijiSeikyu" value="請求処理" />
+  <object key="nitijiSeikyuPrint" value="日次印刷" />
+  <object key="nitijiEdit" value="編集" />
+  <object key="NITIJI_FLG" value="日次" />
+<!-- 月次一覧 -->
+  <object key="nitijiSeikyu" value="請求確定" />
+  <object key="nitijiSeikyuPrint" value="HL7出力" />
+  <object key="nitijiEdit" value="月次印刷" />
+  <object key="JISI_KBN_WK" value="日次" />
+<!-- 入力フィールド設定 -->
+  <object key="SHIHARAI_DAIKO_TEL" value="電話番号" />
+  <object key="SHIHARAI_DAIKO_ADR" value="所在地" />
+  <object key="SHIHARAI_DAIKO_ZIPCD" value="郵便番号" />
+  <object key="SHIHARAI_DAIKO_NAME" value="代行機関名称" />
+  <object key="SHIHARAI_DAIKO_NO" value="代行機関番号" />
+<!-- 謎の設定 -->
+  <object key="INPUT_KEKKA" value="結果入力(ALT+C)" />
+<!-- 謎の設定 -->
+  <object key="of" value="" />
+  <object key="drag" value="" />
+<!-- 日次、月次key -->
+  <object key="JISI_KBN" value="日次" />
+  <object key="済" value="済" />
+  <object key="未" value="未" />
+  <object key="HENKAN_NITIJI" value="HL7出力日" />
+  <object key="HENKAN_NITIJI2" value="HL7出力日" /><!-- edit n.ohkubo 2014/10/01　追加 -->
+  <object key="SIHARAI_DAIKOU_BANGO" value="代行機関" />
+  <object key="TANKA_GOUKEI" value="単価合計" />
+  <object key="MADO_FUTAN_GOUKEI" value="窓口負担合計" />
+  <object key="SEIKYU_KINGAKU" value="請求金額合計" />
+<!-- 共通key -->
+  <object key="KEKA_INPUT_FLG" value="入力" />
+  <object key="CHECKBOX_COLUMN" value="" />
+  <object key="NENDO" value="年度" />
+  <object key="KENSA_NENGAPI" value="健診実施日" />
+  <object key="KENSA_NENGAPI2" value="健診実施日" /><!-- edit n.ohkubo 2014/10/01　追加 -->
+  <object key="HANTEI_NENGAPI" value="判定日" />
+  <object key="TUTI_NENGAPI" value="結果通知日" />
+<!-- メタボ判定key -->
+  <object key="METABO" value="判定結果" />
+  <object key="HOKENSIDO" value="保健指導レベル" />
+  <object key="KOMENTO" value="総合コメント" />
+<!-- バックアップ＆復元マスタkey -->
+  <object key="BACKUP_DATE" value="バックアップ日付" />
+  <object key="BACKUP_SIZE" value="バックアップサイズ" />
+<!-- 健診項目マスタkey -->
+  <object key="USER_NAME" value="ユーザ名" />
+  <object key="PASS" value="パスワード" />
+  <object key="KENGEN" value="権限" />
+<!-- 健診項目マスタkey -->
+  <object key="HKNJANUM" value="保険者" />
+  <object key="KOUMOKU_CD" value="項目コード" />
+  <object key="KOUMOKU_NAME" value="項目名" />
+  <object key="KENSA_HOUHOU" value="検査方法" />
+  <object key="HISU_FLG" value="必須フラグ" />
+  <object key="DS_KAGEN" value="基準値下限(男性)" />
+  <object key="DS_JYOUGEN" value="基準値上限(男性)" />
+  <object key="JS_KAGEN" value="基準値下限(女性)" />
+  <object key="JS_JYOUGEN" value="基準値上限(女性)" />
+  <object key="TANI" value="単位" />
+  <object key="KAGEN" value="入力下限値" />
+  <object key="JYOUGEN" value="入力上限値" />
+  <object key="KIJYUNTI_HANI" value="基準値範囲" />
+  <object key="TANKA_KENSIN" value="単価" />
+  <object key="BIKOU" value="備考" />
+<!-- 保険者マスタkey -->
+  <object key="Itaku_Kbn" value="ITAKU_KBN" />
+  <object key="Itaku_Kobetu" value="1:個別" />
+  <object key="Itaku_Syudan" value="2:集団" />
+  <object key="HKNJANUM_M" value="保険者番号" />
+  <object key="HKNJANAME" value="保険者名" />
+  <object key="POST" value="郵便番号" />
+  <object key="ADRS" value="住所" />
+  <object key="TEL" value="電話番号" />
+  <object key="sorting conditions" value="並び順" />
+<!-- 所見マスタkey -->
+  <object key="SYOKEN_TYPE" value="所見種別No" />
+  <object key="SYOKEN_TYPE_NAME" value="所見種別" />
+  <object key="SYOKEN_NO" value="所見No" />
+  <object key="SYOKEN_NAME" value="所見" />
+  <object key="UPDATE_TIMESTAMP" value="更新日時" />
+<!-- 代行機関マスタkey -->
+  <object key="SHIHARAI_DAIKO" value="支払代行機関マスタメンテナンス" />
+  <object key="SHIHARAI_DAIKO_NO" value="支払代行機関番号" />
+  <object key="SHIHARAI_DAIKO_NAME" value="支払代行機関名称" />
+  <object key="SHIHARAI_DAIKO_ZIPCD" value="郵便番号" />
+  <object key="SHIHARAI_DAIKO_ADR" value="住所" />
+  <object key="SHIHARAI_DAIKO_TEL" value="電話番号" />
+<!-- 経年マスタkey -->
+  <object key="NAYOSE_NO" value="受診者紐付けID" />
+  <object key="UPDATE_TIMESTAMP" value="更新日付" />
+  <object key="UKETUKE_ID" value="受付ID" />
+  <object key="JYUSHIN_SEIRI_NO" value="受診券整理番号" />
+  <object key="KANANAME" value="カナ氏名" />
+  <object key="NAME" value="氏名(漢字)" />
+  <object key="BIRTHDAY" value="生年月日" />
+  <object key="BIRTHDAY2" value="生年月日" /><!-- edit n.ohkubo 2014/10/01　追加 -->
+  <object key="SEX" value="性別" />
+  <object key="HOME_ADRS" value="住所" />
+  <object key="HIHOKENJYASYO_KIGOU" value="被保険者証等記号" />
+  <object key="HIHOKENJYASYO_NO" value="被保険者証等番号" />
+  <object key="UPDATE_TIMESTAMP" value="更新日時" />
+  <object key="UKETUKE_ID" value="受付ID" />
+<!-- 健診パターンマスタKey -->
+  <object key="K_P_NO" value="健診パターン番号" />
+  <object key="K_P_NAME" value="健診パターン名" />
+  <object key="BIKOU" value="備考" />
+<!-- ログファイル管理Key -->
+  <object key="LOG_MESSAGE_LEVEL" value="メッセージ種別" />
+  <object key="LOG_MESSAGE" value="内容" />
+  <object key="LOG_ERROR_PLACE" value="画面" />
+  <object key="LOG_DATE" value="年月日" />
+  <object key="LOG_UPDATE_TIMESTAMP" value="時分秒" />
+  <object key="UPDATE_TIMESTAMP2" value="更新日時" /><!-- edit n.ohkubo 2014/10/01　追加 -->
+<!-- grid -->
+  <object key="Remove Filter" value="Remove Filter" />
+  <object key="This column is not sorteable" value="この項目はソートできません" />
+  <object key="Sorting not allowed" value="Sorting not allowed" />
+  <object key="Maximum number of sorted columns" value="ソートされた列数が最大値です" />
+  <object key="Sorting not applicable" value="ソートできません" />
+  <object key="page" value="頁" />
+  <object key="Selected Row" value="選択行" />
+  <object key="Selected Rows" value="Selected Rows" />
+  <object key="Cancel changes and reload data?" value="変更をキャンセルして再表示しますか？" />
+  <object key="Attention" value="Attention" />
+  <object key="Loading data..." value="データをロード中です..." />
+  <object key="Error while loading data" value="検索条件に正しく値を入れてください。" />
+  <object key="Loading Data Error" value="検索条件エラー" />
+  <object key="Delete Rows?" value="選択行を削除しますか？" />
+  <object key="Delete Confirmation" value="削除確認" />
+  <object key="Error while deleting rows." value="選択行を削除中にエラーが発生しました。" />
+  <object key="Deleting Error" value="削除エラー" />
+  <object key="Error while saving" value="保存中にエラーが発生したか、キャンセルされました。" />
+  <object key="Saving Error" value="保存エラー" />
+  <object key="A mandatory column is empty." value="必須項目が空です。" />
+  <object key="Value not valid" value="不整値" />
+  <object key="Select the previous row in grid" value="前行を選択" />
+  <object key="Select the next row in grid" value="次行を選択" />
+<!-- export -->
+  <object key="grid export" value="一覧エクスポート" />
+  <object key="export" value="Export" />
+  <object key="exportmnemonic" value="X" />
+  <object key="column" value="列" />
+  <object key="sel." value="選択" />
+  <object key="you must select at least one column" value="You must select at least one column" />
+  <object key="columns to export" value="エクスポート列選択" />
+  <object key="export type" value="フォーマット形式" />
+
+<!-- import -->
+  <object key="Import records (CTRL+M)" value="Import records (CTRL+M)" /> 
+  <object key="grid import" value="Grid import" />
+  <object key="import" value="Import" />
+  <object key="importmnemonic" value="M" />
+  <object key="columns to import" value="Columns to import" />
+  <object key="import type" value="Import file format" />
+  <object key="file to import" value="File to import" />
+  <object key="error while importing data" value="Error while importing data" />
+  <object key="import completed" value="Import completed" />
+
+<!-- quick filter -->
+  <object key="To value" value="終了文字" />
+  <object key="Filter by" value="フィルタ" />
+  <object key="From value" value="開始文字" />
+  <object key="equals" value="等しい" />
+  <object key="contains" value="含む" />
+  <object key="starts with" value="から始まる" />
+  <object key="ends with" value="で終わる" />
+
+<!-- lookup -->
+  <object key="Code is not correct." value="Code is not correct." />
+  <object key="Code Validation" value="Code Validation" />
+  <object key="Code Selection" value="Code Selection" />
+
+<!-- form -->
+  <object key="Confirm deliting data?" value="Confirm deliting data?" />
+  <object key="Error while saving: incorrect data." value="Error while saving: incorrect data." />
+  <object key="Error on deleting:" value="Error on deleting:" />
+  <object key="Error on Loading" value="Error on Loading" />
+  <object key="Error while loading data:" value="Error while loading data:" />
+  <object key="Error converting to short." value="検索条件に値を入れてください。" />
+
+<!-- toolbar buttons -->
+  <object key="Delete record (CTRL+D)" value="削除 (CTRL+D)" />
+  <object key="Edit record (CTRL+E)" value="修正 (CTRL+E)" />
+  <object key="New record (CTRL+I)" value="追加 (CTRL+I)" />
+  <object key="Reload record/Cancel current operation (CTRL+Z)" value="再読込/作業を中断 (CTRL+Z)" />
+  <object key="Save record (CTRL+S)" value="登録 (CTRL+S)" />
+  <object key="Copy record (CTRL+C)" value="複製 (CTRL+C)" />
+  <object key="Export record (CTRL+X)" value="書出 (CTRL+X)" />
+  <object key="Imports records (CTRL+M)" value="取込 (CTRL+M)" />
+  <object key="Load the first block of records" value="先頭行を選択" />
+  <object key="Load the previous block of records" value="前頁を選択" />
+  <object key="Load the next block of records" value="次頁を選択" />
+  <object key="Load the last block of records" value="最終行を選択" />
+
+  <object key="Insert" value="追加(I)" />
+  <object key="Edit" value="修正(E)" />
+  <object key="Copy" value="複製(C)" />
+  <object key="Delete" value="削除(D)" />
+  <object key="Save" value="登録(S)" />
+  <object key="Reload" value="再読込(Z)" />
+  <object key="Export" value="書出(X)" />
+  <object key="Import" value="取込(M)" />
+  <object key="Filter" value="検索(F)" />
+  <object key="Close" value="戻る(R)" />
+
+<!-- MDI Frame -->
+  <object key="file" value="File" />
+  <object key="exit" value="Exit" />
+  <object key="filemnemonic" value="F" />
+  <object key="exitmnemonic" value="E" />
+  <object key="change user" value="Change User" />
+  <object key="changeusermnemonic" value="U" />
+  <object key="changelanguagemnemonic" value="L" />
+  <object key="help" value="Help" />
+  <object key="about" value="About" />
+  <object key="helpmnemonic" value="H" />
+  <object key="aboutmnemonic" value="A" />
+  <object key="are you sure to quit application?" value="Are you sure to quit application?" />
+  <object key="quit application" value="Quit Application" />
+  <object key="about" value="About" />
+  <object key="forcegcmnemonic" value="F" />
+  <object key="Force GC" value="Force GC" />
+  <object key="Java Heap" value="Java Heap" />
+  <object key="used" value="used" />
+  <object key="allocated" value="allocated" />
+  <object key="change language" value="Change Language" />
+  <object key="changemnemonic" value="L" />
+  <object key="cancelmnemonic" value="C" />
+  <object key="cancel" value="Cancel" />
+  <object key="Functions" value="Functions" />
+  <object key="Error while executing function" value="Error while executing function" />
+  <object key="Error" value="Error" />
+  <object key="infoPanel" value="Info" />
+  <object key="imageButton" value="About" />
+  <object key="Window" value="Window" />
+  <object key="windowmnemonic" value="W" />
+  <object key="Close All" value="全て閉じる" />
+  <object key="closeallmnemonic" value="A" />
+  <object key="Press ENTER to find function" value= "Press ENTER to find function" />
+  <object key="Find Function" value= "Find Function" />
+  <object key="Operation in progress..." value="Work in progress..." />
+  <object key="close window" value="Close Window" />
+  <object key="reduce to icon" value="Reduce to icon" />
+  <object key="save changes?" value="Save changes?" />
+  <object key="confirm window closing" value="Window closing confirmation" />
+
+  <object key="switch" value="切り替え" />
+  <object key="switchmnemonic" value="S" />
+  <object key="window name" value="Window name" />
+  <object key="opened windows" value="Opened windows" />
+  <object key="tile horizontally" value="タブを横に並べる" />
+  <object key="tilehorizontallymnemonic" value="H" />
+  <object key="tile vertically" value="タブを縦に並べる" />
+  <object key="tileverticallymnemonic" value="V" />
+  <object key="cascade" value="重ねて表示" />
+  <object key="cascademnemonic" value="C" />
+  <object key="minimize" value="最小化" />
+  <object key="minimizemnemonic" value="M" />
+  <object key="minimize all" value="全て最小化" />
+  <object key="minimizeallmnemonic" value="A" />
+  <object key="change background" value="Change background" />
+  <object key="change background" value="Restore default background" />
+
+<!-- select/deselect all -->
+  <object key="select all" value="Select all" />
+  <object key="deselect all" value="Deselect all" />
+
+
+<!-- copy/cut/paste -->
+  <object key="copy" value="Copy" />
+  <object key="copymnemonic" value="C" />
+  <object key="cut" value="Cut" />
+  <object key="cutmnemonic" value="T" />
+  <object key="paste" value="Paste" />
+  <object key="pastemnemonic" value="P" />
+    
+<!-- server -->
+
+  <object key="Client request not supported" value="Client request not supported" />
+  <object key="User disconnected" value="User disconnected" />
+  <object key="" value="" />
+
+<!-- wizard -->
+  <object key="yes" value="はい" />
+  <object key="no" value="いいえ" />
+  <object key="back" value="Back" />
+  <object key="next" value="Next" />
+  <object key="finish" value="Finish" />
+
+<!-- image panel -->
+
+  <object key="image selection" value="Image selection" />
+
+<!-- tip panel -->
+  <object key="show 'tip of the day' after launching" value="Show 'tip of the day' after launching" />
+  <object key="previous tip" value="Previous tip" />
+  <object key="next tip" value="Next tip" />
+  <object key="close" value="Close" />    
+  <object key="tip of the day" value="Tip of the day" /> 
+  
+  
+<!-- grid profile -->
+  <object key="grid profile management" value="Grid profile management"/> 
+  <object key="restore default grid profile" value="Restore default grid profile"/> 
+  <object key="create new grid profile" value="Create new grid profile"/> 
+  <object key="profile description" value="Profile description"/> 
+  <object key="remove current grid profile" value="Remove current grid profile"/> 
+  <object key="select grid profile" value="Select grid profile"/>       
+  <object key="default profile" value="Default profile"/>     
+      
+<!-- search box -->
+  <object key="search" value="Search"/> 
+  <object key="not found" value="Not found"/> 
+       
+<!-- pivot table -->
+  <object key="pivot table settings" value="Pivot table settings"/> 
+  <object key="row fields" value="Row fields"/> 
+  <object key="column fields" value="Column fields"/> 
+  <object key="data fields" value="Data fields"/> 
+  <object key="filtering conditions" value="検索条件"/> 
+  <object key="field" value="Field"/> 
+  <object key="checked" value="Checked"/> 
+  <object key="at least one data field must be selected" value="At least one data field must be selected."/> 
+  <object key="at least one row field must be selected" value="At least one row field must be selected."/> 
+  <object key="at least one column field must be selected" value="At least one column field must be selected."/>  
+  <object key="expand all" value="Expand all"/>
+  <object key="collapse all" value="Collapse all"/>
+          
+<!-- application translations -->
+
+      <object key="this text will be translated" value="This text will be translated" />
+      <object key="date" value="Date" />
+      <object key="combobox" value="Combobox" />
+      <object key="opened" value="Opened" />
+      <object key="suspended" value="Suspended" />
+      <object key="delivered" value="Delivered" />
+      <object key="closed" value="Closed" />
+      <object key="radio button" value="Radio Button" />
+      <object key="stringValue" value="Text" />
+      <object key="dateValue" value="Date" />
+      <object key="checkValue" value="CheckBox" />
+      <object key="radioButtonValue" value="RadioButton" />
+      <object key="comboValue" value="ComboBox" />
+      <object key="currencyValue" value="Currency" />
+      <object key="numericValue" value="Number" />
+      <object key="lookupValue" value="Lookup Code" />
+      <object key="descrLookupValue" value="Lookup Description" />
+      <object key="taValue" value="Text Area" />
+  <currencySymbol>E</currencySymbol>
+  <decimalSymbol>.</decimalSymbol>
+  <groupingSymbol>,</groupingSymbol>
+  <dateFormat>YMD</dateFormat>
+  <showCenturyInDateFormat>true</showCenturyInDateFormat>
+  <dateFormatSeparator>/</dateFormatSeparator>
+  <timeFormat>h:mm aaa</timeFormat>
+
+</objects>
