@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tokuteikenshin.jp/checkup/2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tokuteikenshin.jp/checkup/2007" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="co08_V08.xsd"/>
+  <!-- Element Definition -->
+  <xs:element name="healthGuidanceClaim" type="HealthGuidanceClaim"/>
+  <xs:element name="encounter" type="HealthGuidanceClaim.HealthGuidanceEncounter"/>
+  <xs:element name="guidanceLevel" type="HealthGuidanceClaim.GuidanceLevel"/>
+  <xs:element name="guidanceTiming" type="HealthGuidanceClaim.GuidanceTiming"/>
+  <xs:element name="performerOrganization" type="Common.CheckupProvider"/>
+  <xs:element name="name" type="Common.PersonName"/>
+  <xs:element name="administrativeGender" type="Common.AdministrativeGender"/>
+  <xs:element name="healthGuidanceCard" type="HealthGuidanceClaim.HealthGuidanceCard"/>
+  <xs:element name="id" type="Common.HealthGuidanceCardId"/>
+  <xs:element name="checkupCardId" type="Common.CheckupCardId"/>
+  <xs:element name="effectiveTime" type="Common.IntervalPointInTime"/>
+  <xs:element name="high" type="Common.Date"/>
+  <xs:element name="copayment" type="Common.ChargeType"/>
+  <xs:element name="maxInsuranceLimit" type="Common.MaximumInsuranceLimit"/>
+  <xs:element name="settlement" type="HealthGuidanceClaim.Settlement"/>
+  <xs:element name="unitPrice" type="Common.UnitPrice"/>
+  <xs:element name="paymentRate" type="Common.Percentage"/>
+  <xs:element name="pointCountCompleted" type="HealthGuidanceClaim.PointCount"/>
+  <xs:element name="pointCountIntended" type="HealthGuidanceClaim.PointCount"/>
+  <xs:element name="calculatedAmount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="payment" type="HealthGuidanceClaim.Payment"/>
+  <xs:element name="status" type="HealthGuidanceClaim.PaymentStatus"/>
+  <xs:element name="claimAmount" type="Common.TotalMonetaryAmount"/>
+  <!-- ComplexType Definition -->
+  <xs:complexType name="HealthGuidanceClaim">
+    <xs:sequence>
+      <xs:element ref="encounter"/>
+      <xs:element name="subjectPerson" type="HealthGuidanceClaim.SubjectPerson"/>
+      <xs:element ref="healthGuidanceCard"/>
+      <xs:element ref="settlement"/>
+      <xs:element ref="agencyAdjudicationResult" minOccurs="0"/>
+      <xs:element ref="insurerAdjudicationResult" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.HealthGuidanceEncounter">
+    <xs:complexContent>
+      <xs:extension base="Common.Encounter">
+        <xs:sequence>
+          <xs:element ref="guidanceLevel"/>
+          <xs:element ref="guidanceTiming"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.GuidanceLevel">
+    <xs:attribute name="code" type="Code.HealthGuidanceLevel" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.GuidanceTiming">
+    <xs:attribute name="code" type="Code.HealthGuidanceTiming" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.SubjectPerson">
+    <xs:sequence>
+      <xs:element ref="performerOrganization"/>
+      <xs:element ref="insuranceCard"/>
+      <xs:element ref="name"/>
+      <xs:element name="addr" type="HealthGuidanceClaim.Address"/>
+      <xs:element ref="birthTime"/>
+      <xs:element ref="administrativeGender"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.Address">
+    <xs:sequence>
+      <xs:element name="postalCode" type="Common.PostalCode"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.HealthGuidanceCard">
+    <xs:sequence>
+      <xs:element ref="id" minOccurs="0"/>
+      <xs:element ref="checkupCardId" minOccurs="0"/>
+      <xs:element ref="effectiveTime" minOccurs="0"/>
+      <xs:element ref="copayment" minOccurs="0"/>
+      <xs:element ref="maxInsuranceLimit" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.PointCount">
+    <xs:attribute name="value" type="pointCount" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.Settlement">
+    <xs:sequence>
+      <xs:element ref="unitPrice"/>
+      <xs:element ref="paymentRate"/>
+      <xs:element ref="pointCountCompleted" minOccurs="0"/>
+      <xs:element ref="pointCountIntended" minOccurs="0"/>
+      <xs:element ref="calculatedAmount"/>
+      <xs:element ref="payment"/>
+      <xs:element ref="claimAmount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.Payment">
+    <xs:sequence>
+      <xs:element ref="status"/>
+      <xs:element name="amount" type="Common.TotalMonetaryAmount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HealthGuidanceClaim.PaymentStatus">
+    <xs:attribute name="code" type="Code.HealthGuidancePaymentStatus" use="required"/>
+  </xs:complexType>
+</xs:schema>

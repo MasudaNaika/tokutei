@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://tokuteikenshin.jp/checkup/2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tokuteikenshin.jp/checkup/2007" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <!-- Element Definition -->
+  <xs:element name="birthTime" type="Common.Date"/>
+  <xs:element name="agencyAdjudicationResult" type="Common.AgencyAdjudicationResult"/>
+  <xs:element name="insurerAdjudicationResult" type="Common.InsurerAdjudicationResult"/>
+  <xs:element name="insuranceCard" type="Common.InsuranceCard"/>
+  <xs:element name="insurerNumber" type="Common.InsuranceProviderId"/>
+  <xs:element name="symbol" type="Common.InsuranceSymbol"/>
+  <xs:element name="number" type="Common.InsuranceNumber"/>
+  <xs:element name="postalCode" type="Common.PostalCode"/>
+  <xs:element name="interactionType" type="Common.InteractionType"/>
+  <xs:element name="recordDate" type="Common.Date"/>
+  <xs:element name="text" type="reasonText"/>
+  <xs:element name="amount" type="Common.TotalMonetaryAmount"/>
+  <xs:element name="rate" type="Common.ChargeRate"/>
+  <xs:element name="serviceEventType" type="Common.ServiceEventType"/>
+  <!-- Common Complex Type Definition -->
+  <!-- 種別 -->
+  <xs:complexType name="Common.InteractionType">
+    <xs:attribute name="code" type="Code.InteractionType" use="required"/>
+  </xs:complexType>
+  <!-- 実施区分 -->
+  <xs:complexType name="Common.ServiceEventType">
+    <xs:attribute name="code" type="Code.ServiceEventType" use="required"/>
+  </xs:complexType>
+  <!-- 被保険者証情報 -->
+  <xs:complexType name="Common.InsuranceCard">
+    <xs:sequence>
+      <xs:element ref="insurerNumber"/>
+      <xs:element ref="symbol" minOccurs="0"/>
+      <xs:element ref="number"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 日付（YYYYMMDD形式） -->
+  <xs:complexType name="Common.Date">
+    <xs:attribute name="value" type="date" use="required"/>
+  </xs:complexType>
+  <!-- 窓口負担情報 -->
+  <xs:complexType name="Common.ChargeType">
+    <xs:choice minOccurs="0">
+      <xs:element name="amount" type="Common.ChargeMonetaryAmount"/>
+      <xs:element ref="rate"/>
+    </xs:choice>
+    <xs:attribute name="code" type="Code.ChargeType" use="required"/>
+  </xs:complexType>
+  <!-- 自己負担情報 -->
+  <xs:complexType name="Common.Copayment">
+    <xs:choice minOccurs="0">
+      <xs:element name="amount" type="Common.ChargeMonetaryAmount"/>
+      <xs:element name="rate" type="Common.ChargeRate"/>
+    </xs:choice>
+    <xs:attribute name="code" type="Code.ChargeTypeForCopayment" use="required"/>
+  </xs:complexType>
+  <!-- 窓口負担情報（保険者負担上限額） -->
+  <xs:complexType name="Common.MaximumInsuranceLimit">
+    <xs:sequence>
+      <xs:element name="amount" type="Common.ChargeMonetaryAmount"/>
+    </xs:sequence>
+    <xs:attribute name="code" type="Code.ChargeTypeForMaximumInsuranceLimit" fixed="4"/>
+  </xs:complexType>
+  <!-- 割合 -->
+  <xs:complexType name="Common.Percentage">
+    <xs:attribute name="value" type="percentage" use="required"/>
+    <xs:attribute name="unit" type="Code.Unit" default="%"/>
+  </xs:complexType>
+  <!-- 負担率情報 -->
+  <xs:complexType name="Common.ChargeRate">
+    <xs:attribute name="value" type="chargeRate" use="required"/>
+    <xs:attribute name="unit" type="Code.Unit" default="%"/>
+  </xs:complexType>
+  <!-- 住所情報 -->
+  <xs:complexType name="Common.Address" mixed="true">
+    <xs:sequence>
+      <xs:element ref="postalCode"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 郵便番号 -->
+  <xs:simpleType name="Common.PostalCode">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{3}-[0-9]{4}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 受診情報 -->
+  <xs:complexType name="Common.Encounter">
+    <xs:sequence>
+      <xs:element ref="serviceEventType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 健診機関・保健指導機関情報 -->
+  <xs:complexType name="Common.CheckupProvider">
+    <xs:sequence>
+      <xs:element name="id" type="Common.CheckupProviderId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 識別子情報 -->
+  <xs:complexType name="Common.InstanceIdentifier">
+    <xs:attribute name="root" type="oid" use="required"/>
+    <xs:attribute name="extension" type="xs:string" use="required"/>
+  </xs:complexType>
+  <!-- 被保険者証記号-->
+  <xs:complexType name="Common.InsuranceSymbol">
+    <xs:attribute name="root" type="insuranceSymbolOid" use="required"/>
+    <xs:attribute name="extension" type="extensionForInsuranceNumberOrInsuranceSymbol" use="required"/>
+  </xs:complexType>
+  <!-- 被保険者証番号 -->
+  <xs:complexType name="Common.InsuranceNumber">
+    <xs:attribute name="root" type="insuranceNumberOid" use="required"/>
+    <xs:attribute name="extension" type="extensionForInsuranceNumberOrInsuranceSymbol" use="required"/>
+  </xs:complexType>
+  <!-- 保険者番号 -->
+  <xs:complexType name="Common.InsuranceProviderId">
+    <xs:attribute name="root" type="insuranceProviderOid" use="required"/>
+    <xs:attribute name="extension" type="insuranceProviderId" use="required"/>
+  </xs:complexType>
+  <!-- 健診機関・保健指導機関番号 -->
+  <xs:complexType name="Common.CheckupProviderId">
+    <xs:attribute name="root" type="checkupProviderOid" use="required"/>
+    <xs:attribute name="extension" type="checkupProviderId" use="required"/>
+  </xs:complexType>
+  <!-- 受診券番号-->
+  <xs:complexType name="Common.CheckupCardId">
+    <xs:attribute name="root" type="checkupCardOid" use="required"/>
+    <xs:attribute name="extension" type="consultationCardId" use="required"/>
+  </xs:complexType>
+  <!-- 利用券番号-->
+  <xs:complexType name="Common.HealthGuidanceCardId">
+    <xs:attribute name="root" type="healthGuidanceCardOid" use="required"/>
+    <xs:attribute name="extension" type="consultationCardId" use="required"/>
+  </xs:complexType>
+  <!-- 金額 -->
+  <xs:complexType name="Common.MonetaryAmount">
+    <xs:attribute name="value" type="xs:integer" use="required"/>
+    <xs:attribute name="currency" type="Code.Currency" default="JPY"/>
+  </xs:complexType>
+  <!-- 総額(9桁以内) -->
+  <xs:complexType name="Common.TotalMonetaryAmount">
+    <xs:complexContent>
+      <xs:restriction base="Common.MonetaryAmount">
+        <xs:attribute name="value" type="totalMonetaryAmount" use="required"/>
+      </xs:restriction>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- 窓口負担金額 -->
+  <xs:complexType name="Common.Payment">
+    <xs:sequence>
+      <xs:element name="amount" type="Common.ChargeMonetaryAmount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 負担費用(6桁) -->
+  <xs:complexType name="Common.ChargeMonetaryAmount">
+    <xs:attribute name="value" type="chargeMonetaryAmount" use="required"/>
+    <xs:attribute name="currency" type="Code.Currency" default="JPY"/>
+  </xs:complexType>
+  <!-- コード化値 -->
+  <xs:complexType name="Common.CodedValue">
+    <xs:attribute name="code" type="codedSimpleValue" use="required"/>
+    <xs:attribute name="codeSystem" type="oid" use="required"/>
+  </xs:complexType>
+  <!-- 男女区分 -->
+  <xs:complexType name="Common.AdministrativeGender">
+    <xs:attribute name="code" type="Code.AdministrativeGender" use="required"/>
+  </xs:complexType>
+  <!-- 受診者・利用者氏名 -->
+  <xs:complexType name="Common.PersonName" mixed="true"/>
+  <!-- 処理結果 -->
+  <xs:complexType name="Common.AdjudicationResultBase" abstract="true">
+    <xs:sequence>
+      <xs:element ref="interactionType"/>
+      <xs:element ref="recordDate"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 保険者処理結果 -->
+  <xs:complexType name="Common.InsurerAdjudicationResult">
+    <xs:complexContent>
+      <xs:extension base="Common.AdjudicationResultBase">
+        <xs:sequence>
+          <xs:element name="reason" type="Common.MalpracticeReason"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- 代行機関処理結果 -->
+  <xs:complexType name="Common.AgencyAdjudicationResult">
+    <xs:complexContent>
+      <xs:extension base="Common.AdjudicationResultBase">
+        <xs:sequence>
+          <xs:element name="reason" type="Common.ErrorReason"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- 返戻理由 -->
+  <xs:complexType name="Common.ErrorReason">
+    <xs:sequence>
+      <xs:element ref="text" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="code" type="Code.ErrorCode"/>
+  </xs:complexType>
+  <!-- 過誤返戻理由 -->
+  <xs:complexType name="Common.MalpracticeReason">
+    <xs:sequence>
+      <xs:element ref="text" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="code" type="Code.MalpracticeCode"/>
+  </xs:complexType>
+  <!-- 期間情報 -->
+  <xs:complexType name="Common.IntervalPointInTime">
+    <xs:sequence>
+      <xs:element name="high" type="Common.Date"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 単価情報 -->
+  <xs:complexType name="Common.UnitPrice">
+    <xs:sequence>
+      <xs:element ref="amount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!-- 健診項目別単価情報（詳細な健診） -->
+  <xs:complexType name="Common.UnitPriceWithDetailObservation">
+    <xs:complexContent>
+      <xs:extension base="Common.UnitPrice">
+        <xs:sequence>
+          <xs:element name="observation" type="Common.DetailObservation"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- 健診項目別単価情報（追加健診） -->
+  <xs:complexType name="Common.UnitPriceWithOtherObservation">
+    <xs:complexContent>
+      <xs:extension base="Common.UnitPrice">
+        <xs:sequence>
+          <xs:element name="observation" type="Common.OtherObservation" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!-- 健診項目（詳細な健診） -->
+  <xs:complexType name="Common.DetailObservation">
+    <xs:attribute name="code" type="Code.DetailObservationCode" use="required"/>
+  </xs:complexType>
+  <!-- 健診項目（追加健診） -->
+  <xs:complexType name="Common.OtherObservation">
+    <xs:attribute name="code" type="codedSimpleValue" use="required"/>
+    <xs:attribute name="codeSystem" type="observationCodeSystemOid" use="required"/>
+  </xs:complexType>
+  <!-- Common SimpleType Definition -->
+  <xs:simpleType name="codedSimpleValue">
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[^\s]+"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- OID -->
+  <xs:simpleType name="oid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-2](\.(0|[1-9][0-9]*))*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 日付（YYYYMMDD形式） -->
+  <xs:simpleType name="date">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="([1-9][0-9][0-9][0-9])((0[1-9])|(1[0-2]))(([0-2][0-9])|(3[01]))"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 特定健診機関番号、特定保健指導機関番号 -->
+  <xs:simpleType name="checkupProviderId">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{10}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 保険者番号 -->
+  <xs:simpleType name="insuranceProviderId">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{0,8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 代行機関番号 -->
+  <xs:simpleType name="agencyProviderId">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 特定健診機関番号、特定保健指導機関番号、代行機関番号、保険者番号 -->
+  <xs:simpleType name="senderId">
+    <xs:union memberTypes="checkupProviderId insuranceProviderId agencyProviderId"/>
+  </xs:simpleType>
+  <!-- 特定健診機関番号、特定保健指導機関番号、代行機関番号、保険者番号 -->
+  <xs:simpleType name="receiverId">
+    <xs:union memberTypes="checkupProviderId insuranceProviderId agencyProviderId"/>
+  </xs:simpleType>
+  <!-- 送信機関OID -->
+  <xs:simpleType name="senderOid">
+    <xs:union memberTypes="checkupProviderOid insuranceProviderOid agencyProviderOid"/>
+  </xs:simpleType>
+  <!-- 受信機関OID -->
+  <xs:simpleType name="receiverOid">
+    <xs:union memberTypes="checkupProviderOid insuranceProviderOid agencyProviderOid localGovernmentOid"/>
+  </xs:simpleType>
+  <!-- 健診・保健指導機関番号OID -->
+  <xs:simpleType name="checkupProviderOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.102"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 保険者番号OID -->
+  <xs:simpleType name="insuranceProviderOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.101"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 代行機関番号OID -->
+  <xs:simpleType name="agencyProviderOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.103"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 地方公共団体コードOID -->
+  <xs:simpleType name="localGovernmentOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.105"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 被保険者証記号等OID -->
+  <xs:simpleType name="insuranceSymbolOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.204"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 被保険者証番号等OID -->
+  <xs:simpleType name="insuranceNumberOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.205"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 受診券整理番号OID -->
+  <xs:simpleType name="checkupCardOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.209"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 利用券整理番号OID -->
+  <xs:simpleType name="healthGuidanceCardOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.210"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 健診項目コード体系OID -->
+  <xs:simpleType name="observationCodeSystemOid">
+    <xs:restriction base="oid">
+      <xs:enumeration value="1.2.392.200119.6.1005"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 受診券番号、利用券番号 -->
+  <xs:simpleType name="consultationCardId">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{11}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 総計(6桁以内) -->
+  <xs:simpleType name="totalCount">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="999999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- ポイント数(4桁以内) -->
+  <xs:simpleType name="pointCount">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="9999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担金額(6桁) -->
+  <xs:simpleType name="chargeMonetaryAmount">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 合計金額(9桁以内) -->
+  <xs:simpleType name="totalMonetaryAmount">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="999999999"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 被保険者記号・番号（20文字以内） -->
+  <xs:simpleType name="extensionForInsuranceNumberOrInsuranceSymbol">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="20"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 理由テキスト（100文字以内） -->
+  <xs:simpleType name="reasonText">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担率(6桁) -->
+  <xs:simpleType name="chargeRate">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 割合(3桁) -->
+  <xs:simpleType name="percentage">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Coded Value Deifinition -->
+  <!--  種別コード(別表1) -->
+  <xs:simpleType name="Code.InteractionType">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+      <xs:enumeration value="6"/>
+      <xs:enumeration value="7"/>
+      <xs:enumeration value="8"/>
+      <xs:enumeration value="9"/>
+      <xs:enumeration value="10"/>
+      <xs:enumeration value="11"/>
+      <xs:enumeration value="12"/>
+      <xs:enumeration value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 実施区分コード(別表3) -->
+  <xs:simpleType name="Code.ServiceEventType">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 男女区分コード(別表4) -->
+  <xs:simpleType name="Code.AdministrativeGender">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担コード(別表6) -->
+  <xs:simpleType name="Code.ChargeType">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担コード 自己負担のみ(別表6) -->
+  <xs:simpleType name="Code.ChargeTypeForCopayment">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担コード 保険者負担上限額のみ(別表6) -->
+  <xs:simpleType name="Code.ChargeTypeForMaximumInsuranceLimit">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 請求区分コード(別表7) -->
+  <xs:simpleType name="Code.ClaimType">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 詳細な健診項目コード(別表8) -->
+  <xs:simpleType name="Code.DetailObservationCode">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 返戻理由コード(別表9) -->
+  <xs:simpleType name="Code.ErrorCode">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="01"/>
+      <xs:enumeration value="02"/>
+      <xs:enumeration value="03"/>
+      <xs:enumeration value="04"/>
+      <xs:enumeration value="05"/>
+      <xs:enumeration value="06"/>
+      <xs:enumeration value="07"/>
+      <xs:enumeration value="08"/>
+      <xs:enumeration value="09"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 過誤返戻理由コード(別表10) -->
+  <xs:simpleType name="Code.MalpracticeCode">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="01"/>
+      <xs:enumeration value="02"/>
+      <xs:enumeration value="03"/>
+      <xs:enumeration value="04"/>
+      <xs:enumeration value="05"/>
+      <xs:enumeration value="06"/>
+      <xs:enumeration value="07"/>
+      <xs:enumeration value="08"/>
+      <xs:enumeration value="09"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 保健指導実施時点コード(別表11) -->
+  <xs:simpleType name="Code.HealthGuidanceTiming">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+      <xs:enumeration value="5"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 保健指導区分コード(別表12) -->
+  <xs:simpleType name="Code.HealthGuidanceLevel">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+      <xs:enumeration value="3"/>
+      <xs:enumeration value="4"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 窓口負担徴収コード(別表14) -->
+  <xs:simpleType name="Code.HealthGuidancePaymentStatus">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 委託料単価区分（別表15） -->
+  <xs:simpleType name="Code.CommissionType">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="1"/>
+      <xs:enumeration value="2"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 通貨コード -->
+  <xs:simpleType name="Code.Currency">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="JPY"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- 単位コード -->
+  <xs:simpleType name="Code.Unit">
+    <xs:restriction base="codedSimpleValue">
+      <xs:enumeration value="%"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
