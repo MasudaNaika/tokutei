@@ -11,9 +11,9 @@
 	<classpathentry kind="lib" path="/work-directory/DBAdjuster.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/clientos.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/serveros.jar"/>
-	<classpathentry kind="var" path="TOCAT_HOME"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jnlp.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/commonos.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

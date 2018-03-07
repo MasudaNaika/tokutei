@@ -5,20 +5,25 @@
 	<property name="source_directory" value="src"/>
 	<property name="output_directory" value="output"/>
 	<property name="common_directory" value="./../common-component/src/"/>
-	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
-	<property name="lib_directory3" value="./../resources/NITTOKU"/>
+	<property name="lib_directory" value="./../work-directory/lib"/>
 
 	<!-- 繧ｯ繝ｩ繧ｹ繝代せ -->
 	<path id="lib.classpath">
 		<fileset dir="${lib_directory}">
 			<include name="**/*.jar" />
 		</fileset>
+<<<<<<< build.xml
 		<fileset dir="${lib_directory3}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
 
 	<!-- 繝輔ぃ繧､繝ｫ鬘槭�ｮ螳壽焚 -->
+=======
+	</path>	
+	
+	<!-- ファイル類の定数 -->
+>>>>>>> 1.1.1.3
 	<property name="jar_file" value="${output_directory}/JUpdate.jar"/>
 	<property name="manifest_file" value="manifest"/>
 
@@ -26,16 +31,24 @@
 	<target name="jar" depends="compile">
 		<mkdir dir="${output_directory}"/>
 		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
+<<<<<<< build.xml
 		<!-- resources/NITTOKU縺ｫ繧ｳ繝斐�ｼ縺ｮ縺溘ａ谺｡縺ｮ3陦後ｒ霑ｽ蜉 -->
 		<copy todir="${lib_directory3}">
 		<fileset dir="${output_directory}" />
 		</copy>
+=======
+>>>>>>> 1.1.1.3
 	</target>
+<<<<<<< build.xml
 
 	<!-- 繧ｳ繝ｳ繝代う繝ｫ -->
+=======
+	
+	<!-- コンパイル -->
+>>>>>>> 1.1.1.3
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
-		<javac srcdir="${common_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
-		<javac srcdir="${source_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
+		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
+		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
 	</target>
 </project>

@@ -3,8 +3,7 @@
 	<!-- フォルダ類の定数 -->
 	<property name="class_directory" value="class"/>
 	<property name="javadoc_directory" value="javadoc"/>
-	<property name="lib_directory" value="./../resources/NITTOKU/Lib"/>
-	<property name="lib_directory3" value="./../resources/NITTOKU"/>
+	<property name="lib_directory" value="./../work-directory/Lib"/>
 	<property name="source_directory" value="src"/>
 	<property name="common_directory" value="./../common-component/src/"/>
 	<property name="output_directory" value="output"/>
@@ -13,9 +12,6 @@
 	<path id="lib.classpath">
 		<fileset dir="${lib_directory}">
 			<include name="**/*.jar" />
-		</fileset>
-		<fileset dir="${lib_directory3}">
-			<include name="**/DBAdjuster.jar" />
 		</fileset>
 	</path>
 
@@ -27,17 +23,20 @@
 	<target name="jar" depends="compile">
 		<mkdir dir="${output_directory}"/>
 		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
+<<<<<<< build.xml
 		<!-- resources/NITTOKUにコピーのため次の3行を追加 -->
 		<copy todir="${lib_directory3}">
 		<fileset dir="${output_directory}" />
 		</copy>
+=======
+>>>>>>> 1.1.1.2
 	</target>
 
 	<!-- コンパイル -->
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
-		<javac srcdir="${common_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
-		<javac srcdir="${source_directory}" classpathref="lib.classpath"  destdir="${class_directory}" encoding="ms932" />
+		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
+		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
 	</target>
 
 	<!-- JavaDoc -->

@@ -5,20 +5,22 @@
 	<classpathentry kind="lib" path="/work-directory/Lib/iTextAsian.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jaybird-full.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="/work-directory/Lib/postgresql.jar"/>
 	<classpathentry kind="lib" path="/work-directory/DBYearAdjuster.jar"/>
-	<classpathentry kind="lib" path="/work-directory/Lib/clientos.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/clientos.jar" sourcepath="E:/workspace/__OpenSwing2.4.5"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jnlp-servlet.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jnlp.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/liquidlnf.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/looks-2.3.1.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/serveros.jar"/>
-	<classpathentry kind="var" path="TOCAT_HOME"/>
 	<classpathentry kind="lib" path="/work-directory/DBAdjuster.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/poi-2.0-RC2-20040102.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="lib" path="/work-directory/Lib/commonos.jar"/>
-	<classpathentry kind="var" path="SWT_LIB"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jcommon-1.0.17.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/jfreechart-1.0.14.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_24"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="/work-directory/Lib/postgresql.jar"/>
+	<classpathentry kind="lib" path="/work-directory/JExecUnlocker.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
