@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="Shift_JIS"?>
+<?xml version="1.0" encoding="utf-8"?>
 <project name="db-yearadjuster" default="jar" basedir=".">
 	<!-- フォルダ類の定数 -->
 	<property name="class_directory" value="class"/>
@@ -28,9 +28,8 @@
 	<!-- コンパイル -->
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
-<<<<<<< build.xml
-		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
-		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="ms932"/>
+		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="utf-8"/>
+		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="utf-8"/>
 	</target>
 
 	<!-- 署名 -->
@@ -52,9 +51,5 @@
 		<copy todir="${lib_directory3}">
 		  <fileset dir="${output_directory}" />
 		</copy>
-=======
-		<javac srcdir="${common_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
-		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
->>>>>>> 1.1.1.2
 	</target>
 </project>

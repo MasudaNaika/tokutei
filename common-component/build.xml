@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <project name="common-component" default="jar" basedir=".">
 	<!-- フォルダ類の定数 -->
 	<property name="class_directory" value="class"/>
@@ -6,51 +6,33 @@
 	<property name="lib_directory" value="./../work-directory/lib"/>
 	<property name="source_directory" value="src"/>
 	<property name="output_directory" value="output"/>
-<<<<<<< build.xml
 
 	<!-- クラスパス -->
-=======
-	
-	<!-- �N���X�p�X -->
->>>>>>> 1.1.1.3
+
 	<path id="lib.classpath">
 		<fileset dir="${lib_directory}">
 			<include name="**/*.jar" />
 		</fileset>
 	</path>
-<<<<<<< build.xml
+
 
 	<!-- ファイル類の定数 -->
-=======
 	
-	<!-- �t�@�C���ނ̒萔 -->
->>>>>>> 1.1.1.3
 	<property name="jar_file" value="${output_directory}/JCommon.jar"/>
 	<property name="manifest_file" value="manifest"/>
 
-<<<<<<< build.xml
 	<!-- jarファイルの作成 -->
-=======
-	<!-- jar�t�@�C���̍쐬 -->
->>>>>>> 1.1.1.3
 	<target name="jar" depends="compile">
 		<mkdir dir="${output_directory}"/>
 		<jar destfile="${jar_file}" basedir="${class_directory}" manifest="${manifest_file}"></jar>
 	</target>
-<<<<<<< build.xml
 
 	<!-- コンパイル -->
-=======
 	
-	<!-- �R���p�C�� -->
->>>>>>> 1.1.1.3
 	<target name="compile">
 		<mkdir dir="${class_directory}"/>
-<<<<<<< build.xml
 		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}" encoding="utf-8" />
-=======
 		<javac srcdir="${source_directory}" classpathref="lib.classpath" destdir="${class_directory}"/>
->>>>>>> 1.1.1.3
 	</target>
 
 	<!-- JavaDoc -->
