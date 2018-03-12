@@ -1,18 +1,16 @@
 package jp.or.med.orca.jma_tokutei.common.sql.dao.impl;
 
+import static java.sql.Types.BIGINT;
+import static java.sql.Types.INTEGER;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
-
-import static java.sql.Types.*;
 
 import jp.or.med.orca.jma_tokutei.common.sql.dao.JShowResultFrameDao;
 import jp.or.med.orca.jma_tokutei.common.sql.model.JShowResultFrameModel;
@@ -50,94 +48,96 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 //		" a.kensa_nengapi = ? ";
 
 	// edit ver2 s.inoue 2009/08/26
-	private static final String SELECT_TABLERECORD_SQL = createSelectTableRecordSql();
+//	private static final String SELECT_TABLERECORD_SQL = createSelectTableRecordSql();	// edit n.ohkubo 2015/03/01　未使用なので削除
 	private static final String SELECT_TABLERECORD_BY_UKETUKEID_SQL = createSelectTableRecordByUketukeIDSql();
 
-	private static String createSelectTableRecordSql(){
-		StringBuffer buffer = new StringBuffer();
-
-		buffer.append(" SELECT master.KOUMOKU_CD,");
-
-		// edit ver2 s.inoue 2009/07/23
-		//buffer.append(" master.KOUMOKU_NAME,");
-		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診4' then '質問4' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診5' then '質問5' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診6' then '質問6' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診7' then '質問7' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診8' then '質問8' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診9' then '質問9' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診10' then '質問10' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診11' then '質問11' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診12' then '質問12' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診13' then '質問13' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診14' then '質問14' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診15' then '質問15' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診16' then '質問16' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診17' then '質問17' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診18' then '質問18' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診19' then '質問19' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診20' then '質問20' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診21' then '質問21' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診22' then '質問22' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診23' then '質問23' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診24' then '質問24' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診25' then '質問25' ");
-		buffer.append("  else master.KOUMOKU_NAME end KOUMOKU_NAME, ");
-
-		buffer.append(" master.KENSA_HOUHOU,");
-		buffer.append(" sonota.KEKA_TI AS KEKA_TI_DECIMAL,");
-		buffer.append(" sonota.KEKA_TI AS KEKA_TI_CODE,");
-		buffer.append(" sonota.KEKA_TI AS KEKA_TI_STRING,");
-		// add s.inoue 20080911
-		buffer.append(" case sonota.JISI_KBN ");
-		buffer.append(" when 0 then TRIM('0:未実施') ");
-		buffer.append(" when 1 then TRIM('1:実施') ");
-		buffer.append(" when 2 then TRIM('2:測定不可能') ");
-		buffer.append(" else TRIM('1:実施') end as JISI_KBN, ");
-
-		buffer.append(" master.DS_KAGEN,");
-		buffer.append(" master.DS_JYOUGEN,");
-		buffer.append(" master.JS_KAGEN,");
-		buffer.append(" master.JS_JYOUGEN,");
-		buffer.append(" master.KAGEN,");
-		buffer.append(" master.JYOUGEN,");
-		buffer.append(" master.DATA_TYPE,");
-		buffer.append(" master.MAX_BYTE_LENGTH,");
-		buffer.append(" sonota.KOMENTO,");
-		buffer.append(" case sonota.H_L when 1 then 'L' ");
-		buffer.append(" when 2 then 'H' ");
-		buffer.append(" else '' end as H_L,");
-		buffer.append(" case sonota.HANTEI ");
-		buffer.append(" when 1 then '異常なし' ");
-		buffer.append(" when 2 then '軽度異常' ");
-		buffer.append(" when 3 then '要経過観察' ");
-		buffer.append(" when 4 then '異常' ");
-		buffer.append(" when 5 then '要精検' ");
-		buffer.append(" else '未判定' end ");
-		buffer.append(" as HANTEI ");
-
-		buffer.append(" FROM ");
-		buffer.append(" T_KENSAKEKA_SONOTA as sonota ");
-
-		buffer.append(" LEFT JOIN T_KENSHINMASTER as master ");
-		buffer.append(" ON sonota.KOUMOKU_CD = master.KOUMOKU_CD ");
-		// buffer.append(" AND ");
-		// buffer.append(" sonota.KENSA_NENGAPI = ? ");
-		buffer.append(" AND ");
-		buffer.append(" sonota.UKETUKE_ID = ? ");
-		buffer.append(" LEFT JOIN T_KENSHIN_P_S ps ");
-		buffer.append(" ON ps.KOUMOKU_CD = master.KOUMOKU_CD   ");
-		buffer.append(" AND ps.K_P_NO = ? ");
-		buffer.append(" WHERE master.KOUMOKU_CD NOT IN ('9N501000000000011', '9N506000000000011') ");
-		buffer.append(" AND ");
-		buffer.append(" master.HKNJANUM = ? ");
-		buffer.append(" ORDER BY ps.LOW_ID ");
-
-		return buffer.toString();
-	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　start
+//	private static String createSelectTableRecordSql(){
+//		StringBuffer buffer = new StringBuffer();
+//
+//		buffer.append(" SELECT master.KOUMOKU_CD,");
+//
+//		// edit ver2 s.inoue 2009/07/23
+//		//buffer.append(" master.KOUMOKU_NAME,");
+//		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診4' then '質問4' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診5' then '質問5' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診6' then '質問6' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診7' then '質問7' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診8' then '質問8' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診9' then '質問9' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診10' then '質問10' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診11' then '質問11' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診12' then '質問12' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診13' then '質問13' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診14' then '質問14' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診15' then '質問15' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診16' then '質問16' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診17' then '質問17' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診18' then '質問18' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診19' then '質問19' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診20' then '質問20' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診21' then '質問21' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診22' then '質問22' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診23' then '質問23' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診24' then '質問24' ");
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診25' then '質問25' ");
+//		buffer.append("  else master.KOUMOKU_NAME end KOUMOKU_NAME, ");
+//
+//		buffer.append(" master.KENSA_HOUHOU,");
+//		buffer.append(" sonota.KEKA_TI AS KEKA_TI_DECIMAL,");
+//		buffer.append(" sonota.KEKA_TI AS KEKA_TI_CODE,");
+//		buffer.append(" sonota.KEKA_TI AS KEKA_TI_STRING,");
+//		// add s.inoue 20080911
+//		buffer.append(" case sonota.JISI_KBN ");
+//		buffer.append(" when 0 then TRIM('0:未実施') ");
+//		buffer.append(" when 1 then TRIM('1:実施') ");
+//		buffer.append(" when 2 then TRIM('2:測定不可能') ");
+//		buffer.append(" else TRIM('1:実施') end as JISI_KBN, ");
+//
+//		buffer.append(" master.DS_KAGEN,");
+//		buffer.append(" master.DS_JYOUGEN,");
+//		buffer.append(" master.JS_KAGEN,");
+//		buffer.append(" master.JS_JYOUGEN,");
+//		buffer.append(" master.KAGEN,");
+//		buffer.append(" master.JYOUGEN,");
+//		buffer.append(" master.DATA_TYPE,");
+//		buffer.append(" master.MAX_BYTE_LENGTH,");
+//		buffer.append(" sonota.KOMENTO,");
+//		buffer.append(" case sonota.H_L when 1 then 'L' ");
+//		buffer.append(" when 2 then 'H' ");
+//		buffer.append(" else '' end as H_L,");
+//		buffer.append(" case sonota.HANTEI ");
+//		buffer.append(" when 1 then '異常なし' ");
+//		buffer.append(" when 2 then '軽度異常' ");
+//		buffer.append(" when 3 then '要経過観察' ");
+//		buffer.append(" when 4 then '異常' ");
+//		buffer.append(" when 5 then '要精検' ");
+//		buffer.append(" else '未判定' end ");
+//		buffer.append(" as HANTEI ");
+//
+//		buffer.append(" FROM ");
+//		buffer.append(" T_KENSAKEKA_SONOTA as sonota ");
+//
+//		buffer.append(" LEFT JOIN T_KENSHINMASTER as master ");
+//		buffer.append(" ON sonota.KOUMOKU_CD = master.KOUMOKU_CD ");
+//		// buffer.append(" AND ");
+//		// buffer.append(" sonota.KENSA_NENGAPI = ? ");
+//		buffer.append(" AND ");
+//		buffer.append(" sonota.UKETUKE_ID = ? ");
+//		buffer.append(" LEFT JOIN T_KENSHIN_P_S ps ");
+//		buffer.append(" ON ps.KOUMOKU_CD = master.KOUMOKU_CD   ");
+//		buffer.append(" AND ps.K_P_NO = ? ");
+//		buffer.append(" WHERE master.KOUMOKU_CD NOT IN ('9N501000000000011', '9N506000000000011') ");
+//		buffer.append(" AND ");
+//		buffer.append(" master.HKNJANUM = ? ");
+//		buffer.append(" ORDER BY ps.LOW_ID ");
+//
+//		return buffer.toString();
+//	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　end
 
 
 	// add ver2 s.inoue 2009/08/26
@@ -148,9 +148,16 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 
 		// edit ver2 s.inoue 2009/07/23
 		//buffer.append(" master.KOUMOKU_NAME,");
-		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");
+//		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");		// edit n.ohkubo 2015/03/01　削除
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");			// edit n.ohkubo 2015/03/01　削除
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");			// edit n.ohkubo 2015/03/01　削除
+		
+		// edit n.ohkubo 2015/03/01　追加　start　枝番削除
+		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1' ");
+		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問2' ");
+		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問3' ");
+		// edit n.ohkubo 2015/03/01　追加　end　枝番削除
+		
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診4' then '質問4' ");
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診5' then '質問5' ");
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診6' then '質問6' ");
@@ -237,6 +244,7 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 	 * @param centerKoumokuCd 検査センター項目コード
 	 * @return JShowResultFrameModel
 	 */
+	@Override
 	public JShowResultFrameModel selectKpNameCenterName(Long uketukeId) throws SQLException {
 
 		Connection con = getConnection();
@@ -280,6 +288,7 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 //	}
 
 	// edit ver2 s.inoue 2009/08/26 orverload
+	@Override
 	public List<TreeMap<String, String>>selectTableRecord(Long uketukeId, Integer kenshinPatternNumber, String hknjanum)
 	throws SQLException {
 
@@ -353,7 +362,6 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 	@Override
 	public JShowResultFrameModel selectKpNameCenterName(Long uketukeId,
 			Integer kensaNengapi, Integer centerKoumokuCd) throws SQLException {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 
@@ -361,7 +369,6 @@ public class JShowResultFrameDaoImpl extends DaoImpl implements
 	public List<TreeMap<String, String>> selectTableRecord(Long uketukeId,
 			Integer kensaNengapi, String hknjanum, Integer kenshinPatternNumber)
 			throws SQLException {
-		// TODO 自動生成されたメソッド・スタブ
 		return null;
 	}
 }

@@ -3,14 +3,12 @@ package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.TreeMap;
 
 import jp.or.med.orca.jma_tokutei.common.app.JConstantString;
-import jp.or.med.orca.jma_tokutei.common.util.FiscalYearUtil;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.AddMedical;
 
 import com.lowagie.text.DocumentException;
@@ -44,8 +42,16 @@ public class PrintKihonChkList {
 		String zKensaNengappi = replaseNenGaPii(kensaNenList,1);
 		String zzKensaNengappi = replaseNenGaPii(kensaNenList,2);
 
-		String[] params = new String[1];
+		// edit n.ohkubo 2016/02/01　削除　start　常に3件分表示する
+//		String[] params = new String[1];
+//		params[0] = kojinData.get("UKETUKE_ID");
+		// edit n.ohkubo 2016/02/01　削除　end　常に3件分表示する
+		
+		// edit n.ohkubo 2016/02/01　追加　start　常に3件分表示する
+		String[] params = new String[2];
 		params[0] = kojinData.get("UKETUKE_ID");
+		params[1] = kensaNengappi;
+		// edit n.ohkubo 2016/02/01　追加　end　常に3件分表示する
 
 		// edit ver2 s.inoue 2009/06/23
 		List<TreeMap<String, String>> tmpChkListKeys = addM.getKihonChkKeys(params,kensaNengappi,kensaNenList);
@@ -58,30 +64,37 @@ public class PrintKihonChkList {
 //			}
 //		}
 
-		boolean blnYear = FiscalYearUtil.getJugeThisYear(kensaNengappi);
+//		boolean blnYear = FiscalYearUtil.getJugeThisYear(kensaNengappi);	// edit n.ohkubo 2016/02/01　削除
 
 		// 今年度過去3年分
 		List<TreeMap<String, String>> tmpChkList = null;
 		List<TreeMap<String, String>> zTmpChkList = null;
 		List<TreeMap<String, String>> zzTmpChkList = null;
 
-		if(blnYear && kensaNenList.size() > 1){
+//		if(blnYear && kensaNenList.size() > 1){	// edit n.ohkubo 2016/02/01　削除
 			if (tmpChkListKeys.size() > 0){
-				tmpChkList = addM.getKihonChk(kojinData, kensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinou),tmpChkListKeys.get(0));
+				// edit s.inoue 2014/07/04 JConstantString.codesSeikatuKinou →codesSeikatuKinouPrint
+				tmpChkList = addM.getKihonChk(kojinData, kensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinouPrint),tmpChkListKeys.get(0));
 			}
 			if  (tmpChkListKeys.size() > 1){
-				zTmpChkList = addM.getKihonChk(kojinData, zKensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinou),tmpChkListKeys.get(1));
+				// edit s.inoue 2014/07/04 JConstantString.codesSeikatuKinou →codesSeikatuKinouPrint
+				zTmpChkList = addM.getKihonChk(kojinData, zKensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinouPrint),tmpChkListKeys.get(1));
 			}
 			if  (tmpChkListKeys.size() > 2){
-				zzTmpChkList = addM.getKihonChk(kojinData, zzKensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinou),tmpChkListKeys.get(2));
+				// edit s.inoue 2014/07/04 JConstantString.codesSeikatuKinou →codesSeikatuKinouPrint
+				zzTmpChkList = addM.getKihonChk(kojinData, zzKensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinouPrint),tmpChkListKeys.get(2));
 			}
 			createPdf(kensaNenList,tmpPath,tmpChkList,zTmpChkList,zzTmpChkList,kikanData,kojinData,ishiName,div,printSelect);
-		}else{
-			if (tmpChkListKeys.size() > 0){
-				tmpChkList = addM.getKihonChk(kojinData, kensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinou),tmpChkListKeys.get(0));
-			}
-			createPdf(kensaNenList,tmpPath,tmpChkList,null,null,kikanData,kojinData,ishiName,div,printSelect);
-		}
+			
+			// edit n.ohkubo 2016/02/01　削除　start　常に3件分表示する
+//		}else{
+//			if (tmpChkListKeys.size() > 0){
+//				// edit s.inoue 2014/07/04 JConstantString.codesSeikatuKinou →codesSeikatuKinouPrint
+//				tmpChkList = addM.getKihonChk(kojinData, kensaNengappi, Arrays.asList(JConstantString.codesSeikatuKinouPrint),tmpChkListKeys.get(0));
+//			}
+//			createPdf(kensaNenList,tmpPath,tmpChkList,null,null,kikanData,kojinData,ishiName,div,printSelect);
+//		}
+			// edit n.ohkubo 2016/02/01　削除　end　常に3件分表示する
 
 		return pdfPathList;
 	}
@@ -101,7 +114,7 @@ public class PrintKihonChkList {
 			int printSelect
 	) {
 
-		String kensaNengappi;
+//		String kensaNengappi;	// edit n.ohkubo 2016/02/01　未使用なので削除
 
 		TreeMap<String, String> resultItem = new TreeMap<String, String>();
 		TreeMap<String, String> zResultItem = new TreeMap<String, String>();
@@ -361,9 +374,11 @@ public class PrintKihonChkList {
 			if(val.equals("")){
 				return false;
 			}
-			if(val==null){
-				return false;
-			}
+			// edit n.ohkubo 2016/02/01　デッド・コードなので削除　start
+//			if(val==null){
+//				return false;
+//			}
+			// edit n.ohkubo 2016/02/01　デッド・コードなので削除　end
 		} catch (RuntimeException e) {
 			return false;
 		}
@@ -375,9 +390,11 @@ public class PrintKihonChkList {
 			if(val.equals("")){
 				return "0";
 			}
-			if(val==null){
-				return "0";
-			}
+			// edit n.ohkubo 2016/02/01　デッド・コードなので削除　start
+//			if(val==null){
+//				return "0";
+//			}
+			// edit n.ohkubo 2016/02/01　デッド・コードなので削除　start
 		} catch (RuntimeException e) {
 			return "0";
 		}

@@ -3,6 +3,9 @@ package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shiharai;
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 public class JShiharaiMasterMaintenanceListData extends ValueObjectImpl {
+
+	private static final long serialVersionUID = 3710680936346405726L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private String SHIHARAI_DAIKO_NO;
 	private String SHIHARAI_DAIKO_NAME;
 	private String SHIHARAI_DAIKO_ZIPCD;
@@ -98,4 +101,13 @@ public class JShiharaiMasterMaintenanceListData extends ValueObjectImpl {
 
 	}
 
+	// edit n.ohkubo 2014/10/01　追加　start　openswingのバグ対応で"DUMMY"を追加したので、そのゲッター/セッターがないと、画面オープン時にヌルポが発生する
+	private String DUMMY;
+	public String getDUMMY() {
+		return DUMMY;
+	}
+	public void setDUMMY(String dUMMY) {
+		DUMMY = dUMMY;
+	}
+	// edit n.ohkubo 2014/10/01　追加　start　openswingのバグ対応で"DUMMY"を追加したので、そのゲッター/セッターがないと、画面オープン時にヌルポが発生する
 }

@@ -1,36 +1,27 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin;
 
 import java.awt.BorderLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.BorderFactory;
-import javax.swing.border.EtchedBorder;
-
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.Color;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
-import java.awt.dnd.DropTargetDropEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
@@ -38,16 +29,13 @@ import jp.or.med.orca.jma_tokutei.common.component.ExtendedDateChooser;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextArea;
-import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextField;
 import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenComboboxControl;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDateControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDnDTabbedPane;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenLabel;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenLabelControl;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenTextAreaControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenTextControl;
 
 /**
@@ -482,7 +470,8 @@ public class JRegisterFlame extends JFrame implements ActionListener, KeyListene
 			jLabel_HihokenjyaNo.setFont(new Font("Dialog", Font.PLAIN, 12));
 
 			jLabel_JusinsyaNm = new ExtendedOpenLabel();
-			jLabel_JusinsyaNm.setText("氏名");
+//			jLabel_JusinsyaNm.setText("氏名");		// edit n.ohkubo 2015/03/01　削除
+			jLabel_JusinsyaNm.setText("氏名（カナ）");	// edit n.ohkubo 2015/03/01　追加
 			jLabel_JusinsyaNm.setFont(new Font("Dialog", Font.PLAIN, 12));
 
 			jLabel_Sex = new ExtendedOpenLabel();
@@ -1194,23 +1183,25 @@ public class JRegisterFlame extends JFrame implements ActionListener, KeyListene
 //		return jButton_PrintRyoshu;
 //	}
 
-	/**
-	 * This method initializes jButton_Register
-	 *
-	 * @return javax.swing.ExtendedButton
-	 */
-	private ExtendedButton getJButton_RyoshuPrint() {
-		if (jButton_Register == null) {
-			ExtendedImageIcon iIcon = new ExtendedImageIcon(JPath.Ico_Common_Register);
-			ImageIcon icon = iIcon.setStrechIcon(this, JPath.CONST_FIX_ICON);
+	// edit n.ohkubo 2015/03/01　未使用なので削除
+//	/**
+//	 * This method initializes jButton_Register
+//	 *
+//	 * @return javax.swing.ExtendedButton
+//	 */
+//	private ExtendedButton getJButton_RyoshuPrint() {
+//		if (jButton_Register == null) {
+//			ExtendedImageIcon iIcon = new ExtendedImageIcon(JPath.Ico_Common_Register);
+//			ImageIcon icon = iIcon.setStrechIcon(this, JPath.CONST_FIX_ICON);
+//
+//			jButton_Register= new ExtendedButton(
+//					"Close","登録(S)","登録(ALT+S)",KeyEvent.VK_S,icon);
+//			jButton_Register.addActionListener(this);
+//		}
+//		return jButton_Register;
+//	}
 
-			jButton_Register= new ExtendedButton(
-					"Close","登録(S)","登録(ALT+S)",KeyEvent.VK_S,icon);
-			jButton_Register.addActionListener(this);
-		}
-		return jButton_Register;
-	}
-
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 	}
@@ -1218,6 +1209,7 @@ public class JRegisterFlame extends JFrame implements ActionListener, KeyListene
 	/*
 	 * FrameSize Control
 	 */
+	@Override
 	public void validate()
 	{
 		Rectangle rect = getBounds();
@@ -1232,28 +1224,28 @@ public class JRegisterFlame extends JFrame implements ActionListener, KeyListene
 						   ViewSettings.getTokuteiLoginFrameHeight() );
 			}
 	}
+	@Override
 	public void keyPressed(KeyEvent arg0) {
 	}
+	@Override
 	public void keyReleased(KeyEvent arg0) {
 	}
+	@Override
 	public void keyTyped(KeyEvent arg0) {
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 

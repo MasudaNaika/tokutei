@@ -1,11 +1,10 @@
 package jp.or.med.orca.jma_tokutei.common.validate;
 
-import java.io.*;
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-
-import java.text.*;
-
-import org.apache.log4j.Logger;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.convert.JCalendarConvert;
@@ -19,7 +18,7 @@ public class JValidate {
 	public static final String USER_KENGEN_IPANUSER = "一般ユーザ";
 	public static final String USER_KENGEN_KANRISYA = "管理者";
 
-	private static org.apache.log4j.Logger logger = Logger.getLogger(JValidate.class);
+//	private static org.apache.log4j.Logger logger = Logger.getLogger(JValidate.class);	// edit n.ohkubo 2015/03/01　未使用なので削除
 
 	/* unicodeTO */
 	public static String encodeUNICODEtoConvert(String str){
@@ -589,8 +588,9 @@ public class JValidate {
 		if ( str.isEmpty() )
 			return str;
 
-		//全角以外を許可しない
-		if( !JValidate.isAllZenkaku(str) )
+		// edit s.inoue 2014/02/10
+		//全角/半角以外を許可しない
+		if( !(JValidate.isAllZenkaku(str) || JValidate.isAllHankaku(str)) )
 		{
 			return null;
 		}
@@ -599,6 +599,13 @@ public class JValidate {
 		{
 			return null;
 		}
+		
+		// edit n.ohkubo 2015/03/01　追加　start
+		//全角スペースは不可
+		if (str.indexOf("　") > 0) {
+			return null;
+		}
+		// edit n.ohkubo 2015/03/01　追加　end
 
 		return str;
 	}
@@ -612,17 +619,24 @@ public class JValidate {
 		if ( str.isEmpty() )
 			return str;
 
-		//全角以外を許可しない
-		if( !JValidate.isAllZenkaku(str) )
+		//全角/半角以外を許可しない
+		if( !(JValidate.isAllZenkaku(str) || JValidate.isAllHankaku(str)) )
 		{
 			return null;
 		}
-
+		
 		if( str.getBytes().length > 40)
 		{
 			return null;
 		}
-
+		
+		// edit n.ohkubo 2015/03/01　追加　start
+		//全角スペースは不可
+		if (str.indexOf("　") > 0) {
+			return null;
+		}
+		// edit n.ohkubo 2015/03/01　追加　end
+		
 		return str;
 	}
 
@@ -729,7 +743,7 @@ public class JValidate {
 			if ( str.isEmpty() )
 				return null;
 
-			String temp = "";
+//			String temp = "";	// edit n.ohkubo 2015/03/01　未使用なので削除
 
 			JorAD = JCalendarConvert.JCorAD(str);
 
@@ -2320,6 +2334,12 @@ public class JValidate {
 
 		if( isNumber(str) ){
 			retValue = str;
+			
+			// edit n.ohkubo 2015/08/01　追加　start　患者IDの桁数は、最大20桁（日レセのDBのカラムの制限）
+			if (!str.isEmpty() && Integer.parseInt(str) > 20) {
+				retValue = null;
+			}
+			// edit n.ohkubo 2015/08/01　追加　end　患者IDの桁数は、最大20桁（日レセのDBのカラムの制限）
 		}
 
 		return retValue;

@@ -1,33 +1,42 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.kenshin;
 
-import javax.swing.*;
-
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
-import org.openswing.swing.domains.java.Domain;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
 
-import org.openswing.swing.table.columns.client.*;
-import org.openswing.swing.message.receive.java.Response;
-import org.openswing.swing.message.receive.java.VOListResponse;
-import org.openswing.swing.message.send.java.GridParams;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Master;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
@@ -37,26 +46,34 @@ import jp.or.med.orca.jma_tokutei.common.csv.JCSVReaderStream;
 import jp.or.med.orca.jma_tokutei.common.csv.JCSVWriterStream;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
+import jp.or.med.orca.jma_tokutei.common.filter.SpecialFilterPanel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenEditButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenExportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenImportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenInsertButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenSaveButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorKenshinResultFrameData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.kenshinpattern.JKenshinpatternMasterMaintenanceListFrame;
 
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GenericButton;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.GridControl.ColumnContainer;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.domains.java.Domain;
+import org.openswing.swing.message.receive.java.Response;
+import org.openswing.swing.message.receive.java.VOListResponse;
+import org.openswing.swing.message.send.java.GridParams;
+import org.openswing.swing.table.columns.client.ComboColumn;
+import org.openswing.swing.table.columns.client.TextColumn;
+import org.openswing.swing.table.model.client.VOListTableModel;
+import org.openswing.swing.util.client.ClientSettings;
 import org.openswing.swing.util.client.ClientUtils;
-
-import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
 
 /**
  * 一覧List画面
@@ -65,7 +82,9 @@ import com.sun.corba.se.impl.oa.poa.ActiveObjectMap.Key;
  */
 public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
 
-	private Connection conn = null;
+	private static final long serialVersionUID = -8615537027525763087L;	// edit n.ohkubo 2014/10/01　追加
+
+//	private Connection conn = null;	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 	protected GridControl grid = new GridControl();
 	protected JPanel buttonOriginePanel = new JPanel();
@@ -144,6 +163,22 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 	protected ExtendedOpenGenericButton buttonImport = null;
 
 	private static org.apache.log4j.Logger logger = Logger.getLogger(JKenshinMasterMaintenanceListFrame.class);
+	
+	// edit n.ohkubo 2014/10/01　追加 start
+	private ColumnContainer columnContainer;
+	public ColumnContainer getColumnContainer() {
+		return this.columnContainer;
+	}
+	private JCheckBox savedJCheckBox = new JCheckBox();
+	public JCheckBox getSavedJCheckBox() {
+		return this.savedJCheckBox;
+	}
+	// edit n.ohkubo 2014/10/01　追加 end
+	
+	// edit n.ohkubo 2015/03/01　追加
+	protected ExtendedOpenGenericButton buttonDefault = null;		//初期値ボタン
+	protected String afterDefaultToolTipText = null;				//初期値ボタン押下後のツールチップ文言
+	protected List<TableCellRenderer> tableCellRendererList = null;	//TableCellRendererの初期設定退避用（初期値ボタン押下で設定し、再読込押下時に使用）
 
 	/* コンストラクタ */
 	public JKenshinMasterMaintenanceListFrame(Connection conn,
@@ -164,7 +199,7 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 	/* 制御メソッド */
 	public void setControl(Connection conn,
 			JKenshinMasterMaintenanceListFrameCtrl controller){
-		this.conn = conn;
+//		this.conn = conn;	// edit n.ohkubo 2014/10/01　未使用なので削除
 		try {
 			jbInit();
 
@@ -175,11 +210,20 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 			setVisible(true);
 
 			grid.addKeyListener(new KeyAdapter() {
-			      public void keyPressed(KeyEvent e) {
+			      @Override
+				public void keyPressed(KeyEvent e) {
 			        if (e.getKeyCode()==e.VK_CANCEL || e.getKeyCode()==e.VK_BACK_SPACE || e.getKeyCode()==e.VK_DELETE)
 			          System.out.println("成功");
 			      }
 			    });
+			
+			// edit n.ohkubo 2014/10/01　追加 start　検索画面にチェックボックスを追加
+			//フィルターパネル用のWindowListener
+			SpecialFilterPanel specialFilterPanel = new SpecialFilterPanel(savedJCheckBox, grid.getParent().getComponents());
+			
+			//このフレーム（一覧画面）がアクティブ化（画面右の検索ウィンドウ）　or　非アクティブ化（検索ウィンドウがポップアップで開かれ場合）されたときに動作するように、Listenerを設定（FilterPanelへのチェックボックス追加はListener内で行う）
+			this.addWindowListener(specialFilterPanel);
+			// edit n.ohkubo 2014/10/01　追加 end　検索画面にチェックボックスを追加
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,6 +270,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_HokenjaNumber.setPreferredWidth(200);
 		textColumn_HokenjaNumber.setColumnRequired(true);
 		textColumn_HokenjaNumber.setDomainId("T_HOKENJYA");
+		/*add tanaka 2013/11/15*/
+//		textColumn_HokenjaNumber.setColumnVisible(true);
+		textColumn_HokenjaNumber.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.HKNJANUM));
 
 		// 項目コード(*)
 		textColumn_KoumokuCd.setColumnFilterable(true);
@@ -233,6 +280,10 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_KoumokuCd.setColumnSortable(true);
 		textColumn_KoumokuCd.setPreferredWidth(150);
 		textColumn_KoumokuCd.setColumnRequired(true);
+		/*add tanaka 2013/11/15*/
+//		textColumn_KoumokuCd.setColumnVisible(true);
+		textColumn_KoumokuCd.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.KOUMOKU_CD));
+		textColumn_KoumokuCd.setMaxCharacters(17);	// edit n.ohkubo 2014/10/01　追加
 
 		// eidt s.inoue 2011/06/02
 		// 項目名
@@ -241,14 +292,22 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_KoumokuNm.setColumnSortable(true);
 		textColumn_KoumokuNm.setPreferredWidth(200);
 		textColumn_KoumokuNm.setColumnRequired(false);
-
+		/*add tanaka 2013/11/15*/
+//		textColumn_KoumokuNm.setColumnVisible(true);
+		textColumn_KoumokuNm.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.KOUMOKU_NAME));
+		textColumn_KoumokuNm.setMaxCharacters(200);	// edit n.ohkubo 2014/10/01　追加
+		
 		// 検査方法
 		textColumn_KensaHouhou.setColumnFilterable(true);
 		textColumn_KensaHouhou.setColumnName("KENSA_HOUHOU");
 		textColumn_KensaHouhou.setColumnSortable(true);
 		textColumn_KensaHouhou.setPreferredWidth(180);
 		textColumn_KensaHouhou.setColumnRequired(false);
-
+		/*add tanaka 2013/11/15*/
+//		textColumn_KensaHouhou.setColumnVisible(true);
+		textColumn_KensaHouhou.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.KENSA_HOUHOU));
+		textColumn_KensaHouhou.setMaxCharacters(200);	// edit n.ohkubo 2014/10/01　追加
+		
 		// 必須フラグ(編集可)
 		textColumn_HisuFlg.setColumnFilterable(true);
 		textColumn_HisuFlg.setColumnName("HISU_FLG");
@@ -259,7 +318,10 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 	    textColumn_HisuFlg.setColumnRequired(false);
 
 	    textColumn_HisuFlg.setDomainId("HISU_FLG");
-
+	    /*add tanaka 2013/11/15*/
+//	    textColumn_HisuFlg.setColumnVisible(true);
+	    textColumn_HisuFlg.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.HISU_FLG));
+	    
 		// 基準値下限(編集可)
 		textColumn_DSKagen.setColumnFilterable(true);
 		textColumn_DSKagen.setColumnName("DS_KAGEN");
@@ -272,7 +334,10 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_DSKagen.setColumnVisible(true);
 		textColumn_DSKagen.setColumnFilterable(false);
 		textColumn_DSKagen.setColumnSortable(false);
-
+		/*add tanaka 2013/11/15*/
+//		textColumn_DSKagen.setColumnVisible(true);
+		textColumn_DSKagen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.DS_KAGEN));
+		
 		// 基準値上限(編集可)
 		textColumn_DSJyougen.setColumnFilterable(true);
 		textColumn_DSJyougen.setColumnName("DS_JYOUGEN");
@@ -285,6 +350,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_DSJyougen.setColumnVisible(true);
 		textColumn_DSJyougen.setColumnFilterable(false);
 		textColumn_DSJyougen.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_DSJyougen.setColumnVisible(true);
+		textColumn_DSJyougen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.DS_JYOUGEN));
 
 		// 基準値上限値(編集可)
 		textColumn_JSKagen.setColumnFilterable(true);
@@ -297,6 +365,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_JSKagen.setColumnVisible(true);
 		textColumn_JSKagen.setColumnFilterable(false);
 		textColumn_JSKagen.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_JSKagen.setColumnVisible(true);
+		textColumn_JSKagen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.JS_KAGEN));
 
 		// 基準値下限値(編集可)
 		textColumn_JSJyougen.setColumnFilterable(true);
@@ -310,7 +381,10 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_JSJyougen.setColumnVisible(true);
 		textColumn_JSJyougen.setColumnFilterable(false);
 		textColumn_JSJyougen.setColumnSortable(false);
-
+		/*add tanaka 2013/11/15*/
+//		textColumn_JSJyougen.setColumnVisible(true);
+		textColumn_JSJyougen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.JS_JYOUGEN));
+		
 		// 単位
 		textColumn_Tani.setColumnFilterable(true);
 		textColumn_Tani.setColumnName("TANI");
@@ -321,6 +395,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_Tani.setColumnVisible(true);
 		textColumn_Tani.setColumnFilterable(false);
 		textColumn_Tani.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_Tani.setColumnVisible(true);
+		textColumn_Tani.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.TANI));
 
 		// 下限値
 		textColumn_Kagen.setColumnFilterable(true);
@@ -332,6 +409,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_Kagen.setColumnVisible(true);
 		textColumn_Kagen.setColumnFilterable(false);
 		textColumn_Kagen.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_Kagen.setColumnVisible(true);
+		textColumn_Kagen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.KAGEN));
 
 		// 上限値
 		textColumn_Jyogen.setColumnFilterable(true);
@@ -343,6 +423,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_Jyogen.setColumnVisible(true);
 		textColumn_Jyogen.setColumnFilterable(false);
 		textColumn_Jyogen.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_Jyogen.setColumnVisible(true);
+		textColumn_Jyogen.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.JYOUGEN));
 
 		// 基準値範囲
 		textColumn_KijyuntiHani.setColumnFilterable(true);
@@ -354,6 +437,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_KijyuntiHani.setColumnVisible(true);
 		textColumn_KijyuntiHani.setColumnFilterable(false);
 		textColumn_KijyuntiHani.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_KijyuntiHani.setColumnVisible(true);
+		textColumn_KijyuntiHani.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.KIJYUNTI_HANI));
 
 		// 単価健診
 		textColumn_TankaKenshin.setColumnFilterable(true);
@@ -367,6 +453,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_TankaKenshin.setColumnVisible(true);
 		textColumn_TankaKenshin.setColumnFilterable(false);
 		textColumn_TankaKenshin.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_TankaKenshin.setColumnVisible(true);
+		textColumn_TankaKenshin.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.TANKA_KENSIN));
 
 		// 備考
 		textColumn_Bikou.setColumnFilterable(true);
@@ -380,6 +469,9 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		textColumn_Bikou.setColumnVisible(true);
 		textColumn_Bikou.setColumnFilterable(false);
 		textColumn_Bikou.setColumnSortable(false);
+		/*add tanaka 2013/11/15*/
+//		textColumn_Bikou.setColumnVisible(true);
+		textColumn_Bikou.setColumnVisible(!JApplication.flag_Master.contains(FlagEnum_Master.BIKOU));
 
 		/* button */
 		setJButtons();
@@ -402,11 +494,13 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 	    buttonPanel.add(buttonClose, null);
 	    buttonPanel.add(buttonExport,null);
 	    buttonPanel.add(buttonImport,null);
+	    buttonPanel.add(buttonDefault,null);	// edit n.ohkubo 2015/03/01　追加
 
 		// action設定
 		buttonClose.addActionListener(new ListFrame_button_actionAdapter(this));
 		buttonExport.addActionListener(new ListFrame_button_actionAdapter(this));
 		buttonImport.addActionListener(new ListFrame_button_actionAdapter(this));
+		buttonDefault.addActionListener(new ListFrame_button_actionAdapter(this));	// edit n.ohkubo 2015/03/01　追加z
 
 		// openswing s.inoue 2011/01/25
 		Box origineBox = new Box(BoxLayout.X_AXIS);
@@ -489,6 +583,8 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		grid.getColumnContainer().add(textColumn_TankaKenshin, null);
 		grid.getColumnContainer().add(textColumn_Bikou, null);
 
+		columnContainer = grid.getColumnContainer();// edit n.ohkubo 2014/10/01　追加
+		
 		// add s.inoue 2012/11/12
 		jLabel_Title = new TitleLabel("tokutei.kenshin-item-mastermaintenance.frame.title","tokutei.kenshin-item-mastermaintenance.frame.guidance");
 		jLabel_Title.setFont(new Font("ＭＳ ゴシック", Font.PLAIN, 14));
@@ -541,10 +637,12 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		  ListFrame_button_actionAdapter(JKenshinMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 			  Object source = e.getSource();
 			  if (source == buttonClose){
 				  logger.info(buttonClose.getText());
+				  presevColumnStatus();//add tanaka 2013/11/15
 				  adaptee.closeButtton_actionPerformed(e);
 			  }else if(source == buttonExport){
 				  logger.info(buttonExport.getText());
@@ -553,7 +651,124 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 				  logger.info(buttonImport.getText());
 				  pushedImportButton(e);
 			  }
+			// edit n.ohkubo 2015/03/01　追加　start
+			  else if (source == buttonDefault) {
+				  logger.info(buttonDefault.getText());
+				  pushedDefaultButton();
+			  }
+			// edit n.ohkubo 2015/03/01　追加　end
 		  }
+		private void presevColumnStatus() {
+			if(!textColumn_HokenjaNumber.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.HKNJANUM))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.HKNJANUM));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.HKNJANUM));
+			}
+			
+			if(!textColumn_KoumokuCd.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.KOUMOKU_CD))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KOUMOKU_CD));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.KOUMOKU_CD));
+			}
+			
+			if(!textColumn_KoumokuNm.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.KOUMOKU_NAME))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KOUMOKU_NAME));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.KOUMOKU_NAME));
+			}
+			
+			if(!textColumn_KensaHouhou.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.KENSA_HOUHOU))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KENSA_HOUHOU));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.KENSA_HOUHOU));
+			}
+			
+			if(!textColumn_HisuFlg.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.HISU_FLG))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.HISU_FLG));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.HISU_FLG));
+			}
+			
+			if(!textColumn_DSKagen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.DS_KAGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.DS_KAGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.DS_KAGEN));
+			}
+			
+			if(!textColumn_DSJyougen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.DS_JYOUGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.DS_JYOUGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.DS_JYOUGEN));
+			}
+			
+			if(!textColumn_JSKagen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.JS_KAGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JS_KAGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.JS_KAGEN));
+			}
+			
+			if(!textColumn_JSJyougen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.JS_JYOUGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JS_JYOUGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.JS_JYOUGEN));
+			}
+			
+			if(!textColumn_Tani.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.TANI))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.TANI));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.TANI));
+			}
+			
+			if(!textColumn_Kagen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.KAGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KAGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.KAGEN));
+			}
+			
+			if(!textColumn_Jyogen.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.JYOUGEN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JYOUGEN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.JYOUGEN));
+			}
+			
+			if(!textColumn_KijyuntiHani.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.KIJYUNTI_HANI))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KIJYUNTI_HANI));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.KIJYUNTI_HANI));
+			}
+			
+			if(!textColumn_TankaKenshin.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.TANKA_KENSIN))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.TANKA_KENSIN));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.TANKA_KENSIN));
+			}
+			
+			if(!textColumn_Bikou.isVisible()) {
+				if(!JApplication.flag_Master.contains(FlagEnum_Master.BIKOU))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.BIKOU));
+			} else {
+				JApplication.flag_Master.removeAll(EnumSet.of(FlagEnum_Master.BIKOU));
+			}
+			
+			// edit n.ohkubo 2014/10/01　追加 start
+			//「表示 or 非表示」をDBへ登録する
+			((JKenshinMasterMaintenanceListFrameCtrl)grid.getController()).preserveColumnStatus();
+			// edit n.ohkubo 2014/10/01　追加 end
+		}
 		@Override
 		public void keyPressed(KeyEvent e) {
 			adaptee.closeButtton_keyPerformed(e);
@@ -561,12 +776,10 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 		}
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 	}
@@ -642,6 +855,31 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 					"Import","取込(I)","取込(ALT+I)",KeyEvent.VK_I,icon);
 			buttonImport.addActionListener(this);
 		}
+		
+		// edit n.ohkubo 2015/03/01　追加　start
+		if (buttonDefault == null) {
+			ExtendedImageIcon iIcon = new ExtendedImageIcon(JPath.Ico_Default);
+			ImageIcon icon = iIcon.setStrechIcon(this, JPath.CONST_FIX_ICON);
+
+			buttonDefault= new ExtendedOpenGenericButton(
+					"Default","初期値(Q)","初期値(ALT+Q)",KeyEvent.VK_Q,icon);
+			buttonDefault.addActionListener(this);
+			
+			//初期表示時は非活性
+			buttonDefault.setEnabled(false);
+		}
+		//初期値ボタンの制御を追加
+		if (editButton != null) {
+			editButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					//修正ボタン押下で活性化
+					buttonDefault.setEnabled(true);
+				}
+			});
+		}
+		// edit n.ohkubo 2015/03/01　追加　end
+		
 //		// 結果削除
 //		if (buttonDeleteKekka == null) {
 //			ExtendedImageIcon iIcon = new ExtendedImageIcon(ICON_DELETE_KEKKA);
@@ -817,7 +1055,7 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M3824",this);
 				logger.error(e.getMessage());
@@ -1075,23 +1313,21 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
@@ -1107,10 +1343,8 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 //			adaptee.closeButtton_keyPerformed(e);
 //		}
 //		public void keyReleased(KeyEvent e) {
-//			// TODO 自動生成されたメソッド・スタブ
 //		}
 //		public void keyTyped(KeyEvent e) {
-//			// TODO 自動生成されたメソッド・スタブ
 //
 //		}
 //	}
@@ -1118,4 +1352,312 @@ public class JKenshinMasterMaintenanceListFrame extends JFrame implements KeyLis
 //	public void closeButtton_keyPerformed(KeyEvent e) {
 //		dispose();
 //	}
+	
+	// edit n.ohkubo 2015/03/01　追加　start
+	/**
+	 * 初期値ボタン押下処理
+	 */
+	private void pushedDefaultButton() {
+		
+		try {
+			//「再読込」実行で、セルの色とツールチップを戻すため、初回実行時に、初期設定のTableCellRendererを退避しておく
+			if (tableCellRendererList == null) {
+				tableCellRendererList = new ArrayList<TableCellRenderer>();
+				if (isColumnVisible("DS_KAGEN")) {
+					tableCellRendererList.add(grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource("DS_KAGEN")).getCellRenderer());
+				} else {
+					tableCellRendererList.add(null);
+				}
+				if (isColumnVisible("DS_JYOUGEN")) {
+					tableCellRendererList.add(grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource("DS_JYOUGEN")).getCellRenderer());
+				} else {
+					tableCellRendererList.add(null);
+				}
+				if (isColumnVisible("JS_KAGEN")) {
+					tableCellRendererList.add(grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource("JS_KAGEN")).getCellRenderer());
+				} else {
+					tableCellRendererList.add(null);
+				}
+				if (isColumnVisible("JS_JYOUGEN")) {
+					tableCellRendererList.add(grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource("JS_JYOUGEN")).getCellRenderer());
+				} else {
+					tableCellRendererList.add(null);
+				}
+			}
+			
+			//デフォルト（HKNJANUM=99999999）のデータを取得
+			Map<String, List<String>> defaultData = ((JKenshinMasterMaintenanceListFrameCtrl)grid.getController()).getDefaultData();
+//			System.out.println(defaultData);
+			
+			//TableCellRendererで使用する値の保持用BeanList
+			List<CellInfoBean> beanList_DS_KAGEN = new ArrayList<JKenshinMasterMaintenanceListFrame.CellInfoBean>();
+			List<CellInfoBean> beanList_DS_JYOUGEN = new ArrayList<JKenshinMasterMaintenanceListFrame.CellInfoBean>();
+			List<CellInfoBean> beanList_JS_KAGEN = new ArrayList<JKenshinMasterMaintenanceListFrame.CellInfoBean>();
+			List<CellInfoBean> beanList_JS_JYOUGEN = new ArrayList<JKenshinMasterMaintenanceListFrame.CellInfoBean>();
+			
+			//テーブル（現在表示している値）のデータを取得
+			VOListTableModel voListTableModel = grid.getVOListTableModel();
+			for (int i = 0; i < voListTableModel.getRowCount(); i++) {
+				
+				//項目コードをキーにデフォルト値を取得
+				List<String> defaultDataList = defaultData.get(voListTableModel.getField(i, "KOUMOKU_CD"));
+				
+				//デフォルト値と差異が有る場合、Beanをaddする
+				//"基準値下限(男性)"
+				String dispVal_DS_KAGEN = (voListTableModel.getField(i, "DS_KAGEN") != null) ? (String)voListTableModel.getField(i, "DS_KAGEN") : "";
+				if (!defaultDataList.get(0).equals(dispVal_DS_KAGEN)) {
+					beanList_DS_KAGEN.add(
+							createCellInfoBean(
+									"DS_KAGEN", 
+									defaultDataList.get(0), 
+									dispVal_DS_KAGEN, 
+									i
+							)
+					);
+				}
+				//"基準値上限(男性)"
+				String dispVal_DS_JYOUGEN = (voListTableModel.getField(i, "DS_JYOUGEN") != null) ? (String)voListTableModel.getField(i, "DS_JYOUGEN") : "";
+				if (!defaultDataList.get(1).equals(dispVal_DS_JYOUGEN)) {
+					beanList_DS_JYOUGEN.add(
+							createCellInfoBean(
+									"DS_JYOUGEN", 
+									defaultDataList.get(1), 
+									dispVal_DS_JYOUGEN, 
+									i
+							)
+					);
+				}
+				//"基準値下限(女性)"
+				String dispVal_JS_KAGEN = (voListTableModel.getField(i, "JS_KAGEN") != null) ? (String)voListTableModel.getField(i, "JS_KAGEN") : "";
+				if (!defaultDataList.get(2).equals(dispVal_JS_KAGEN)) {
+					beanList_JS_KAGEN.add(
+							createCellInfoBean(
+									"JS_KAGEN", 
+									defaultDataList.get(2), 
+									dispVal_JS_KAGEN, 
+									i
+							)
+					);
+				}
+				//"基準値上限(女性)"
+				String dispVal_JS_JYOUGEN = (voListTableModel.getField(i, "JS_JYOUGEN") != null) ? (String)voListTableModel.getField(i, "JS_JYOUGEN") : "";
+				if (!defaultDataList.get(3).equals(dispVal_JS_JYOUGEN)) {
+					beanList_JS_JYOUGEN.add(
+							createCellInfoBean(
+									"JS_JYOUGEN", 
+									defaultDataList.get(3), 
+									dispVal_JS_JYOUGEN, 
+									i
+							)
+					);
+				}
+			}
+			
+			//デフォルト値と表示値に差異が有る場合、専用のTableCellRendererを設定し、「表示値」「セルの色」「ツールチップ」を変更する
+			if (beanList_DS_KAGEN.size() != 0 && isColumnVisible("DS_KAGEN")) {
+				createMyTableCellRenderer(beanList_DS_KAGEN);
+			}
+			if (beanList_DS_JYOUGEN.size() != 0 && isColumnVisible("DS_JYOUGEN")) {
+				createMyTableCellRenderer(beanList_DS_JYOUGEN);
+			}
+			if (beanList_JS_KAGEN.size() != 0 && isColumnVisible("JS_KAGEN")) {
+				createMyTableCellRenderer(beanList_JS_KAGEN);
+			}
+			if (beanList_JS_JYOUGEN.size() != 0 && isColumnVisible("JS_JYOUGEN")) {
+				createMyTableCellRenderer(beanList_JS_JYOUGEN);
+			}
+
+			//セルの色表示の反映（ボタン押下だけでは表示が反映されないので、テーブルに対して何かアクションをかける（テーブルの行にマウスのカーソルがあたれば表示が反映されるが、ボタン押下のみで反映させる））
+			grid.getTable().getGrid().clearSelection();
+			
+		} catch (Exception ex) {
+			JErrorMessage.show("M3820", null);
+			ex.printStackTrace();
+		}
+	}
+	
+	/**
+	 * TableCellRendererの設定と、表示値をデフォルト値へ変える
+	 * 
+	 * @param cellInfoBeanList
+	 */
+	private void createMyTableCellRenderer(List<CellInfoBean> cellInfoBeanList) {
+		
+		//TableCellRendererで、「セルの色」と「ツールチップ」を変更する
+		MyTableCellRenderer myTableCellRenderer = new MyTableCellRenderer(cellInfoBeanList);
+		grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource(cellInfoBeanList.get(0).getAttributeName())).setCellRenderer(myTableCellRenderer);
+
+		for (int i = 0; i < cellInfoBeanList.size(); i++) {
+			//表示値をデフォルト値へ変える
+			grid.getVOListTableModel().setField(cellInfoBeanList.get(i).getTargetRow(), cellInfoBeanList.get(i).getAttributeName(), cellInfoBeanList.get(i).getDefaultValue());
+		}
+	}
+
+	
+	/**
+	 * カラムが表示されているかの判定
+	 * 
+	 * @param attributeName		対象のカラム名
+	 * @return					表示している：true　非表示：false
+	 */
+	private boolean isColumnVisible(String attributeName) {
+		boolean isResult = true;
+		try {
+			grid.getTable().getGrid().getColumn(ClientSettings.getInstance().getResources().getResource(attributeName));
+		} catch (IllegalArgumentException iex) {
+			isResult = false;
+		}
+		return isResult;
+	}
+
+	/**
+	 * 引数の値を設定したBeanを作成する
+	 * 
+	 * @param attributeName
+	 * @param defaultValu
+	 * @param oldValue
+	 * @param row
+	 * 
+	 * @return
+	 */
+	private CellInfoBean createCellInfoBean(String attributeName, String defaultValu, String oldValue, int row) {
+		
+		CellInfoBean bean = new CellInfoBean();
+		bean.setAttributeName(attributeName);
+		bean.setDefaultValue(defaultValu);
+		bean.setOldValue(oldValue);
+		bean.setTargetColumn(getColumnindex(attributeName));
+		bean.setTargetRow(row);
+		return bean;
+	}
+	
+	/**
+	 * 基準値（男女の上下限）のカラムのindexを取得する
+	 * ※前の項目が「非表示」だったり、カラムの位置を「移動」していても、現在表示しているindexを取得する
+	 * 
+	 * @param attributeName	基準値（男女の上下限）のカラム名
+	 * @return
+	 */
+	private int getColumnindex(String attributeName) {
+		
+		int modelColumnIndex = (
+				"DS_KAGEN".equals(attributeName) ? 5 : 
+					"DS_JYOUGEN".equals(attributeName) ? 6 : 
+						"JS_KAGEN".equals(attributeName) ? 7 : 8);
+		
+		int result = grid.getTable().getGrid().convertColumnIndexToView(modelColumnIndex);
+//		System.out.println("attributeName:[" + attributeName + "] index:[" + modelColumnIndex + "] result:[" + result + "]");
+		return result;
+	}
+	
+	
+	/**
+	 * セルの色とツールチップに設定する文言を変更するクラス
+	 */
+	private class MyTableCellRenderer implements TableCellRenderer {
+		
+		private int targetColumn;
+		private List<CellInfoBean> cellInfoBeanList;
+		private List<TableCellRenderer> rendererList;
+		
+		/**
+		 * コンストラクタ
+		 * 
+		 * @param cellInfoBeanList
+		 */
+		public MyTableCellRenderer(List<CellInfoBean> cellInfoBeanList) {
+			
+			this.cellInfoBeanList = cellInfoBeanList;
+			this.targetColumn = cellInfoBeanList.get(0).getTargetColumn();	//targetColumnの値は同じはずなので、ここで一度だけセット
+			this.rendererList = new ArrayList<TableCellRenderer>();			//「table.prepareRenderer()」内で直接設定すると、「StackOverflowError」になるのでここで設定しておく
+			for (int i = 0; i < grid.getTable().getGrid().getModel().getRowCount(); i++) {
+				TableCellRenderer renderer = grid.getTable().getGrid().getCellRenderer(i, targetColumn);
+				this.rendererList.add(renderer);
+			}
+		}
+		
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//			System.out.println("MyTableCellRenderer targetColumn:[" + targetColumn + "] value:[" + (String)value + "] row:[" + row + "] column:[" + column + "]");
+			
+			//セル
+			Component component = null;
+			try {
+				//ツールチップの文言
+				String toolTipText = null;
+				afterDefaultToolTipText = null;
+				
+				for (int i = 0; i < cellInfoBeanList.size(); i++) {
+					
+					//行と列のIndexから、対象のセルを判定
+					if ((targetColumn == column) && (row == cellInfoBeanList.get(i).getTargetRow())) {
+						
+						//セルのツールチップ文言を変更
+						toolTipText = "\"" + cellInfoBeanList.get(i).getOldValue() + "\"から\"" + ((cellInfoBeanList.get(i).getDefaultValue() != null) ? cellInfoBeanList.get(i).getDefaultValue() : "") + "\"へ変更";
+						afterDefaultToolTipText = toolTipText;
+						
+						//変更対象のセルを取得（prepareRendererメソッド内でCtrlクラスのgetCellTooltipメソッドが呼ばれる？ので、位置に注意）
+						component = table.prepareRenderer(rendererList.get(row), row, column);
+						
+						//セルの色を変更
+						component.setBackground(Color.PINK);
+						
+						break;
+					}
+				}
+				
+				//変更対象のセルが無かった場合
+				if (component == null) {
+					component = table.prepareRenderer(rendererList.get(row), row, column);
+				}
+//				System.out.println("ToolTipText:[" + toolTipText + "]　afterDefaultToolTipText:[" + afterDefaultToolTipText + "]");
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+			return component;
+		}
+	}
+	
+	/**
+	 * セル情報（TableCellRenderer等で使用）を保持するBean
+	 */
+	private class CellInfoBean {
+		private int targetRow;
+		private int targetColumn;
+		private String oldValue;
+		private String defaultValue;
+		private String attributeName;
+		
+		public int getTargetRow() {
+			return targetRow;
+		}
+		public void setTargetRow(int targetRow) {
+			this.targetRow = targetRow;
+		}
+		public int getTargetColumn() {
+			return targetColumn;
+		}
+		public void setTargetColumn(int targetColumn) {
+			this.targetColumn = targetColumn;
+		}
+		public String getOldValue() {
+			return oldValue;
+		}
+		public void setOldValue(String oldValue) {
+			this.oldValue = oldValue;
+		}
+		public String getDefaultValue() {
+			return defaultValue;
+		}
+		public void setDefaultValue(String defaultValue) {
+			this.defaultValue = defaultValue;
+		}
+		public String getAttributeName() {
+			return attributeName;
+		}
+		public void setAttributeName(String attributeName) {
+			this.attributeName = attributeName;
+		}
+	}
+	// edit n.ohkubo 2015/03/01　追加　end
 }

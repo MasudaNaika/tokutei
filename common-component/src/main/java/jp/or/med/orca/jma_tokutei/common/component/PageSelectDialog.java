@@ -342,7 +342,7 @@ public class PageSelectDialog extends JDialog
 
 	}
 
-	@Override
+//	@Override
 	public String getFilePath() {
 		// TODO 自動生成されたメソッド・スタブ
 		return null;
@@ -365,5 +365,10 @@ public class PageSelectDialog extends JDialog
 		// TODO 自動生成されたメソッド・スタブ
 
 	}
+
+    @Override
+    public String getTextValue() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }  //  @jve:decl-index=0:visual-constraint="10,10"

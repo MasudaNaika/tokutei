@@ -17,6 +17,7 @@ import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
+import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
 import jp.or.med.orca.jma_tokutei.common.event.JSingleDoubleClickEvent;
@@ -32,6 +33,7 @@ import org.apache.log4j.Logger;
 public class SelectOrcaHokenjyaDialog extends JDialog
     implements ActionListener, KeyListener, ItemListener, IDialog
 {
+	private int selectedlocalRow = 0;
 
     public SelectOrcaHokenjyaDialog(JFrame jframe, String s, String s1)
     {
@@ -112,9 +114,27 @@ public class SelectOrcaHokenjyaDialog extends JDialog
         for(int i = 0; i < tablecolumnmodel.getColumnCount(); i++)
             tablecolumnmodel.getColumn(i).setCellRenderer(new JSimpleTableCellRowRenderer((DefaultTableCellRenderer)table.getDefaultRenderer(table.getColumnClass(i))));
 
+        // eidt s.inoue 2013/06/11
         if(table.getRowCount() > 0)
-            table.setRowSelectionInterval(0, 0);
+            // table.setRowSelectionInterval(0, 0);
+        	table.setRowSelectionInterval(1, 1);
         table.refreshTable();
+
+        // add s.inoue 2013/06/11
+        table.setAutoCreateRowSorter(true);
+        table.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent event) {
+            	table = (JSimpleTable)event.getSource();
+                int[] selection = table.getSelectedRows();
+                for (int i = 0; i < selection.length; i++) {
+
+                    // テーブル・モデルの行数に変換
+                	selectedlocalRow = selection[i];
+                	// selectedlocalRow = table.convertRowIndexToModel(selection[i]);
+
+                    System.out.println("View Row: " + selection[i]+ " Model Row: " + selectedlocalRow);
+                }
+            }});
     }
 
     public Object[][] getTeikeiMaster()
@@ -129,15 +149,24 @@ public class SelectOrcaHokenjyaDialog extends JDialog
             JErrorMessage.show("M1000", null);
             System.exit(1);
         }
-        StringBuilder stringbuilder = new StringBuilder();
-        stringbuilder.append("SELECT INSURER_NO, INSURER_NAME, INSURER_ADDRESS1 || INSURER_ADDRESS2 INSURER_ADDRESS,INSURER_POST,INSURER_TEL,SUBSTRING(LAST_TIME from 1 for 10) LAST_TIME ");
-        stringbuilder.append(" FROM M_INSURER");
-        stringbuilder.append(" WHERE octet_length(INSURER_NO) = 8");
-        stringbuilder.append(" ORDER BY INSURER_NO");
+        // eidt s.inoue 2013/06/11
+        StringBuilder sb = new StringBuilder();
+//        stringbuilder.append("SELECT INSURER_NO, INSURER_NAME, INSURER_ADDRESS1 || INSURER_ADDRESS2 INSURER_ADDRESS,INSURER_POST,INSURER_TEL,SUBSTRING(LAST_TIME from 1 for 10) LAST_TIME ");
+//        stringbuilder.append(" FROM M_INSURER");
+//        stringbuilder.append(" WHERE octet_length(INSURER_NO) = 8");
+//        stringbuilder.append(" ORDER BY INSURER_NO");
+		sb.append("select a.INSURER_NO, INSURER_NAME, INSURER_ADDRESS1 || INSURER_ADDRESS2 INSURER_ADDRESS,INSURER_POST,INSURER_TEL,SUBSTRING(LAST_TIME from 1 for 10) LAST_TIME");
+		sb.append(" FROM M_INSURER a");
+		sb.append(" where  char_length(a.INSURER_NO)=8 ");
+		sb.append(" union all ");
+		sb.append(" select '00' || a.INSURER_NO, INSURER_NAME, INSURER_ADDRESS1 || INSURER_ADDRESS2 INSURER_ADDRESS,INSURER_POST,INSURER_TEL,SUBSTRING(LAST_TIME from 1 for 10) LAST_TIME");
+		sb.append(" FROM M_INSURER a");
+		sb.append(" where  char_length(a.INSURER_NO)<8");
+
         ArrayList arraylist = null;
         try
         {
-            arraylist = JApplication.hokenjyaDatabase.sendExecuteQuery(stringbuilder.toString());
+            arraylist = JApplication.hokenjyaDatabase.sendExecuteQuery(sb.toString());
         }
         catch(SQLException sqlexception)
         {
@@ -268,7 +297,9 @@ public class SelectOrcaHokenjyaDialog extends JDialog
     {
         if(actionevent.getSource() == jButtonOK)
         {
-            returnVec = table.getData(table.getSelectedRow());
+        	// eidt s.inoue 2013/06/11
+            // returnVec = table.getData(table.getSelectedRow());
+        	returnVec = table.getData(selectedlocalRow);
             ReturnValue = RETURN_VALUE.YES;
         } else
         if(actionevent.getSource() == jButtonCancel)

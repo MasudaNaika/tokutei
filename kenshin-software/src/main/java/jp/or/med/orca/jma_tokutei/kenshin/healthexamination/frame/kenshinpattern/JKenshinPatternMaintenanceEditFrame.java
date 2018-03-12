@@ -1,26 +1,25 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.kenshinpattern;
 
 import java.awt.BorderLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
 import java.awt.CardLayout;
-import java.awt.Font;
 import java.awt.Color;
-import java.awt.Rectangle;
-import javax.swing.JTextField;
-import java.awt.event.*;
-
-import javax.swing.BoxLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
@@ -28,10 +27,6 @@ import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.frame.ViewSettingsKey;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
-
-import javax.swing.BorderFactory;
 
 public class JKenshinPatternMaintenanceEditFrame extends JFrame implements ActionListener
 {
@@ -89,6 +84,10 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 	protected JLabel jLabel_Info2 = null;
 	protected JLabel jLabel_Info3 = null;
 	protected JLabel jLabel_Info4 = null;
+	
+	// edit n.ohkubo 2014/10/01　追加
+	protected JTextField jText_filter = null;
+	protected ExtendedButton jButton_filter = null;
 
 	/**
 	 * This is the default constructor
@@ -323,43 +322,45 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 //		return jPanel_TitleArea;
 //	}
 
-	/**
-	 * This method initializes jPanel_ExplArea2
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea2() {
-		if (jPanel_ExplArea2 == null) {
-			jLabal_SubExpl = new JLabel();
-			jLabal_SubExpl.setText("へ追加後、登録ボタンを押下してください。項目順を変更する場合は、上(↑)下(↓)移動して下さい。");
-			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
-			GridLayout gridLayout1 = new GridLayout();
-			gridLayout1.setRows(2);
-			jPanel_ExplArea2 = new JPanel();
-			jPanel_ExplArea2.setName("jPanel4");
-			jPanel_ExplArea2.setLayout(gridLayout1);
-			jPanel_ExplArea2.add(jLabel_MainExpl, null);
-			jPanel_ExplArea2.add(jLabal_SubExpl, null);
-		}
-		return jPanel_ExplArea2;
-	}
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	/**
+//	 * This method initializes jPanel_ExplArea2
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea2() {
+//		if (jPanel_ExplArea2 == null) {
+//			jLabal_SubExpl = new JLabel();
+//			jLabal_SubExpl.setText("へ追加後、登録ボタンを押下してください。項目順を変更する場合は、上(↑)下(↓)移動して下さい。");
+//			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
+//			GridLayout gridLayout1 = new GridLayout();
+//			gridLayout1.setRows(2);
+//			jPanel_ExplArea2 = new JPanel();
+//			jPanel_ExplArea2.setName("jPanel4");
+//			jPanel_ExplArea2.setLayout(gridLayout1);
+//			jPanel_ExplArea2.add(jLabel_MainExpl, null);
+//			jPanel_ExplArea2.add(jLabal_SubExpl, null);
+//		}
+//		return jPanel_ExplArea2;
+//	}
 
-	/**
-	 * This method initializes jPanel_ExplArea1
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	// s.inoue
-	private JPanel getJPanel_ExplArea1() {
-		if (jPanel_ExplArea1 == null) {
-			CardLayout cardLayout1 = new CardLayout();
-			cardLayout1.setHgap(20);
-			jPanel_ExplArea1 = new JPanel();
-			jPanel_ExplArea1.setLayout(cardLayout1);
-			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
-		}
-		return jPanel_ExplArea1;
-	}
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	/**
+//	 * This method initializes jPanel_ExplArea1
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	// s.inoue
+//	private JPanel getJPanel_ExplArea1() {
+//		if (jPanel_ExplArea1 == null) {
+//			CardLayout cardLayout1 = new CardLayout();
+//			cardLayout1.setHgap(20);
+//			jPanel_ExplArea1 = new JPanel();
+//			jPanel_ExplArea1.setLayout(cardLayout1);
+//			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
+//		}
+//		return jPanel_ExplArea1;
+//	}
 
 //	/**
 //	 * This method initializes jButton_Cancel
@@ -453,6 +454,24 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 			jPanel1.setLayout(new BoxLayout(getJPanel1(), BoxLayout.X_AXIS));
 			jPanel1.add(jLabel1, null);
 			jPanel1.add(getJTextField_PatternName(), null);
+			
+			// edit n.ohkubo 2014/10/01　追加　start
+			jPanel1.add(new JLabel("　　　　　　"));	//パターンの名称とフィルターの間のスペース
+			
+			JPanel jPanel_filter = new JPanel();
+			jPanel_filter.setLayout(new BoxLayout(jPanel_filter, BoxLayout.X_AXIS));
+			
+			jText_filter = new JTextField(20);
+			jText_filter.setMaximumSize(new Dimension(130, 25));
+			jPanel_filter.add(jText_filter);
+
+			jButton_filter = new ExtendedButton();
+			jButton_filter.setText("絞込み");
+			jButton_filter.addActionListener(this);
+			jPanel_filter.add(jButton_filter);
+			
+			jPanel1.add(jPanel_filter);
+			// edit n.ohkubo 2014/10/01　追加　end
 		}
 		return jPanel1;
 	}
@@ -777,6 +796,7 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 		return jPanel12;
 	}
 
+	@Override
 	public void actionPerformed( ActionEvent e )
 	{
 	}
@@ -784,6 +804,7 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 	/*
 	 * FrameSize Control
 	 */
+	@Override
 	public void validate()
 	{
 		Rectangle rect = getBounds();
@@ -810,6 +831,7 @@ public class JKenshinPatternMaintenanceEditFrame extends JFrame implements Actio
 			jTextField_PatternName = new JTextField();
 			// eidt s.inoue 2012/07/10
 			jTextField_PatternName.setFocusable(false);
+			jTextField_PatternName.setMaximumSize(new Dimension(700, 25));	// edit n.ohkubo 2014/10/01　追加
 		}
 		return jTextField_PatternName;
 	}

@@ -1,30 +1,37 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.hokenja;
 
-import javax.swing.*;
-
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
-import org.openswing.swing.domains.java.Domain;
-
-//import java.awt.*;
-
-import org.openswing.swing.table.columns.client.*;
-
-import java.sql.*;
-import java.util.*;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
-import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
@@ -38,11 +45,9 @@ import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenExportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.common.sql.dao.DaoFactory;
@@ -51,6 +56,13 @@ import jp.or.med.orca.jma_tokutei.common.sql.model.THokenjya;
 import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorHokenjyaResultFrameData;
 
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.domains.java.Domain;
+//import java.awt.*;
+import org.openswing.swing.table.columns.client.TextColumn;
+
 /**
  * 一覧List画面
  * @author s.inoue
@@ -58,7 +70,9 @@ import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMa
  */
 public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
 
-	private Connection conn = null;
+	private static final long serialVersionUID = -4427411437222555767L;	// edit n.ohkubo 2014/10/01　追加
+
+//	private Connection conn = null;	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 	GridControl grid = new GridControl();
 
@@ -106,7 +120,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 	private THokenjyaDao hokenjyaDao = null;
 	private THokenjya hokenjya = new THokenjya();
 	private JHokenjyaMasterMaintenanceEditFrameData validatedData = new JHokenjyaMasterMaintenanceEditFrameData();
-	private ArrayList<Integer> selectedData = null;
+//	private ArrayList<Integer> selectedData = null;	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 	private static final String[] TABLE_COLUMNS = {
 		"HKNJANUM", "HKNJANAME", "POST", "ADRS", "BANTI", "TEL", "KIGO", "HON_GAIKYURATE", "HON_NYUKYURATE", "KZK_GAIKYURATE", "KZK_NYUKYURATE",
@@ -140,7 +154,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 	/* 制御メソッド */
 	public void setControl(Connection conn,
 			JHokenjyaMasterMaintenanceListFrameCtrl controller){
-		this.conn = conn;
+//		this.conn = conn;	// edit n.ohkubo 2014/10/01　未使用なので削除
 		try {
 			jbInit();
 
@@ -148,6 +162,11 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 			this.setLocationRelativeTo( null );
 			grid.setController(controller);
 			grid.setGridDataLocator(controller);
+			
+			// edit n.ohkubo 2014/10/01　追加
+			//検索機能を使用不可にする
+			grid.setShowFilterPanelOnGrid(false);
+			
 			setVisible(true);
 
 		} catch (Exception e) {
@@ -310,7 +329,8 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 		  ListFrame_button_actionAdapter(JHokenjyaMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 			  Object source = e.getSource();
 			  if (source == buttonClose){
 				  logger.info(buttonClose.getText());
@@ -434,7 +454,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 
 	/* export処理 */
 	private void exportCsvData(String filePath){
-		JImportMasterErrorHokenjyaResultFrameData data = new JImportMasterErrorHokenjyaResultFrameData();
+//		JImportMasterErrorHokenjyaResultFrameData data = new JImportMasterErrorHokenjyaResultFrameData();	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 		// CSV読込処理
 		writer = new JCSVWriterStream();
@@ -555,7 +575,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M3207",this);
 				logger.error(e.getMessage());
@@ -878,6 +898,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 	 */
 	public class WindowRefreshEvent extends WindowAdapter
 	{
+		@Override
 		public void windowClosed(WindowEvent e)
 		{
 			grid.setEnabled(true);
@@ -899,6 +920,7 @@ public class JHokenjyaMasterMaintenanceListFrame extends JFrame implements KeyLi
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 	@Override

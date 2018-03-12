@@ -12,10 +12,13 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+
 import javax.swing.JFrame;
-import org.apache.log4j.Logger;
 
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
+
+import org.apache.log4j.Logger;
+
 import com.lowagie.tools.Executable;
 
 // ----------------------------------------------------------------------------
@@ -82,7 +85,31 @@ public class JGraphicPrinter implements Printable {
 
 					// edit s.inoue 20090119 adobe優先
 					// Process process0=  Runtime.getRuntime().exec("which acroread xpdf");
-					Process process0=  Runtime.getRuntime().exec("which xpdf acroread");
+					// Process process0=  Runtime.getRuntime().exec("which xpdf acroread");
+
+					// add s.inoue 2014/07/23
+					Process process2 = Runtime.getRuntime().exec("uname -r");
+					InputStream is2 = process2.getInputStream();
+					InputStreamReader isr2 = new InputStreamReader(is2);
+					BufferedReader br2 = new BufferedReader(isr2);
+					String answer2;
+					String cmd2=null;
+					while ( (answer2 = br2.readLine()) !=null) {
+						cmd2 = answer2;
+					}
+					if (cmd2 != null)  {
+						answer2 = cmd2.substring(0,2);
+					}
+					String exeStr = "";
+					if (Float.parseFloat(answer2) < 3.0){
+						exeStr = "which acroread xpdf";
+					}else{
+						exeStr = "which evince";
+					}
+					Process process0=  Runtime.getRuntime().exec(exeStr);
+					// edit s.inoue 2014/07/23
+					// Process process0=  Runtime.getRuntime().exec("which evince");
+
 					InputStream is = process0.getInputStream();
 					InputStreamReader isr = new InputStreamReader(is);
 					BufferedReader br = new BufferedReader(isr);

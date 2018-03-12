@@ -1,13 +1,10 @@
 package jp.or.med.orca.jma_tokutei.common.scene;
-import javax.swing.*;
-
-import org.openswing.swing.table.client.GridController;
-
 import java.awt.event.WindowListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.SettingDialog;
-import jp.or.med.orca.jma_tokutei.common.util.PropertyUtil;
 
 /**
  * 遷移の管理やダイアログの表示を行うクラス。

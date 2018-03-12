@@ -1,28 +1,33 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shiharai;
 
-import javax.swing.*;
-
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
-import org.openswing.swing.domains.java.Domain;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
-import org.openswing.swing.table.columns.client.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
@@ -35,22 +40,29 @@ import jp.or.med.orca.jma_tokutei.common.csv.JCSVReaderStream;
 import jp.or.med.orca.jma_tokutei.common.csv.JCSVWriterStream;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
+import jp.or.med.orca.jma_tokutei.common.filter.SpecialFilterPanel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenEditButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenExportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenInsertButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenSaveButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorSiharaiResultFrameData;
+
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.GridControl.ColumnContainer;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.domains.java.Domain;
+import org.openswing.swing.table.columns.client.Column;
+import org.openswing.swing.table.columns.client.TextColumn;
 
 /**
  * 一覧List画面
@@ -59,6 +71,8 @@ import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMa
  */
 public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
 
+	private static final long serialVersionUID = 2184629844979718100L;	// edit n.ohkubo 2014/10/01　追加
+	
 	protected Connection conn = null;
 	protected GridControl grid = new GridControl();
 
@@ -110,6 +124,13 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		 };
 
 	private static Logger logger = Logger.getLogger(JShiharaiMasterMaintenanceListFrame.class);
+	
+	// edit n.ohkubo 2014/10/01　追加 start
+	private ColumnContainer columnContainer;
+	public ColumnContainer getColumnContainer() {
+		return this.columnContainer;
+	}
+	// edit n.ohkubo 2014/10/01　追加 end
 
 	/* コンストラクタ */
 	public JShiharaiMasterMaintenanceListFrame(Connection conn,
@@ -139,6 +160,15 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 			grid.setController(controller);
 			grid.setGridDataLocator(controller);
 			setVisible(true);
+			
+			// edit n.ohkubo 2014/10/01　追加 start　検索画面のボタンの大きさを変更
+			//フィルターパネル用のWindowListener
+			SpecialFilterPanel specialFilterPanel = new SpecialFilterPanel(null, grid.getParent().getComponents());
+			
+			//このフレーム（一覧画面）がアクティブ化（画面右の検索ウィンドウ）　or　非アクティブ化（検索ウィンドウがポップアップで開かれ場合）されたときに動作するように、Listenerを設定
+			this.addWindowListener(specialFilterPanel);
+			// edit n.ohkubo 2014/10/01　追加 end　検索画面のボタンの大きさを変更
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -154,6 +184,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 //		textColumn_DaikoNumber.setEditableOnEdit(true);
 //		textColumn_DaikoNumber.setEditableOnInsert(true);
 		textColumn_DaikoNumber.setColumnRequired(false);
+		textColumn_DaikoNumber.setMaxCharacters(8);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_DaikoName.setColumnFilterable(true);
 		textColumn_DaikoName.setColumnName("SHIHARAI_DAIKO_NAME");
@@ -161,6 +192,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		textColumn_DaikoName.setEditableOnEdit(true);
 		textColumn_DaikoName.setColumnRequired(false);
 		textColumn_DaikoName.setPreferredWidth(200);
+		textColumn_DaikoName.setMaxCharacters(100);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_Zipcode.setColumnFilterable(true);
 		textColumn_Zipcode.setColumnName("SHIHARAI_DAIKO_ZIPCD");
@@ -168,6 +200,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		textColumn_Zipcode.setEditableOnEdit(true);
 		textColumn_Zipcode.setColumnRequired(false);
 		textColumn_Zipcode.setPreferredWidth(60);
+		textColumn_Zipcode.setMaxCharacters(7);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_Address.setColumnFilterable(true);
 		textColumn_Address.setColumnName("SHIHARAI_DAIKO_ADR");
@@ -175,6 +208,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		textColumn_Address.setEditableOnEdit(true);
 		textColumn_Address.setColumnRequired(false);
 		textColumn_Address.setPreferredWidth(490);
+		textColumn_Address.setMaxCharacters(100);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_TEL.setColumnFilterable(true);
 		textColumn_TEL.setColumnName("SHIHARAI_DAIKO_TEL");
@@ -182,6 +216,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		textColumn_TEL.setEditableOnEdit(true);
 		textColumn_TEL.setColumnRequired(false);
 		textColumn_TEL.setPreferredWidth(80);
+		textColumn_TEL.setMaxCharacters(11);// edit n.ohkubo 2014/10/01　追加
 
 		/* button */
 		setJButtons();
@@ -250,6 +285,35 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		grid.getColumnContainer().add(textColumn_Address, null);
 //		grid.getColumnContainer().add(textColumn_Banti,null);
 		grid.getColumnContainer().add(textColumn_TEL, null);
+
+		// edit n.ohkubo 2014/10/01　追加　start　openswingのバグ対応（putする数と"並び順"で指定した個数が一致するとIndexOutOfBoundsExceptionが発生し、検索画面が開かなくなる対応）
+//		Column dummy = new Column();		// edit n.ohkubo 2015/03/01　削除　一覧をクリックしても反応しない対応
+		Column dummy = new TextColumn();	// edit n.ohkubo 2015/03/01　追加　一覧をクリックしても反応しない対応
+		dummy.setColumnName("DUMMY");
+		dummy.setAutoFitColumn(false);
+		dummy.setAutoscrolls(false);
+		dummy.setColumnDuplicable(false);
+		dummy.setColumnFilterable(false);
+		dummy.setColumnRequired(false);
+		dummy.setColumnSelectable(false);
+		dummy.setColumnSortable(false);
+		dummy.setColumnVisible(false);
+		dummy.setDoubleBuffered(false);
+		dummy.setEditableOnEdit(false);
+		dummy.setEditableOnInsert(false);
+		dummy.setEnabled(false);
+		dummy.setFocusable(false);
+		dummy.setFocusCycleRoot(false);
+		dummy.setFocusTraversalKeysEnabled(false);
+		dummy.setIgnoreRepaint(false);
+		dummy.setInheritsPopupMenu(false);
+		dummy.setOpaque(false);
+		dummy.setRequestFocusEnabled(false);
+		dummy.setVisible(false);
+		grid.getColumnContainer().add(dummy, null);
+		// edit n.ohkubo 2014/10/01　追加　end　openswingのバグ対応（putする数と"並び順"で指定した個数が一致するとIndexOutOfBoundsExceptionが発生し、検索画面が開かなくなる対応）
+		
+		columnContainer = grid.getColumnContainer();// edit n.ohkubo 2014/10/01　追加
 
 		// add s.inoue 2012/11/12
 		jLabel_Title = new TitleLabel("tokutei.shiharai-mastermaintenance.frame.title","tokutei.shiharai-mastermaintenance.frame.guidance");
@@ -349,7 +413,8 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 		  ListFrame_button_actionAdapter(JShiharaiMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 			  Object source = e.getSource();
 			  if (source == buttonClose){
 				  logger.info(buttonClose.getText());
@@ -433,7 +498,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M5105",this);
 				logger.error(e.getMessage());
@@ -626,7 +691,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 
 	/* export処理 */
 	private void exportCsvData(String filePath){
-		JImportMasterErrorSiharaiResultFrameData data = new JImportMasterErrorSiharaiResultFrameData();
+//		JImportMasterErrorSiharaiResultFrameData data = new JImportMasterErrorSiharaiResultFrameData();	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 		// CSV読込処理
 		writer = new JCSVWriterStream();
@@ -703,6 +768,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 	 */
 	public class WindowRefreshEvent extends WindowAdapter
 	{
+		@Override
 		public void windowClosed(WindowEvent e)
 		{
 			grid.setEnabled(true);
@@ -722,6 +788,7 @@ public class JShiharaiMasterMaintenanceListFrame extends JFrame implements KeyLi
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 

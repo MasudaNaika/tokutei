@@ -224,6 +224,7 @@ public class PrintHitokutei extends JTKenshinPrint {
 			return pdfPathList;
 		}
 
+		// add s.inoue 2014/01/24
 //		//前回、前々回取得
 //		int zenkaiFlg = 0;
 //		String tmpKensaNenGappi = "";
@@ -254,8 +255,8 @@ public class PrintHitokutei extends JTKenshinPrint {
 		int historyCnt = 0;
 
 		// カウント用-健診年月日
-//		for (int kenCnt=0;kenCnt < kensaNenList.size(); kenCnt++){
-//			kensaNengappi = replaseNenGaPii(kensaNenList,historyCnt);
+		for (int kenCnt=0;kenCnt < kensaNenList.size(); kenCnt++){
+			kensaNengappi = replaseNenGaPii(kensaNenList,historyCnt);
 
 			for(int i = 0; i<tuikaList.size();i++){
 				resultItem = tuikaList.get(i);
@@ -381,12 +382,13 @@ public class PrintHitokutei extends JTKenshinPrint {
 					zzJISI_KBN.put(cd,jisiKbn);
 				}
 			}
-//		}
+		}
 
+		// add s.inoue 2014/01/24
 //		//前回、前々回の値のある健診項目を抜き出す
 //		if(!zTuikaList.isEmpty()){
 //			for(int i = 0; i<zTuikaList.size();i++){
-//				zResultItem = (Hashtable<String, String>)zTuikaList.get(i);
+//				zResultItem = (TreeMap<String, String>)zTuikaList.get(i);
 //				String cd = zResultItem.get(PrintDefine.CODE_KOUMOKU);
 //
 //				String HL = zResultItem.get(PrintDefine.STR_H_L);
@@ -405,7 +407,7 @@ public class PrintHitokutei extends JTKenshinPrint {
 //		//前々回取得
 //		if(!zzTuikaList.isEmpty()){
 //			for(int i = 0; i<zzTuikaList.size();i++){
-//				zzResultItem = (Hashtable<String, String>)zzTuikaList.get(i);
+//				zzResultItem = (TreeMap<String, String>)zzTuikaList.get(i);
 //				String cd = zzResultItem.get(PrintDefine.CODE_KOUMOKU);
 //
 //				String HL = zzResultItem.get(PrintDefine.STR_H_L);

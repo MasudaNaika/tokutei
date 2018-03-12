@@ -1,6 +1,5 @@
 package jp.or.med.orca.jma_tokutei.kenshin.admin.frame;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -11,23 +10,22 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
-
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLocker;
-import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLockerConfig;
 import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.kenshin.admin.JAdminSoftware;
-import jp.or.med.orca.jma_tokutei.kenshin.admin.frame.JMenuFrameCtrl;
+
+import org.apache.log4j.Logger;
 
 /**
  * メニュー
  */
 public class JMenuFrameCtrl extends JMenuFrame
 {
+	private static final long serialVersionUID = 392792505923527679L;	// edit n.ohkubo 2015/08/01　追加
+
 	/* フォーカス移動制御 */
 	private JFocusTraversalPolicy focusTraversalPolicy = null;
 
@@ -122,6 +120,7 @@ public class JMenuFrameCtrl extends JMenuFrame
 		}
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		// add s.inoue 2009/12/17
@@ -156,6 +155,12 @@ public class JMenuFrameCtrl extends JMenuFrame
 			logger.info(jButton_BackLogin.getText());
 			backLogin();
 		}
+		// edit n.ohkubo 2015/08/01　追加　start
+		else if (source == jButton_NetworkDBConnection) {
+			logger.info(jButton_NetworkDBConnection.getText());
+			pushedNetworkDBConnectionButton();
+		}
+		// edit n.ohkubo 2015/08/01　追加　end
 	}
 
 	/* ログイン画面へ */
@@ -171,6 +176,15 @@ public class JMenuFrameCtrl extends JMenuFrame
 
 		JScene.ChangeScene(new JLoginFrameCtrl());
 	}
+	
+	// edit n.ohkubo 2015/08/01　追加　start
+	/**
+	 * 接続先DB情報メンテナンスボタン押下処理
+	 */
+	private void pushedNetworkDBConnectionButton() {
+		JScene.CreateDialog(this, new JNetworkDBConnectionFrame());
+	}
+	// edit n.ohkubo 2015/08/01　追加　end
 
 	// add s.inoue 2009/12/04
 	@Override

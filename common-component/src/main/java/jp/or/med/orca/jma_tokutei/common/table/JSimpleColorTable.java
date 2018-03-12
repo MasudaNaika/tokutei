@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FontMetrics;
 import java.awt.Insets;
-import java.awt.KeyboardFocusManager;
 import java.awt.Rectangle;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -15,41 +14,30 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeEvent;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedCheckBox;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedComboBox;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedRadioButton;
-import jp.or.med.orca.jma_tokutei.common.component.ImeController;
-import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 
 /**
 	class::name JSimpleTable
@@ -57,6 +45,8 @@ import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 */
 public class JSimpleColorTable extends JTable implements TableModel
 {
+	private static final long serialVersionUID = -8197573076193113001L;		// edit n.ohkubo 2014/10/01　追加
+	
 	protected DefaultTableModel m_objTableModel;
 	protected TableRowSorter<TableModel> sorter;
 
@@ -82,6 +72,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 
 	// add s.inoue 2009/10/22
 	// ツールチップ第二弾 | 文字オーバーの時
+	@Override
 	public Component prepareRenderer(TableCellRenderer tcr, int row, int column) {
 
 		Component c = super.prepareRenderer(tcr, row, column);
@@ -190,6 +181,8 @@ public class JSimpleColorTable extends JTable implements TableModel
 	 */
 	protected class JSimpleTableCellRenderer extends DefaultTableCellRenderer
 	{
+		private static final long serialVersionUID = -4878880256587298772L;		// edit n.ohkubo 2014/10/01　追加
+		
 		private Vector<JSimpleTableCellRendererData> m_vectCellList;
 
 		/**
@@ -213,6 +206,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 		/**
 		 *  @Override getTableCellRendererComponent
 		 */
+		@Override
 		public Component getTableCellRendererComponent( JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col )
 		{
 			String displayText = null;
@@ -308,6 +302,8 @@ public class JSimpleColorTable extends JTable implements TableModel
 	/* JComboBox を拡張クラスに置き換え */
 	protected class JComboBoxCellRenderer extends ExtendedComboBox implements TableCellRenderer
 	{
+		private static final long serialVersionUID = -1216292492631231505L;		// edit n.ohkubo 2014/10/01　追加
+		
 		private final JTextField m_editor;
 
 		/**
@@ -332,6 +328,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 		/**
 		 *  @override : getTableCellRendererComponent
 		 */
+		@Override
 		public Component getTableCellRendererComponent( JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column )
 		{
 			removeAllItems();
@@ -359,6 +356,8 @@ public class JSimpleColorTable extends JTable implements TableModel
 	 */
 	protected class JRadioButtonRenderer extends JRadioButton implements TableCellRenderer{
 
+		private static final long serialVersionUID = 8264221521583323573L;		// edit n.ohkubo 2014/10/01　追加
+
 		/**
 		 *  コンストラクタ
 		 *
@@ -373,6 +372,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 		/**
 		 *  @override : getTableCellRendererComponent
 		 */
+		@Override
 		public Component getTableCellRendererComponent( JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column )
 		{
 			setHorizontalAlignment( SwingConstants.CENTER );
@@ -423,6 +423,8 @@ public class JSimpleColorTable extends JTable implements TableModel
 	 */
 	protected class JCheckBoxCellRenderer extends JCheckBox implements TableCellRenderer
 	{
+		private static final long serialVersionUID = 6633487157312121273L;		// edit n.ohkubo 2014/10/01　追加
+
 		/**
 		 *  コンストラクタ
 		 *
@@ -437,6 +439,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 		/**
 		 *  @override : getTableCellRendererComponent
 		 */
+		@Override
 		public Component getTableCellRendererComponent( JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column )
 		{
 			setHorizontalAlignment( SwingConstants.CENTER );
@@ -520,6 +523,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 
 		cellEdit.getComponent().addFocusListener( new FocusAdapter()
 		{
+			@Override
 			public void focusLost( FocusEvent e )
 			{
 				if( isEditing() )
@@ -534,6 +538,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 		 */
 		getTableHeader().addMouseListener( new MouseAdapter()
 		{
+			@Override
 			public void mousePressed( MouseEvent e )
 			{
 				if( isEditing() )
@@ -575,20 +580,31 @@ public class JSimpleColorTable extends JTable implements TableModel
 			}
 		});
 	}
-
-	// add s.inoue 2009/12/15
-	public int[] getSelectedRows() {
-		int[] rows = super.getSelectedRows();
-//		if (rows.length == 0){
-//			return new int[0];
+	
+	// edit n.ohkubo 2014/10/01　削除　絞込み処理（TableRowSorter）使用時に、このメソッドをオーバーライドしている場合、テーブルの最後の行を触ると「JTable.java:4316」でこいつが呼ばれ、その後の「DefaultRowSorter.java:497」で「IndexOutOfBoundsException」になるので、「getSelectedRowsConvertRowIndexToModel」メソッドへ名称変更
+//	// add s.inoue 2009/12/15
+//	public int[] getSelectedRows() {
+//		int[] rows = super.getSelectedRows();
+////		if (rows.length == 0){
+////			return new int[0];
+////		}
+//		for (int i = 0, n = rows.length; i < n; i++) {
+//		    rows[i] = convertRowIndexToModel(rows[i]);
 //		}
+//		return rows;
+//	}
+	// edit n.ohkubo 2014/10/01　追加 start
+	public int[] getSelectedRowsConvertRowIndexToModel() {
+		int[] rows = super.getSelectedRows();
 		for (int i = 0, n = rows.length; i < n; i++) {
 		    rows[i] = convertRowIndexToModel(rows[i]);
 		}
 		return rows;
 	}
+	// edit n.ohkubo 2014/10/01　追加 end
 
 	// edit s.inoue 2010/07/07 singleClick
+	@Override
 	public int getSelectedRow() {
 		int row = super.getSelectedRow();
 		if(row <= 0) return 0;
@@ -603,6 +619,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 	}
 
 	// add s.inoue 2009/12/15
+	@Override
 	public int convertRowIndexToModel(int viewRowIndex){
 		return super.convertRowIndexToModel(viewRowIndex);
 	}
@@ -610,6 +627,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 	/**
 	 *  @Override columnMarginChanged
 	 */
+	@Override
 	public void columnMarginChanged( ChangeEvent e )
 	{
 		if( isEditing() )
@@ -643,33 +661,35 @@ public class JSimpleColorTable extends JTable implements TableModel
 //		return m_objTableModel.getColumnCount();
 //	}
 
-	/**
-	 *  列幅取得
-	 *
-	 *    @param  列
-	 *    @return int
-	 */
-	private int getColumnWidth( int iColumn )
-	{
-		TableColumn column = getColumnModel().getColumn( iColumn );
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	/**
+//	 *  列幅取得
+//	 *
+//	 *    @param  列
+//	 *    @return int
+//	 */
+//	private int getColumnWidth( int iColumn )
+//	{
+//		TableColumn column = getColumnModel().getColumn( iColumn );
+//
+//		return column.getPreferredWidth();
+//	}
 
-		return column.getPreferredWidth();
-	}
-
-	/**
-	 *  列幅設定
-	 *
-	 *    @param  横幅
-	 *    @param  列
-	 *
-	 *    @return none
-	 */
-	private void setColumnWidth( int iWidth, int iColumn )
-	{
-		TableColumn column = getColumnModel().getColumn( iColumn );
-
-		column.setPreferredWidth( iWidth );
-	}
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	/**
+//	 *  列幅設定
+//	 *
+//	 *    @param  横幅
+//	 *    @param  列
+//	 *
+//	 *    @return none
+//	 */
+//	private void setColumnWidth( int iWidth, int iColumn )
+//	{
+//		TableColumn column = getColumnModel().getColumn( iColumn );
+//
+//		column.setPreferredWidth( iWidth );
+//	}
 
 	// add s.inoue 2009/12/07
 //	public void valueChanged(ListSelectionEvent e) {
@@ -817,9 +837,12 @@ public class JSimpleColorTable extends JTable implements TableModel
 			{
 				DefaultTableModel model = new DefaultTableModel()
 				{
+					private static final long serialVersionUID = 4310808912142006969L;		// edit n.ohkubo 2014/10/01　追加
+
 					/**
 					 *  @override isCellEditable
 					 */
+					@Override
 					public boolean isCellEditable( int row, int col )
 					{
 						for( int i=0; i<list.size(); ++i )
@@ -958,6 +981,7 @@ public class JSimpleColorTable extends JTable implements TableModel
 	}
 
 	// add s.inoue 2009/11/15
+	@Override
 	public TableCellRenderer getCellRenderer(int row, int column) {
 
 		 return super.getCellRenderer(row, column);
@@ -1084,7 +1108,6 @@ public class JSimpleColorTable extends JTable implements TableModel
 //
 //	@Override
 //	public void itemStateChanged(ItemEvent e) {
-//		// TODO 自動生成されたメソッド・スタブ
 //
 //	}
 //}
@@ -1092,12 +1115,16 @@ public class JSimpleColorTable extends JTable implements TableModel
 ///////////////////////////////////////////
 
 	protected class RadioButtonEditor extends DefaultCellEditor implements ItemListener {
+		
+		private static final long serialVersionUID = -5961967299381562749L;		// edit n.ohkubo 2014/10/01　追加
+		
 		private JRadioButton button;
 
 		public RadioButtonEditor(JCheckBox checkBox) {
 			super(checkBox);
 		}
 
+		@Override
 		public Component getTableCellEditorComponent(JTable table, Object value,
 			boolean isSelected, int row, int column) {
 			if (value==null) return null;
@@ -1106,26 +1133,29 @@ public class JSimpleColorTable extends JTable implements TableModel
 			return (Component)value;
 		}
 
+		@Override
 		public Object getCellEditorValue() {
 			button.removeItemListener(this);
 			return button;
 		}
 
+		@Override
 		public void itemStateChanged(ItemEvent e) {
 			super.fireEditingStopped();
 		}
 	}
-	// 結果(コード)欄のDefaultCellEditorクラスを追加
-	private class InputSelectComboCellEditor extends DefaultCellEditor {
-		private ImeController imeController = null;
-
-		public InputSelectComboCellEditor(JComboBox comboBox) {
-			super(comboBox);
-			// add s.inoue 2009/10/14
-			imeController = new ImeController();
-			imeController.addFocusListenerForCharcterSubsets(comboBox, ImeMode.IME_OFF);
-		}
-	}
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	// 結果(コード)欄のDefaultCellEditorクラスを追加
+//	private class InputSelectComboCellEditor extends DefaultCellEditor {
+//		private ImeController imeController = null;
+//
+//		public InputSelectComboCellEditor(JComboBox comboBox) {
+//			super(comboBox);
+//			// add s.inoue 2009/10/14
+//			imeController = new ImeController();
+//			imeController.addFocusListenerForCharcterSubsets(comboBox, ImeMode.IME_OFF);
+//		}
+//	}
 
 	/**
 	 *  カスタムエディタ：コンボボックスをセルに設定します.
@@ -1145,8 +1175,12 @@ public class JSimpleColorTable extends JTable implements TableModel
 		column.setCellEditor( comboEditor );
 
 		JComboBoxCellRenderer renderer = new JComboBoxCellRenderer(){
-			Component editorComponent = getEditor().getEditorComponent();
+			
+			private static final long serialVersionUID = -2196732552811302735L;		// edit n.ohkubo 2014/10/01　追加
+			
+			Component editorComponent = getEditor().getEditorComponent();	// edit n.ohkubo 2014/10/01　未使用なので削除
 
+			@Override
 			public Component getTableCellRendererComponent(
 					JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col ){
 
@@ -1696,13 +1730,11 @@ public class JSimpleColorTable extends JTable implements TableModel
 
 	@Override
 	public void addTableModelListener(TableModelListener l) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 
 	@Override
 	public void removeTableModelListener(TableModelListener l) {
-		// TODO 自動生成されたメソッド・スタブ
 
 	}
 }

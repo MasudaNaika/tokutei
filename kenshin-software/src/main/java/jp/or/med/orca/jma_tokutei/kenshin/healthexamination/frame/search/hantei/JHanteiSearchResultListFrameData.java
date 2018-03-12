@@ -1,10 +1,11 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.hantei;
 
-import java.sql.Date;
-
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
 
 public class JHanteiSearchResultListFrameData extends ValueObjectImpl {
+	
+	private static final long serialVersionUID = 3467593862512060040L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private String CHECKBOX_COLUMN;
 	private String UKETUKE_ID;
 	private String NAME;
@@ -354,5 +355,15 @@ public class JHanteiSearchResultListFrameData extends ValueObjectImpl {
 
 		this.HOKENSIDO = HOKENSIDO;
 
+	}
+	
+	// edit n.ohkubo 2014/10/01　追加　キーは「xxxx2」だが、中身は2が付いていなやつになる（変数の宣言がないとヌルポになる。宣言だけだと「使われていないワーニング」になるので、セッターでむりやり使用している）
+	private String KENSA_NENGAPI2;
+	public String getKENSA_NENGAPI2() {
+		return getKENSA_NENGAPI();
+	}
+	public void setKENSA_NENGAPI2(String KENSA_NENGAPI2) {
+		this.KENSA_NENGAPI2 = KENSA_NENGAPI2;
+		setKENSA_NENGAPI(this.KENSA_NENGAPI2);
 	}
 }

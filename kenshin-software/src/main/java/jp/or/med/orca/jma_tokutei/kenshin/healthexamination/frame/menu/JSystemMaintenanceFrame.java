@@ -41,6 +41,8 @@ public class JSystemMaintenanceFrame extends JFrame implements ActionListener,Ke
 	protected ExtendedButton jButton_Maintenance = null;
 	protected ExtendedButton jButton_Usability = null;
 	protected ExtendedButton jButton_Backup = null;
+	// add s.inoue 2013/11/07
+	protected ExtendedButton jButton_Log = null;
 	protected TitleLabel jLabel_Title = null;
 	protected JPanel jPanel_NaviArea = null;
 	protected JPanel jPanel_TitleArea = null;
@@ -302,10 +304,16 @@ public class JSystemMaintenanceFrame extends JFrame implements ActionListener,Ke
 			GridBagConstraints gridBagConstraints3 = new GridBagConstraints();
 			gridBagConstraints1.gridy = 2;
 			gridBagConstraints1.gridx = 0;
+			// add s.inoue 2013/11/07
+			GridBagConstraints gridBagConstraints4 = new GridBagConstraints();
+			gridBagConstraints1.gridy = 2;
+			gridBagConstraints1.gridx = 0;
 
 			jPanel_Center.add(getJButton_Usability(),gridBagConstraints1);
 			jPanel_Center.add(getJButton_Maintenance(), gridBagConstraints2);
 			jPanel_Center.add(getJButton_Backup(), gridBagConstraints3);
+			// add s.inoue 2013/11/07
+			jPanel_Center.add(getJButton_Log(), gridBagConstraints4);
 		}
 		return jPanel_Center;
 	}
@@ -384,6 +392,24 @@ public class JSystemMaintenanceFrame extends JFrame implements ActionListener,Ke
 			jButton_Backup.setMnemonic(KeyEvent.VK_3);
 		}
 		return jButton_Backup;
+	}
+
+	// add s.inoue 2013/11/07
+	/**
+	 * This method initializes jButton_Backup
+	 *
+	 * @return javax.swing.ExtendedButton
+	 */
+	private ExtendedButton getJButton_Log() {
+		if (jButton_Log == null) {
+			ExtendedImageIcon iIcon = new ExtendedImageIcon(JPath.Ico_System_Log);
+			ImageIcon icon = iIcon.setStrechIcon(this, JPath.CONST_KENSHIN_FIX_ICON);
+			jButton_Log = new ExtendedButton("７-４．ログファイル管理(4)",icon);
+			jButton_Log.setFont(JApplication.FONT_COMMON_MENU_BUTTON);
+			jButton_Log.addActionListener(this);
+			jButton_Log.setMnemonic(KeyEvent.VK_4);
+		}
+		return jButton_Log;
 	}
 
 	public void actionPerformed( ActionEvent e )

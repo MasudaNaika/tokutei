@@ -2,13 +2,6 @@ package jp.or.med.orca.jma_tokutei.common.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.OutputStream;
-
-import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,21 +10,12 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.common.app.JPath;
-import jp.or.med.orca.jma_tokutei.common.filectrl.JFile;
-import jp.or.med.orca.jma_tokutei.common.hl7.common.Utility;
-import jp.or.med.orca.jma_tokutei.common.util.XMLDocumentUtil;
-
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Text;
 
 //import com.lowagie.text.Document;
 import com.sun.org.apache.xml.internal.serializer.OutputPropertiesFactory;
@@ -137,6 +121,35 @@ public class XMLDocumentUtil {
 			node.setNodeValue(value);
 		}
 	}
+	
+	// edit n.ohkubo 2015/08/01　追加　start
+	/**
+	 * setNodeValueの空タグ（<property id="AbsolutePath"/>）対応版
+	 * ※getNodeメソッドをコピーして作成したので、getNodeを変更したら、変更箇所によってはこっちも変える必要がある
+	 * 
+	 * @param properties
+	 * @param property
+	 * @param value
+	 */
+	public void setNodeValueEmptyTag(String properties, String property, String value) {
+		NodeList list = m_elementRoot.getElementsByTagName(ELEMENT_PROPERTIES);
+		Node n;
+		for (int i = 0; i < list.getLength(); i++) {
+			n = list.item(i);
+			NamedNodeMap map = n.getAttributes();
+			if (properties.equals(map.getNamedItem(ATTRIBUTE_ID).getNodeValue())) {
+				NodeList list2 = ((Element) n).getElementsByTagName(ELEMENT_PROPERTY);
+				for (int j = 0; j < list2.getLength(); j++) {
+					Node node = list2.item(j);
+					NamedNodeMap map2 = node.getAttributes();
+					if (property.equals(map2.getNamedItem(ATTRIBUTE_ID).getNodeValue())) {
+						node.setTextContent(value);
+					}
+				}
+			}
+		}
+	}
+	// edit n.ohkubo 2015/08/01　追加　end
 	
 	/** add s.inoue 20081205
 	 *  指定ノード追加設定

@@ -1,17 +1,20 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu;
 
 import java.awt.Component;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
-
-import org.apache.log4j.Logger;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.system.JKikanDBBackupFrameCtrl;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.system.JKikanLogListFrameCtl;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.system.JUsabilityFrameCtrl;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.system.JUserMaintenanceListFrameCtl;
+
+import org.apache.log4j.Logger;
 
 /**
  * システムメンテナンスメニューのフレームのコントロール
@@ -32,6 +35,8 @@ public class JSystemMaintenanceFrameCtrl extends JSystemMaintenanceFrame {
 		this.focusTraversalPolicy.addComponent(this.jButton_Usability);
 		this.focusTraversalPolicy.addComponent(this.jButton_Maintenance);
 		this.focusTraversalPolicy.addComponent(this.jButton_Backup);
+		// add s.inoue 2013/11/07
+//		this.focusTraversalPolicy.addComponent(this.jButton_Log);
 		this.focusTraversalPolicy.addComponent(this.jButton_End);
 
 		for (int i = 0; i < focusTraversalPolicy.getComponentSize(); i++) {
@@ -91,6 +96,21 @@ public class JSystemMaintenanceFrameCtrl extends JSystemMaintenanceFrame {
 				new JKikanDBBackupFrameCtrl());
 	}
 
+	// add s.inoue 2013/11/07
+	/**
+	 * ログファイル管理ボタン
+	 */
+	public void pushedLogButton(ActionEvent e) {
+		// edit s.inoue 2014/04/25
+		JKikanLogListFrameCtl ctl = new JKikanLogListFrameCtl();
+//		JProgressListFrameCtl ctl = new JProgressListFrameCtl(
+//				JApplication.kikanDatabase.getMConnection());
+		JScene.CreateDialog(
+				this,
+				ctl.getGridControl()
+				);
+	}
+
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if (source == jButton_End) {
@@ -108,6 +128,11 @@ public class JSystemMaintenanceFrameCtrl extends JSystemMaintenanceFrame {
 		if (source == jButton_Backup) {
 			logger.info(jButton_Backup.getText());
 			pushedBackupButton(e);
+		}
+		// add s.inoue 2013/11/07
+		if (source == jButton_Log) {
+			logger.info(jButton_Log.getText());
+			pushedLogButton(e);
 		}
 	}
 

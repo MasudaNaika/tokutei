@@ -6,21 +6,28 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Properties;
-import java.util.Calendar;
-import java.text.SimpleDateFormat;
+import java.util.Set;
+
 import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessageDialogFrameCtrl;
 import jp.or.med.orca.jma_tokutei.common.orca.JORCASetting;
 import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
-import jp.or.med.orca.jma_tokutei.common.util.XMLDocumentUtil;
 import jp.or.med.orca.jma_tokutei.common.util.PropertyUtil;
+import jp.or.med.orca.jma_tokutei.common.util.XMLDocumentUtil;
+
 import org.apache.log4j.PropertyConfigurator;
 import org.openswing.swing.domains.java.Domain;
+import org.openswing.swing.message.send.java.FilterWhereClause;
+import org.openswing.swing.message.send.java.GridParams;
 import org.openswing.swing.util.client.ClientSettings;
 
 /**
@@ -137,7 +144,7 @@ public class JApplication {
 	public static final Integer CSV_KENSA_KEKATI = 18;
 	public static final Integer CSV_KENSA_TANI = 19;
 	public static final Integer CSV_KENSA_KIJUN = 20;
-	// 検査項目情報:1〜22,検査項目個数:8
+	// 検査項目情報:1～22,検査項目個数:8
 	// eidt s.inoue 2013/02/26
 	// public static final Integer CSV_KENSA_LOOP = 22;
 	public static final Integer CSV_KENSA_LOOP = 280;
@@ -220,6 +227,11 @@ public class JApplication {
 	public static final String SCREEN_MASTER_SYSTEM_CODE = "107"; // システム利用者メンテナンス
 	public static final String SCREEN_MASTER_KEINEN_CODE = "108"; // 経年マスタメンテナンス
 	public static final String SCREEN_MASTER_USEBILITY_CODE = "109"; // ユーザビリティメンテナンス
+	
+	// edit n.ohkubo 2014/10/01　追加
+	public static final String SCREEN_MASTER_SHOKEN_CODE = "110"; // 所見マスタメンテナンス
+	public static final String SCREEN_MASTER_LOG_CODE = "111"; // ログファイル管理
+	
 
 	// add s.inoue 2011/05/10
 	// 検索系一覧カウント
@@ -257,9 +269,168 @@ public class JApplication {
 
     // add s.inoue 2012/11/29
     public static ArrayList<Integer> selectedPreservRows = new ArrayList<Integer>();
+    public static int selectedMaxRow = 0;
 
     public static boolean callValidateCancelFlg = false;
     public static boolean firstCheckedFlg =false;
+
+    //add s.inous 2013/11/06
+    public enum FlagEnum_Serche {
+    	JYUSHIN_SEIRI_NO,
+    	NAME, 
+    	HIHOKENJYASYO_KIGOU, 
+    	HIHOKENJYASYO_NO,
+    	KENSA_NENGAPI, 
+    	SEX, 
+    	BIRTHDAY,
+    	KEKA_INPUT_FLG, 
+    	HKNJANUM, 
+    	SIHARAI_DAIKOU_BANGO,
+    	KANANAME,
+    	HANTEI_NENGAPI, 
+    	TUTI_NENGAPI,
+    	NENDO, 
+    	CHECKBOX_COLUMN,
+    	//add tanaka 2013/11/07
+    	TANKA_GOUKEI, 
+    	MADO_FUTAN_GOUKEI,
+    	SEIKYU_KINGAKU,
+    	UPDATE_TIMESTAMP,
+    	JISI_KBN,
+    	HENKAN_NITIJI,
+    	METABO,
+    	HOKENSIDO_LEVEL,
+    	KOMENTO
+    }
+    
+    public enum FlagEnum_Nitiji {
+    	JYUSHIN_SEIRI_NO, NAME, 
+    	HIHOKENJYASYO_KIGOU, 
+    	HIHOKENJYASYO_NO,
+    	KENSA_NENGAPI, 
+    	SEX, 
+    	BIRTHDAY,
+    	KEKA_INPUT_FLG, 
+    	HKNJANUM, 
+    	SIHARAI_DAIKOU_BANGO,
+    	KANANAME,
+    	HANTEI_NENGAPI, 
+    	TUTI_NENGAPI,
+    	NENDO, 
+    	CHECKBOX_COLUMN,
+    	//add tanaka 2013/11/07
+    	TANKA_GOUKEI, 
+    	MADO_FUTAN_GOUKEI,
+    	SEIKYU_KINGAKU,
+    	UPDATE_TIMESTAMP,
+    	JISI_KBN, HENKAN_NITIJI,
+    	METABO,
+    	HOKENSIDO_LEVEL,
+    	KOMENTO
+    }
+    
+    public enum FlagEnum_Hantei {
+    	JYUSHIN_SEIRI_NO, NAME, 
+    	HIHOKENJYASYO_KIGOU, 
+    	HIHOKENJYASYO_NO,
+    	KENSA_NENGAPI, 
+    	SEX, 
+    	BIRTHDAY,
+    	KEKA_INPUT_FLG, 
+    	HKNJANUM, 
+    	SIHARAI_DAIKOU_BANGO,
+    	KANANAME,
+    	HANTEI_NENGAPI, 
+    	TUTI_NENGAPI,
+    	NENDO, 
+    	CHECKBOX_COLUMN,
+    	//add tanaka 2013/11/07
+    	TANKA_GOUKEI, 
+    	MADO_FUTAN_GOUKEI,
+    	SEIKYU_KINGAKU,
+    	UPDATE_TIMESTAMP,
+    	JISI_KBN, HENKAN_NITIJI,
+    	METABO,
+    	HOKENSIDO_LEVEL,
+    	KOMENTO
+    }
+    
+    public enum FlagEnum_Getuji {
+    	JYUSHIN_SEIRI_NO, NAME, 
+    	HIHOKENJYASYO_KIGOU, 
+    	HIHOKENJYASYO_NO,
+    	KENSA_NENGAPI, 
+    	SEX, 
+    	BIRTHDAY,
+    	KEKA_INPUT_FLG, 
+    	HKNJANUM, 
+    	T_HOKENJYA, 
+    	SIHARAI_DAIKOU_BANGO,
+    	KANANAME,
+    	HANTEI_NENGAPI, 
+    	TUTI_NENGAPI,
+    	NENDO, 
+    	CHECKBOX_COLUMN,
+    	//add tanaka 2013/11/07
+    	TANKA_GOUKEI, 
+    	MADO_FUTAN_GOUKEI,
+    	SEIKYU_KINGAKU,
+    	UPDATE_TIMESTAMP,
+    	JISI_KBN, HENKAN_NITIJI,
+    	METABO,
+    	HOKENSIDO_LEVEL,
+    	KOMENTO
+    }
+    
+    /*add tanaka 2013/11/15*/
+    public enum FlagEnum_Master {
+    	HKNJANUM,
+    	KOUMOKU_CD,
+    	KOUMOKU_NAME,
+    	KENSA_HOUHOU,
+    	HISU_FLG,
+    	DS_KAGEN,
+    	DS_JYOUGEN,
+    	JS_KAGEN,
+    	JS_JYOUGEN,
+    	TANI,
+    	KAGEN,
+    	JYOUGEN,
+    	KIJYUNTI_HANI,
+    	TANKA_KENSIN,
+    	BIKOU,
+    }
+    
+    // add s.inoue 2014/02/17
+    public enum FlagEnum_KouteiMaster {
+    	HKNJANUM,
+    	JYUSHIN_SEIRI_NO,
+    	HIHOKENJYASYO_KIGOU,
+    	HIHOKENJYASYO_NO,
+    	KENSA_NENGAPI,
+    	BIRTHDAY,
+    	SEX,
+    	KANANAME,
+    	KEKA_FLG,
+    	HANTEI_FLG,
+    	NITIJI_FLG,
+    	GETUJI_FLG,
+    }
+    
+    public static Set flag = EnumSet.noneOf(FlagEnum_Serche.class);
+    public static Set flag_Nitiji = EnumSet.noneOf(FlagEnum_Nitiji.class);
+    public static Set flag_Hantei = EnumSet.noneOf(FlagEnum_Hantei.class);
+    public static Set flag_Getuji = EnumSet.noneOf(FlagEnum_Getuji.class);
+    public static Set flag_Master = EnumSet.noneOf(FlagEnum_Master.class);
+    public static Set flag_KouteiMaster = EnumSet.noneOf(FlagEnum_KouteiMaster.class);
+    public static GridParams gridParams = null;
+    public static ArrayList vals = null;
+    public static FilterWhereClause[] clauseDesign = null;
+    public static ArrayList currentSortedColumns = null;
+    public static ArrayList currentSortedVersusColumns = null;
+    
+    // add s.inoue 2013/11/19
+    public static Map<Integer,String> currentSorted = null;
 	/**
 	 * 設定ファイルなどを読み込むa。
 	 */

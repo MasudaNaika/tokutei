@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://tokuteikenshin.jp/checkup/2007" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tokuteikenshin.jp/checkup/2007" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:include schemaLocation="co08_V08.xsd"/>
+  <!-- Element Definition -->
+  <xs:element name="index" type="Index"/>
+  <xs:element name="creationTime" type="Common.Date"/>
+  <xs:element name="sender" type="Index.Sender"/>
+  <xs:element name="receiver" type="Index.Receiver"/>
+  <xs:element name="totalRecordCount" type="Index.TotalRecordCount"/>
+  <!-- ComplexType Definition -->
+  <xs:complexType name="Index">
+    <xs:sequence>
+      <xs:element ref="interactionType"/>
+      <xs:element ref="creationTime"/>
+      <xs:element ref="sender"/>
+      <xs:element ref="receiver" minOccurs="0"/>
+      <xs:element ref="serviceEventType"/>
+      <xs:element ref="totalRecordCount"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Index.TotalRecordCount">
+    <xs:attribute name="value" type="totalCount" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="Index.SenderId">
+    <xs:attribute name="root" type="senderOid" use="required"/>
+    <xs:attribute name="extension" type="senderId" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="Index.ReceiverId">
+    <xs:attribute name="root" type="receiverOid" use="required"/>
+    <xs:attribute name="extension" type="receiverId" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="Index.Sender">
+    <xs:sequence>
+      <xs:element name="id" type="Index.SenderId"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Index.Receiver">
+    <xs:sequence>
+      <xs:element name="id" type="Index.ReceiverId"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1115,7 +1115,7 @@ public class JImportDataFrameCtrl extends JImportDataFrame
 
 		try {
 
-			Reader.openCSV(FilePath,JApplication.CSV_CHARSET);
+			Reader.openCSV(FilePath,JApplication.CSV_CHARSET,',');
 
 			CSVItems = Reader.readAllTable();
 
@@ -1193,7 +1193,7 @@ public class JImportDataFrameCtrl extends JImportDataFrame
 
 		try {
 
-			Reader.openCSV(FilePath,JApplication.CSV_CHARSET);
+			Reader.openCSV(FilePath,JApplication.CSV_CHARSET,',');
 
 			CSVItems = Reader.readAllTable();
 
@@ -4367,10 +4367,6 @@ public class JImportDataFrameCtrl extends JImportDataFrame
 		importKenshinItem.add("3D046000001920402");//ＨｂＡ１ｃ(NGSP)
 		importKenshinItem.add("3D046000001927102");//ＨｂＡ１ｃ(NGSP)
 		importKenshinItem.add("3D046000001999902");//ＨｂＡ１ｃ(NGSP)
-                
-//masuda^ 2018/03/02 non-HDL 
-                importKenshinItem.add("3F069000002391901");
-//masuda$
 
 		importKenshinItem.add("1A020000000191111");//尿糖
 		importKenshinItem.add("1A020000000190111");//尿糖

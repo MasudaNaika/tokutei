@@ -1,27 +1,36 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.kenshinpattern;
 
-import org.apache.log4j.Logger;
-import org.openswing.swing.table.client.GridController;
-import org.openswing.swing.message.receive.java.*;
-import org.openswing.swing.table.java.GridDataLocator;
-import org.openswing.swing.client.GridControl;
-import org.openswing.swing.domains.java.Domain;
-import org.openswing.swing.export.java.ExportOptions;
-import org.openswing.swing.server.QueryUtil;
-import org.openswing.swing.server.UserSessionParameters;
-import org.openswing.swing.message.send.java.FilterWhereClause;
-import org.openswing.swing.message.send.java.GridParams;
-
-import java.util.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.Map;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.hokenja.JHokenjyaMasterMaintenanceListFrameCtrl;
+
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.domains.java.Domain;
+import org.openswing.swing.export.java.ExportOptions;
+import org.openswing.swing.message.receive.java.ErrorResponse;
+import org.openswing.swing.message.receive.java.Response;
+import org.openswing.swing.message.receive.java.VOListResponse;
+import org.openswing.swing.message.receive.java.VOResponse;
+import org.openswing.swing.message.receive.java.ValueObject;
+import org.openswing.swing.message.send.java.FilterWhereClause;
+import org.openswing.swing.message.send.java.GridParams;
+import org.openswing.swing.server.QueryUtil;
+import org.openswing.swing.server.UserSessionParameters;
+import org.openswing.swing.table.client.GridController;
+import org.openswing.swing.table.java.GridDataLocator;
 
 /**
  * 一覧Ctl画面
@@ -163,7 +172,11 @@ public class JKenshinpatternMasterMaintenanceListFrameCtrl
 //			      System.out.println(filterClauses[0].getOperator());
 
 			      if (filterClauses[0].getOperator().equals("like")){
-			    	  filterClauses[0].setValue("%" + filterClauses[0].getValue() + "%");
+						  // add s.inoue 2014/03/18
+					      String filterval = filterClauses[0].getValue().toString();
+					      if(!filterval.startsWith("%"))
+					    	  filterval = "%"+filterval+"%";
+					    	  filterClauses[0].setValue(filterval);
 
 						gridParams.getFilteredColumns().put(filterClauses[0].getAttributeName(),
 								new FilterWhereClause[] { filterClauses[0], null });

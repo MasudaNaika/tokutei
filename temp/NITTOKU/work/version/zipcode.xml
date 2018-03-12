@@ -1,0 +1,670 @@
+<root>
+	<data>
+                <!-- 2010.07 -->
+                <data_zipcode_version no="2010-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1006.csv</zip_del_url> 
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1006.csv</zip_add_url> 
+			</task>
+		</data_zipcode_version>
+		<!-- 2010.08 -->
+		<data_zipcode_version no="2010-08-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1007.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1007.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2010.09 -->
+		<data_zipcode_version no="2010-09-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1008.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1008.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2010.10 -->
+		<data_zipcode_version no="2010-10-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1009.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1009.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2010.11 -->
+		<data_zipcode_version no="2010-11-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1010.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1010.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2010.12 -->
+		<data_zipcode_version no="2010-12-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1011.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1011.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.01 -->
+		<data_zipcode_version no="2011-01-05">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1012.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1012.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.02 -->
+		<data_zipcode_version no="2011-02-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1101.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1101.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.03 -->
+		<data_zipcode_version no="2011-03-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1102.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1102.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.04 -->
+		<data_zipcode_version no="2011-04-06">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1103.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1103.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.05 -->
+		<data_zipcode_version no="2011-05-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1104.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1104.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.06 -->
+		<data_zipcode_version no="2011-06-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1105.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1105.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.07 -->
+		<data_zipcode_version no="2011-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1106.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1106.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.08 -->
+		<data_zipcode_version no="2011-08-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1107.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1107.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.09 -->
+		<data_zipcode_version no="2011-09-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1108.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1108.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.10 -->
+		<data_zipcode_version no="2011-10-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1109.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1109.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.11 -->
+		<data_zipcode_version no="2011-11-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1110.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1110.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2011.12 -->
+		<data_zipcode_version no="2011-12-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1111.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1111.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.01 -->
+		<data_zipcode_version no="2012-01-05">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1112.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1112.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.02 -->
+		<data_zipcode_version no="2012-02-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1201.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1201.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.03 -->
+		<data_zipcode_version no="2012-03-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1202.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1202.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.04 -->
+		<data_zipcode_version no="2012-04-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1203.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1203.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.05 -->
+		<data_zipcode_version no="2012-05-07">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1204.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1204.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.06 -->
+		<data_zipcode_version no="2012-06-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1205.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1205.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.07 -->
+		<data_zipcode_version no="2012-07-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1206.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1206.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.08 -->
+		<data_zipcode_version no="2012-08-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1207.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1207.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.09 -->
+		<data_zipcode_version no="2012-09-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1208.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1208.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.10 -->
+		<data_zipcode_version no="2012-10-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1209.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1209.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.11 -->
+		<data_zipcode_version no="2012-11-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1210.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1210.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2012.12 -->
+		<data_zipcode_version no="2012-12-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1211.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1211.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.01 -->
+		<data_zipcode_version no="2013-01-10">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1212.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1212.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.02 -->
+		<data_zipcode_version no="2013-02-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1301.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1301.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.03 -->
+		<data_zipcode_version no="2013-03-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1302.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1302.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.04 -->
+		<data_zipcode_version no="2013-04-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1303.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1303.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.05 -->
+		<data_zipcode_version no="2013-05-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1304.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1304.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.06 -->
+		<data_zipcode_version no="2013-06-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1305.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1305.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.07 -->
+		<data_zipcode_version no="2013-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1306.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1306.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.08 -->
+		<data_zipcode_version no="2013-08-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1307.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1307.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.09 -->
+		<data_zipcode_version no="2013-09-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1308.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1308.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.10 -->
+		<data_zipcode_version no="2013-10-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1309.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1309.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.11 -->
+		<data_zipcode_version no="2013-11-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1310.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1310.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2013.12 -->
+		<data_zipcode_version no="2013-12-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1311.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1311.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.01 -->
+		<data_zipcode_version no="2014-01-06">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1312.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1312.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.02 -->
+		<data_zipcode_version no="2014-02-04">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1401.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1401.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.03 -->
+		<data_zipcode_version no="2014-03-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1402.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1402.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.04 -->
+		<data_zipcode_version no="2014-04-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1403.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1403.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.05 -->
+		<data_zipcode_version no="2014-05-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1404.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1404.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.06 -->
+		<data_zipcode_version no="2014-06-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1405.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1405.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.07 -->
+		<data_zipcode_version no="2014-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1406.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1406.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.08 -->
+		<data_zipcode_version no="2014-08-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1407.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1407.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.09 -->
+		<data_zipcode_version no="2014-09-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1408.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1408.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.10 -->
+		<data_zipcode_version no="2014-10-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1409.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1409.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.11 -->
+		<data_zipcode_version no="2014-11-04">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1410.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1410.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2014.12 -->
+		<data_zipcode_version no="2014-12-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1411.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1411.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.01 -->
+		<data_zipcode_version no="2015-01-05">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1412.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1412.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.02 -->
+		<data_zipcode_version no="2015-02-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1501.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1501.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.03 -->
+		<data_zipcode_version no="2015-03-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1502.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1502.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.04 -->
+		<data_zipcode_version no="2015-04-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1503.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1503.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.05 -->
+		<data_zipcode_version no="2015-04-30">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1504.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1504.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.06 -->
+		<data_zipcode_version no="2015-06-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1505.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1505.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.07 -->
+		<data_zipcode_version no="2015-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1506.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1506.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.08 -->
+		<data_zipcode_version no="2015-08-03">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1507.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1507.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.09 -->
+		<data_zipcode_version no="2015-09-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1508.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1508.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.10 -->
+		<data_zipcode_version no="2015-10-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1509.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1509.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.10 -->
+		<data_zipcode_version no="2015-10-30">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1510.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1510.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2015.12 -->
+		<data_zipcode_version no="2015-12-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1511.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1511.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.01 -->
+		<data_zipcode_version no="2016-01-05">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1512.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1512.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.02 -->
+		<data_zipcode_version no="2016-02-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1601.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1601.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.03 -->
+		<data_zipcode_version no="2016-03-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1602.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1602.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.03 -->
+		<data_zipcode_version no="2016-03-31">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1603.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1603.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.03 -->
+		<data_zipcode_version no="2016-03-31">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1603.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1603.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.05 -->
+		<data_zipcode_version no="2016-05-02">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1604.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1604.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.05 -->
+		<data_zipcode_version no="2016-05-31">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1605.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1605.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+		<!-- 2016.07 -->
+		<data_zipcode_version no="2016-07-01">
+			<task>
+				<zip_del_url>work/version/zipcode/delzip1606.csv</zip_del_url>
+			</task>
+			<task>
+				<zip_add_url>work/version/zipcode/addzip1606.csv</zip_add_url>
+			</task>
+		</data_zipcode_version>
+	</data>
+</root>

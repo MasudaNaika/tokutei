@@ -1,14 +1,15 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.getuji;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JOutputHL7Directory;
 
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
-import org.openswing.swing.table.columns.client.CheckBoxColumn;
 
 public class JOutputGetujiSearchListFrameData extends ValueObjectImpl {
+
+	private static final long serialVersionUID = 7627558833386933335L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private String CHECKBOX_COLUMN;
 	private String UKETUKE_ID;
 	private String NAME;
@@ -34,7 +35,10 @@ public class JOutputGetujiSearchListFrameData extends ValueObjectImpl {
 	// 月次
 	private String SHUBETU_CODE;
 	private String JISI_KBN;
-	private String OUTPUT_HL7;
+	// eidt s.inoue 2013/07/30
+	private String HENKAN_NITIJI;
+	// private String OUTPUT_HL7;
+
 	// edit s.inoue 2009/09/18
 	private ArrayList<JOutputHL7Directory> JOutputDirs
 		= new ArrayList<JOutputHL7Directory>();
@@ -281,15 +285,15 @@ public class JOutputGetujiSearchListFrameData extends ValueObjectImpl {
 		}
 		return JISI_KBN;
 	}
-	/**
-	 * @return the OUTPUT_HL7
-	 */
-	public String getOUTPUT_HL7() {
-		if (OUTPUT_HL7 == null ) {
-			OUTPUT_HL7 = "";
-		}
-		return OUTPUT_HL7;
-	}
+//	/**
+//	 * @return the OUTPUT_HL7
+//	 */
+//	public String getOUTPUT_HL7() {
+//		if (OUTPUT_HL7 == null ) {
+//			OUTPUT_HL7 = "";
+//		}
+//		return OUTPUT_HL7;
+//	}
 
 	/**
 	 * @param CHECKBOX_COLUMN the CHECKBOX_COLUMN to set
@@ -489,12 +493,46 @@ public class JOutputGetujiSearchListFrameData extends ValueObjectImpl {
 		this.JISI_KBN = JISI_KBN;
 
 	}
+//	/**
+//	 * @param OUTPUT_HL7 the OUTPUT_HL7 to set
+//	 */
+//	public void setOUTPUT_HL7(String OUTPUT_HL7) {
+//
+//		this.OUTPUT_HL7 = OUTPUT_HL7;
+//
+//	}
+
 	/**
-	 * @param OUTPUT_HL7 the OUTPUT_HL7 to set
+	 * HENKAN_NITIJIを取得します。
+	 * @return HENKAN_NITIJI
 	 */
-	public void setOUTPUT_HL7(String OUTPUT_HL7) {
+	public String getHENKAN_NITIJI() {
+	    return HENKAN_NITIJI;
+	}
 
-		this.OUTPUT_HL7 = OUTPUT_HL7;
-
+	/**
+	 * HENKAN_NITIJIを設定します。
+	 * @param HENKAN_NITIJI HENKAN_NITIJI
+	 */
+	public void setHENKAN_NITIJI(String HENKAN_NITIJI) {
+	    this.HENKAN_NITIJI = HENKAN_NITIJI;
+	}
+	
+	// edit n.ohkubo 2014/10/01　追加　キーは「xxxx2」だが、中身は2が付いていなやつになる（変数の宣言がないとヌルポになる。宣言だけだと「使われていないワーニング」になるので、セッターでむりやり使用している）
+	private String KENSA_NENGAPI2;
+	public String getKENSA_NENGAPI2() {
+		return getKENSA_NENGAPI();
+	}
+	public void setKENSA_NENGAPI2(String KENSA_NENGAPI2) {
+		this.KENSA_NENGAPI2 = KENSA_NENGAPI2;
+		setKENSA_NENGAPI(this.KENSA_NENGAPI2);
+	}
+	private String HENKAN_NITIJI2;
+	public String getHENKAN_NITIJI2() {
+		return getHENKAN_NITIJI();
+	}
+	public void setHENKAN_NITIJI2(String HENKAN_NITIJI2) {
+		this.HENKAN_NITIJI2 = HENKAN_NITIJI2;
+		setHENKAN_NITIJI(this.HENKAN_NITIJI2);
 	}
 }

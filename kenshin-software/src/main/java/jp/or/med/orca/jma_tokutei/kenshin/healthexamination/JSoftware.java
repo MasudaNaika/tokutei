@@ -1,5 +1,6 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination;
 
+import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.frame.JSplashFrameCtrl;
@@ -7,8 +8,7 @@ import jp.or.med.orca.jma_tokutei.common.frame.dialog.SettingDialog;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
 import jp.or.med.orca.jma_tokutei.common.util.PropertyUtil;
-//import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu.JLoginFrameCtrl;
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
+import jp.or.med.orca.jma_tokutei.common.util.XMLDocumentUtil;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu.JLoginFrameCtrl;
 
 /**
@@ -103,14 +103,40 @@ public class JSoftware{
 			System.exit(1);
 		}
 
-		// 機関データベースが登録されているか確認
-		if (JConnection.IsExistKikanDatabase() == false) {
-			JErrorMessage.show("M1001", null);
-			System.exit(1);
-		}
+		if (isNoAbsolutePath()) {	// edit n.ohkubo 2015/08/01　追加
+			
+			// 機関データベースが登録されているか確認
+			if (JConnection.IsExistKikanDatabase() == false) {
+				JErrorMessage.show("M1001", null);
+				System.exit(1);
+			}
+		}	// edit n.ohkubo 2015/08/01　追加
 
 		JScene.ChangeScene(new JLoginFrameCtrl());
 	}
+	
+	// edit n.ohkubo 2015/08/01　追加　start　他PCのFDBが指定されている場合、確認しない
+	/**
+	 * property.xmlのAbsolutePathに値が設定されているか確認する
+	 * 
+	 * @return	設定されていない：true、設定されている：false
+	 */
+	private static boolean isNoAbsolutePath() {
+		boolean isResult = false;
+
+		XMLDocumentUtil doc;
+		try {
+			doc = new XMLDocumentUtil(PropertyUtil.getProperty("property.filename"));
+			String path = doc.getNodeValue("DBConfig", "AbsolutePath");
+			isResult = (path == null || path.trim().isEmpty());
+			
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+//		System.out.println("isNoAbsolutePath:[" + isResult + "]");
+		return isResult;
+	}
+	// edit n.ohkubo 2015/08/01　追加　end　他PCのFDBが指定されている場合、確認しない
 
 	// add s.inoue 2009/12/18
 	private static String getAppSettings(){
@@ -145,6 +171,7 @@ public class JSoftware{
 				//"       DBData " + JApplication.DBDataVersion,
 				JPath.SplashPath,flgReload) {
 
+			@Override
 			public void loadingProc() {
 //				// 設定ファイルロード
 //				JApplication.load();

@@ -39,7 +39,8 @@ public class ViewSettingsFile {
 				success = true;
 			}
 			else {
-				JErrorMessage.show("M0002", null);
+//				JErrorMessage.show("M0002", null);	// edit n.ohkubo 2014/10/01　削除
+				JErrorMessage.show("M0004", null);	// edit n.ohkubo 2014/10/01　追加
 			}
 		}
 		catch(Exception e)	{

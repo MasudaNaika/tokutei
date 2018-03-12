@@ -7,6 +7,8 @@ package jp.or.med.orca.jma_tokutei.common.frame.dialog;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.PrintStream;
 import java.sql.SQLException;
 import java.util.*;
@@ -140,6 +142,7 @@ public class JSelectHokenjyaOrcaDialogCtrl extends JSelectHokenjyaOrcaDialog
         else
             jButton_End.requestFocus();
         setVisible(true);
+
     }
 
     private void functionListner()

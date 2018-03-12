@@ -1,28 +1,27 @@
 package jp.or.med.orca.jma_tokutei.common.frame;
 import java.awt.BorderLayout;
-
-import javax.swing.Box;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.GridLayout;
-import java.awt.FlowLayout;
-import javax.swing.SwingConstants;
 import java.awt.CardLayout;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
-import java.awt.Cursor;
-import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
@@ -31,16 +30,10 @@ import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedRadioButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextField;
 import jp.or.med.orca.jma_tokutei.common.component.GuidanceLabel;
-import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
+import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFormattedControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenTextControl;
-
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import javax.swing.BorderFactory;
-import java.awt.Insets;
-import java.awt.event.KeyEvent;
 
 
 /**
@@ -391,49 +384,53 @@ public class JAddKikanInformationFrame extends JFrame
 //		return jPanel_TitleArea;
 //	}
 
-	/**
-	 * This method initializes jPanel_ExplArea2
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea2() {
-		if (jPanel_ExplArea2 == null) {
-			jLabal_SubExpl = new GuidanceLabel("tokutei.kikaninformation.frame.guidance.sub");
+	// edit n.ohkubo 2015/08/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jPanel_ExplArea2
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea2() {
+//		if (jPanel_ExplArea2 == null) {
+//			jLabal_SubExpl = new GuidanceLabel("tokutei.kikaninformation.frame.guidance.sub");
+//
+//			/* Modified 2008/03/07 若月  */
+//			/* --------------------------------------------------- */
+////			jLabal_SubExpl.setText("健診機関と送付元機関が違う場合は送付元機関番号を修正して下さい。");
+//			/* --------------------------------------------------- */
+////			jLabal_SubExpl.setText("医師会等でとりまとめて送付される場合以外は、送付元機関番号には、健診機関番号と同じ番号を入れてください。");
+//			/* --------------------------------------------------- */
+//
+////			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
+//			GridLayout gridLayout1 = new GridLayout();
+//			gridLayout1.setRows(2);
+//			jPanel_ExplArea2 = new JPanel();
+//			jPanel_ExplArea2.setName("jPanel4");
+//			jPanel_ExplArea2.setLayout(gridLayout1);
+//			jPanel_ExplArea2.add(jLabel_MainExpl, null);
+//			jPanel_ExplArea2.add(jLabal_SubExpl, null);
+//		}
+//		return jPanel_ExplArea2;
+//	}
+	// edit n.ohkubo 2015/08/01　未使用なので削除　end
 
-			/* Modified 2008/03/07 若月  */
-			/* --------------------------------------------------- */
-//			jLabal_SubExpl.setText("健診機関と送付元機関が違う場合は送付元機関番号を修正して下さい。");
-			/* --------------------------------------------------- */
-//			jLabal_SubExpl.setText("医師会等でとりまとめて送付される場合以外は、送付元機関番号には、健診機関番号と同じ番号を入れてください。");
-			/* --------------------------------------------------- */
-
-//			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
-			GridLayout gridLayout1 = new GridLayout();
-			gridLayout1.setRows(2);
-			jPanel_ExplArea2 = new JPanel();
-			jPanel_ExplArea2.setName("jPanel4");
-			jPanel_ExplArea2.setLayout(gridLayout1);
-			jPanel_ExplArea2.add(jLabel_MainExpl, null);
-			jPanel_ExplArea2.add(jLabal_SubExpl, null);
-		}
-		return jPanel_ExplArea2;
-	}
-
-	/**
-	 * This method initializes jPanel_ExplArea1
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea1() {
-		if (jPanel_ExplArea1 == null) {
-			CardLayout cardLayout1 = new CardLayout();
-			cardLayout1.setHgap(20);
-			jPanel_ExplArea1 = new JPanel();
-			jPanel_ExplArea1.setLayout(cardLayout1);
-			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
-		}
-		return jPanel_ExplArea1;
-	}
+	// edit n.ohkubo 2015/08/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jPanel_ExplArea1
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea1() {
+//		if (jPanel_ExplArea1 == null) {
+//			CardLayout cardLayout1 = new CardLayout();
+//			cardLayout1.setHgap(20);
+//			jPanel_ExplArea1 = new JPanel();
+//			jPanel_ExplArea1.setLayout(cardLayout1);
+//			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
+//		}
+//		return jPanel_ExplArea1;
+//	}
+	// edit n.ohkubo 2015/08/01　未使用なので削除　end
 
 	/**
 	 * This method initializes jPanel
@@ -472,6 +469,7 @@ public class JAddKikanInformationFrame extends JFrame
 		return jButton_Register;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 	}
@@ -852,7 +850,8 @@ public class JAddKikanInformationFrame extends JFrame
 	            gridbagconstraints9.gridy = 3;
 	            jLabel_port_format1 = new ExtendedLabel();
 	            jLabel_port_format1.setDisplayedMnemonic(0);
-	            jLabel_port_format1.setText("（半角数字6桁以下）");
+//	            jLabel_port_format1.setText("（半角数字6桁以下）");	// edit n.ohkubo 2015/08/01　削除
+	            jLabel_port_format1.setText("（半角数字5桁以下）");	// edit n.ohkubo 2015/08/01　追加
 	            GridBagConstraints gridbagconstraints10 = new GridBagConstraints();
 	            gridbagconstraints10.gridx = 2;
 	            gridbagconstraints10.insets = new Insets(10, 0, 0, 0);
@@ -1392,6 +1391,7 @@ public class JAddKikanInformationFrame extends JFrame
 			jTextField_portNumber = new ExtendedOpenTextControl(
 					ImeMode.IME_OFF);
 			jTextField_portNumber.setPreferredSize(new Dimension(150, 20));
+			jTextField_portNumber.setMaxCharacters(5);// edit n.ohkubo 2015/08/01　追加
 		}
 		return jTextField_portNumber;
 	}
@@ -1494,75 +1494,78 @@ public class JAddKikanInformationFrame extends JFrame
 //		return jTextField_encoding;
 //	}
 
-    private JPanel getJPanel_hanrei()
-    {
-        if(jPanel_hanrei == null)
-        {
-            GridBagConstraints gridbagconstraints = new GridBagConstraints();
-            gridbagconstraints.gridx = 6;
-            gridbagconstraints.insets = new Insets(0, 10, 0, 0);
-            gridbagconstraints.gridy = 0;
-            gridbagconstraints.anchor = 17;
-            GridBagConstraints gridbagconstraints1 = new GridBagConstraints();
-            gridbagconstraints1.gridx = 5;
-            gridbagconstraints1.insets = new Insets(0, 20, 0, 0);
-            gridbagconstraints1.gridy = 0;
-            GridBagConstraints gridbagconstraints2 = new GridBagConstraints();
-            gridbagconstraints2.gridx = 4;
-            gridbagconstraints2.insets = new Insets(0, 10, 0, 0);
-            gridbagconstraints2.gridy = 0;
-            GridBagConstraints gridbagconstraints3 = new GridBagConstraints();
-            gridbagconstraints3.gridx = 3;
-            gridbagconstraints3.insets = new Insets(0, 20, 0, 0);
-            gridbagconstraints3.gridy = 0;
-            GridBagConstraints gridbagconstraints4 = new GridBagConstraints();
-            gridbagconstraints4.gridx = 0;
-            gridbagconstraints4.gridwidth = 6;
-            gridbagconstraints4.anchor = 17;
-            gridbagconstraints4.insets = new Insets(5, 0, 0, 0);
-            gridbagconstraints4.gridy = 1;
-            GridBagConstraints gridbagconstraints5 = new GridBagConstraints();
-            gridbagconstraints5.gridx = 0;
-            gridbagconstraints5.gridy = 0;
-            jLabel1512 = new ExtendedLabel();
-            jLabel1512.setFont(new Font("Dialog", 1, 12));
-            jLabel1512.setPreferredSize(new Dimension(50, 16));
-            jLabel1512.setText("凡例");
-            GridBagConstraints gridbagconstraints6 = new GridBagConstraints();
-            gridbagconstraints6.gridx = 4;
-            gridbagconstraints6.anchor = 17;
-            gridbagconstraints6.insets = new Insets(0, 10, 0, 0);
-            gridbagconstraints6.gridy = 0;
-            GridBagConstraints gridbagconstraints7 = new GridBagConstraints();
-            gridbagconstraints7.gridx = 2;
-            gridbagconstraints7.insets = new Insets(0, 10, 0, 0);
-            gridbagconstraints7.gridy = 0;
-            GridBagConstraints gridbagconstraints8 = new GridBagConstraints();
-            gridbagconstraints8.gridx = 2;
-            gridbagconstraints8.insets = new Insets(0, 20, 0, 0);
-            gridbagconstraints8.gridy = 0;
-            GridBagConstraints gridbagconstraints9 = new GridBagConstraints();
-            gridbagconstraints9.gridx = 1;
-            gridbagconstraints9.insets = new Insets(0, 10, 0, 0);
-            gridbagconstraints9.gridy = 0;
-            jLabel19 = new ExtendedLabel();
-            jLabel19.setFont(new Font("Dialog", 0, 12));
-            jLabel19.setText("ピンク");
-            jLabel19.setForeground(ViewSettings.getRequiedItemFrColor());
-            jLabel20 = new ExtendedLabel();
-            jLabel20.setFont(new Font("Dialog", 0, 12));
-            jLabel20.setText("必須項目");
-            jPanel_hanrei = new JPanel();
-            jPanel_hanrei.setLayout(new GridBagLayout());
-            jPanel_hanrei.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.gray, 1), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-            jPanel_hanrei.setOpaque(false);
-            jPanel_hanrei.add(jLabel1512, gridbagconstraints5);
-            jPanel_hanrei.add(jLabel19, gridbagconstraints9);
-            jPanel_hanrei.add(jLabel20, gridbagconstraints8);
-        }
-        return jPanel_hanrei;
-    }
+	// edit n.ohkubo 2015/08/01　未使用なので削除　start
+//    private JPanel getJPanel_hanrei()
+//    {
+//        if(jPanel_hanrei == null)
+//        {
+//            GridBagConstraints gridbagconstraints = new GridBagConstraints();
+//            gridbagconstraints.gridx = 6;
+//            gridbagconstraints.insets = new Insets(0, 10, 0, 0);
+//            gridbagconstraints.gridy = 0;
+//            gridbagconstraints.anchor = 17;
+//            GridBagConstraints gridbagconstraints1 = new GridBagConstraints();
+//            gridbagconstraints1.gridx = 5;
+//            gridbagconstraints1.insets = new Insets(0, 20, 0, 0);
+//            gridbagconstraints1.gridy = 0;
+//            GridBagConstraints gridbagconstraints2 = new GridBagConstraints();
+//            gridbagconstraints2.gridx = 4;
+//            gridbagconstraints2.insets = new Insets(0, 10, 0, 0);
+//            gridbagconstraints2.gridy = 0;
+//            GridBagConstraints gridbagconstraints3 = new GridBagConstraints();
+//            gridbagconstraints3.gridx = 3;
+//            gridbagconstraints3.insets = new Insets(0, 20, 0, 0);
+//            gridbagconstraints3.gridy = 0;
+//            GridBagConstraints gridbagconstraints4 = new GridBagConstraints();
+//            gridbagconstraints4.gridx = 0;
+//            gridbagconstraints4.gridwidth = 6;
+//            gridbagconstraints4.anchor = 17;
+//            gridbagconstraints4.insets = new Insets(5, 0, 0, 0);
+//            gridbagconstraints4.gridy = 1;
+//            GridBagConstraints gridbagconstraints5 = new GridBagConstraints();
+//            gridbagconstraints5.gridx = 0;
+//            gridbagconstraints5.gridy = 0;
+//            jLabel1512 = new ExtendedLabel();
+//            jLabel1512.setFont(new Font("Dialog", 1, 12));
+//            jLabel1512.setPreferredSize(new Dimension(50, 16));
+//            jLabel1512.setText("凡例");
+//            GridBagConstraints gridbagconstraints6 = new GridBagConstraints();
+//            gridbagconstraints6.gridx = 4;
+//            gridbagconstraints6.anchor = 17;
+//            gridbagconstraints6.insets = new Insets(0, 10, 0, 0);
+//            gridbagconstraints6.gridy = 0;
+//            GridBagConstraints gridbagconstraints7 = new GridBagConstraints();
+//            gridbagconstraints7.gridx = 2;
+//            gridbagconstraints7.insets = new Insets(0, 10, 0, 0);
+//            gridbagconstraints7.gridy = 0;
+//            GridBagConstraints gridbagconstraints8 = new GridBagConstraints();
+//            gridbagconstraints8.gridx = 2;
+//            gridbagconstraints8.insets = new Insets(0, 20, 0, 0);
+//            gridbagconstraints8.gridy = 0;
+//            GridBagConstraints gridbagconstraints9 = new GridBagConstraints();
+//            gridbagconstraints9.gridx = 1;
+//            gridbagconstraints9.insets = new Insets(0, 10, 0, 0);
+//            gridbagconstraints9.gridy = 0;
+//            jLabel19 = new ExtendedLabel();
+//            jLabel19.setFont(new Font("Dialog", 0, 12));
+//            jLabel19.setText("ピンク");
+//            jLabel19.setForeground(ViewSettings.getRequiedItemFrColor());
+//            jLabel20 = new ExtendedLabel();
+//            jLabel20.setFont(new Font("Dialog", 0, 12));
+//            jLabel20.setText("必須項目");
+//            jPanel_hanrei = new JPanel();
+//            jPanel_hanrei.setLayout(new GridBagLayout());
+//            jPanel_hanrei.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Color.gray, 1), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+//            jPanel_hanrei.setOpaque(false);
+//            jPanel_hanrei.add(jLabel1512, gridbagconstraints5);
+//            jPanel_hanrei.add(jLabel19, gridbagconstraints9);
+//            jPanel_hanrei.add(jLabel20, gridbagconstraints8);
+//        }
+//        return jPanel_hanrei;
+//    }
+	// edit n.ohkubo 2015/08/01　未使用なので削除　end
 
+	@Override
 	public void itemStateChanged(ItemEvent arg0) {
 	}
 
@@ -1603,7 +1606,8 @@ public class JAddKikanInformationFrame extends JFrame
 			gridBagConstraints69.anchor = GridBagConstraints.WEST;
 			gridBagConstraints69.gridy = 1;
 			jLabel_digitText = new ExtendedLabel();
-			jLabel_digitText.setText("桁");
+//			jLabel_digitText.setText("桁");					// edit n.ohkubo 2015/08/01　削除
+			jLabel_digitText.setText("桁（半角数値20以下）");	// edit n.ohkubo 2015/08/01　追加
 			GridBagConstraints gridBagConstraints68 = new GridBagConstraints();
 			gridBagConstraints68.gridy = 1;
 			gridBagConstraints68.gridx = 1;
@@ -1686,37 +1690,28 @@ public class JAddKikanInformationFrame extends JFrame
 		if (jTextField_orcaIdDigit == null) {
 			jTextField_orcaIdDigit = new ExtendedOpenTextControl(ImeMode.IME_OFF);
 			jTextField_orcaIdDigit.setPreferredSize(new Dimension(50, 20));
+			jTextField_orcaIdDigit.setMaxCharacters(2);	// edit n.ohkubo 2015/08/01　追加
 		}
 		return jTextField_orcaIdDigit;
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void focusGained(FocusEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 }

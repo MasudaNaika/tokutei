@@ -1,29 +1,27 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.system;
 
-import org.apache.log4j.Logger;
-import org.openswing.swing.table.client.GridController;
-import org.openswing.swing.message.receive.java.*;
-import org.openswing.swing.message.send.java.GridParams;
-//import java.util.*;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.keinen.JKeinenMasterMaintenanceListData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shoken.JShokenMasterMaintenanceListData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shoken.JShokenMasterMaintenanceListFrameCtrl;
 
-import org.openswing.swing.table.java.GridDataLocator;
+import org.apache.log4j.Logger;
 import org.openswing.swing.client.GridControl;
-import org.openswing.swing.client.ReloadButton;
-//import org.openswing.swing.server.QueryUtil;
+import org.openswing.swing.message.receive.java.ErrorResponse;
+import org.openswing.swing.message.receive.java.Response;
+import org.openswing.swing.message.receive.java.VOListResponse;
+import org.openswing.swing.message.receive.java.VOResponse;
+import org.openswing.swing.message.receive.java.ValueObject;
+import org.openswing.swing.message.send.java.GridParams;
 import org.openswing.swing.server.UserSessionParameters;
-//import org.openswing.swing.message.send.java.GridParams;
+import org.openswing.swing.table.client.GridController;
+import org.openswing.swing.table.java.GridDataLocator;
 
 /**
  * Ctl画面
@@ -34,8 +32,10 @@ public class JUserMaintenanceListFrameCtl
 		extends GridController
 		implements GridDataLocator {
 
+	private static final long serialVersionUID = -6952764477694983014L;	// edit n.ohkubo 2015/03/01　追加
+	
 	private JUserMaintenanceListFrame grid = null;
-	private JUserMaintenanceListFrame frame;
+//	private JUserMaintenanceListFrame frame;	// edit n.ohkubo 2015/03/01　未使用なので削除
 	private Connection conn = null;
 
 	private static Logger logger = Logger.getLogger(JUserMaintenanceListFrameCtl.class);
@@ -53,6 +53,7 @@ public class JUserMaintenanceListFrameCtl
 	* @param attributeName attribute name that identify a grid column
 	* @return tooltip text to show in the column header; this text will be automatically translated according to internationalization settings
 	*/
+	@Override
 	public String getHeaderTooltip(String attributeName) {
 	    return attributeName;
 	}
@@ -62,6 +63,7 @@ public class JUserMaintenanceListFrameCtl
 	* @param attributeName attribute name that identify a grid column
 	* @return tooltip text to show in the cell identified by the specified row and attribute name; this text will be automatically translated according to internationalization settings
 	*/
+	@Override
 	public String getCellTooltip(int row,String attributeName) {
 
 		return (String) grid.getGrid().getVOListTableModel().getField(row,attributeName);
@@ -84,6 +86,7 @@ public class JUserMaintenanceListFrameCtl
 	 * @param rowNumber selected row index
 	 * @param persistentObject v.o. related to the selected row
 	 */
+	@Override
 	public void doubleClick(int rowNumber, ValueObject persistentObject) {
 //		JUserMaintenanceListFrameData vo = (JUserMaintenanceListFrameData)persistentObject;
 //		new JUserMaintenanceDetailFrameCtrl(grid, vo.getUserName(), conn);
@@ -101,6 +104,7 @@ public class JUserMaintenanceListFrameCtl
 	 * @return response from the server: an object of type VOListResponse
 	 *  if data loading was successfully completed, or an ErrorResponse onject if some error occours
 	 */
+	@Override
 	public Response loadData(int action, int startIndex, Map filteredColumns,
 			ArrayList currentSortedColumns,
 			ArrayList currentSortedVersusColumns, Class valueObjectType,
@@ -146,7 +150,8 @@ public class JUserMaintenanceListFrameCtl
 		}
 	}
 	// add s.inoue 2013/02/27
-    public void afterDeleteGrid()
+    @Override
+	public void afterDeleteGrid()
     {
     	grid.reloadButton.doClick();
     }
@@ -156,6 +161,7 @@ public class JUserMaintenanceListFrameCtl
 	 * @param persistentObjects value objects to delete (related to the currently selected rows)
 	 * @return an ErrorResponse value object in case of errors, VOResponse if the operation is successfully completed
 	 */
+	@Override
 	public Response deleteRecords(ArrayList persistentObjects) throws Exception {
 		PreparedStatement stmt = null;
 
@@ -189,7 +195,8 @@ public class JUserMaintenanceListFrameCtl
 	   * @param newValueObjects list of new value objects to save
 	   * @return an ErrorResponse value object in case of errors, VOListResponse if the operation is successfully completed
 	   */
-	  public Response insertRecords(int[] rowNumbers, ArrayList newValueObjects) throws Exception {
+	  @Override
+	public Response insertRecords(int[] rowNumbers, ArrayList newValueObjects) throws Exception {
 
 		PreparedStatement stmt = null;
 
@@ -234,7 +241,8 @@ public class JUserMaintenanceListFrameCtl
 	   * @param persistentObjects value objects relatied to the changed rows
 	   * @return an ErrorResponse value object in case of errors, VOListResponse if the operation is successfully completed
 	   */
-	  public Response updateRecords(int[] rowNumbers,ArrayList oldPersistentObjects,ArrayList persistentObjects) throws Exception {
+	  @Override
+	public Response updateRecords(int[] rowNumbers,ArrayList oldPersistentObjects,ArrayList persistentObjects) throws Exception {
 	    PreparedStatement stmt = null;
 
 	    RETURN_VALUE retValue = JErrorMessage.show("M4814", getGridControl());
@@ -281,4 +289,25 @@ public class JUserMaintenanceListFrameCtl
 	      }
 	    }
 	  }
+
+	// edit n.ohkubo 2015/03/01　追加　start
+	/**
+	 * 削除ボタンの処理前に呼ばれる処理
+	 */
+	@Override
+	public boolean beforeDeleteGrid(GridControl grid) {
+		
+		//選択されているユーザID
+		String selectUserID = (String)grid.getTable().getGrid().getModel().getValueAt(grid.getTable().getSelectedRow(), 0);
+//		System.out.println("選択されているユーザID:[" + selectUserID + "] ログインユーザID:[" + JApplication.userID + "]");
+		
+		//自分（ログインユーザ）は削除不可
+		if (JApplication.userID.equals(selectUserID)) {
+			JErrorMessage.show("M4816", this.grid);
+			return false;
+		} else {
+			return super.beforeDeleteGrid(grid);
+		}
+	}
+	// edit n.ohkubo 2015/03/01　追加　end
 }

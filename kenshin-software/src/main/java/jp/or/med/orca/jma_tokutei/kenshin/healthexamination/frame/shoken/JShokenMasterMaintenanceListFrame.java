@@ -1,29 +1,34 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shoken;
 
-import javax.swing.*;
-
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
-
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
-import java.util.List;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
-import org.openswing.swing.table.columns.client.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
@@ -35,18 +40,24 @@ import jp.or.med.orca.jma_tokutei.common.csv.JCSVReaderStream;
 import jp.or.med.orca.jma_tokutei.common.csv.JCSVWriterStream;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
+import jp.or.med.orca.jma_tokutei.common.filter.SpecialFilterPanel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenExportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 //import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenSaveButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorTeikeiResultFrameData;
+
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GenericButton;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.GridControl.ColumnContainer;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.table.columns.client.TextColumn;
 
 /**
  * 一覧List画面
@@ -54,6 +65,8 @@ import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMa
  * @version 2.0
  */
 public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
+
+	private static final long serialVersionUID = 2107577260835303243L;	// edit n.ohkubo 2014/10/01　追加
 
 	/* 接続 */
 	protected Connection conn = null;
@@ -104,6 +117,13 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 
 	private static Logger logger = Logger.getLogger(JShokenMasterMaintenanceListFrame.class);
 
+	// edit n.ohkubo 2014/10/01　追加 start
+	private ColumnContainer columnContainer;
+	public ColumnContainer getColumnContainer() {
+		return this.columnContainer;
+	}
+	// edit n.ohkubo 2014/10/01　追加 end
+
 	/* コンストラクタ */
 	public JShokenMasterMaintenanceListFrame(Connection conn,
 			JShokenMasterMaintenanceListFrameCtrl controller) {
@@ -134,11 +154,20 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 			setVisible(true);
 
 			grid.addKeyListener(new KeyAdapter() {
-			      public void keyPressed(KeyEvent e) {
+			      @Override
+				public void keyPressed(KeyEvent e) {
 			        if (e.getKeyCode()==e.VK_CANCEL || e.getKeyCode()==e.VK_BACK_SPACE || e.getKeyCode()==e.VK_DELETE)
 			          System.out.println("成功");
 			      }
 			    });
+			
+			// edit n.ohkubo 2014/10/01　追加 start　検索画面のボタンの大きさを変更
+			//フィルターパネル用のWindowListener
+			SpecialFilterPanel specialFilterPanel = new SpecialFilterPanel(null, grid.getParent().getComponents());
+			
+			//このフレーム（一覧画面）がアクティブ化（画面右の検索ウィンドウ）　or　非アクティブ化（検索ウィンドウがポップアップで開かれ場合）されたときに動作するように、Listenerを設定
+			this.addWindowListener(specialFilterPanel);
+			// edit n.ohkubo 2014/10/01　追加 end　検索画面のボタンの大きさを変更
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,11 +181,13 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 		textColumn_ShokenTypeNo.setColumnName("SYOKEN_TYPE");
 		textColumn_ShokenTypeNo.setColumnSortable(true);
 		textColumn_ShokenTypeNo.setPreferredWidth(80);
+		textColumn_ShokenTypeNo.setMaxCharacters(2);	// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_ShokenType.setColumnFilterable(true);
 		textColumn_ShokenType.setColumnName("SYOKEN_TYPE_NAME");
 		textColumn_ShokenType.setColumnSortable(true);
 		textColumn_ShokenType.setPreferredWidth(150);
+		textColumn_ShokenType.setMaxCharacters(256);	// edit n.ohkubo 2014/10/01　追加
 
 //		textColumn_ShokenNo.setColumnFilterable(true);
 		textColumn_ShokenNo.setColumnName("SYOKEN_NO");
@@ -248,6 +279,8 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 		grid.getColumnContainer().add(textColumn_ShokenNo, null);
 		grid.getColumnContainer().add(textColumn_Shoken, null);
 		grid.getColumnContainer().add(textColumn_TimeStamp, null);
+		
+		columnContainer = grid.getColumnContainer();// edit n.ohkubo 2014/10/01　追加
 
 		// add s.inoue 2012/11/12
 		jLabel_Title = new TitleLabel("tokutei.teikei-mastermaintenance.frame.title","tokutei.teikei-mastermaintenance.frame.guidance");
@@ -377,7 +410,7 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M9913",this);
 				logger.error(e.getMessage());
@@ -543,7 +576,7 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 
 	/* export処理 */
 	private void exportCsvData(String filePath){
-		JImportMasterErrorTeikeiResultFrameData data = new JImportMasterErrorTeikeiResultFrameData();
+//		JImportMasterErrorTeikeiResultFrameData data = new JImportMasterErrorTeikeiResultFrameData();	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 		// CSV読込処理
 		writer = new JCSVWriterStream();
@@ -613,7 +646,8 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 		  ListFrame_button_actionAdapter(JShokenMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 			  Object source = e.getSource();
 			  if (source == buttonClose){
 				  logger.info(buttonClose.getText());
@@ -633,12 +667,10 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 		}
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 	}
@@ -653,6 +685,7 @@ public class JShokenMasterMaintenanceListFrame extends JFrame implements KeyList
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 	@Override

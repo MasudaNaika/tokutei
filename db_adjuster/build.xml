@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="euc-jp"?>
+<?xml version="1.0" encoding="utf-8"?>
 <project basedir="." default="compile" name="compileMain">
   <property name="SrcDir" value="src" />
   <property name="ClassDir" value="classes" />

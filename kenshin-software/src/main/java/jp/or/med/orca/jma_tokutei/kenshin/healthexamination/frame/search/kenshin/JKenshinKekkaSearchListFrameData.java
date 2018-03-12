@@ -1,11 +1,11 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin;
 
-import java.sql.Date;
-
 import org.openswing.swing.message.receive.java.ValueObjectImpl;
-import org.openswing.swing.table.columns.client.CheckBoxColumn;
 
 public class JKenshinKekkaSearchListFrameData extends ValueObjectImpl {
+
+	private static final long serialVersionUID = 3464864782717218858L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private String CHECKBOX_COLUMN;
 	private String UKETUKE_ID;
 	private String UKETUKEPRE_ID;
@@ -256,7 +256,7 @@ public class JKenshinKekkaSearchListFrameData extends ValueObjectImpl {
 	public void setSEX(String SEX) {
 // eidt s.inoue 2011/06/07
 		this.SEX = SEX;
-		String strSex = "";
+//		String strSex = "";// edit n.ohkubo 2014/10/01　未使用なので削除
 //		if (SEX != null ) {
 //			if( SEX.equals("1") ){
 //				strSex = "男";
@@ -329,5 +329,23 @@ public class JKenshinKekkaSearchListFrameData extends ValueObjectImpl {
 
 		this.NENDO = NENDO;
 
+	}
+	
+	// edit n.ohkubo 2014/10/01　追加　キーは「xxxx2」だが、中身は2が付いていなやつになる（変数の宣言がないとヌルポになる。宣言だけだと「使われていないワーニング」になるので、セッターでむりやり使用している）
+	private String KENSA_NENGAPI2;
+	public String getKENSA_NENGAPI2() {
+		return getKENSA_NENGAPI();
+	}
+	public void setKENSA_NENGAPI2(String KENSA_NENGAPI2) {
+		this.KENSA_NENGAPI2 = KENSA_NENGAPI2;
+		setKENSA_NENGAPI(this.KENSA_NENGAPI2);
+	}
+	private Integer BIRTHDAY2;
+	public Integer getBIRTHDAY2() {
+		return getBIRTHDAY();
+	}
+	public void setBIRTHDAY2(Integer BIRTHDAY2) {
+		this.BIRTHDAY2 = BIRTHDAY2;
+		setBIRTHDAY(this.BIRTHDAY2);
 	}
 }

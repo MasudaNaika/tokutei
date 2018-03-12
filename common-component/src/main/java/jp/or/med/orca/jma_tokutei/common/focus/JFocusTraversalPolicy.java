@@ -100,10 +100,8 @@ public class JFocusTraversalPolicy extends FocusTraversalPolicy {
 		Component c = component;
 		for (int i = 0; i < count; i++) {
 			c = this.getTargetComponent(c, 1);
-//masuda^ 2018/03/02
-//			if (c.isEnabled()) {
-                        if (c != null && c.isEnabled()) {
-//masuda$
+
+			if (c.isEnabled()) {
 				if (c instanceof JTextComponent) {
 					if (((JTextComponent)c).isEditable()) {
 						ret = c;

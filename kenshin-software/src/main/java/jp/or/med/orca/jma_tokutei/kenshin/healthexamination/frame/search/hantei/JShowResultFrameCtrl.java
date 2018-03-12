@@ -1,35 +1,37 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.hantei;
 
 import java.awt.Component;
-import java.awt.event.*;
-import java.math.BigDecimal;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.util.*;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.Vector;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
-import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
-import jp.or.med.orca.jma_tokutei.common.table.JSimpleTable;
-import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellPosition;
-import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableScrollPanel;
-import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.hantei.JHanteiSearchResultListFrameData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKekkaRegisterFrameCtrl;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKenshinKekkaSearchListFrameData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JRegisterFlameCtrl;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintKekka;
+import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
+//add h.yoshitama 2009/09/30
+import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
+import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
+import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 import jp.or.med.orca.jma_tokutei.common.sql.dao.DaoFactory;
 import jp.or.med.orca.jma_tokutei.common.sql.dao.JShowResultFrameDao;
@@ -40,31 +42,24 @@ import jp.or.med.orca.jma_tokutei.common.sql.model.JShowResultFrameModel;
 import jp.or.med.orca.jma_tokutei.common.sql.model.TDataTypeCode;
 import jp.or.med.orca.jma_tokutei.common.sql.model.TKensakekaSonota;
 import jp.or.med.orca.jma_tokutei.common.sql.model.TKensakekaTokutei;
-
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
+import jp.or.med.orca.jma_tokutei.common.table.JSimpleTable;
+import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellPosition;
+import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRowRenderer;
+import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKenshinKekkaSearchListFrameData;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JRegisterFlameCtrl;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintKekka;
 
 import org.apache.log4j.Logger;
 import org.openswing.swing.client.GridControl;
-
-import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRowRenderer;
-
-//add h.yoshitama 2009/09/30
-import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 
 /**
  * 健診結果表示画面制御　
  */
 public class JShowResultFrameCtrl extends JShowResultFrame {
 
+	private static final long serialVersionUID = 7759734698786946947L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private static final int COLUMN_INDEX_KOUMOKU_NAME = 0;
 	private static final int COLUMN_INDEX_KENSA_HOUHOU = 1;
 	private static final int COLUMN_INDEX_KENSA_KEKA_NUM = 2;
@@ -84,9 +79,10 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 		"実施区分","基準値下限（男性）", "基準値上限（男性）", "基準値下限（女性）",
 		"基準値上限（女性）", "H/L", "判定", "コメント"};
 
-	private static final String[] fieldKeys = { "KOUMOKU_NAME", "KENSA_HOUHOU",
-			"KEKA_TI_DECIMAL", "KEKA_TI_CODE", "KEKA_TI_STRING", "JISI_KBN","DS_KAGEN",
-			"DS_JYOUGEN", "JS_KAGEN", "JS_JYOUGEN", "H_L", "HANTEI", "KOMENT"};
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	private static final String[] fieldKeys = { "KOUMOKU_NAME", "KENSA_HOUHOU",
+//			"KEKA_TI_DECIMAL", "KEKA_TI_CODE", "KEKA_TI_STRING", "JISI_KBN","DS_KAGEN",
+//			"DS_JYOUGEN", "JS_KAGEN", "JS_JYOUGEN", "H_L", "HANTEI", "KOMENT"};
 
 	private static final String[] hokenShidouLevelTable = { "未判定", "積極的支援",
 			"動機づけ支援",
@@ -234,6 +230,13 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 		pageSelectDialog.setVisible(true);
 
 		int pageSelect = (pageSelectDialog.getPrintSelect()==2) ?2:1;
+		
+		// edit n.ohkubo 2014/10/01　追加 start
+		// cancelはbreak
+		if(pageSelectDialog.getStatus().equals(RETURN_VALUE.CANCEL)){
+			return;
+		}
+		// edit n.ohkubo 2014/10/01　追加 end
 
 		/* 健診結果通知表を印刷する。 */
 		PrintKekka kekka = new PrintKekka();
@@ -358,6 +361,7 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 	 * 遷移先の画面から戻ってきた場合
 	 */
 	public class WindowRefreshEvent extends WindowAdapter {
+		@Override
 		public void windowClosed(WindowEvent e) {
 			// del s.inoue 2009/11/17
 			//テーブルの再読み込みを行う
@@ -375,6 +379,7 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 	 * アクションイベントコールバック
 	 * @param e アクションイベント
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object soruce = (e.getSource());
 		if (soruce == jButton_End) {
@@ -439,7 +444,11 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 
 	private void initializeSetting(){
 		dmodel = new DefaultTableModel(setUpRecordTable(),header){
-	      public boolean isCellEditable(int row, int column) {
+
+			private static final long serialVersionUID = 8447662626576744999L;	// edit n.ohkubo 2014/10/01　追加
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
 	    	return false;}
 	    };
 
@@ -484,7 +493,8 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
         scroll.setCorner(JScrollPane.UPPER_LEFT_CORNER, modelfixed.getTableHeader());
 
         scroll.getRowHeader().addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
+            @Override
+			public void stateChanged(ChangeEvent e) {
                 JViewport viewport = (JViewport) e.getSource();
                 scroll.getVerticalScrollBar().setValue(viewport.getViewPosition().y);
             }
@@ -702,24 +712,25 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 		this.setUpKoment(uketukeId, this.jEditorPane_Comment);
 	}
 
-	/**
-	 * 検査特定レコード関連コンポーネントにデータをセット
-	 * @param recordMap レコードマップ(キー : フィールド名 値 : フィールド値)
-	 */
-	private void setUpKensaTokuteiComponents(TreeMap<String, String> recordMap) {
-		for (String fieldName : recordMap.keySet()) {
-			JComponent component = fieldComponentMap.get(fieldName);
-			String value = recordMap.get(fieldName);
-
-			if (component instanceof JTextField) {
-				JTextField text = (JTextField) component;
-				text.setText(value);
-			} else if (component instanceof JEditorPane) {
-				JEditorPane pane = (JEditorPane) component;
-				pane.setText(value);
-			}
-		}
-	}
+	// edit n.ohkubo 2014/10/01　未使用なので削除
+//	/**
+//	 * 検査特定レコード関連コンポーネントにデータをセット
+//	 * @param recordMap レコードマップ(キー : フィールド名 値 : フィールド値)
+//	 */
+//	private void setUpKensaTokuteiComponents(TreeMap<String, String> recordMap) {
+//		for (String fieldName : recordMap.keySet()) {
+//			JComponent component = fieldComponentMap.get(fieldName);
+//			String value = recordMap.get(fieldName);
+//
+//			if (component instanceof JTextField) {
+//				JTextField text = (JTextField) component;
+//				text.setText(value);
+//			} else if (component instanceof JEditorPane) {
+//				JEditorPane pane = (JEditorPane) component;
+//				pane.setText(value);
+//			}
+//		}
+//	}
 
 	// edit ver2 s.inoue 2009/08/26
 	// 健診実施日を除く
@@ -828,7 +839,7 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 		String hknjaNum = vo.getHKNJANUM();
 
 		Long uketukeId = null;
-		Integer kensaNengapi = null;
+//		Integer kensaNengapi = null;	// edit n.ohkubo 2014/10/01　未使用なので削除
 		Integer kenshinPatternNumber = null;
 		try {
 			// eidt s.inoue 2011/03/30
@@ -878,14 +889,14 @@ public class JShowResultFrameCtrl extends JShowResultFrame {
 		}
 
 		//一行ごとにデータを挿入していく
-		boolean kekkaDecimal = false;
+//		boolean kekkaDecimal = false;	// edit n.ohkubo 2014/10/01　未使用なので削除
 		int i = 0;
 		rowcolumn = new Object[recList.size()][13];
 
 		for (TreeMap<String, String> map : recList) {
-			kekkaDecimal = false;
+//			kekkaDecimal = false;	// edit n.ohkubo 2014/10/01　未使用なので削除
 
-			List<String> tableData = new ArrayList<String>();
+//			List<String> tableData = new ArrayList<String>();	// edit n.ohkubo 2014/10/01　未使用なので削除
 			setKekaTiValue(map);
 
 				rowcolumn[i][COLUMN_INDEX_KOUMOKU_NAME] = map.get("KOUMOKU_NAME");

@@ -4,33 +4,35 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
-import java.awt.event.KeyEvent;
-import java.awt.print.PrinterException;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Hashtable;
-import java.util.TreeMap;
 import java.util.Vector;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
+import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.convert.JLong;
 import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
-import jp.or.med.orca.jma_tokutei.common.frame.ProgressWindow;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.table.JSimpleTable;
 import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellPosition;
 import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRendererData;
+import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRowRenderer;
 import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKenshinKekkaSearchListFrameData;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKojinRegisterFrameData;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JKessai;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JKessaiDataInput;
@@ -38,25 +40,16 @@ import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JKessaiDat
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JKessaiProcess;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JKessaiProcessData;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.outputhl7.JSyuukeiProcess;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintIraisho;
-//import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintRyosyusyo;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Iraisho;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kikan;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Ryosyusyo;
-
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
 
 import org.apache.log4j.Logger;
-import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRowRenderer;
+//import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintRyosyusyo;
 
 /**
  * 請求データ編集画面制御
  */
 public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
+
+	private static final long serialVersionUID = -5839937082793048226L;	// edit n.ohkubo 2015/03/01　追加
 
 	private static org.apache.log4j.Logger logger =
 		Logger.getLogger(JInputKessaiDataFrameCtrl.class);
@@ -98,7 +91,7 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 	private JSimpleTable table=null;
 	Object[][] rowcolumn = null;
 	private TableRowSorter<TableModel> sorter =null;
-	private ArrayList<Hashtable<String, String>> result;
+//	private ArrayList<Hashtable<String, String>> result;	// edit n.ohkubo 2015/03/01　未使用なので削除
 
 	private Vector<JSimpleTableCellRendererData> cellColors = new Vector<JSimpleTableCellRendererData>();
  	private final Color COLOR_ABLE = ViewSettings.getAbleItemBgColor();
@@ -203,8 +196,8 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 		/* 再計算 */
 		this.pushedReCalcButton();
 
-		// add s.inoue 2012/01/26
-		initilazeFunctionSetting();
+//		// add s.inoue 2012/01/26	// edit n.ohkubo 2015/03/01　未使用なので削除
+//		initilazeFunctionSetting();	// edit n.ohkubo 2015/03/01　未使用なので削除
 //		if (print_flg)
 //			jButton_PrintRyosyu.setVisible(true);
 
@@ -213,41 +206,45 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 		table.refreshTable();
 	}
 
-	// add s.inoue 2012/01/26
-	/* 個別設定用 */
-	private void initilazeFunctionSetting(){
-		ArrayList<Hashtable<String, String>> result = null;
-
-		try{
-			StringBuilder sb = new StringBuilder();
-			sb.append("SELECT FUNCTION_CD,FUNCTION_FLG");
-			sb.append(" FROM T_SCREENFUNCTION ");
-			sb.append(" WHERE SCREEN_CD = ");
-			sb.append(JQueryConvert.queryConvert(JApplication.SCREEN_SEIKYU_EDIT_CODE));
-
-			result = JApplication.kikanDatabase.sendExecuteQuery(sb.toString());
-		}catch(Exception ex){
-			logger.error(ex.getMessage());
-		}
-
-// del s.inoue 2012/02/03
-//		for (int i = 0; i < result.size(); i++) {
-//			Hashtable<String, String> item = result.get(i);
+	// edit n.ohkubo 2015/03/01　未使用なので削除
+//	// add s.inoue 2012/01/26
+//	/* 個別設定用 */
+//	private void initilazeFunctionSetting(){
+//		ArrayList<Hashtable<String, String>> result = null;
 //
-//			String functionCd = item.get("FUNCTION_CD");
-//			if (JApplication.func_printCode.equals(functionCd)){
-//				print_flg =  item.get("FUNCTION_FLG").equals("1")?true:false;
-//			}
+//		try{
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("SELECT FUNCTION_CD,FUNCTION_FLG");
+//			sb.append(" FROM T_SCREENFUNCTION ");
+//			sb.append(" WHERE SCREEN_CD = ");
+//			sb.append(JQueryConvert.queryConvert(JApplication.SCREEN_SEIKYU_EDIT_CODE));
+//
+//			result = JApplication.kikanDatabase.sendExecuteQuery(sb.toString());
+//		}catch(Exception ex){
+//			logger.error(ex.getMessage());
 //		}
-
-	}
+//
+//// del s.inoue 2012/02/03
+////		for (int i = 0; i < result.size(); i++) {
+////			Hashtable<String, String> item = result.get(i);
+////
+////			String functionCd = item.get("FUNCTION_CD");
+////			if (JApplication.func_printCode.equals(functionCd)){
+////				print_flg =  item.get("FUNCTION_FLG").equals("1")?true:false;
+////			}
+////		}
+//
+//	}
 
 	// テーブル初期化
 	private void initilizeTableSetting(String kensaDate,ArrayList<Hashtable<String, String>> results){
 
 		   Object[][] tuika = this.initializeTsuikaTable(kensaDate, results);
 		   dmodel = new DefaultTableModel(tuika,header){
-		   public boolean isCellEditable(int row, int column) {
+			private static final long serialVersionUID = -2022097518500759862L;	// edit n.ohkubo 2015/03/01　追加
+
+		@Override
+		public boolean isCellEditable(int row, int column) {
 		   boolean retflg = false;
 		   if ( column >1 ){
 			   	retflg = true;
@@ -257,7 +254,8 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 		   };
 		   sorter = new TableRowSorter<TableModel>(dmodel);
 		   table = new JSimpleTable(dmodel);
-		   table.setPreferedColumnWidths(new int[] { 150, 230, 100});
+//		   table.setPreferedColumnWidths(new int[] { 150, 230, 100});	// edit n.ohkubo 2015/03/01　削除
+		   table.setPreferedColumnWidths(new int[] { 150, 300, 110});	// edit n.ohkubo 2015/03/01　追加
 
 		   table.setRowSorter(sorter);
 		   table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -2026,6 +2024,7 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 //		}
 //	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = (e.getSource());
 		if (source == jButton_End) {
@@ -2063,6 +2062,7 @@ public class JInputKessaiDataFrameCtrl extends JInputKessaiDataFrame {
 //		}
 //	}
 
+	@Override
 	public void itemStateChanged(ItemEvent e) {
 		/*
 		 * 委託料単価区分のラジオボタン

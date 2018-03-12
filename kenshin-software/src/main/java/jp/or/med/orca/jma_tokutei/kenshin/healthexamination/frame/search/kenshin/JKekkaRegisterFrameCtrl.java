@@ -1,5 +1,30 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.EventObject;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+import java.util.regex.Pattern;
+
 import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComponent;
@@ -13,42 +38,13 @@ import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.InputEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.EventObject;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
-import java.util.List;
-import java.util.Calendar;
-import java.util.Vector;
-import java.util.regex.Pattern;
-import java.math.BigDecimal;
-import java.awt.Dimension;
-import org.apache.log4j.Logger;
-
-import com.lowagie.text.pdf.TextField;
-
+import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedComboBox;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedEditorPane;
 //import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextArea;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextField;
+import jp.or.med.orca.jma_tokutei.common.component.ImeController;
 import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
 import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.convert.JYearAge;
@@ -75,8 +71,8 @@ import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableCellRendererData;
 import jp.or.med.orca.jma_tokutei.common.table.JSimpleTableScrollPanel;
 import jp.or.med.orca.jma_tokutei.common.util.FiscalYearUtil;
 import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.common.component.ImeController;
+
+import org.apache.log4j.Logger;
 
 /**
  * 結果登録
@@ -2380,9 +2376,16 @@ public class JKekkaRegisterFrameCtrl extends JKekkaRegisterFrame implements Item
 		buffer.append("SELECT master.KOUMOKU_CD AS KOUMOKUCD,");
 		// edit ver2 s.inoue 2009/07/23
 		//buffer.append("master.KOUMOKU_NAME AS KOUMOKUNAME,");
-		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");
-		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");
+//		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1-1' ");		// edit n.ohkubo 2015/03/01　削除
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問1-2' ");			// edit n.ohkubo 2015/03/01　削除
+//		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問1-3' ");			// edit n.ohkubo 2015/03/01　削除
+		
+		// edit n.ohkubo 2015/03/01　追加　start　枝番削除
+		buffer.append("  case when master.KOUMOKU_NAME ='生活機能問診1' then '質問1' ");
+		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診2' then '質問2' ");
+		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診3' then '質問3' ");
+		// edit n.ohkubo 2015/03/01　追加　end　枝番削除
+		
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診4' then '質問4' ");
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診5' then '質問5' ");
 		buffer.append("  when master.KOUMOKU_NAME ='生活機能問診6' then '質問6' ");

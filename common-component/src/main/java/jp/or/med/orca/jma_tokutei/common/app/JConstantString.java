@@ -4,7 +4,9 @@
 
 package jp.or.med.orca.jma_tokutei.common.app;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class JConstantString
 {
@@ -91,10 +93,6 @@ public class JConstantString
         kensahouhouCode.put("3D046000001920402","HPLC(不安定分画除去HPLC法）(NGSP）");
         kensahouhouCode.put("3D046000001927102","酵素法(NGSP）");
         kensahouhouCode.put("3D046000001999902","その他(NGSP）");
-        
-//masuda^ 2018/03/02 non HDL-C
-        kensahouhouCode.put("3F069000002391901","計算法");  // non HDL-C
-//masuda$
 
         kensahouhouCode.put("1A020000000191111","試験紙法（機械読み取り）");
         kensahouhouCode.put("1A020000000190111","試験紙法（目視法）");
@@ -418,15 +416,6 @@ public class JConstantString
             };
             arraylist = new ArrayList(Arrays.asList(as4));
         } else
-//masuda^ 2018/03/02
-        if(s.equals("3F069000002391901"))
-        {
-            String as4[] = {
-                "non-HDLコレステロール", "1:計算法"
-            };
-            arraylist = new ArrayList(Arrays.asList(as4));
-        } else
-//masuda$
         if(s.equals("3J010000002327101") || s.equals("3J010000002399901"))
         {
             String as5[] = {
@@ -726,13 +715,6 @@ public class JConstantString
         };
         ArrayList arraylist4 = new ArrayList(Arrays.asList(as4));
         kensahouhouSet.put("3F077000002327101", arraylist4);
-//masuda^ 2018/03/02 non HDL-C
-        String as41[] = {
-            "non-HDLコレステロール", "1:計算法"
-        };
-        ArrayList arraylist41 = new ArrayList(Arrays.asList(as41));
-        kensahouhouSet.put("3F069000002391901", arraylist41);
-//masuda
         String as5[] = {
             "総ビリルビン", "1:可視吸光光度法（化学酸化法、酵素法、ジアゾ法)", "2:その他"
         };
@@ -935,14 +917,6 @@ public class JConstantString
                     s = (new StringBuilder()).append(s).append("LDL").append(s1).toString();
                 continue;
             }
-//masuda^ 2018/03/02 non HDL-C
-            if(as[k10].equals("3F069000002391901"))
-            {
-                if(++i1 == 2)
-                    s = (new StringBuilder()).append(s).append("non-HDLコレステロール").append(s1).toString();
-                continue;
-            }
-//masuda
             if(as[k10].equals("3J010000002327101") || as[k10].equals("3J010000002399901"))
             {
                 if(++j1 == 2)
@@ -1212,6 +1186,20 @@ public class JConstantString
         "9N861000000000011", "9N866000000000001", "9N871000000000011", "9N876000000000011", "9N881000000000011", "9N886000000000011", "9N891000000000011", "9N896000000000011", "9N901000000000011", "9N906000000000011",
         "9N911000000000011", "9N916000000000011", "9N921000000000011", "9N926000000000011", "9N931000000000011"
     };
+    
+    // add s.inoue 2014/07/07 通知表の問診漏れ
+	public static final String codesSeikatuKinouPrint[] = {
+	"9N811000000000011","9N816000000000011","9N821000000000011","9N826000000000011",
+	"9N831000000000011","9N836000000000011","9N841000000000011","9N846000000000011",
+	"9N851000000000011","9N856000000000011","9N861000000000011","9N866000000000001",
+	"9N871000000000011","9N876000000000011","9N881000000000011","9N886000000000011",
+	"9N891000000000011","9N896000000000011","9N901000000000011","9N906000000000011",
+	"9N911000000000011","9N916000000000011","9N921000000000011","9N926000000000011",
+	"9N931000000000011",
+	"9N556000000000011","9N561000000000011","9N566000000000049","9N571000000000049"
+	};
+
+    
     // 排除 問診必須項目排除 "9N701000000000011", "9N706000000000011", "9N711000000000011", "9N736000000000011"
     public static final String codesSeikatuMonshin[] = {
          "9N701167000000049", "9N701167100000049", "9N706167000000049", "9N706167100000049", "9N711167000000049", "9N711167100000049", "9N716000000000011",
@@ -1242,10 +1230,7 @@ public class JConstantString
     };
 
     public static final String codesGraphTaishaJunkankikei[] = {
-        "3F015000002327101", "3F015000002327201", "3F015000002399901", "3F070000002327101", "3F070000002327201", "3F070000002399901", "3F077000002327101", "3F077000002327201", "3F077000002399901",
-//masuda^ 2018/03/02 non-HDL 
-        "3F069000002391901"
-//masuda$
+        "3F015000002327101", "3F015000002327201", "3F015000002399901", "3F070000002327101", "3F070000002327201", "3F070000002399901", "3F077000002327101", "3F077000002327201", "3F077000002399901"
     };
     public static final String codesGraphNyosan[] = {
         "1A035000000190101"
@@ -1278,10 +1263,6 @@ public class JConstantString
     public static final String KENSAHOUHOU_LDL1 = "3F077000002327101";
     public static final String KENSAHOUHOU_LDL2 = "3F077000002327201";
     public static final String KENSAHOUHOU_LDL3 = "3F077000002399901";
-    
-//masuda^ 2018/03/02 non-HDL 
-    public static final String KENSAHOUHOU_NON_HDL_1 = "3F069000002391901";
-//masuda$
     public static final String KENSAHOUHOU_BIRUBIRIN1 = "3J010000002327101";
     public static final String KENSAHOUHOU_BIRUBIRIN2 = "3J010000002399901";
     public static final String KENSAHOUHOU_GOT1 = "3B035000002327201";
@@ -1426,4 +1407,3 @@ public class JConstantString
     };
 
 }
-

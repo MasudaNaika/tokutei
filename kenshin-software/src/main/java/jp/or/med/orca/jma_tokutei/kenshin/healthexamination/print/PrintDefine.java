@@ -111,10 +111,6 @@ public class PrintDefine {
 	// add h.yoshitama 2009/11/24
 	public static final String CODE_TAKAKU_UMU = "9N066000000000011";
 	public static final String CODE_ZIKAKU_UMU = "9N061000000000011";
-        
-//masuda^ 2018/03/02 non-HDL 
-        public static final String CODE_NON_HDL_CALC = "3F069000002391901";
-//masuda$
 
 	/* テーブル項目 */
 	public static final String COLUMN_NAME_KOUMOKU_NAME = "KOUMOKU_NAME";

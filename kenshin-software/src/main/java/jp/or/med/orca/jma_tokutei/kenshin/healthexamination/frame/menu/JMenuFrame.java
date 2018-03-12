@@ -1,16 +1,12 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu;
 
 import java.awt.BorderLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.SwingConstants;
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,17 +15,19 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
+import jp.or.med.orca.jma_tokutei.common.component.ExtendedToggleButton;
 import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.component.ExtendedToggleButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.BorderFactory;
 
 public class JMenuFrame extends JFrame implements ActionListener,WindowListener,KeyListener
 {
@@ -347,6 +345,20 @@ public class JMenuFrame extends JFrame implements ActionListener,WindowListener,
 			jLabel5 = new ExtendedLabel();
 			jLabel5.setText("↓");
 			jLabel5.setFont(new Font("Dialog", Font.BOLD, 18));
+			
+			
+			// add s.inoue 2013/12/19
+			GridBagConstraints gridBagConstraints13 = new GridBagConstraints();
+			gridBagConstraints13.gridx = 1;
+			gridBagConstraints13.gridwidth = 2;
+			// edit ver2 s.inoue 2009/08/03
+			// gridBagConstraints13.insets = new Insets(5, 0, 5, 0);
+			gridBagConstraints13.insets = new Insets(1, 0, 1, 0);
+			gridBagConstraints13.gridy = 0;
+			jLabel5 = new ExtendedLabel();
+			jLabel5.setText("↓");
+			jLabel5.setFont(new Font("Dialog", Font.BOLD, 18));
+
 
 			GridBagConstraints gridBagConstraints8 = new GridBagConstraints();
 			gridBagConstraints8.gridx = 1;

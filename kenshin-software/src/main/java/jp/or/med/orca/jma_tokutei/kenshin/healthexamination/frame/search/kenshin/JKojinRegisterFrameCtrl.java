@@ -1,77 +1,68 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.FocusEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.print.PrinterException;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.Vector;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Hashtable;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.event.PopupMenuEvent;
-import javax.swing.text.JTextComponent;
 
-import org.apache.log4j.Logger;
-import jp.or.med.orca.jma_tokutei.common.convert.JYearAge;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedComboBox;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
-import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextField;
 import jp.or.med.orca.jma_tokutei.common.component.TextFieldWithComboBoxDocumentListener;
-import jp.or.med.orca.jma_tokutei.common.convert.JEraseSpace;
 import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
+import jp.or.med.orca.jma_tokutei.common.convert.JYearAge;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
-import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
 import jp.or.med.orca.jma_tokutei.common.frame.ProgressWindow;
-import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFormattedFloatControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenTextControl;
-import jp.or.med.orca.jma_tokutei.common.orca.JORCASetting;
 import jp.or.med.orca.jma_tokutei.common.orca.JOrcaInfoSearchCtl;
-import jp.or.med.orca.jma_tokutei.common.qr.JQRReader;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
-import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
-import jp.or.med.orca.jma_tokutei.common.sql.OrcaConnection;
 import jp.or.med.orca.jma_tokutei.common.sql.dao.DaoFactory;
 import jp.or.med.orca.jma_tokutei.common.sql.dao.TKojinDao;
+import jp.or.med.orca.jma_tokutei.common.sql.dao.TNayoseDao;
 import jp.or.med.orca.jma_tokutei.common.sql.model.TKojin;
 import jp.or.med.orca.jma_tokutei.common.sql.model.TNayose;
 import jp.or.med.orca.jma_tokutei.common.util.FiscalYearUtil;
 import jp.or.med.orca.jma_tokutei.common.validate.JValidate;
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.hokenja.JHokenjyaMasterMaintenanceEditFrameCtrl;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.search.kenshin.JKojinRegisterFrameData.T_KOJIN_COLUMN;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.select.JSelectKojinFrameCtrl;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.select.JSelectKojinFrameData;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shiharai.JShiharaiMasterMaintenanceEditFrameCtrl;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintTsuikaKenshin;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.print.PrintNyuryoku;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kojin;
-import jp.or.med.orca.jma_tokutei.common.sql.dao.TNayoseDao;
+
+import org.apache.log4j.Logger;
 
 
 /**
  * 個人登録フレーム
  */
 public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
+	
+	private static final long serialVersionUID = 920280230214173874L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private static final String STRING_UNIT_PERCENT = "％";
 	private static final String STRING_UNIT_YEN = "円";
 	private static final int COMBOBOX_NUMBER_START_INDEX = 1;
@@ -89,9 +80,9 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	/** 保険者番号、支払代行機関選択欄の、番号と名称の区切り文字列 */
 	private static final String COMBOBOX_NUMBER_NAME_SEPARATOR = " ";
 	/** 保険者番号の正規表現 */
-	private static final String REGEX_HOKENJA_NUMBER = "\\d{1,8}";
+//	private static final String REGEX_HOKENJA_NUMBER = "\\d{1,8}";	// edit n.ohkubo 2014/10/01　未使用なので削除
 	/** 支払代行機関番号の正規表現 */
-	private static final String REGEX_DAIKOU_NUMBER = "\\d{1,8}";
+//	private static final String REGEX_DAIKOU_NUMBER = "\\d{1,8}";	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 //	private JFocusTraversalPolicy focusTraversalPolicy = null;
 	private TKojinDao tKojinDao;
@@ -110,6 +101,9 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	// add s.inoue 2010/01/15
 	private static final String TANKA_HANTEI_KIHON = "1";
 	private static final String TANKA_HANTEI_DOC = "2";
+
+	// eidt s.inoue 2013/07/01
+	private String kensanengapi = "";
 
 	/**
 	 * 登録ボタンを押した際の必須項目などを検証
@@ -140,6 +134,34 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 			JErrorMessage.show("M4371", null);
 			return false;
 		}
+		// edit n.ohkubo 2015/03/01　追加　start
+		if (data.getHihokenjyaNumber().equals("")) {
+			JErrorMessage.show("M4364", null);
+			return false;
+		}
+		// edit n.ohkubo 2015/03/01　追加　end
+		
+		// edit n.ohkubo 2014/10/01　追加　start　保険者情報がDBへ登録されているか確認する
+		try {
+			StringBuilder sb = new StringBuilder();
+			sb.append("SELECT ");
+			sb.append("HKNJANUM, HKNJANAME, POST, ADRS, BANTI, TEL, KIGO, HON_GAIKYURATE, HON_NYUKYURATE, KZK_GAIKYURATE, KZK_NYUKYURATE, ITAKU_KBN, TANKA_KIHON, HINKETU_CD, TANKA_HINKETU, SINDENZU_CD, TANKA_SINDENZU, GANTEI_CD, TANKA_GANTEI, TANKA_NINGENDOC, TANKA_HANTEI, HKNJYA_HISTORY_NO, HKNJYA_LIMITDATE_START, HKNJYA_LIMITDATE_END, YUKOU_FLG FROM T_HOKENJYA ");
+			sb.append("WHERE ");
+			sb.append("HKNJANUM = ? AND YUKOU_FLG = '1'");
+			String[] params = {data.getHokenjyaNumber()};
+			ArrayList<Hashtable<String, String>> result = JApplication.kikanDatabase.sendExecuteQuery(sb.toString(), params);
+			
+			//DB未登録時はエラー
+			if (result.size() == 0) {
+				JErrorMessage.show("M3140", null);
+				return false;
+			}
+			
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			logger.error(sqlEx.getMessage());
+		}
+		// edit n.ohkubo 2014/10/01　追加　end　保険者情報がDBへ登録されているか確認する
 
 		data.setValidationAsDataSet();
 		return true;
@@ -584,8 +606,8 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 		isFromKekkaRegster = true;
 
 		String uketukeId = data.getUKETUKE_ID();
-		// eidt s.inoue 2011/08/03
-		String kensanengapi = data.getKENSA_NENGAPI();
+		// eidt s.inoue 2013/07/01
+		kensanengapi = data.getKENSA_NENGAPI();
 
 		setKojinDataFromDB(uketukeId,kensanengapi);
 	}
@@ -652,7 +674,8 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 			if (!beforeRegister())return false;
 
 			if(nyuryokuCode_flg){
-				pushedPrintButton(null);
+//				pushedPrintButton(null);	// edit n.ohkubo 2015/08/01　削除
+				pushedPrintButton(true);	// edit n.ohkubo 2015/08/01　追加
 			}
 
 			String query = this.createRegisterSql();
@@ -1803,7 +1826,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 
 			String host = JApplication.orcaSetting.getOrcaIpAddress();
 			String port = JApplication.orcaSetting.getOrcaPort();
-			String database = JApplication.orcaSetting.getOrcaDatabase();
+//			String database = JApplication.orcaSetting.getOrcaDatabase();	// edit n.ohkubo 2014/10/01　未使用なので削除
 			String user = JApplication.orcaSetting.getNichireseUser();
 			String password = JApplication.orcaSetting.getNichiresePassword();
 
@@ -2034,12 +2057,13 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 		}
 	}
 
-	/**
-	 * QRボタン
-	 */
-	public void pushedQRButton(ActionEvent e) {
-		new JQRReader();
-	}
+	// edit n.ohkubo 2015/08/01　未使用なので削除
+//	/**
+//	 * QRボタン
+//	 */
+//	public void pushedQRButton(ActionEvent e) {
+//		new JQRReader();
+//	}
 
 	/**
 	 * 印刷機能
@@ -2049,8 +2073,21 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	 *
 	 * 2ページ 健診項目入力シート（問診） 必須データ：受診券整理番号、氏名、受診日（自動生成）、保険者番号、被保険者証等記号、被保険者証等番号
 	 * import Print.KenshinKoumoku_Monshin class KenshinKoumoku_Monshin
+	 * 
+	 * @param isAll	「入力票印刷」ボタン押下時：true、追加健診項目表のみ出力する場合：false
 	 */
-	public void pushedPrintButton(ActionEvent e) {
+//	public void pushedPrintButton(ActionEvent e) {	// edit n.ohkubo 2015/08/01　削除
+	public void pushedPrintButton(boolean isAll) {	// edit n.ohkubo 2015/08/01　追加
+		
+		// edit n.ohkubo 2015/08/01　追加　start
+		String birthday = jTextField_Birthday.getText();
+		if ((birthday != null) && (!birthday.isEmpty())) {
+			if (!JValidate.validateCDate(birthday)) {
+				JErrorMessage.show("M4317", this);
+				return;
+			}
+		}
+		// edit n.ohkubo 2015/08/01　追加　end
 
 		// add s.inoue 2009/10/19
 		try {
@@ -2169,26 +2206,45 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 			}
 
 			/*
-			 * 印刷データ生成 個人データを格y納する
+			 * 印刷データ生成 個人データを格納する
 			 */
 			Hashtable<String, Object> PrintData = new Hashtable<String, Object>();
 			PrintData.put("Kojin", KojinData);
 
-			/*
-			 * 印刷 1ページ目を印刷すると、自動的に最終ページまで出力される
-			 */
-			// KenshinKoumoku_Kensa Kensa = new KenshinKoumoku_Kensa();
-			PrintNyuryoku Kensa = new PrintNyuryoku();
-			Kensa.setQueryResult(PrintData);
-			progressWindow.setVisible(false);
+			if (isAll) {	// edit n.ohkubo 2015/08/01　追加
+				
+				/*
+				 * 印刷 1ページ目を印刷すると、自動的に最終ページまで出力される
+				 */
+				// KenshinKoumoku_Kensa Kensa = new KenshinKoumoku_Kensa();
+				PrintNyuryoku Kensa = new PrintNyuryoku();
+				Kensa.setQueryResult(PrintData);
+				progressWindow.setVisible(false);
 
-			try {
-				Kensa.beginPrint();
+				try {
+					Kensa.beginPrint();
 
-			} catch (PrinterException ex) {
-				logger.error(ex.getMessage());
-				JErrorMessage.show("M4393", this);
+				} catch (PrinterException ex) {
+					logger.error(ex.getMessage());
+					JErrorMessage.show("M4393", this);
+				}
+				
+			// edit n.ohkubo 2015/08/01　追加　start
+			//追加健診項目表のみ出力
+			} else {
+				PrintTsuikaKenshin tsuikaKenshin = new PrintTsuikaKenshin(PrintData);
+				progressWindow.setVisible(false);
+
+				try {
+					tsuikaKenshin.beginPrint();
+
+				} catch (PrinterException ex) {
+					logger.error(ex.getMessage());
+					JErrorMessage.show("M4393", this);
+				}
 			}
+			// edit n.ohkubo 2015/08/01　追加　end
+			
 		} finally {
 			progressWindow.setVisible(false);
 		}
@@ -2226,13 +2282,13 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 			return;
 		}
 
-		boolean existsNumber = false;
+//		boolean existsNumber = false;	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 		int itemIndex = 2;
 		for (itemIndex = 2; itemIndex < daikouNumbers.size(); itemIndex++) {
 			String number = this.daikouNumbers.get(itemIndex);
 			if (number.equals(inputNumber)) {
-				existsNumber = true;
+//				existsNumber = true;	// edit n.ohkubo 2014/10/01　未使用なので削除
 				break;
 			}
 		}
@@ -2242,7 +2298,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	 * 保険者情報の新規追加ダイアログを表示する
 	 */
 	private void showAddHokenjaNumberDialog(String inputNumber) {
-		JHokenjyaMasterMaintenanceEditFrameCtrl ctrl = null;
+//		JHokenjyaMasterMaintenanceEditFrameCtrl ctrl = null;	// edit n.ohkubo 2014/10/01　未使用なので削除
 		if (inputNumber == null || inputNumber.isEmpty()) {
 			// eidt s.inoue 2012/12/21
 			// ctrl = new JHokenjyaMasterMaintenanceEditFrameCtrl();
@@ -2317,6 +2373,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	/**
 	 * アクションリスナー
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 
@@ -2353,7 +2410,8 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 		/* 入力票印刷ボタン */
 		else if (source == jButton_Print) {
 			logger.info(jButton_Print.getText());
-			pushedPrintButton(e);
+//			pushedPrintButton(e);	// edit n.ohkubo 2015/08/01　削除
+			pushedPrintButton(true);	// edit n.ohkubo 2015/08/01　追加
 		}
 
 		/*
@@ -2396,8 +2454,17 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 
 			JScene.CreateDialog(this, ctrl, new HokenjyaWindowEvent());
 		}
+		
+		// edit n.ohkubo 2015/08/01　追加　start
+		/* 追加健診ボタン */
+		else if (source == jButton_Print_tsuikakenshin) {
+			logger.info(jButton_Print_tsuikakenshin.getText());
+			pushedPrintButton(false);
+		}
+		// edit n.ohkubo 2015/08/01　追加　end
 	}
-
+	
+	@Override
 	public void itemStateChanged(ItemEvent e) {
 
 		Object source = e.getSource();
@@ -2592,7 +2659,8 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 		} else if (selectedIndex == 2){
 			jTextField_SyubetsuNum.setText("2");
 			// jTextField_SyubetsuNum.setEditable(false);
-			jTextField_SyubetsuNum.setEnabled(false);
+//			jTextField_SyubetsuNum.setEnabled(false);	// edit n.ohkubo 2014/10/01　削除
+			jTextField_Jougen.setEnabled(false);	// edit n.ohkubo 2014/10/01　追加
 		} else if (selectedIndex == 3){
 			jTextField_SyubetsuNum.setText("3");
 			// jTextField_Jougen.setEditable(false);
@@ -2608,6 +2676,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	 * 保険者情報登録画面のウィンドウリスナー
 	 */
 	public class HokenjyaWindowEvent extends WindowAdapter {
+		@Override
 		public void windowClosed(WindowEvent e) {
 			if (JHokenjyaMasterMaintenanceEditFrameCtrl.isRegistered()) {
 				JKojinRegisterFrameCtrl.this.initializeHokenjaNumComboBox();
@@ -2631,6 +2700,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	 * 支払代行機関登録画面のウィンドウリスナー
 	 */
 	public class DaikouWindowEvent extends WindowAdapter {
+		@Override
 		public void windowClosed(WindowEvent e) {
 			if (JShiharaiMasterMaintenanceEditFrameCtrl.isRegistered()) {
 				JKojinRegisterFrameCtrl.this.initializeDaikouNumberComboBox();
@@ -2653,6 +2723,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 	/**
 	 * keyTyped イベントハンドラ
 	 */
+	@Override
 	public void keyTyped(java.awt.event.KeyEvent e) {
 
 		Object source = e.getSource();
@@ -2835,6 +2906,7 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 //			this.jTextField_NingenDocTanka.setText("");
 //		}
 //	}
+	@Override
 	public void popupMenuWillBecomeInvisible(PopupMenuEvent event) {
 		Object source = event.getSource();
 
@@ -2888,15 +2960,28 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 					return;
 				}
 
-				// eidt s.inoue 2012/06/28
-				// jTextField_YearOld.setText(String.valueOf(FiscalYearUtil.getFiscalYear(selectedItem)));
-				String age ="";
+				// eidt s.inoue 2013/07/01
+//				String age ="";
+//				if (yearOld_flg){
+//					age = String.valueOf(FiscalYearUtil.getFiscalYear(selectedItem));
+//				}else{
+//					age = JYearAge.getAge(selectedItem);
+//				}
+				int age =0;
 				if (yearOld_flg){
-					age = String.valueOf(FiscalYearUtil.getFiscalYear(selectedItem));
+					if (!kensanengapi.equals("")){
+						age = FiscalYearUtil.getFiscalYear(selectedItem,kensanengapi);
+					}else{
+						age = FiscalYearUtil.getFiscalYear(selectedItem);
+					}
 				}else{
-					age = JYearAge.getAge(selectedItem);
+					if (!kensanengapi.equals("")){
+						age = Integer.parseInt(JYearAge.getAge(selectedItem,kensanengapi));
+					}else{
+						age = Integer.parseInt(JYearAge.getAge(selectedItem));
+					}
 				}
-				jTextField_YearOld.setText(age);
+				jTextField_YearOld.setText(String.valueOf(age));
 
 			}else if(txt.getParent().equals(this.jTextField_ZipCode)){
 					if (jTextField_ZipCode.getTextTrim().equals(""))
@@ -3016,7 +3101,8 @@ public class JKojinRegisterFrameCtrl extends JKojinRegisterFrame {
 				pushedClearButton();break;
 			case KeyEvent.VK_F5:
 				logger.info(jButton_Print.getText());
-				pushedPrintButton(null);break;
+//				pushedPrintButton(null);break;			// edit n.ohkubo 2015/08/01　削除
+				pushedPrintButton(true);break;	// edit n.ohkubo 2015/08/01　追加
 			case KeyEvent.VK_F6:
 				logger.info(jButton_Call.getText());
 				pushedCallButton(null);break;

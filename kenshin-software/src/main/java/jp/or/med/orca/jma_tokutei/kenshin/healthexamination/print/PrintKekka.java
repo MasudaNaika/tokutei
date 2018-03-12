@@ -9,39 +9,31 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.Collections;
-import java.util.Comparator;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import org.apache.log4j.Logger;
-
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.common.app.JPath;
-import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
-import jp.or.med.orca.jma_tokutei.common.frame.ProgressWindow;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
-import jp.or.med.orca.jma_tokutei.common.hl7.common.Utility;
-import jp.or.med.orca.jma_tokutei.common.printer.JTKenshinPrint;
-import jp.or.med.orca.jma_tokutei.common.util.FiscalYearUtil;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.AddMedical;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.KenshinKekka;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.KihonKensaKoumoku;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kikan;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kojin;
 import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
 import jp.or.med.orca.jma_tokutei.common.convert.JZenkakuKatakanaToHankakuKatakana;
+import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
+import jp.or.med.orca.jma_tokutei.common.frame.ProgressWindow;
+import jp.or.med.orca.jma_tokutei.common.hl7.common.Utility;
+import jp.or.med.orca.jma_tokutei.common.printer.JTKenshinPrint;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.AddMedical;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.KenshinKekka;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kikan;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.printdata.Kojin;
+
+import org.apache.log4j.Logger;
 
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.pdf.AcroFields;
@@ -412,7 +404,10 @@ public class PrintKekka extends JTKenshinPrint {
 			if (printSelect ==2){
 				int maxP = Integer.valueOf(maxPage);
 				String maxSt = Integer.toString(maxP);
-				form.setField("PAGE_NUM", "（2／"+maxSt+"）");
+				// eidt s.inoue 2013/10/28
+				form.setField("PAGE_NUM", "( 2 / "+maxSt+" )");
+				// form.setField("PAGE_NUM", "（2／"+maxSt+"）");
+				// form.setField("PAGE_NUM", "（ ２／"+JZenkakuKatakanaToHankakuKatakana.eisukigoHanToZen(maxSt)+" ）");
 			}
 
 			/* 機関情報を出力する。 */
@@ -1440,7 +1435,10 @@ public class PrintKekka extends JTKenshinPrint {
 			//ページ番号を設定する
 			int maxP = Integer.valueOf(maxPage);
 			String maxSt = Integer.toString(maxP+1);
-			form.setField("PAGE_NUM", "（1／"+maxSt+"）");
+			// eidt s.inoue 2013/10/28
+			form.setField("PAGE_NUM", "( 1 / "+maxSt+" )");
+			// form.setField("PAGE_NUM", "（1／"+maxSt+"）");
+			// form.setField("PAGE_NUM", "（ １／"+JZenkakuKatakanaToHankakuKatakana.eisukigoHanToZen(maxSt)+" ）");
 
 			// add s.inoue 2012/09/10
 			// String comment = "※ヘモグロビンA1c検査の結果値はNGSP法による検査結果値が記載されていますが、☆が併記されているものは、JDS法による検査結果値のため基準値が異なります．（JDS法基準値3.9～5.2）";
@@ -2972,6 +2970,11 @@ public class PrintKekka extends JTKenshinPrint {
 				err.printStackTrace();
 				JErrorMessage.show("M4943", owner);
 			}
+		// eidt s.inoue 2013/05/23
+		} catch (Exception err) {
+			err.printStackTrace();
+			logger.error(err.getMessage());
+
 		} finally {
 			progressWindow.setVisible(false);
 		}

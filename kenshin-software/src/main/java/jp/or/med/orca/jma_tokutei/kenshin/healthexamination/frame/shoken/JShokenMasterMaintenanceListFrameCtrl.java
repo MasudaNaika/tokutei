@@ -1,28 +1,33 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.shoken;
 
-import org.apache.log4j.Logger;
-import org.openswing.swing.table.client.GridController;
-import org.openswing.swing.message.receive.java.*;
-import java.util.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
+import jp.or.med.orca.jma_tokutei.common.filter.FilterSetting;
 import jp.or.med.orca.jma_tokutei.common.scene.JScene;
 
-import org.openswing.swing.table.java.GridDataLocator;
+import org.apache.log4j.Logger;
 import org.openswing.swing.client.GridControl;
-import org.openswing.swing.export.java.ComponentExportOptions;
+import org.openswing.swing.client.GridControl.ColumnContainer;
 import org.openswing.swing.export.java.ExportOptions;
-import org.openswing.swing.export.java.GridExportCallbacks;
-import org.openswing.swing.export.java.GridExportOptions;
+import org.openswing.swing.message.receive.java.ErrorResponse;
+import org.openswing.swing.message.receive.java.Response;
+import org.openswing.swing.message.receive.java.VOListResponse;
+import org.openswing.swing.message.receive.java.VOResponse;
+import org.openswing.swing.message.receive.java.ValueObject;
+import org.openswing.swing.message.send.java.GridParams;
 import org.openswing.swing.server.QueryUtil;
 import org.openswing.swing.server.UserSessionParameters;
-import org.openswing.swing.message.send.java.GridParams;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMessages;
+import org.openswing.swing.table.client.GridController;
+import org.openswing.swing.table.java.GridDataLocator;
 
 /**
  * Ctl画面
@@ -33,11 +38,15 @@ public class JShokenMasterMaintenanceListFrameCtrl
 		extends GridController
 		implements GridDataLocator {
 
+	private static final long serialVersionUID = 677230912170503336L;	// edit n.ohkubo 2014/10/01
+	
 	private JShokenMasterMaintenanceListFrame grid = null;
-	private JShokenMasterMaintenanceListFrame frame;
+//	private JShokenMasterMaintenanceListFrame frame;	// edit n.ohkubo 2014/10/01　未使用なので削除
 	private Connection conn = null;
 
 	private static Logger logger = Logger.getLogger(JShokenMasterMaintenanceListFrameCtrl.class);
+	
+	private boolean firstViewFlg = true;	// edit n.ohkubo 2014/10/01
 
 	public JShokenMasterMaintenanceListFrameCtrl(Connection conn) {
 		this.conn = conn;
@@ -52,6 +61,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	* @param attributeName attribute name that identify a grid column
 	* @return tooltip text to show in the column header; this text will be automatically translated according to internationalization settings
 	*/
+	@Override
 	public String getHeaderTooltip(String attributeName) {
 	    return attributeName;
 	}
@@ -61,6 +71,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	* @param attributeName attribute name that identify a grid column
 	* @return tooltip text to show in the cell identified by the specified row and attribute name; this text will be automatically translated according to internationalization settings
 	*/
+	@Override
 	public String getCellTooltip(int row,String attributeName) {
 
 		return (String) grid.getGrid().getVOListTableModel().getField(row,attributeName);
@@ -72,6 +83,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	 *
 	 * @return <code>true</code> 保存許可, <code>false</code> 保存中断
 	 */
+	@Override
 	public boolean beforeInsertGrid(GridControl grid) {
 		// new JShokenMasterMaintenanceDetailCtl(this.grid,null, null, conn);
 		return false;
@@ -82,6 +94,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	 * @param rowNumber selected row index
 	 * @param persistentObject v.o. related to the selected row
 	 */
+	@Override
 	public void doubleClick(int rowNumber, ValueObject persistentObject) {
 		JShokenMasterMaintenanceListData vo = (JShokenMasterMaintenanceListData)persistentObject;
 
@@ -99,7 +112,8 @@ public class JShokenMasterMaintenanceListFrameCtrl
      * gridに定義されたformatを再定義して呼び出せます
      * @return list of available formats; possible values: ExportOptions.XLS_FORMAT, ExportOptions.CSV_FORMAT1, ExportOptions.CSV_FORMAT2, ExportOptions.XML_FORMAT, ExportOptions.XML_FORMAT_FAT, ExportOptions.HTML_FORMAT, ExportOptions.PDF_FORMAT, ExportOptions.RTF_FORMAT; default value: ClientSettings.EXPORTING_FORMATS
      */
-	 public String[] getExportingFormats() {
+	 @Override
+	public String[] getExportingFormats() {
 		 return new String[]{ ExportOptions.XLS_FORMAT,ExportOptions.HTML_FORMAT,ExportOptions.XML_FORMAT };
 	 }
 
@@ -130,6 +144,69 @@ public class JShokenMasterMaintenanceListFrameCtrl
 //	    empsOpts.setCallbacks(callbacks);
 //	 }
 
+	// edit n.ohkubo 2014/10/01　start　ソート設定の不具合や0件メッセージ等の修正を行うので、メソッドを新規で作成（既存のロジックは全コメント）
+//	/**
+//	 * gridのデータがロードされた時のCallback関数
+//	 * @param PREVIOUS_BLOCK_ACTION:前行へ移動, NEXT_BLOCK_ACTION:次行へ移動 or LAST_BLOCK_ACTION:最終行へ移動
+//	 * @param startPos start position of data fetching in result set
+//	 * @param filteredColumns filtered columns
+//	 * @param currentSortedColumns sorted columns
+//	 * @param currentSortedVersusColumns ordering versus of sorted columns
+//	 * @param valueObjectType v.o. type
+//	 * @param otherGridParams other grid parameters
+//	 * @return response from the server: an object of type VOListResponse
+//	 *  if data loading was successfully completed, or an ErrorResponse onject if some error occours
+//	 */
+//	public Response loadData(int action, int startIndex, Map filteredColumns,
+//			ArrayList currentSortedColumns,
+//			ArrayList currentSortedVersusColumns, Class valueObjectType,
+//			Map otherGridParams) {
+//
+//		try {
+//			ArrayList vals = new ArrayList();
+//			Map attribute2dbField = new HashMap();
+//			attribute2dbField.put("SYOKEN_TYPE","SYOKEN_TYPE");
+//			attribute2dbField.put("SYOKEN_TYPE_NAME","SYOKEN_TYPE_NAME");
+//			attribute2dbField.put("SYOKEN_NO","SYOKEN_NO");
+//			attribute2dbField.put("SYOKEN_NAME","SYOKEN_NAME");
+//			attribute2dbField.put("UPDATE_TIMESTAMP","UPDATE_TIMESTAMP");
+//
+//
+//			GridParams gridParams = new GridParams(action, startIndex,
+//					filteredColumns, currentSortedColumns,
+//					currentSortedVersusColumns, otherGridParams);
+//
+////			// add s.inoue 2013/02/25
+////			try {
+////				JApplication.kikanDatabase.getMConnection().setAutoCommit(false);
+////			} catch (SQLException ex) {
+////				logger.warn(ex.getMessage());
+////			}
+//
+//			StringBuilder sql = new StringBuilder();
+//			sql.append("SELECT SYOKEN_TYPE,SYOKEN_TYPE_NAME,");
+//			sql.append(" SYOKEN_NO, SYOKEN_NAME, UPDATE_TIMESTAMP");
+//			sql.append(" FROM T_SYOKENMASTER ");
+//			// add s.inoue 2012/05/07
+//			if (currentSortedVersusColumns.size() == 0)
+//				sql.append(" ORDER BY SYOKEN_TYPE,SYOKEN_NO ");
+//
+//			return QueryUtil
+//					.getQuery(
+//							conn,
+//							new UserSessionParameters(),
+//							sql.toString(),
+//							vals,
+//							attribute2dbField,
+//							JShokenMasterMaintenanceListData.class,
+//							"Y", "N",
+//							null, gridParams, JApplication.gridViewMasterCount, true);
+//
+//		} catch (Exception ex) {
+//			ex.printStackTrace();
+//			return new ErrorResponse(ex.getMessage());
+//		}
+//	}
 	/**
 	 * gridのデータがロードされた時のCallback関数
 	 * @param PREVIOUS_BLOCK_ACTION:前行へ移動, NEXT_BLOCK_ACTION:次行へ移動 or LAST_BLOCK_ACTION:最終行へ移動
@@ -142,56 +219,77 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	 * @return response from the server: an object of type VOListResponse
 	 *  if data loading was successfully completed, or an ErrorResponse onject if some error occours
 	 */
-	public Response loadData(int action, int startIndex, Map filteredColumns,
-			ArrayList currentSortedColumns,
-			ArrayList currentSortedVersusColumns, Class valueObjectType,
-			Map otherGridParams) {
+	@Override
+	public Response loadData(int action, int startIndex, Map filteredColumns, ArrayList currentSortedColumns, ArrayList currentSortedVersusColumns, Class valueObjectType, Map otherGridParams) {
 
 		try {
-			ArrayList vals = new ArrayList();
-			Map attribute2dbField = new HashMap();
+			Map<String, String> attribute2dbField = new HashMap<String, String>();
 			attribute2dbField.put("SYOKEN_TYPE","SYOKEN_TYPE");
 			attribute2dbField.put("SYOKEN_TYPE_NAME","SYOKEN_TYPE_NAME");
 			attribute2dbField.put("SYOKEN_NO","SYOKEN_NO");
 			attribute2dbField.put("SYOKEN_NAME","SYOKEN_NAME");
 			attribute2dbField.put("UPDATE_TIMESTAMP","UPDATE_TIMESTAMP");
 
-
-			GridParams gridParams = new GridParams(action, startIndex,
-					filteredColumns, currentSortedColumns,
-					currentSortedVersusColumns, otherGridParams);
-
-//			// add s.inoue 2013/02/25
-//			try {
-//				JApplication.kikanDatabase.getMConnection().setAutoCommit(false);
-//			} catch (SQLException ex) {
-//				logger.warn(ex.getMessage());
-//			}
+			GridParams gridParams = new GridParams(action, startIndex, filteredColumns, currentSortedColumns, currentSortedVersusColumns, otherGridParams);
+			
+			//検索・ソート条件の設定用共通クラス
+			FilterSetting filterSetting = new FilterSetting();
+			
+			//「を含む」検索は「like %入力値%」で検索するため、入力値に"%"を付加する
+			filterSetting.setLikeColumns(filteredColumns, true);
 
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT SYOKEN_TYPE,SYOKEN_TYPE_NAME,");
 			sql.append(" SYOKEN_NO, SYOKEN_NAME, UPDATE_TIMESTAMP");
 			sql.append(" FROM T_SYOKENMASTER ");
-			// add s.inoue 2012/05/07
-			if (currentSortedVersusColumns.size() == 0)
+			if (currentSortedVersusColumns.size() == 0) {
 				sql.append(" ORDER BY SYOKEN_TYPE,SYOKEN_NO ");
+			}
 
-			return QueryUtil
-					.getQuery(
-							conn,
-							new UserSessionParameters(),
-							sql.toString(),
-							vals,
-							attribute2dbField,
-							JShokenMasterMaintenanceListData.class,
-							"Y", "N",
-							null, gridParams, JApplication.gridViewMasterCount, true);
+	    	//データの取得実行
+			Response result = QueryUtil.getQuery(
+											conn,
+											new UserSessionParameters(),
+											sql.toString(),
+											new ArrayList<String>(),
+											attribute2dbField,
+											JShokenMasterMaintenanceListData.class,
+											"Y",
+											"N",
+											null,
+											gridParams,
+											JApplication.gridViewMasterCount,
+											true
+			);
+
+			//「を含む」検索は「like %入力値%」で検索するため、入力値に"%"を付加しているので、付加した"%"を削除する
+			filterSetting.setLikeColumns(filteredColumns, false);
+
+			//検索画面へソート条件を反映する（検索後、検索画面を閉じて再度開いたときに、値が反映されていない現象の対応）
+			ColumnContainer columnContainer = grid.getColumnContainer();
+			filterSetting.setSortColumnsAfter(columnContainer, currentSortedColumns, currentSortedVersusColumns);
+			
+			//0件の場合、メッセージの表示（画面オープン初回以外）
+			if (!firstViewFlg) {
+				if ((result != null) && (!result.isError() && (result instanceof VOListResponse))){
+					if (((VOListResponse)result).getRows().size() == 0) {
+//						JErrorMessage.show("M3550", getGridControl());	// edit n.ohkubo 2015/03/01　削除
+						JErrorMessage.show("M9923", getGridControl());	// edit n.ohkubo 2015/03/01　追加　メッセージの変更
+					}
+				}
+			}
+
+			firstViewFlg = false;
+			
+			return result;
+			
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return new ErrorResponse(ex.getMessage());
 		}
 	}
+	// edit n.ohkubo 2014/10/01　end　ソート設定の不具合や0件メッセージ等の修正を行うので、メソッドを新規で作成（既存のロジックは全コメント）
 
 
 	  /**
@@ -200,7 +298,8 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	   * @param newValueObjects list of new value objects to save
 	   * @return an ErrorResponse value object in case of errors, VOListResponse if the operation is successfully completed
 	   */
-	  public Response insertRecords(int[] rowNumbers, ArrayList newValueObjects) throws Exception {
+	  @Override
+	public Response insertRecords(int[] rowNumbers, ArrayList newValueObjects) throws Exception {
 
 		PreparedStatement stmt = null;
 
@@ -283,7 +382,8 @@ public class JShokenMasterMaintenanceListFrameCtrl
 //	  }
 
 	// add s.inoue 2013/02/27
-    public void afterDeleteGrid()
+    @Override
+	public void afterDeleteGrid()
     {
     	grid.reloadButton.doClick();
     }
@@ -293,6 +393,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	 * @param persistentObjects value objects to delete (related to the currently selected rows)
 	 * @return an ErrorResponse value object in case of errors, VOResponse if the operation is successfully completed
 	 */
+	@Override
 	public Response deleteRecords(ArrayList persistentObjects) throws Exception {
 		PreparedStatement stmt = null;
 
@@ -327,6 +428,7 @@ public class JShokenMasterMaintenanceListFrameCtrl
 	 * 遷移先の画面から戻ってきた場合
 	 */
 	public class WindowRefreshEvent extends WindowAdapter {
+		@Override
 		public void windowClosed(WindowEvent e) {
 			grid.setEnabled(true);
 			// eidt s.inoue 2011/04/08

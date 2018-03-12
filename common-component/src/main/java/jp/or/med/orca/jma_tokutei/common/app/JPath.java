@@ -1,16 +1,14 @@
 package jp.or.med.orca.jma_tokutei.common.app;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
-
 import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
+
+import org.apache.log4j.Logger;
 
 /**
  * ファイルパスの管理クラス
@@ -116,6 +114,11 @@ public class JPath {
 	final public static String Ico_System_User =IcoPath + "7-2.png";
 	final public static String Ico_System_Backup =IcoPath + "7-3.png";
 	final public static String Ico_System_Usability =IcoPath + "7-4.png";
+	// add s.inoue 2013/11/07
+	final public static String Ico_System_Log =IcoPath + "7-5.png";
+	
+	// edit n.ohkubo 2015/08/01　追加
+	final public static String Ico_System_NetworkDB = IcoPath + "7-6.png";	//システム管理ソフトの4番（DB接続情報メンテナンス）のボタン
 
 	/* 結果入力 */
 	final public static String Ico_Kekka_Delete =IcoPath + "kekkaInput_DelKekka.png";
@@ -127,6 +130,9 @@ public class JPath {
 
 	/* メタボ判定 */
 	final public static String Ico_Hantei_Detail =IcoPath + "hantei_Metabohantei.png";
+	
+	// edit n.ohkubo 2015/03/01　追加
+	final public static String Ico_Default = IcoPath + "default.png";	//「健診項目マスタメンテナンス　｜　編集」画面の「初期値」ボタン
 
 	/**
 	 *  スプラッシュイメージ

@@ -1,30 +1,31 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.kenshinpattern;
-import javax.swing.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Vector;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Vector;
 
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
-import org.openswing.swing.domains.java.Domain;
-import org.openswing.swing.internationalization.java.XMLResourcesFactory;
-import org.openswing.swing.permissions.java.ButtonsAuthorizations;
-import org.openswing.swing.table.columns.client.*;
-import org.openswing.swing.util.client.ClientSettings;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
@@ -40,18 +41,19 @@ import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
 import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenEditButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenInsertButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenSaveButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
-import jp.or.med.orca.jma_tokutei.common.scene.JScene;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorHokenjyaResultFrameData;
 import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.dataimport.JImportMasterErrorKenshinPatternResultFrameData;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu.JMasterMaintenanceFrameCtrl;
+
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.domains.java.Domain;
+import org.openswing.swing.table.columns.client.TextColumn;
 
 /**
  * 一覧List画面
@@ -60,6 +62,8 @@ import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.menu.JMasterMa
  */
 public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
 
+	private static final long serialVersionUID = -6351587079483065671L;	// edit n.ohkubo 2014/10/01　追加
+	
 	protected Connection conn = null;
 	protected GridControl grid = new GridControl();
 	/* button */
@@ -143,6 +147,11 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 			this.setLocationRelativeTo( null );
 			grid.setController(controller);
 			grid.setGridDataLocator(controller);
+			
+			// edit n.ohkubo 2014/10/01　追加
+			//検索機能を使用不可にする
+			grid.setShowFilterPanelOnGrid(false);
+			
 			setVisible(true);
 
 		} catch (Exception e) {
@@ -351,7 +360,8 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 		  ListFrame_button_actionAdapter(JKenshinpatternMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 		    adaptee.closeButtton_actionPerformed(e);
 
 		    Object source = e.getSource();
@@ -376,12 +386,10 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 		}
 		@Override
 		public void keyReleased(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 		@Override
 		public void keyTyped(KeyEvent e) {
-			// TODO 自動生成されたメソッド・スタブ
 
 		}
 	}
@@ -483,15 +491,17 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 
 						Result = JApplication.kikanDatabase.sendExecuteQuery(Query);
 
-						// 健診パターンNoの最大値を取得しインクリメント後新規パターンの登録に使う
-						ArrayList<Hashtable<String, String>> maxNo = new ArrayList<Hashtable<String, String>>();
-						Hashtable<String, String> maxNoItem = new Hashtable<String, String>();
-						Query = new String(
-								"SELECT MAX(K_P_NO) FROM T_KENSHIN_P_S");
-
-						maxNo = JApplication.kikanDatabase
-								.sendExecuteQuery(Query);
-						maxNoItem = maxNo.get(0);
+						// edit n.ohkubo 2014/10/01　未使用なので削除　start
+//						// 健診パターンNoの最大値を取得しインクリメント後新規パターンの登録に使う
+//						ArrayList<Hashtable<String, String>> maxNo = new ArrayList<Hashtable<String, String>>();
+//						Hashtable<String, String> maxNoItem = new Hashtable<String, String>();
+//						Query = new String(
+//								"SELECT MAX(K_P_NO) FROM T_KENSHIN_P_S");
+//
+//						maxNo = JApplication.kikanDatabase
+//								.sendExecuteQuery(Query);
+//						maxNoItem = maxNo.get(0);
+						// edit n.ohkubo 2014/10/01　未使用なので削除　end
 
 						// eidt s.inoue 2011/04/08
 						// int max = this.patternNumber;
@@ -612,7 +622,7 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M3939",this);
 				logger.error(e.getMessage());
@@ -969,7 +979,7 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 
 	/* export処理 */
 	private void exportCsvData(String filePath){
-		JImportMasterErrorHokenjyaResultFrameData data = new JImportMasterErrorHokenjyaResultFrameData();
+//		JImportMasterErrorHokenjyaResultFrameData data = new JImportMasterErrorHokenjyaResultFrameData();	// edit n.ohkubo 2014/10/01　未使用なので削除
 
 		// CSV読込処理
 		writer = new JCSVWriterStream();
@@ -1081,6 +1091,7 @@ public class JKenshinpatternMasterMaintenanceListFrame extends JFrame implements
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 

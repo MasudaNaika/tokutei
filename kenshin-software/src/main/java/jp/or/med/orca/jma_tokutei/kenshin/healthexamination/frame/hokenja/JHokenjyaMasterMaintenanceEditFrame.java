@@ -1,18 +1,13 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.hokenja;
 
 import java.awt.BorderLayout;
-
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.CardLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,25 +17,26 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.Cursor;
+
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
-import jp.or.med.orca.jma_tokutei.common.component.ExtendedComboBox;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedDateChooser;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedRadioButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedTextField;
-import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.component.ImeController.ImeMode;
+import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.frame.ViewSettingsKey;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenComboboxControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFormattedControl;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenTextControl;
-import javax.swing.BorderFactory;
-import java.awt.Insets;
 
 //import org.eclipse.swt.widgets.IME;
 
@@ -376,37 +372,39 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 //		return jPanel_TitleArea;
 //	}
 
-	/**
-	 * This method initializes jPanel_ExplArea2
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea2() {
-		if (jPanel_ExplArea2 == null) {
-			GridBagConstraints gridBagConstraints60 = new GridBagConstraints();
-			gridBagConstraints60.gridx = 0;
-			gridBagConstraints60.weightx = 1.0D;
-			gridBagConstraints60.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints60.insets = new Insets(0, 10, 0, 0);
-			gridBagConstraints60.gridy = 1;
-			GridBagConstraints gridBagConstraints59 = new GridBagConstraints();
-			gridBagConstraints59.gridx = 0;
-			gridBagConstraints59.fill = GridBagConstraints.HORIZONTAL;
-			gridBagConstraints59.weightx = 1.0D;
-			gridBagConstraints59.insets = new Insets(0, 10, 0, 0);
-			gridBagConstraints59.gridy = 0;
-			jLabal_SubExpl = new ExtendedLabel();
-			jLabal_SubExpl.setText("各項目を入力後、「登録」ボタンを押して入力内容を登録します。");
-			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
-//			gridLayout1.setRows(2);
-			jPanel_ExplArea2 = new JPanel();
-			jPanel_ExplArea2.setName("jPanel4");
-			jPanel_ExplArea2.setLayout(new GridBagLayout());
-			jPanel_ExplArea2.add(jLabel_MainExpl, gridBagConstraints59);
-			jPanel_ExplArea2.add(jLabal_SubExpl, gridBagConstraints60);
-		}
-		return jPanel_ExplArea2;
-	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jPanel_ExplArea2
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea2() {
+//		if (jPanel_ExplArea2 == null) {
+//			GridBagConstraints gridBagConstraints60 = new GridBagConstraints();
+//			gridBagConstraints60.gridx = 0;
+//			gridBagConstraints60.weightx = 1.0D;
+//			gridBagConstraints60.fill = GridBagConstraints.HORIZONTAL;
+//			gridBagConstraints60.insets = new Insets(0, 10, 0, 0);
+//			gridBagConstraints60.gridy = 1;
+//			GridBagConstraints gridBagConstraints59 = new GridBagConstraints();
+//			gridBagConstraints59.gridx = 0;
+//			gridBagConstraints59.fill = GridBagConstraints.HORIZONTAL;
+//			gridBagConstraints59.weightx = 1.0D;
+//			gridBagConstraints59.insets = new Insets(0, 10, 0, 0);
+//			gridBagConstraints59.gridy = 0;
+//			jLabal_SubExpl = new ExtendedLabel();
+//			jLabal_SubExpl.setText("各項目を入力後、「登録」ボタンを押して入力内容を登録します。");
+//			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
+////			gridLayout1.setRows(2);
+//			jPanel_ExplArea2 = new JPanel();
+//			jPanel_ExplArea2.setName("jPanel4");
+//			jPanel_ExplArea2.setLayout(new GridBagLayout());
+//			jPanel_ExplArea2.add(jLabel_MainExpl, gridBagConstraints59);
+//			jPanel_ExplArea2.add(jLabal_SubExpl, gridBagConstraints60);
+//		}
+//		return jPanel_ExplArea2;
+//	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　end
 
 //	/**
 //	 * This method initializes jPanel_ExplArea1
@@ -846,7 +844,8 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 	 */
 	private ExtendedOpenTextControl getJTextField_Code() {
 		if (jTextField_Kigo == null) {
-			jTextField_Kigo = new ExtendedOpenTextControl("", 20, ImeMode.IME_ZENKAKU);
+//			jTextField_Kigo = new ExtendedOpenTextControl("", 20, ImeMode.IME_ZENKAKU);	// edit n.ohkubo 2015/03/01　削除
+			jTextField_Kigo = new ExtendedOpenTextControl("", 40, ImeMode.IME_ZENKAKU);	// edit n.ohkubo 2015/03/01　追加
 			jTextField_Kigo.setPreferredSize(new Dimension(350, 20));
 		}
 		return jTextField_Kigo;
@@ -1117,6 +1116,7 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 		return jButton_RegisterYukoukigenDelete;
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 	}
@@ -1124,6 +1124,7 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 	/*
 	 * FrameSize Control
 	 */
+	@Override
 	public void validate()
 	{
 		Rectangle rect = getBounds();
@@ -1228,31 +1229,35 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 		return jTextField_NingenDocCode;
 	}
 
+	// edit n.ohkubo 2015/03/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jButton_Cancel
+//	 *
+//	 * @return javax.swing.ExtendedButton
+//	 */
+//	private ExtendedButton getJButton_Cancel() {
+//		if (jButton_Cancel == null) {
+//			jButton_Cancel = new ExtendedButton();
+//			jButton_Cancel.setText("キャンセル");
+//			jButton_Cancel.setFont(new Font("Dialog", Font.PLAIN, 12));
+//			jButton_Cancel.setVisible(false);
+//			jButton_Cancel.addActionListener(this);
+//		}
+//		return jButton_Cancel;
+//	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　end
 
-	/**
-	 * This method initializes jButton_Cancel
-	 *
-	 * @return javax.swing.ExtendedButton
-	 */
-	private ExtendedButton getJButton_Cancel() {
-		if (jButton_Cancel == null) {
-			jButton_Cancel = new ExtendedButton();
-			jButton_Cancel.setText("キャンセル");
-			jButton_Cancel.setFont(new Font("Dialog", Font.PLAIN, 12));
-			jButton_Cancel.setVisible(false);
-			jButton_Cancel.addActionListener(this);
-		}
-		return jButton_Cancel;
-	}
-
+	@Override
 	public void keyPressed(KeyEvent e) {
 //		System.out.println("keyPressed");
 	}
 
+	@Override
 	public void keyReleased(KeyEvent e) {
 //		System.out.println("keyReleased");
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 //		System.out.println("keyTyped");
 	}
@@ -1500,31 +1505,33 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 		return jPanel13;
 	}
 
-	/**
-	 * This method initializes jPanel11
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel11() {
-		// model用領域
-		if (jPanel11 == null) {
-			// edit s.inoue 2010/01/21
+	// edit n.ohkubo 2015/03/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jPanel11
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel11() {
+//		// model用領域
+//		if (jPanel11 == null) {
+//			// edit s.inoue 2010/01/21
+////			jPanel11 = new JPanel();
+////			jPanel11.setLayout(new BorderLayout());
+////			jPanel11.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+////			GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
+////			gridBagConstraints1.gridx = 0;
+////			gridBagConstraints1.gridy = 0;
+////			gridBagConstraints1.anchor = GridBagConstraints.BOTH;
+////			gridBagConstraints1.weightx = 1.0D;
+//
 //			jPanel11 = new JPanel();
-//			jPanel11.setLayout(new BorderLayout());
-//			jPanel11.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-//			GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
-//			gridBagConstraints1.gridx = 0;
-//			gridBagConstraints1.gridy = 0;
-//			gridBagConstraints1.anchor = GridBagConstraints.BOTH;
-//			gridBagConstraints1.weightx = 1.0D;
-
-			jPanel11 = new JPanel();
-			jPanel11.setLayout(new GridBagLayout());
-			// jPanel11.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			// jPanel11.add(getJPanel11(),gridBagConstraints1);
-		}
-		return jPanel11;
-	}
+//			jPanel11.setLayout(new GridBagLayout());
+//			// jPanel11.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+//			// jPanel11.add(getJPanel11(),gridBagConstraints1);
+//		}
+//		return jPanel11;
+//	}
+	// edit n.ohkubo 2015/03/01　未使用なので削除　end
 
 //	/**
 //	 * This method initializes jPanel11
@@ -2024,7 +2031,8 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 			gridBagConstraints64.gridy = 5;
 			jLabelTibanNum = new ExtendedLabel();
 			jLabelTibanNum.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			jLabelTibanNum.setText("（全角100文字以内、半角可）");
+//			jLabelTibanNum.setText("（全角100文字以内、半角可）");	// edit n.ohkubo 2015/03/01　削除
+			jLabelTibanNum.setText("（全角100文字以内）");			// edit n.ohkubo 2015/03/01　追加
 			jLabelTibanNum.setFont(new Font("Dialog", Font.PLAIN, 12));
 			GridBagConstraints gridBagConstraints63 = new GridBagConstraints();
 			gridBagConstraints63.gridx = 5;
@@ -2287,16 +2295,13 @@ implements ActionListener,KeyListener,FocusListener,ItemListener {
 
 	@Override
 	public void focusGained(FocusEvent e) {
-
 	}
 
 	@Override
 	public void focusLost(FocusEvent e) {
-
 	}
 
+	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 }

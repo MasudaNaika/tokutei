@@ -1,33 +1,28 @@
 package jp.or.med.orca.jma_tokutei.kenshin.admin.frame;
 
 import java.awt.BorderLayout;
-
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import java.awt.CardLayout;
 import java.awt.Font;
-import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedButton;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
-import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedToggleButton;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import javax.swing.BorderFactory;
+import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 
 /**
  * メニュー
@@ -52,6 +47,7 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 	protected ExtendedButton jButton_DBBackup = null;
 	protected ExtendedToggleButton jButton_Version = null;
 	protected ExtendedButton jButton_BackLogin = null;
+	protected ExtendedButton jButton_NetworkDBConnection = null;	// edit n.ohkubo 2015/08/01　追加
 
 	/**
 	 * This is the default constructor
@@ -145,92 +141,94 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 		}
 		return jButton_End;
 	}
-
-	/**
-	 * This method initializes jPanel_NaviArea
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_NaviArea() {
-		if (jPanel_NaviArea == null) {
-			CardLayout cardLayout2 = new CardLayout();
-			cardLayout2.setHgap(10);
-			cardLayout2.setVgap(10);
-			jLabel_MainExpl = new JLabel();
-			jLabel_MainExpl.setText("　");
-			jLabel_MainExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
-			jLabel_MainExpl.setName("jLabel1");
-			jLabel_Title = new JLabel();
-			jLabel_Title.setText("システム管理者用メンテナンス");
-			jLabel_Title.setFont(new Font("Dialog", Font.PLAIN, 18));
-			jLabel_Title.setBackground(new Color(153, 204, 255));
-			jLabel_Title.setForeground(new Color(51, 51, 51));
-			jLabel_Title.setOpaque(true);
-			jLabel_Title.setName("jLabel");
-			jPanel_NaviArea = new JPanel();
-			jPanel_NaviArea.setLayout(cardLayout2);
-			jPanel_NaviArea.add(getJPanel_TitleArea(), getJPanel_TitleArea().getName());
-		}
-		return jPanel_NaviArea;
-	}
-
-	/**
-	 * This method initializes jPanel_TitleArea
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_TitleArea() {
-		if (jPanel_TitleArea == null) {
-			GridLayout gridLayout = new GridLayout();
-			gridLayout.setRows(2);
-			gridLayout.setHgap(0);
-			gridLayout.setColumns(0);
-			gridLayout.setVgap(10);
-			jPanel_TitleArea = new JPanel();
-			jPanel_TitleArea.setLayout(gridLayout);
-			jPanel_TitleArea.setName("jPanel2");
-			jPanel_TitleArea.add(jLabel_Title, null);
-			jPanel_TitleArea.add(getJPanel_ExplArea1(), null);
-		}
-		return jPanel_TitleArea;
-	}
-
-	/**
-	 * This method initializes jPanel_ExplArea2
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea2() {
-		if (jPanel_ExplArea2 == null) {
-			jLabal_SubExpl = new JLabel();
-			jLabal_SubExpl.setText("　");
-			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
-			GridLayout gridLayout1 = new GridLayout();
-			gridLayout1.setRows(2);
-			jPanel_ExplArea2 = new JPanel();
-			jPanel_ExplArea2.setName("jPanel4");
-			jPanel_ExplArea2.setLayout(gridLayout1);
-			jPanel_ExplArea2.add(jLabel_MainExpl, null);
-			jPanel_ExplArea2.add(jLabal_SubExpl, null);
-		}
-		return jPanel_ExplArea2;
-	}
-
-	/**
-	 * This method initializes jPanel_ExplArea1
-	 *
-	 * @return javax.swing.JPanel
-	 */
-	private JPanel getJPanel_ExplArea1() {
-		if (jPanel_ExplArea1 == null) {
-			CardLayout cardLayout1 = new CardLayout();
-			cardLayout1.setHgap(20);
-			jPanel_ExplArea1 = new JPanel();
-			jPanel_ExplArea1.setLayout(cardLayout1);
-			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
-		}
-		return jPanel_ExplArea1;
-	}
+	
+	// edit n.ohkubo 2015/08/01　未使用なので削除　start
+//	/**
+//	 * This method initializes jPanel_NaviArea
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_NaviArea() {
+//		if (jPanel_NaviArea == null) {
+//			CardLayout cardLayout2 = new CardLayout();
+//			cardLayout2.setHgap(10);
+//			cardLayout2.setVgap(10);
+//			jLabel_MainExpl = new JLabel();
+//			jLabel_MainExpl.setText("　");
+//			jLabel_MainExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
+//			jLabel_MainExpl.setName("jLabel1");
+//			jLabel_Title = new JLabel();
+//			jLabel_Title.setText("システム管理者用メンテナンス");
+//			jLabel_Title.setFont(new Font("Dialog", Font.PLAIN, 18));
+//			jLabel_Title.setBackground(new Color(153, 204, 255));
+//			jLabel_Title.setForeground(new Color(51, 51, 51));
+//			jLabel_Title.setOpaque(true);
+//			jLabel_Title.setName("jLabel");
+//			jPanel_NaviArea = new JPanel();
+//			jPanel_NaviArea.setLayout(cardLayout2);
+//			jPanel_NaviArea.add(getJPanel_TitleArea(), getJPanel_TitleArea().getName());
+//		}
+//		return jPanel_NaviArea;
+//	}
+//
+//	/**
+//	 * This method initializes jPanel_TitleArea
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_TitleArea() {
+//		if (jPanel_TitleArea == null) {
+//			GridLayout gridLayout = new GridLayout();
+//			gridLayout.setRows(2);
+//			gridLayout.setHgap(0);
+//			gridLayout.setColumns(0);
+//			gridLayout.setVgap(10);
+//			jPanel_TitleArea = new JPanel();
+//			jPanel_TitleArea.setLayout(gridLayout);
+//			jPanel_TitleArea.setName("jPanel2");
+//			jPanel_TitleArea.add(jLabel_Title, null);
+//			jPanel_TitleArea.add(getJPanel_ExplArea1(), null);
+//		}
+//		return jPanel_TitleArea;
+//	}
+//
+//	/**
+//	 * This method initializes jPanel_ExplArea2
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea2() {
+//		if (jPanel_ExplArea2 == null) {
+//			jLabal_SubExpl = new JLabel();
+//			jLabal_SubExpl.setText("　");
+//			jLabal_SubExpl.setFont(new Font("Dialog", Font.PLAIN, 14));
+//			GridLayout gridLayout1 = new GridLayout();
+//			gridLayout1.setRows(2);
+//			jPanel_ExplArea2 = new JPanel();
+//			jPanel_ExplArea2.setName("jPanel4");
+//			jPanel_ExplArea2.setLayout(gridLayout1);
+//			jPanel_ExplArea2.add(jLabel_MainExpl, null);
+//			jPanel_ExplArea2.add(jLabal_SubExpl, null);
+//		}
+//		return jPanel_ExplArea2;
+//	}
+//
+//	/**
+//	 * This method initializes jPanel_ExplArea1
+//	 *
+//	 * @return javax.swing.JPanel
+//	 */
+//	private JPanel getJPanel_ExplArea1() {
+//		if (jPanel_ExplArea1 == null) {
+//			CardLayout cardLayout1 = new CardLayout();
+//			cardLayout1.setHgap(20);
+//			jPanel_ExplArea1 = new JPanel();
+//			jPanel_ExplArea1.setLayout(cardLayout1);
+//			jPanel_ExplArea1.add(getJPanel_ExplArea2(), getJPanel_ExplArea2().getName());
+//		}
+//		return jPanel_ExplArea1;
+//	}
+	// edit n.ohkubo 2015/08/01　未使用なので削除　end
 
 	/**
 	 * This method initializes jPanel_MainArea
@@ -274,6 +272,14 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 			gridBagConstraints2.gridx = 0;
 			// eidt s.inoue 2012/07/06
 //			gridBagConstraints2.weightx = 1.0D;
+			
+			// edit n.ohkubo 2015/08/01　追加　start
+			GridBagConstraints gridBagConstraints5 = new GridBagConstraints();
+			gridBagConstraints5.gridy = 3;
+			gridBagConstraints5.gridx = 0;
+			gridBagConstraints5.anchor = GridBagConstraints.NORTH;
+			gridBagConstraints5.weighty = 10.0D;
+			// edit n.ohkubo 2015/08/01　追加　end
 
 			jPanel_Center = new JPanel();
 			jPanel_Center.setName("jPanel_Center");
@@ -281,6 +287,7 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 			jPanel_Center.add(getJButton_KikanMaintenance(), gridBagConstraints2);
 			jPanel_Center.add(getJButton_KanriUserMaintenance(), gridBagConstraints3);
 			jPanel_Center.add(getJButton_DBBackup(), gridBagConstraints4);
+			jPanel_Center.add(getJButton_NetworkDBConnection(), gridBagConstraints5);	// edit n.ohkubo 2015/08/01　追加
 		}
 		return jPanel_Center;
 	}
@@ -366,10 +373,25 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 		}
 		return jButton_DBBackup;
 	}
+	
+	// edit n.ohkubo 2015/08/01　追加　start
+	private ExtendedButton getJButton_NetworkDBConnection() {
+		if (jButton_NetworkDBConnection == null) {
+			ExtendedImageIcon iIcon = new ExtendedImageIcon(JPath.Ico_System_NetworkDB);
+			ImageIcon icon = iIcon.setStrechIcon(this, 1.2d);
+			jButton_NetworkDBConnection = new ExtendedButton("４．DB接続情報メンテナンス(4)", icon);
+			jButton_NetworkDBConnection.setFont(JApplication.FONT_COMMON_MENU_BUTTON);
+			jButton_NetworkDBConnection.addActionListener(this);
+			jButton_NetworkDBConnection.setMnemonic(KeyEvent.VK_4);
+		}
+		return jButton_NetworkDBConnection;
+	}
+	// edit n.ohkubo 2015/08/01　追加　end
 
 	/*
 	 * FrameSize Control
 	 */
+	@Override
 	public void validate()
 	{
 		Rectangle rect = getBounds();
@@ -386,6 +408,7 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 		}
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 	}
@@ -442,19 +465,13 @@ public class JMenuFrame extends JFrame implements ActionListener,KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO 自動生成されたメソッド・スタブ
-
 	}
 }

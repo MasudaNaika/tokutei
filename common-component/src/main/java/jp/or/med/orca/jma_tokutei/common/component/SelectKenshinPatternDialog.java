@@ -4,17 +4,32 @@
 
 package jp.or.med.orca.jma_tokutei.common.component;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.PrintStream;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import javax.swing.*;
+
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
+
 import org.apache.log4j.Logger;
 
 // Referenced classes of package jp.or.med.orca.jma_tokutei.common.component:
@@ -226,8 +241,10 @@ public class SelectKenshinPatternDialog extends JDialog
             GridBagConstraints gridbagconstraints1 = new GridBagConstraints();
             gridbagconstraints1.gridy = 1;
             gridbagconstraints1.gridx = 0;
-            gridbagconstraints1.gridwidth = 2;
-            gridbagconstraints1.anchor = 17;
+            // edit s.inoue 2014/01/22
+            gridbagconstraints1.weightx = 1.0D;
+            gridbagconstraints1.fill = GridBagConstraints.BOTH;
+            // gridbagconstraints1.anchor = 17;
             jPanel1 = new JPanel();
             jPanel1.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             jPanel1.setLayout(new GridBagLayout());

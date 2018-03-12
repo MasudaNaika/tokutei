@@ -1,33 +1,51 @@
 package jp.or.med.orca.jma_tokutei.kenshin.healthexamination.frame.keinen;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-import org.apache.log4j.Logger;
-import org.openswing.swing.client.*;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
 
-import java.awt.*;
-import java.sql.*;
-import java.awt.event.*;
-import org.openswing.swing.table.columns.client.*;
 import jp.or.med.orca.jma_tokutei.common.app.JApplication;
 import jp.or.med.orca.jma_tokutei.common.app.JPath;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedImageIcon;
 import jp.or.med.orca.jma_tokutei.common.component.ExtendedLabel;
 import jp.or.med.orca.jma_tokutei.common.component.TitleLabel;
+import jp.or.med.orca.jma_tokutei.common.filter.SpecialFilterPanel;
 import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedDelButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenDeleteButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenEditButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenExportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenFilterButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenGenericButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenImportButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenInsertButton;
-import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenReloadButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedOpenSaveButton;
 import jp.or.med.orca.jma_tokutei.common.openswing.ExtendedReloadButton;
 import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
 import jp.or.med.orca.jma_tokutei.db.DBYearAdjuster;
+
+import org.apache.log4j.Logger;
+import org.openswing.swing.client.GenericButton;
+import org.openswing.swing.client.GridControl;
+import org.openswing.swing.client.GridControl.ColumnContainer;
+import org.openswing.swing.client.NavigatorBar;
+import org.openswing.swing.table.columns.client.ComboColumn;
+import org.openswing.swing.table.columns.client.TextColumn;
 
 /**
  * 一覧List画面
@@ -36,6 +54,8 @@ import jp.or.med.orca.jma_tokutei.db.DBYearAdjuster;
  */
 public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyListener,ActionListener {
 
+	private static final long serialVersionUID = -3294351941326414892L;	// edit n.ohkubo 2014/10/01　追加
+	
 	private Connection conn = null;
 	private static Logger logger = Logger.getLogger(JKeinenMasterMaintenanceListFrame.class);
 
@@ -74,11 +94,20 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 	protected TextColumn textColumn_KananName = new TextColumn();
 	protected TextColumn textColumn_Name = new TextColumn();
 	protected TextColumn textColumn_BirthDay = new TextColumn();
-	protected TextColumn textColumn_Sex = new TextColumn();
+//	protected TextColumn textColumn_Sex = new TextColumn();	// edit n.ohkubo 2014/10/01　削除
+	protected ComboColumn textColumn_Sex = new ComboColumn();	// edit n.ohkubo 2014/10/01　追加
 	protected TextColumn textColumn_HomeAdrs = new TextColumn();
 	protected TextColumn textColumn_HihokenKigo = new TextColumn();
 	protected TextColumn textColumn_HihokenNo = new TextColumn();
 	protected TextColumn textColumn_Update = new TextColumn();
+	
+	// edit n.ohkubo 2014/10/01　追加 start
+	private ColumnContainer columnContainer;
+	public ColumnContainer getColumnContainer() {
+		return this.columnContainer;
+	}
+	// edit n.ohkubo 2014/10/01　追加 end
+
 
 	/* コンストラクタ */
 	public JKeinenMasterMaintenanceListFrame(Connection conn,
@@ -109,6 +138,15 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 			grid.setGridDataLocator(controller);
 
 			setVisible(true);
+			
+			// edit n.ohkubo 2014/10/01　追加 start　検索画面のボタンの大きさを変更
+			//フィルターパネル用のWindowListener
+			SpecialFilterPanel specialFilterPanel = new SpecialFilterPanel(null, grid.getParent().getComponents());
+			
+			//このフレーム（一覧画面）がアクティブ化（画面右の検索ウィンドウ）　or　非アクティブ化（検索ウィンドウがポップアップで開かれ場合）されたときに動作するように、Listenerを設定
+			this.addWindowListener(specialFilterPanel);
+			// edit n.ohkubo 2014/10/01　追加 end　検索画面のボタンの大きさを変更
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -135,42 +173,49 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 		textColumn_NayoseNo.setPreferredWidth(100);
 		textColumn_NayoseNo.setEditableOnEdit(true);
 		textColumn_NayoseNo.setColumnRequired(true);
+		textColumn_NayoseNo.setMaxCharacters(20);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_JyusinseiriNo.setColumnFilterable(true);
 		textColumn_JyusinseiriNo.setColumnName("JYUSHIN_SEIRI_NO");
 		textColumn_JyusinseiriNo.setColumnSortable(true);
 		textColumn_JyusinseiriNo.setPreferredWidth(100);
 		textColumn_JyusinseiriNo.setColumnRequired(false);
+		textColumn_JyusinseiriNo.setMaxCharacters(11);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_KananName.setColumnFilterable(true);
 		textColumn_KananName.setColumnName("NAME");
 		textColumn_KananName.setColumnSortable(true);
 		textColumn_KananName.setPreferredWidth(150);
 		textColumn_KananName.setColumnRequired(false);
+		textColumn_KananName.setMaxCharacters(50);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_Name.setColumnFilterable(true);
 		textColumn_Name.setColumnName("KANANAME");
 		textColumn_Name.setColumnSortable(true);
 		textColumn_Name.setPreferredWidth(150);
 		textColumn_Name.setColumnRequired(false);
+		textColumn_Name.setMaxCharacters(50);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_BirthDay.setColumnFilterable(true);
 		textColumn_BirthDay.setColumnName("BIRTHDAY");
 		textColumn_BirthDay.setColumnSortable(true);
 		textColumn_BirthDay.setPreferredWidth(80);
 		textColumn_BirthDay.setColumnRequired(false);
+		textColumn_BirthDay.setMaxCharacters(8);// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_Sex.setColumnFilterable(true);
 		textColumn_Sex.setColumnName("SEX");
 		textColumn_Sex.setColumnSortable(true);
 		textColumn_Sex.setPreferredWidth(40);
 		textColumn_Sex.setColumnRequired(false);
+		textColumn_Sex.setDomainId("SEX");	// edit n.ohkubo 2014/10/01　追加
 
 		textColumn_HomeAdrs.setColumnFilterable(true);
 		textColumn_HomeAdrs.setColumnName("HOME_ADRS");
 		textColumn_HomeAdrs.setColumnSortable(true);
 		textColumn_HomeAdrs.setPreferredWidth(250);
 		textColumn_HomeAdrs.setColumnRequired(false);
+		textColumn_HomeAdrs.setMaxCharacters(100);// edit n.ohkubo 2014/10/01　追加
 
 //		textColumn_HihokenKigo.setColumnFilterable(true);
 		textColumn_HihokenKigo.setColumnName("HIHOKENJYASYO_KIGOU");
@@ -209,6 +254,7 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 //		buttonOriginePanel.add(insertButton, null);
 		buttonOriginePanel.add(editButton, null);
 		buttonOriginePanel.add(saveButton, null);
+		buttonOriginePanel.add(filterButton, null);	// edit n.ohkubo 2014/10/01　追加
 		buttonOriginePanel.add(reloadButton, null);
 		buttonOriginePanel.add(deleteButton, null);
 		buttonOriginePanel.add(exportButton, null);
@@ -245,6 +291,7 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 //		grid.setInsertButton(insertButton);
 		grid.setEditButton(editButton);
 		grid.setSaveButton(saveButton);
+		grid.setFilterButton(filterButton);	// edit n.ohkubo 2014/10/01　追加
 		grid.setReloadButton(reloadButton);
 		grid.setDeleteButton(deleteButton);
 		grid.setExportButton(exportButton);
@@ -264,6 +311,8 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 		grid.getColumnContainer().add(textColumn_HihokenKigo, null);
 		grid.getColumnContainer().add(textColumn_HihokenNo, null);
 		grid.getColumnContainer().add(textColumn_Update, null);
+		
+		columnContainer = grid.getColumnContainer();// edit n.ohkubo 2014/10/01　追加
 
 		// add s.inoue 2012/11/12
 		jLabel_Title = new TitleLabel("tokutei.nayose-code-mastermaintenance.frame.title","tokutei.nayose-code-mastermaintenance.frame.guidance");
@@ -374,7 +423,8 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 		  ListFrame_closeButton_actionAdapter(JKeinenMasterMaintenanceListFrame adaptee) {
 		    this.adaptee = adaptee;
 		  }
-		  public void actionPerformed(ActionEvent e) {
+		  @Override
+		public void actionPerformed(ActionEvent e) {
 
 			  Object source = e.getSource();
 			  if (source == buttonNayose){
@@ -417,6 +467,11 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 
 			// add s.inoue 2013/02/25
 			this.conn = JApplication.kikanDatabase.getMConnection();
+			
+			// add n.ohkubo 2014/08/22
+			//Ver2.1.1に合わせるために追加
+			reloadButton.doClick();
+			
 		} catch (SQLException ex) {
 			logger.error(ex.getMessage());
 		}
@@ -437,6 +492,7 @@ public class JKeinenMasterMaintenanceListFrame extends JFrame implements KeyList
 	}
 
 	// イベント処理
+	@Override
 	public void actionPerformed(ActionEvent ae) {
 	}
 

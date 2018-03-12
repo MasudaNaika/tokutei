@@ -509,7 +509,7 @@ public class JKenshinMasterMaintenanceFrameCtrl extends
 			reader = new JCSVReaderStream();
 
 			try {
-				reader.openCSV(filePath,JApplication.CSV_CHARSET);
+				reader.openCSV(filePath,JApplication.CSV_CHARSET,',');
 			} catch (IOException e) {
 				JErrorMessage.show("M3824",this);
 				logger.error(e.getMessage());

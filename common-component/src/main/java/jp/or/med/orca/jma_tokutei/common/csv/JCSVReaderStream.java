@@ -131,13 +131,11 @@ public class JCSVReaderStream extends JCSVReader
 //				throw new IOException();
 //			}
 //		}
-		openCSV(path,"UTF-8");
+		openCSV(path,"UTF-8",',');
 	}
-	
-	/* Edit 2008/07/23 井上 */
-	/* --------------------------------------------------- */
-	public void openCSV( String path ,String charSet) throws IOException
-	/* --------------------------------------------------- */
+
+	// eidt s.inoue 2013/11/08
+	public void openCSV( String path ,String charSet,char sep) throws IOException
 	{
 		BufferedReader reader = null;
 
@@ -155,7 +153,7 @@ public class JCSVReaderStream extends JCSVReader
 				{
 					if (line.length()<=0)
 						continue;
-						
+
 					Vector<String> data = new Vector<String>();
 
 					int iIndex        = 0;
@@ -163,7 +161,9 @@ public class JCSVReaderStream extends JCSVReader
 
 					for( int i=0; i<line.length(); ++i )
 					{
-						if( line.charAt( i ) == ',' )
+						// eidt s.inoue 2013/11/08
+						// if( line.charAt( i ) == ',' )
+						if( line.charAt( i ) == sep )
 						{
 							iElementCount ++;
 						}
@@ -175,7 +175,9 @@ public class JCSVReaderStream extends JCSVReader
 					{
 						int iCopyPos = 0;
 
-						while( iIndex < line.length() && line.charAt( iIndex ) != ',' )
+						// eidt s.inoue 2013/11/08
+						// while( iIndex < line.length() && line.charAt( iIndex ) != ',' )
+						while( iIndex < line.length() && line.charAt( iIndex ) != sep )
 						{
 							elementBuf[ iCopyPos ++ ] = line.charAt( iIndex ++ );
 						}
@@ -229,7 +231,7 @@ public class JCSVReaderStream extends JCSVReader
 			}
 		}
 	}
-	
+
 	/* Modified 2008/07/23 井上  */
 	/* --------------------------------------------------- */
 	/*
@@ -261,7 +263,7 @@ public class JCSVReaderStream extends JCSVReader
         return buffer.toString();
     }
     /* --------------------------------------------------- */
-    
+
     /* Modified 2008/07/23 井上  */
     /* --------------------------------------------------- */
     /*
@@ -274,16 +276,16 @@ public class JCSVReaderStream extends JCSVReader
 		if (strColmn == null) {
 			strColmn ="";
 		}
-		
+
 		if (strColmn.indexOf("\"")!=-1)
         {
 			strColmn = substitute(strColmn, "\"", "");
         }
-				
+
 		return strColmn;
 	}
 	/* --------------------------------------------------- */
-	
+
 }
 
 

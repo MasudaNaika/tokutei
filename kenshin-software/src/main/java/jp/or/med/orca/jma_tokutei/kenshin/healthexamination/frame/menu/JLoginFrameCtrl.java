@@ -8,16 +8,41 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.EnumSet;
 import java.util.Hashtable;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
+import jp.or.med.orca.jma_tokutei.common.app.JApplication;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Getuji;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Hantei;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_KouteiMaster;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Master;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Nitiji;
+import jp.or.med.orca.jma_tokutei.common.app.JApplication.FlagEnum_Serche;
+import jp.or.med.orca.jma_tokutei.common.convert.JInteger;
+import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
+import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
+import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
+import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLocker;
+import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLockerConfig;
+import jp.or.med.orca.jma_tokutei.common.execlocker.JExecUnlocker;
+import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
+import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
+import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
+import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
+import jp.or.med.orca.jma_tokutei.common.frame.dialog.SettingDialog;
+import jp.or.med.orca.jma_tokutei.common.scene.JScene;
+import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
+import jp.or.med.orca.jma_tokutei.common.util.PropertyUtil;
+import jp.or.med.orca.jma_tokutei.db.DBYearAdjuster;
+import jp.or.med.orca.jma_tokutei.dbfix.ShcDBAdjust;
+import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.JSoftware;
 
 import org.apache.log4j.Logger;
 import org.openswing.swing.domains.java.Domain;
@@ -28,28 +53,6 @@ import org.openswing.swing.table.profiles.client.FileGridProfileManager;
 import org.openswing.swing.util.client.ClientSettings;
 import org.openswing.swing.util.java.Consts;
 
-import jp.or.med.orca.jma_tokutei.common.convert.JInteger;
-import jp.or.med.orca.jma_tokutei.common.convert.JQueryConvert;
-import jp.or.med.orca.jma_tokutei.common.errormessage.JErrorMessage;
-import jp.or.med.orca.jma_tokutei.common.errormessage.RETURN_VALUE;
-import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLocker;
-import jp.or.med.orca.jma_tokutei.common.execlocker.JExecLockerConfig;
-import jp.or.med.orca.jma_tokutei.common.focus.JFocusTraversalPolicy;
-import jp.or.med.orca.jma_tokutei.common.frame.ViewSettings;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.DialogFactory;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.DngPreviewHtml;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.IDialog;
-import jp.or.med.orca.jma_tokutei.common.frame.dialog.SettingDialog;
-import jp.or.med.orca.jma_tokutei.common.origine.JKenshinPatternMaintenanceEditFrameData;
-import jp.or.med.orca.jma_tokutei.common.scene.JScene;
-import jp.or.med.orca.jma_tokutei.common.sql.JConnection;
-import jp.or.med.orca.jma_tokutei.common.util.PropertyUtil;
-import jp.or.med.orca.jma_tokutei.kenshin.healthexamination.JSoftware;
-//import jp.or.med.orca.jma_tokutei.common.app.ClientSettings;
-import jp.or.med.orca.jma_tokutei.common.app.JApplication;
-import jp.or.med.orca.jma_tokutei.db.DBYearAdjuster;
-import jp.or.med.orca.jma_tokutei.dbfix.ShcDBAdjust;
-
 /**
  * 特定健診ソフトウエアのログイン画面のフレームのコントロール
  *
@@ -59,10 +62,13 @@ import jp.or.med.orca.jma_tokutei.dbfix.ShcDBAdjust;
  * Modified 2008/05/14 メニュー画面から戻る機能への対応
  */
 public class JLoginFrameCtrl extends JLoginFrame {
+	
+	private static final long serialVersionUID = -6098106062110461819L;	// edit n.ohkubo 2014/10/01　追加
+
 	private static final String TEXT_NO_NAME = "（名称が設定されていません）";
 
 	/** 健診機関番号の正規表現 */
-	private static final String REGEX_KENSHINKIKAN_NO = "^\\d{10}.(fdb|FDB)";
+//	private static final String REGEX_KENSHINKIKAN_NO = "^\\d{10}.(fdb|FDB)";	// edit n.ohkubo 2014/10/01　未使用なので削除
 	private static int lastSelectedKikanInfomationIndex = 0;
 	private static Pattern kikanInfomationPattern = Pattern.compile("^.* - (\\d{10})$");
 	/* フォーカス移動制御 */
@@ -168,6 +174,13 @@ public class JLoginFrameCtrl extends JLoginFrame {
 			items = JApplication.systemDatabase
 					.sendExecuteQuery("SELECT * FROM T_F_KIKAN");
 			retValue = true;
+			
+			// edit n.ohkubo 2015/08/01　追加　start　JSoftware.javaのinitializeメソッド内でチェックしているので、通常0件にはならないが、他PCのFDBを使用している場合0件になる可能性があるのでチェックする
+			if (items.size() == 0) {
+				JErrorMessage.show("M1001", null);
+				System.exit(1);
+			}
+			// edit n.ohkubo 2015/08/01　追加　end　JSoftware.javaのinitializeメソッド内でチェックしているので、通常0件にはならないが、他PCのFDBを使用している場合0件になる可能性があるのでチェックする
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -392,6 +405,9 @@ public class JLoginFrameCtrl extends JLoginFrame {
 			JErrorMessage.show("M1103", this);
 			return;
 		}
+        
+        // add s.inoue 2014/04/30
+        setScreenColumns();
 
         // バージョン(スキーマ、データ)をT_Versionより取得
         try {
@@ -409,7 +425,24 @@ public class JLoginFrameCtrl extends JLoginFrame {
 					+ kikanNumber;
 			JExecLocker.getLockWithName(lockfileName);
 		} catch (Exception e) {
-			JErrorMessage.show("M1002", null);
+			// edit n.ohkubo 2015/08/01　削除　メッセージを変更して、実行ロック解除を行えるようにする
+//			JErrorMessage.show("M1002", null);
+			
+			// edit n.ohkubo 2015/08/01　追加　実行ロック解除の起動　start
+			//※LookAndFeelの設定を行わないと、メッセージのダイアログが白（描画が中途半端）で表示されたり、メッセージを"いいえ"で戻ったときに健診機関のプルダウンでヌルポが発生する（Goodiesのみ発生する現象）
+			String lookAndFeel = PropertyUtil.getProperty( "setting.lookAndFeel");
+			if (!lookAndFeel.equals("")) {
+				SettingDialog sd = new SettingDialog();
+				sd.changeTheLookAndFeel(lookAndFeel, true);
+			}
+			
+			//メッセージの表示
+			RETURN_VALUE val = JErrorMessage.show("M1004", this);
+			if (val == RETURN_VALUE.YES) {
+				JExecUnlocker.main(null);
+			}
+			// edit n.ohkubo 2015/08/01　追加　実行ロック解除の起動　end
+			
 			return;
 		}
 
@@ -423,10 +456,11 @@ public class JLoginFrameCtrl extends JLoginFrame {
 			SettingDialog sd = new SettingDialog();
 			sd.changeTheLookAndFeel(lookAndFeel,true);
 		}
-		JScene.ChangeScene(new JMenuFrameCtrl());
 
+		JScene.ChangeScene(new JMenuFrameCtrl());
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		if (source == jButton_Login) {
@@ -468,6 +502,7 @@ public class JLoginFrameCtrl extends JLoginFrame {
 		}
 	}
 
+	@Override
 	public void keyTyped(KeyEvent e) {
 		Object source = e.getSource();
 		char keyChar = e.getKeyChar();
@@ -489,7 +524,7 @@ public class JLoginFrameCtrl extends JLoginFrame {
 		// edit s.inoue 2010/08/02
 		case KeyEvent.VK_F7:
 			logger.info(jButton_UpdateInfo.getText());
-    		DngPreviewHtml dng = new DngPreviewHtml(this);
+//    		DngPreviewHtml dng = new DngPreviewHtml(this);	// edit n.ohkubo 2014/10/01　未使用なので削除
     		// dng.setLayout("http://www.orca.med.or.jp/ikensyo/info/");
 
 		case KeyEvent.VK_F8:
@@ -517,13 +552,16 @@ public class JLoginFrameCtrl extends JLoginFrame {
 	 * ログインボタンのステータスをテキストフィールドの内容によって 変更するためのイベントリスナ
 	 */
 	public class LoginButtonStatus implements DocumentListener {
+		@Override
 		public void changedUpdate(DocumentEvent arg0) {
 		}
 
+		@Override
 		public void insertUpdate(DocumentEvent e) {
 			setLoginButtonStatus(e);
 		}
 
+		@Override
 		public void removeUpdate(DocumentEvent e) {
 			setLoginButtonStatus(e);
 		}
@@ -655,6 +693,86 @@ public class JLoginFrameCtrl extends JLoginFrame {
 	    	itakuDomain
 	    );
 
+	    // add s.inoue 2013/11/08
+	    Domain logLevelDomain = new Domain("LOG_LEVEL");
+	    logLevelDomain.addDomainPair("INFO","正常");
+	    logLevelDomain.addDomainPair("WARN","警告");
+	    logLevelDomain.addDomainPair("ERROR","異常");
+	    JApplication.domains.put(
+    		logLevelDomain.getDomainId(),
+    		logLevelDomain
+	    );
+
+	    // add s.inoue 2013/11/08
+	    Domain logPlaceDomain = new Domain("LOG_PLACE");
+	    logPlaceDomain.addDomainPair("JPath","パス");
+	    logPlaceDomain.addDomainPair("JKekkaRegisterCommentInputDialog","コメント（dialog）");
+	    logPlaceDomain.addDomainPair("JKekkaRegisterKekkaMojiretsuInputDialog","文字列（dialog）");
+	    logPlaceDomain.addDomainPair("JSelectHokenjyaOrcaDialogCtrl","orca選択");
+	    logPlaceDomain.addDomainPair("JAddKikanInformationFrameCtrl","機関情報追加");
+	    logPlaceDomain.addDomainPair("DBYearAdjuster","経年処理（年度調整）");
+	    logPlaceDomain.addDomainPair("JHokenjyaMasterMaintenanceEditFrameCtrl","保険者情報（編集）");
+	    logPlaceDomain.addDomainPair("JHokenjyaMasterMaintenanceListFrame","保険者情報（編集）");
+	    logPlaceDomain.addDomainPair("JImportDataFrameCtrl","健診結果データ取り込み");
+	    logPlaceDomain.addDomainPair("JKeinenMasterMaintenanceListFrame","経年マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JKenshinMasterMaintenanceListFrame","健診項目マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JKenshinpatternMasterMaintenanceListFrame","健診パターンメンテナンス");
+	    logPlaceDomain.addDomainPair("JKenshinPatternMaintenanceEditFrameCtrl","健診パターンメンテナンス（編集）");
+	    logPlaceDomain.addDomainPair("JLoginFrameCtrl","ログイン");
+	    logPlaceDomain.addDomainPair("JMasterMaintenanceFrameCtrl","マスタメンテナンスメニュー");
+	    logPlaceDomain.addDomainPair("JMenuFrameCtrl","メインメニュー");
+	    logPlaceDomain.addDomainPair("JSystemMaintenanceFrameCtrl","システムメンテナンスメニュー");
+	    logPlaceDomain.addDomainPair("JOutputGetujiSearchListFrame","月次処理");
+	    logPlaceDomain.addDomainPair("JHanteiSearchResultListFrame","メタボリックシンドローム判定・階層化");
+	    logPlaceDomain.addDomainPair("JShowResultFrameCtrl","健診結果表示・自動判定");
+	    logPlaceDomain.addDomainPair("JKekkaRegisterFrameCtrl","健診結果データ入力");
+	    logPlaceDomain.addDomainPair("JKenshinKekkaSearchListFrame","健診結果データ一覧");
+	    logPlaceDomain.addDomainPair("JKojinRegisterFrameCtrl","受診券入力画面");
+	    logPlaceDomain.addDomainPair("JRegisterFlameCtrl","健診結果データ入力");
+	    logPlaceDomain.addDomainPair("JInputKessaiDataFrameCtrl","請求データ編集");
+	    logPlaceDomain.addDomainPair("JOutputNitijiSearchListFrame","日次処理");
+	    logPlaceDomain.addDomainPair("JSelectHokenjyaFrameCtrl","保険者情報（dialog）");
+	    logPlaceDomain.addDomainPair("JSelectKojinFrameCtrl","受診者（dialog）");
+	    logPlaceDomain.addDomainPair("JSelectShiharaiFrameCtrl","支払代行機関（dialog）");
+	    logPlaceDomain.addDomainPair("JShiharaiMasterMaintenanceEditFrameCtrl","支払代行情報メンテナンス（編集）");
+	    logPlaceDomain.addDomainPair("JShiharaiMasterMaintenanceListFrame","支払代行情報メンテナンス");
+	    logPlaceDomain.addDomainPair("JShokenMasterMaintenanceEditFrameCtrl","所見マスタメンテナンス（編集）");
+	    logPlaceDomain.addDomainPair("JShokenMasterMaintenanceListFrame","所見マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JKikanDBBackupFrameCtrl","機関DBバックアップ＆復元");
+	    logPlaceDomain.addDomainPair("JKikanLogListFrame","ログファイル管理");
+	    logPlaceDomain.addDomainPair("JKikanLogListFrameCtl","ログファイル管理");	// edit n.ohkubo 2014/10/01　追加
+	    logPlaceDomain.addDomainPair("JUsabilityFrameCtrl","ユーザビリティメンテナンス");
+	    logPlaceDomain.addDomainPair("JKekkaTeikeiMaintenanceEditFrameCtrl","所見マスタメンテナンス（編集）");
+	    logPlaceDomain.addDomainPair("JKekkaTeikeiMaintenanceListFrameCtrl","所見マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JKenshinMasterMaintenanceFrameCtrl","健診項目マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JKenshinPatternMaintenanceAddFrameCtrl","機関情報メンテナンス編集（追加）");
+	    logPlaceDomain.addDomainPair("JKenshinPatternMaintenanceCopyFrameCtrl","機関情報メンテナンス編集（複製）");
+	    logPlaceDomain.addDomainPair("JKikanDBBackupFrameCtrl","健診結果データ取り込み");
+	    logPlaceDomain.addDomainPair("JNayoseMaintenanceEditFrameCtl","経年マスタメンテナンス（編集）");
+	    logPlaceDomain.addDomainPair("JNayoseMaintenanceListFrameCtl","経年マスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JRegisterUserFrameCtrl","ユーザマスタメンテナンス");
+	    logPlaceDomain.addDomainPair("JSystemMaintenanceFrameCtrl","健診結果データ取り込み");
+	    logPlaceDomain.addDomainPair("JUserMaintenanceFrameCtrl","健診結果データ取り込み");
+	    // onlineupdate
+	    logPlaceDomain.addDomainPair("KikanSchemaChangeTask","機関スキーマ処理/onlineupdate");
+	    logPlaceDomain.addDomainPair("ModuleCopyTask","ファイル処理/onlineupdate");
+	    logPlaceDomain.addDomainPair("SystemDataUpdateTask","システムデータ処理/onlineupdate");
+	    logPlaceDomain.addDomainPair("SystemSchemaChangeTask","システムスキーマ処理/onlineupdate");
+	    logPlaceDomain.addDomainPair("JMainFrame","メイン画面/onlineupdate");
+	    // admin
+	    logPlaceDomain.addDomainPair("JDBBackupFrameCtrl","システムバックアップ＆復元/管理");
+	    logPlaceDomain.addDomainPair("JKikanMaintenanceFrameCtrl","機関情報メンテナンス/管理");
+	    logPlaceDomain.addDomainPair("JLoginFrameCtrl","ログイン/管理");
+	    logPlaceDomain.addDomainPair("JMenuFrameCtrl","メインメニュー/管理");
+	    logPlaceDomain.addDomainPair("JRegisterUserFrameCtrl","健診結果データ取り込み/管理");
+	    logPlaceDomain.addDomainPair("JNetworkDBConnectionFrame","DB接続情報メンテナンス（編集）");		// edit n.ohkubo 2015/08/01　追加
+	    logPlaceDomain.addDomainPair("JNetworkDBConnectionFrameCtrl","DB接続情報メンテナンス（編集）");	// edit n.ohkubo 2015/08/01　追加
+	    
+	    JApplication.domains.put(
+    		logPlaceDomain.getDomainId(),
+    		logPlaceDomain
+	    );
+
 // del s.inoue 2012/02/20
 //	    // eidt s.inoue 2011/10/18
 //		// 検査項目の選択肢取得
@@ -776,6 +894,11 @@ public class JLoginFrameCtrl extends JLoginFrame {
 //				JApplication.graphDomain.getDomainId(),JApplication.graphDomain);
 //
 //	 // ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+	    
+	    // move s.inoue 2014/04/30
+	    // ログイン処理時だとタイミング悪い
+	    
+	    
 	    // add s.inoue 2012/10/25
 		// 支払代行
 		ArrayList<Hashtable<String, String>> siharaiItems = null;
@@ -858,6 +981,9 @@ public class JLoginFrameCtrl extends JLoginFrame {
 		JApplication.domains.put(
 				JApplication.patternDomain.getDomainId(),JApplication.patternDomain);
 
+		// add s.inoue 2013/11/14
+		// getFunctionSetting();
+		
 		// ボタンの制御（初期表示）
 		ButtonsAuthorizations auth = new ButtonsAuthorizations();
 		auth.addButtonAuthorization("F1",true,true,true);
@@ -890,6 +1016,8 @@ public class JLoginFrameCtrl extends JLoginFrame {
 		// 窓ロック(0:closeOnExit,1:useClose,2:pressed,3unPressed)
 		ClientSettings.FILTER_PANEL_ON_GRID_POLICY = Consts.FILTER_PANEL_ON_GRID_USE_PADLOCK_UNPRESSED;
 
+		// add s.inoue 2013/10/28
+
 		// セル色
 		ClientSettings.VIEW_BACKGROUND_SEL_COLOR = true;
 		// buttonText
@@ -911,6 +1039,9 @@ public class JLoginFrameCtrl extends JLoginFrame {
 	    // filter機能
 	    ClientSettings.GRID_PROFILE_MANAGER = new FileGridProfileManager();
 	    ClientSettings.LOOKUP_FRAME_CONTENT = LookupController.GRID_AND_FILTER_FRAME;
+	    // add s.inoue 2013/10/28
+	    ClientSettings.STORE_INTERNAL_FRAME_PROFILE = true;
+
 
 //	    // add s.inoue 2012/11/14
 //	    /** flag used to add a filter panel on top of the exported grid, in order to show filtering conditions;
@@ -936,7 +1067,7 @@ public class JLoginFrameCtrl extends JLoginFrame {
 		ClientSettings.BACKGROUND_SEL_COLOR = new Color(220,220,220);
 		ClientSettings.SHOW_FOCUS_BORDER_ON_FORM = false;
 		ClientSettings.ASK_BEFORE_CLOSE = true;
-
+		
 // eidt s.inoue 2013/03/12
 		try{
 //		  String osname = System.getProperty("os.name");
@@ -948,7 +1079,328 @@ public class JLoginFrameCtrl extends JLoginFrame {
 			UIManager.setLookAndFeel(ClientSettings.LOOK_AND_FEEL_CLASS_NAME);
 //	      }
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			// eidt n.ohkubo 2014/08/22
+			//Ver2.1.1に合わせるためにコメントアウト
+//			logger.error(e.getMessage());
 		}
 	}
+	
+	// add s.inoue 2014/04/30
+	private static void setScreenColumns(){
+		
+	    // add s.inoue 2013/11/22
+		ArrayList<Hashtable<String, String>> searchColumnItems = null;
+		String sql005 ="SELECT SCREEN_CD, NAME,JYUSHIN_SEIRI_NO,NENDO, HIHOKENJYASYO_NO,HIHOKENJYASYO_KIGOU, KENSA_NENGAPI, SEX, BIRTHDAY, "
+				+ "KEKA_INPUT_FLG, HKNJANUM, SIHARAI_DAIKOU_BANGO, KANANAME, HANTEI_NENGAPI, TUTI_NENGAPI,JISI_KBN, CHECKBOX_COLUMN, "
+				+ "TANKA_GOUKEI, MADO_FUTAN_GOUKEI, SEIKYU_KINGAKU, UPDATE_TIMESTAMP, HENKAN_NITIJI, METABO, HOKENSIDO_LEVEL, KOMENTO, "
+				+ "KOUMOKU_CD, KOUMOKU_NAME, KENSA_HOUHOU, HISU_FLG, DS_KAGEN, DS_JYOUGEN, JS_KAGEN, JS_JYOUGEN, TANI, KAGEN, JYOUGEN, KIJYUNTI_HANI, TANKA_KENSIN, BIKOU, "
+				// add s.inoue 2014/02/17
+				+ "NITIJI_FLG,GETUJI_FLG "
+				+ "FROM T_SCREENCOLUMNS "
+				+ "WHERE SCREEN_CD ='005' or SCREEN_CD = '004' or SCREEN_CD = '006' or SCREEN_CD = '007' or SCREEN_CD = '102' or SCREEN_CD = '110'";
+
+		try {
+			searchColumnItems = JApplication.kikanDatabase.sendExecuteQuery(sql005);
+		} catch (SQLException e) {
+			logger.error(e.getMessage());
+		}
+		
+		for (int i = 0; i < searchColumnItems.size(); i++) {
+			Hashtable<String, String> Items;
+			Items = searchColumnItems.get(i);
+			// 結果一覧
+			if (Items.get("SCREEN_CD").equals("005")){
+				if(Items.get("JYUSHIN_SEIRI_NO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.JYUSHIN_SEIRI_NO));
+				if(Items.get("NAME").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.NAME));
+				if(Items.get("HIHOKENJYASYO_KIGOU").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HIHOKENJYASYO_KIGOU));
+				if(Items.get("HIHOKENJYASYO_NO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HIHOKENJYASYO_NO));
+				if(Items.get("KENSA_NENGAPI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.KENSA_NENGAPI));
+				if(Items.get("SEX").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.SEX));
+				if(Items.get("BIRTHDAY").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.BIRTHDAY));
+				if(Items.get("KEKA_INPUT_FLG").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.KEKA_INPUT_FLG));
+				if(Items.get("HKNJANUM").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HKNJANUM));
+				if(Items.get("SIHARAI_DAIKOU_BANGO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.SIHARAI_DAIKOU_BANGO));
+				if(Items.get("KANANAME").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.KANANAME));
+				if(Items.get("HANTEI_NENGAPI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HANTEI_NENGAPI));
+				if(Items.get("TUTI_NENGAPI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.TUTI_NENGAPI));
+				if(Items.get("NENDO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.NENDO));
+				if(Items.get("TANKA_GOUKEI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.TANKA_GOUKEI));
+				if(Items.get("MADO_FUTAN_GOUKEI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.MADO_FUTAN_GOUKEI));
+				if(Items.get("SEIKYU_KINGAKU").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.SEIKYU_KINGAKU));
+				if(Items.get("CHECKBOX_COLUMN").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.CHECKBOX_COLUMN));
+				if(Items.get("UPDATE_TIMESTAMP").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.UPDATE_TIMESTAMP));
+				if(Items.get("JISI_KBN").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.JISI_KBN));
+				if(Items.get("HENKAN_NITIJI").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HENKAN_NITIJI));
+				if(Items.get("METABO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.METABO));
+				if(Items.get("HOKENSIDO_LEVEL").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.HOKENSIDO_LEVEL));
+				if(Items.get("KOMENTO").equals("0"))
+					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.KOMENTO));
+			}else if (Items.get("SCREEN_CD").equals("004")){
+				if(Items.get("JYUSHIN_SEIRI_NO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.JYUSHIN_SEIRI_NO));
+				if(Items.get("NAME").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.NAME));
+				if(Items.get("HIHOKENJYASYO_KIGOU").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HIHOKENJYASYO_KIGOU));
+				if(Items.get("HIHOKENJYASYO_NO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HIHOKENJYASYO_NO));
+				if(Items.get("KENSA_NENGAPI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.KENSA_NENGAPI));
+				if(Items.get("SEX").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.SEX));
+				if(Items.get("BIRTHDAY").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.BIRTHDAY));
+				if(Items.get("KEKA_INPUT_FLG").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.KEKA_INPUT_FLG));
+				if(Items.get("HKNJANUM").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HKNJANUM));
+				if(Items.get("SIHARAI_DAIKOU_BANGO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.SIHARAI_DAIKOU_BANGO));
+				if(Items.get("KANANAME").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.KANANAME));
+				if(Items.get("HANTEI_NENGAPI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HANTEI_NENGAPI));
+				if(Items.get("TUTI_NENGAPI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.TUTI_NENGAPI));
+				if(Items.get("NENDO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.NENDO));
+				if(Items.get("TANKA_GOUKEI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.TANKA_GOUKEI));
+				if(Items.get("MADO_FUTAN_GOUKEI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.MADO_FUTAN_GOUKEI));
+				if(Items.get("SEIKYU_KINGAKU").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.SEIKYU_KINGAKU));
+				if(Items.get("CHECKBOX_COLUMN").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.CHECKBOX_COLUMN));
+				if(Items.get("UPDATE_TIMESTAMP").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.UPDATE_TIMESTAMP));
+				if(Items.get("JISI_KBN").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.JISI_KBN));
+				if(Items.get("HENKAN_NITIJI").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HENKAN_NITIJI));
+				if(Items.get("METABO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.METABO));
+				if(Items.get("HOKENSIDO_LEVEL").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.HOKENSIDO_LEVEL));
+				if(Items.get("KOMENTO").equals("0"))
+					JApplication.flag_Hantei.addAll(EnumSet.of(FlagEnum_Hantei.KOMENTO));
+			}else if (Items.get("SCREEN_CD").equals("006")){
+				if(Items.get("JYUSHIN_SEIRI_NO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.JYUSHIN_SEIRI_NO));
+				if(Items.get("NAME").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.NAME));
+				if(Items.get("HIHOKENJYASYO_KIGOU").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HIHOKENJYASYO_KIGOU));
+				if(Items.get("HIHOKENJYASYO_NO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HIHOKENJYASYO_NO));
+				if(Items.get("KENSA_NENGAPI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.KENSA_NENGAPI));
+				if(Items.get("SEX").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.SEX));
+				if(Items.get("BIRTHDAY").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.BIRTHDAY));
+				if(Items.get("KEKA_INPUT_FLG").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.KEKA_INPUT_FLG));
+				if(Items.get("HKNJANUM").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HKNJANUM));
+				if(Items.get("SIHARAI_DAIKOU_BANGO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.SIHARAI_DAIKOU_BANGO));
+				if(Items.get("KANANAME").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.KANANAME));
+				if(Items.get("HANTEI_NENGAPI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HANTEI_NENGAPI));
+				if(Items.get("TUTI_NENGAPI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.TUTI_NENGAPI));
+				if(Items.get("NENDO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.NENDO));
+				if(Items.get("TANKA_GOUKEI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.TANKA_GOUKEI));
+				if(Items.get("MADO_FUTAN_GOUKEI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.MADO_FUTAN_GOUKEI));
+				if(Items.get("SEIKYU_KINGAKU").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.SEIKYU_KINGAKU));
+				if(Items.get("CHECKBOX_COLUMN").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.CHECKBOX_COLUMN));
+				if(Items.get("UPDATE_TIMESTAMP").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.UPDATE_TIMESTAMP));
+				if(Items.get("JISI_KBN").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.JISI_KBN));
+				if(Items.get("HENKAN_NITIJI").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HENKAN_NITIJI));
+				if(Items.get("METABO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.METABO));
+				if(Items.get("HOKENSIDO_LEVEL").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.HOKENSIDO_LEVEL));
+				if(Items.get("KOMENTO").equals("0"))
+					JApplication.flag_Nitiji.addAll(EnumSet.of(FlagEnum_Nitiji.KOMENTO));
+				
+			}else if (Items.get("SCREEN_CD").equals("007")){
+				if(Items.get("JYUSHIN_SEIRI_NO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.JYUSHIN_SEIRI_NO));
+				if(Items.get("NAME").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.NAME));
+				if(Items.get("HIHOKENJYASYO_KIGOU").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HIHOKENJYASYO_KIGOU));
+				if(Items.get("HIHOKENJYASYO_NO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HIHOKENJYASYO_NO));
+				if(Items.get("KENSA_NENGAPI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.KENSA_NENGAPI));
+				if(Items.get("SEX").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.SEX));
+				if(Items.get("BIRTHDAY").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.BIRTHDAY));
+				if(Items.get("KEKA_INPUT_FLG").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.KEKA_INPUT_FLG));
+				if(Items.get("HKNJANUM").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HKNJANUM));
+				if(Items.get("SIHARAI_DAIKOU_BANGO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.SIHARAI_DAIKOU_BANGO));
+				if(Items.get("KANANAME").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.KANANAME));
+				if(Items.get("HANTEI_NENGAPI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HANTEI_NENGAPI));
+				if(Items.get("TUTI_NENGAPI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.TUTI_NENGAPI));
+				if(Items.get("NENDO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.NENDO));
+				if(Items.get("TANKA_GOUKEI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.TANKA_GOUKEI));
+				if(Items.get("MADO_FUTAN_GOUKEI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.MADO_FUTAN_GOUKEI));
+				if(Items.get("SEIKYU_KINGAKU").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.SEIKYU_KINGAKU));
+				if(Items.get("CHECKBOX_COLUMN").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.CHECKBOX_COLUMN));
+				if(Items.get("UPDATE_TIMESTAMP").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.UPDATE_TIMESTAMP));
+				if(Items.get("JISI_KBN").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.JISI_KBN));
+				if(Items.get("HENKAN_NITIJI").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HENKAN_NITIJI));
+				if(Items.get("METABO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.METABO));
+				if(Items.get("HOKENSIDO_LEVEL").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.HOKENSIDO_LEVEL));
+				if(Items.get("KOMENTO").equals("0"))
+					JApplication.flag_Getuji.addAll(EnumSet.of(FlagEnum_Getuji.KOMENTO));
+			// add s.inoue 2013/12/19	
+			}else if (Items.get("SCREEN_CD").equals("102")){
+				if(Items.get("KOUMOKU_CD").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KOUMOKU_CD));
+				if(Items.get("KOUMOKU_NAME").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KOUMOKU_NAME));
+				if(Items.get("KENSA_HOUHOU").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KENSA_HOUHOU));
+				if(Items.get("HISU_FLG").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.HISU_FLG));
+				if(Items.get("DS_KAGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.DS_KAGEN));
+				if(Items.get("DS_JYOUGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.DS_JYOUGEN));
+				if(Items.get("JS_KAGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JS_KAGEN));
+				if(Items.get("JS_JYOUGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JS_JYOUGEN));
+				if(Items.get("TANI").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.TANI));
+				if(Items.get("KAGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KAGEN));
+				if(Items.get("JYOUGEN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.JYOUGEN));
+				if(Items.get("KIJYUNTI_HANI").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.KIJYUNTI_HANI));
+				if(Items.get("TANKA_KENSIN").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.TANKA_KENSIN));
+				if(Items.get("BIKOU").equals("0"))
+					JApplication.flag_Master.addAll(EnumSet.of(FlagEnum_Master.BIKOU));
+		    // add s.inoue 2014/02/17
+			}else if (Items.get("SCREEN_CD").equals("110")){
+				if(Items.get("HKNJANUM").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.HKNJANUM));
+				if(Items.get("JYUSHIN_SEIRI_NO").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.JYUSHIN_SEIRI_NO));
+				if(Items.get("BIRTHDAY").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.BIRTHDAY));
+				if(Items.get("SEX").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.SEX));
+				if(Items.get("HIHOKENJYASYO_KIGOU").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.HIHOKENJYASYO_KIGOU));
+				if(Items.get("HIHOKENJYASYO_NO").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.HIHOKENJYASYO_NO));
+				if(Items.get("KENSA_NENGAPI").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.KENSA_NENGAPI));
+				if(Items.get("KANANAME").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.KANANAME));
+				if(Items.get("KEKA_INPUT_FLG").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.KEKA_FLG));
+				if(Items.get("HANTEI_NENGAPI").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.HANTEI_FLG));
+				if(Items.get("NITIJI_FLG").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.NITIJI_FLG));
+				if(Items.get("GETUJI_FLG").equals("0"))
+					JApplication.flag_KouteiMaster.addAll(EnumSet.of(FlagEnum_KouteiMaster.GETUJI_FLG));
+			}
+		}
+	}
+	
+	// add s.inoue 2013/11/14
+//	private static boolean getFunctionSetting(){
+//
+//		ArrayList<Hashtable<String, String>> result = null;
+//		boolean retflg = false;
+//
+//		try{
+//			StringBuilder sb = new StringBuilder();
+//			sb.append("SELECT CHECKBOX_COLUMN, NENDO, JYUSHIN_SEIRI_NO, NAME, HIHOKENJYASYO_KIGOU, HIHOKENJYASYO_NO,");
+//			sb.append("KENSA_NENGAPI, SEX, BIRTHDAY, KEKA_INPUT_FLG, HKNJANUM, SIHARAI_DAIKOU_BANGO, KANANAME, HANTEI_NENGAPI,");
+//			sb.append("TUTI_NENGAPI, TANKA_GOUKEI, MADO_FUTAN_GOUKEI, SEIKYU_KINGAKU, JISI_KBN, HENKAN_NITIJI, METABO,");
+//			sb.append("HOKENSIDO_LEVEL, KOMENTO, UPDATE_TIMESTAMP");
+//			sb.append(" FROM T_SCREENCOLUMNS ");
+//			sb.append(" WHERE SCREEN_CD = ");
+//			sb.append(JQueryConvert.queryConvert(JApplication.SCREEN_SHOSAI_CODE));
+//
+//			result = JApplication.kikanDatabase.sendExecuteQuery(sb.toString());
+//			
+//			Hashtable<String, String> item = result.get(0);
+//			retflg = item.get("CHECKBOX_COLUMN").equals("1")?true:false;
+//			
+//			if (item.get("FUNCTION_FLG").equals("1")){
+//				JApplication.flag.removeAll(EnumSet.of(FlagEnum_Serche.JYUSHIN_SEIRI_NO));
+//			}else{
+//				if (!JApplication.flag.contains(FlagEnum_Serche.JYUSHIN_SEIRI_NO))
+//					JApplication.flag.addAll(EnumSet.of(FlagEnum_Serche.JYUSHIN_SEIRI_NO));
+//			}
+//			
+//		}catch(Exception ex){
+//			logger.error(ex.getMessage());
+//		}
+//
+//		Hashtable<String, String> item = result.get(0);
+//		retflg = item.get("FUNCTION_FLG").equals("1")?true:false;
+//
+//		return retflg;
+//	}
 }
